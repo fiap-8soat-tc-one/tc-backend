@@ -1,10 +1,10 @@
-package com.fiap.tc.mapper;
+package com.fiap.tc.mappers;
 
 import org.mapstruct.Mapper;
 
 import com.fiap.tc.domains.seguranca.Usuario;
 import com.fiap.tc.dto.UsuarioDto;
-import com.fiap.tc.mapper.base.MapperEntity;
+import com.fiap.tc.mappers.base.MapperEntity;
 
 @Mapper
 public interface UsuarioMapper extends MapperEntity<Usuario, UsuarioDto> {

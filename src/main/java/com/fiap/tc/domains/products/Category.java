@@ -14,6 +14,6 @@ public class Category {
     private UUID uuid;
     private String name;
     private String description;
-    @Column(name = "fl_active", columnDefinition = "boolean default true")
-    private Boolean active;
+    @Column(name = "fl_active", columnDefinition = "boolean default true", nullable = false)
+    private boolean active;
 }

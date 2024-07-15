@@ -1,4 +1,4 @@
-package com.fiap.tc.mapper.base;
+package com.fiap.tc.mappers.base;
 
 import org.mapstruct.InheritInverseConfiguration;
 
