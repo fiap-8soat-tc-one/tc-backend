@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15.3-alpine
+    container_name: tc-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - /var/data/pgdata:/var/lib/postgresql/data
+  tc-backend:
+    depends_on:
+      - postgres
+    image: tc-backend
+    build: .
+    ports:
+      - 8080:8080
+    restart: always
+    environment:
+      - DATABASE_HOST=postgres
+      - DATABASE_USER=postgres
+      - DATABASE_PASS=123456
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=postgres
