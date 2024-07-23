@@ -21,8 +21,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fiap.tc.core.domain.model.enums.StatusUsuario;
-import com.fiap.tc.core.domain.model.enums.TipoDocumento;
+import com.fiap.tc.core.domain.enums.StatusUsuario;
+import com.fiap.tc.core.domain.enums.TipoDocumento;
 import lombok.Data;
 
 @Entity

@@ -15,7 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fiap.tc.core.domain.model.enums.PerfilSistema;
+import com.fiap.tc.core.domain.enums.PerfilSistema;
 import lombok.Data;
 
 @Entity

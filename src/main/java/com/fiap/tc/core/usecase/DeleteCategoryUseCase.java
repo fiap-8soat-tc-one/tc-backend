@@ -1,7 +1,9 @@
 package com.fiap.tc.core.usecase;
 
 import com.fiap.tc.core.port.in.DeleteCategoryInputPort;
+import com.fiap.tc.core.port.in.DeleteCustomerInputPort;
 import com.fiap.tc.core.port.out.DeleteCategoryOutputPort;
+import com.fiap.tc.core.port.out.DeleteCustomerOutputPort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -23,3 +25,5 @@ public class DeleteCategoryUseCase implements DeleteCategoryInputPort {
         this.deleteCategoryOutputPort.delete(uuid);
     }
 }
+
+

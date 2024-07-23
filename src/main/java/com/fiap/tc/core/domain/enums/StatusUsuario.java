@@ -1,4 +1,4 @@
-package com.fiap.tc.core.domain.model.enums;
+package com.fiap.tc.core.domain.enums;
 
 public enum StatusUsuario {
 	ATIVO,

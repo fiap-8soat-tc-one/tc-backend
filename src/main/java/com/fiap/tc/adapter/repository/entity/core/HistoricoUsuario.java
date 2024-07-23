@@ -14,7 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fiap.tc.core.domain.model.enums.OperacaoUsuario;
+import com.fiap.tc.core.domain.enums.OperacaoUsuario;
 import lombok.Data;
 
 @Entity

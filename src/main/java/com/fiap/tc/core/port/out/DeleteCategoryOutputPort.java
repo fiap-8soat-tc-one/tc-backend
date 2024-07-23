@@ -5,3 +5,4 @@ import java.util.UUID;
 public interface DeleteCategoryOutputPort {
     void delete(UUID uuid);
 }
+

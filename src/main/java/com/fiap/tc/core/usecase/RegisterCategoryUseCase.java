@@ -1,7 +1,7 @@
 package com.fiap.tc.core.usecase;
 
 import com.fiap.tc.core.domain.model.Category;
-import com.fiap.tc.core.domain.model.CategoryRequest;
+import com.fiap.tc.core.domain.requests.CategoryRequest;
 import com.fiap.tc.core.port.in.RegisterCategoryInputPort;
 import com.fiap.tc.core.port.out.SaveCategoryOutputPort;
 import lombok.extern.slf4j.Slf4j;
