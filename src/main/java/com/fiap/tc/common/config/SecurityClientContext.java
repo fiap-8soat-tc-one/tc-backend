@@ -5,11 +5,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class SecurityClientContext {
 
-	public static Authentication get() {
-		return SecurityContextHolder.getContext().getAuthentication();
-	}
-	
-	public static String getLogin() {
-		return SecurityContextHolder.getContext().getAuthentication().getName();
-	}
+    public static Authentication get() {
+        return SecurityContextHolder.getContext().getAuthentication();
+    }
+
+    public static String getLogin() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+    }
 }

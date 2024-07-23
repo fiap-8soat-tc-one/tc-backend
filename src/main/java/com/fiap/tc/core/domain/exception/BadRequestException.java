@@ -1,17 +1,17 @@
 package com.fiap.tc.core.domain.exception;
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @ResponseStatus(BAD_REQUEST)
 public class BadRequestException extends RuntimeException {
 
-    public BadRequestException(){
+    public BadRequestException() {
         super();
     }
 
-    public BadRequestException(String message){
+    public BadRequestException(String message) {
         super(message);
     }
 }

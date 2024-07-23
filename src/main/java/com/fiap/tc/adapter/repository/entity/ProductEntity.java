@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name="product")
+@Table(name = "product")
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,8 +18,8 @@ public class ProductEntity {
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "product_category",
-            joinColumns = { @JoinColumn(name = "id_product") },
-            inverseJoinColumns = { @JoinColumn(name = "id_category") }
+            joinColumns = {@JoinColumn(name = "id_product")},
+            inverseJoinColumns = {@JoinColumn(name = "id_category")}
     )
     private Set<CategoryEntity> categories;
 

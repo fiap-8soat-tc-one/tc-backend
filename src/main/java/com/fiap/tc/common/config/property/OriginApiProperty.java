@@ -1,35 +1,32 @@
 package com.fiap.tc.common.config.property;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
 import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "tc-backend-api")
 @Data
 public class OriginApiProperty {
 
-	private String origem;
+    private final Seguranca seguranca = new Seguranca();
+    private String origem;
 
-	private final Seguranca seguranca = new Seguranca();
-
-	public Seguranca getSeguranca() {
-		return seguranca;
-	}
-
+    public Seguranca getSeguranca() {
+        return seguranca;
+    }
 
 
-	public static class Seguranca {
+    public static class Seguranca {
 
-		private boolean enableHttps;
+        private boolean enableHttps;
 
-		public boolean isEnableHttps() {
-			return enableHttps;
-		}
+        public boolean isEnableHttps() {
+            return enableHttps;
+        }
 
-		public void setEnableHttps(boolean enableHttps) {
-			this.enableHttps = enableHttps;
-		}
+        public void setEnableHttps(boolean enableHttps) {
+            this.enableHttps = enableHttps;
+        }
 
-	}
+    }
 
 }

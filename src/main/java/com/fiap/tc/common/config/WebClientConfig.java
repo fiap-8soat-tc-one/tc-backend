@@ -13,69 +13,69 @@ import reactor.core.publisher.Mono;
 public class WebClientConfig {
 
 
-	private static ExchangeFilterFunction logResponse() {
-		return ExchangeFilterFunction.ofResponseProcessor(response -> {
-			logStatus(response);
-			logHeaders(response);
+    private static ExchangeFilterFunction logResponse() {
+        return ExchangeFilterFunction.ofResponseProcessor(response -> {
+            logStatus(response);
+            logHeaders(response);
 
-			return logBody(response);
-		});
-	}
+            return logBody(response);
+        });
+    }
 
-	private static void logStatus(ClientResponse response) {
-		HttpStatus status = response.statusCode();
-		log.info("Returned staus code {} ({})", status.value(), status.getReasonPhrase());
-	}
+    private static void logStatus(ClientResponse response) {
+        HttpStatus status = response.statusCode();
+        log.info("Returned staus code {} ({})", status.value(), status.getReasonPhrase());
+    }
 
-	private static Mono<ClientResponse> logBody(ClientResponse response) {
-		if (response.statusCode() != null
-				&& (response.statusCode().is4xxClientError() || response.statusCode().is5xxServerError())) {
-			return response.bodyToMono(String.class).flatMap(body -> {
-				log.info("Body is {}", body);
-				return Mono.just(response);
-			});
-		} else {
-			return Mono.just(response);
-		}
-	}
+    private static Mono<ClientResponse> logBody(ClientResponse response) {
+        if (response.statusCode() != null
+                && (response.statusCode().is4xxClientError() || response.statusCode().is5xxServerError())) {
+            return response.bodyToMono(String.class).flatMap(body -> {
+                log.info("Body is {}", body);
+                return Mono.just(response);
+            });
+        } else {
+            return Mono.just(response);
+        }
+    }
 
-	private static void logHeaders(ClientResponse response) {
-		response.headers().asHttpHeaders().forEach((name, values) -> {
-			values.forEach(value -> {
+    private static void logHeaders(ClientResponse response) {
+        response.headers().asHttpHeaders().forEach((name, values) -> {
+            values.forEach(value -> {
 
-				log.info(name, value);
-			});
-		});
-	}
+                log.info(name, value);
+            });
+        });
+    }
 
-	public static ExchangeFilterFunction logRequest() {
-		return ExchangeFilterFunction.ofRequestProcessor(request -> {
-			logMethodAndUrl(request);
-			logHeaders(request);
+    public static ExchangeFilterFunction logRequest() {
+        return ExchangeFilterFunction.ofRequestProcessor(request -> {
+            logMethodAndUrl(request);
+            logHeaders(request);
 
-			return Mono.just(request);
-		});
-	}
+            return Mono.just(request);
+        });
+    }
 
-	private static void logHeaders(ClientRequest request) {
-		request.headers().forEach((name, values) -> {
-			values.forEach(value -> {
-				logNameAndValuePair(name, value);
-			});
-		});
-	}
+    private static void logHeaders(ClientRequest request) {
+        request.headers().forEach((name, values) -> {
+            values.forEach(value -> {
+                logNameAndValuePair(name, value);
+            });
+        });
+    }
 
-	private static void logNameAndValuePair(String name, String value) {
-		log.info("{}={}", name, value);
-	}
+    private static void logNameAndValuePair(String name, String value) {
+        log.info("{}={}", name, value);
+    }
 
-	private static void logMethodAndUrl(ClientRequest request) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(request.method().name());
-		sb.append(" to ");
-		sb.append(request.url());
+    private static void logMethodAndUrl(ClientRequest request) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(request.method().name());
+        sb.append(" to ");
+        sb.append(request.url());
 
-		log.info(sb.toString());
-	}
+        log.info(sb.toString());
+    }
 
 }

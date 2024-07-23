@@ -4,9 +4,9 @@ import static br.com.six2six.fixturefactory.loader.FixtureFactoryLoader.loadTemp
 
 public class BaseTest {
 
-	public static final String TEMPLATES_PATH = "com.fiap.tc.templates";
+    public static final String TEMPLATES_PATH = "com.fiap.tc.templates";
 
-	public BaseTest() {
-		loadTemplates(TEMPLATES_PATH);
-	}
+    public BaseTest() {
+        loadTemplates(TEMPLATES_PATH);
+    }
 }

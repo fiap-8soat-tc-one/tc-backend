@@ -1,5 +1,6 @@
-package com.fiap.tc.adapter.repository;
+package com.fiap.tc.adapter.repository.output;
 
+import com.fiap.tc.adapter.repository.CategoryRepository;
 import com.fiap.tc.adapter.repository.entity.CategoryEntity;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Category;
@@ -21,9 +22,9 @@ import static java.util.Objects.nonNull;
 @Repository
 public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCategoryOutputPort,
         ListCategoriesOutputPort, DeleteCategoryOutputPort {
-    private final CategoryPersistenceRepository categoryPersistenceRepository;
+    private final CategoryRepository categoryPersistenceRepository;
 
-    public CategoryOutputAdapter(CategoryPersistenceRepository categoryPersistenceRepository) {
+    public CategoryOutputAdapter(CategoryRepository categoryPersistenceRepository) {
         this.categoryPersistenceRepository = categoryPersistenceRepository;
     }
 
