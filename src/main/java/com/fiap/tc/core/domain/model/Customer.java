@@ -1,9 +1,7 @@
-﻿package com.fiap.tc.core.domain.model;
+package com.fiap.tc.core.domain.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
-import java.util.UUID;
 
 @Data
 public class Customer {

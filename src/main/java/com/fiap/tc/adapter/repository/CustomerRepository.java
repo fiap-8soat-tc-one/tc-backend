@@ -1,4 +1,4 @@
-﻿package com.fiap.tc.adapter.repository;
+package com.fiap.tc.adapter.repository;
 
 import com.fiap.tc.adapter.repository.entity.CustomerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

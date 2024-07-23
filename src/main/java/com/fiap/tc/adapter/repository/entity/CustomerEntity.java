@@ -1,4 +1,4 @@
-﻿package com.fiap.tc.adapter.repository.entity;
+package com.fiap.tc.adapter.repository.entity;
 
 import lombok.Data;
 

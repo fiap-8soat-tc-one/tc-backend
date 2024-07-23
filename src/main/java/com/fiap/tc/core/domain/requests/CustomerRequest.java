@@ -1,4 +1,4 @@
-﻿package com.fiap.tc.core.domain.requests;
+package com.fiap.tc.core.domain.requests;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

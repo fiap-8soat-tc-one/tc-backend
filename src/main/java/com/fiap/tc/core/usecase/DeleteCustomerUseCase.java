@@ -1,4 +1,4 @@
-﻿package com.fiap.tc.core.usecase;
+package com.fiap.tc.core.usecase;
 
 import com.fiap.tc.core.port.in.DeleteCustomerInputPort;
 import com.fiap.tc.core.port.out.DeleteCustomerOutputPort;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class DeleteCustomerUseCase implements DeleteCustomerInputPort {
 
-    private final DeleteCustomerOutputPort  deleteCustomerOutputPort;
+    private final DeleteCustomerOutputPort deleteCustomerOutputPort;
 
     public DeleteCustomerUseCase(DeleteCustomerOutputPort deleteCustomerOutputPort) {
         this.deleteCustomerOutputPort = deleteCustomerOutputPort;

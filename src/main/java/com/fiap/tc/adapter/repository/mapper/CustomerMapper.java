@@ -1,4 +1,4 @@
-﻿package com.fiap.tc.adapter.repository.mapper;
+package com.fiap.tc.adapter.repository.mapper;
 
 import com.fiap.tc.adapter.repository.entity.CustomerEntity;
 import com.fiap.tc.adapter.repository.mapper.base.MapperEntity;
