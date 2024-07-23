@@ -37,14 +37,14 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
 
     @Override
     public Page<Category> list(Pageable pageable) {
-        Page<CategoryEntity> categories =  categoryPersistenceRepository.findAll(pageable);
+        Page<CategoryEntity> categories = categoryPersistenceRepository.findAll(pageable);
         return categories.map(CATEGORY_MAPPER::fromEntity);
     }
 
     @Override
     public Category load(UUID uuid) {
         var category = categoryPersistenceRepository.findByUuid(uuid);
-        if(isNull(category)) {
+        if (isNull(category)) {
             throw new NotFoundException(format("Category with uuid %s not found!", uuid));
         }
         return CATEGORY_MAPPER.fromEntity(category);
