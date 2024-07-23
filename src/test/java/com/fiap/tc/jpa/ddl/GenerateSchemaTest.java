@@ -45,7 +45,7 @@ public class GenerateSchemaTest {
                 .build()
         );
 
-        Reflections reflections = new Reflections("com.fiap.tc.domains", new SubTypesScanner(false));
+        Reflections reflections = new Reflections("com.fiap.tc.adapter.repository.entity", new SubTypesScanner(false));
 
         Set<String> entityNames = reflections.getAllTypes();
 		entityNames.forEach(metadataSources::addAnnotatedClassName);
