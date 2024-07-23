@@ -2,7 +2,7 @@ package com.fiap.tc.common.security.util;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-public class GeradorSenha {
+public class PasswordEngine {
 
     public static void main(String[] args) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

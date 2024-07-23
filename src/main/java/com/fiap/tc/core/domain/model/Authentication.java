@@ -6,7 +6,7 @@ import java.security.Principal;
 import java.util.UUID;
 
 @Data
-public class Autenticacao implements Principal {
+public class Authentication implements Principal {
 
     private UUID uuid;
 

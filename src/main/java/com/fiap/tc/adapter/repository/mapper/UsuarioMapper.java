@@ -1,13 +1,13 @@
 package com.fiap.tc.adapter.repository.mapper;
 
-import com.fiap.tc.adapter.repository.entity.core.UsuarioEntity;
+import com.fiap.tc.adapter.repository.entity.core.UserEntity;
 import com.fiap.tc.adapter.repository.mapper.base.MapperEntity;
-import com.fiap.tc.core.domain.model.Usuario;
+import com.fiap.tc.core.domain.model.User;
 import org.mapstruct.Mapper;
 
 @Mapper
-public interface UsuarioMapper extends MapperEntity<UsuarioEntity, Usuario> {
+public interface UsuarioMapper extends MapperEntity<UserEntity, User> {
 
     @Override
-    Usuario fromEntity(UsuarioEntity usuario);
+    User fromEntity(UserEntity usuario);
 }

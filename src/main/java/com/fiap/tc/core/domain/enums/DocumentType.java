@@ -1,6 +1,6 @@
 package com.fiap.tc.core.domain.enums;
 
-public enum TipoDocumento {
+public enum DocumentType {
     CPF,
     CNPJ,
     MATRICULA;

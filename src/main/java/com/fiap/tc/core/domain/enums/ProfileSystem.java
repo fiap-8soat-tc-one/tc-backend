@@ -1,6 +1,6 @@
 package com.fiap.tc.core.domain.enums;
 
-public enum PerfilSistema {
+public enum ProfileSystem {
     ADMINISTRADOR,
     COORDENADOR,
     OPERADOR;

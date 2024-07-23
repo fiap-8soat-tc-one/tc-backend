@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "sessao", schema = "seguranca")
 @Data
-public class Sessao {
+public class Session {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,28 +16,28 @@ public class Sessao {
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
-    private UserEntity usuario;
+    private UserEntity user;
 
     @Column(name = "dh_inicio")
-    private LocalDateTime inicio;
+    private LocalDateTime start;
 
     @Column(name = "dh_termino")
-    private LocalDateTime termino;
+    private LocalDateTime end;
 
     @Column(name = "ip_usuario")
-    private String ipUsuario;
+    private String userId;
 
     @Column(name = "nm_servidor")
-    private String servidor;
+    private String server;
 
     @Column(name = "user_agent")
     private String userAgent;
 
     @Column(name = "qtd_acessos")
-    private Integer qtdAcessos;
+    private Integer qtyAccesses;
 
     @Column(name = "dh_ultimo_acesso")
-    private LocalDateTime ultimoAcesso;
+    private LocalDateTime lastAccess;
 
 
 }

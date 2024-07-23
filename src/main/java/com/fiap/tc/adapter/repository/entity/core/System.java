@@ -10,17 +10,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "sistema", schema = "seguranca")
 @Data
-public class Sistema {
+public class System {
 
     @Id
     private String id;
 
-    private String nome;
+    @Column(name = "nome")
+    private String name;
 
-    private String descricao;
+    @Column(name = "descricao")
+    private String description;
 
     @Column(name = "fl_ativo", columnDefinition = "boolean default true")
-    private boolean ativo;
+    private boolean enabled;
 
 
 }

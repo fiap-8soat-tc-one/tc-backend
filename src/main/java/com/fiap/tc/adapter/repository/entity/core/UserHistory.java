@@ -1,6 +1,6 @@
 package com.fiap.tc.adapter.repository.entity.core;
 
-import com.fiap.tc.core.domain.enums.OperacaoUsuario;
+import com.fiap.tc.core.domain.enums.UserAction;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
         }
 )
 @Data
-public class HistoricoUsuario {
+public class UserHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,13 +21,13 @@ public class HistoricoUsuario {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_usuario", nullable = false)
-    private UserEntity usuario;
+    private UserEntity user;
 
     @Column(name = "tipo_operacao", nullable = false)
-    private OperacaoUsuario tipoOperacao;
+    private UserAction userAction;
 
     @Column(name = "dh_registro", nullable = false)
-    private LocalDateTime dataHoraRegistro;
+    private LocalDateTime record;
 
 
 }

@@ -5,9 +5,9 @@ import lombok.Data;
 import java.util.UUID;
 
 @Data
-public class Usuario {
+public class User {
     private UUID uuid;
-    private String nome;
+    private String name;
     private String email;
     private String login;
 }

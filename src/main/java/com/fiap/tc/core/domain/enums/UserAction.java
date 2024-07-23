@@ -1,6 +1,6 @@
 package com.fiap.tc.core.domain.enums;
 
-public enum OperacaoUsuario {
+public enum UserAction {
     INCLUSAO,
     EXCLUSAO,
     ALTERACAO,

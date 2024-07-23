@@ -8,22 +8,25 @@ import java.util.List;
 @Entity
 @Table(name = "grupo", schema = "seguranca")
 @Data
-public class Grupo {
+public class Group {
 
     @Id
     private String id;
 
-    private String nome;
-    private String descricao;
+    @Column(name = "nome")
+    private String name;
+
+    @Column(name = "descricao")
+    private String description;
 
     @Column(name = "fl_ativo", columnDefinition = "boolean default true")
-    private boolean ativo;
+    private boolean enabled;
 
     @ManyToOne
     @JoinColumn(name = "id_modulo")
-    private Modulo modulo;
+    private Module module;
 
-    @OneToMany(mappedBy = "grupo")
-    private List<Permissao> permissoes;
+    @OneToMany(mappedBy = "group")
+    private List<Role> roles;
 
 }

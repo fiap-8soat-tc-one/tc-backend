@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Repository
 
-public interface UsuarioRepository extends JpaRepository<UserEntity, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     public Optional<UserEntity> findByUuid(UUID uuid);
 
@@ -19,9 +19,9 @@ public interface UsuarioRepository extends JpaRepository<UserEntity, Long> {
 
     public Optional<UserEntity> findByEmail(String email);
 
-    public Optional<UserEntity> findByNumeroDocumento(String numeroDocumento);
+    public Optional<UserEntity> findByDocumentNumber(String documentNumber);
 
-    @Query(value = "SELECT p.id FROM seguranca.usuario u JOIN seguranca.usuario_perfil up ON u.id = up.id_usuario JOIN seguranca.perfil pa ON up.id_perfil = pa.id JOIN seguranca.perfil_permissao pp ON up.id_perfil = pp.id_perfil    JOIN seguranca.permissao p ON pp.id_permissao = p.id WHERE u.id = :id ORDER BY p.id", nativeQuery = true)
+    @Query(nativeQuery = true, value = "${sql.query.getRoles}")
     Collection<String> getRoles(Long id);
 
 }

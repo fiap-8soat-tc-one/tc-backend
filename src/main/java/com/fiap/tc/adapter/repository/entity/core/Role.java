@@ -7,19 +7,22 @@ import javax.persistence.*;
 @Entity
 @Table(name = "permissao", schema = "seguranca")
 @Data
-public class Permissao {
+public class Role {
 
     @Id
     private String id;
 
-    private String nome;
-    private String descricao;
+    @Column(name = "nome")
+    private String name;
+
+    @Column(name = "descricao")
+    private String description;
 
     @Column(name = "fl_ativo", columnDefinition = "boolean default true")
-    private boolean ativo;
+    private boolean enabled;
 
     @ManyToOne
     @JoinColumn(name = "id_grupo")
-    private Group grupo;
+    private Group group;
 
 }

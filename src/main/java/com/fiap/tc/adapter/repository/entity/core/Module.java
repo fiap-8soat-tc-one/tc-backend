@@ -7,21 +7,22 @@ import javax.persistence.*;
 @Entity
 @Table(name = "modulo", schema = "seguranca")
 @Data
-public class Modulo {
+public class Module {
 
     @Id
     private String id;
 
-    private String nome;
+    @Column(name = "nome")
+    private String name;
 
-    private String descricao;
+    @Column(name = "descricao")
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "id_sistema")
-    private Sistema sistema;
+    private System system;
 
     @Column(name = "fl_ativo", columnDefinition = "boolean default true")
-    private boolean ativo;
-
-
+    private boolean enabled;
+    
 }
