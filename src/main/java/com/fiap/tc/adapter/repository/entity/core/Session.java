@@ -16,7 +16,7 @@ public class Sessao {
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
-    private UsuarioEntity usuario;
+    private UserEntity usuario;
 
     @Column(name = "dh_inicio")
     private LocalDateTime inicio;

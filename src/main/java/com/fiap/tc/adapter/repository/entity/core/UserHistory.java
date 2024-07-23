@@ -21,7 +21,7 @@ public class HistoricoUsuario {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_usuario", nullable = false)
-    private UsuarioEntity usuario;
+    private UserEntity usuario;
 
     @Column(name = "tipo_operacao", nullable = false)
     private OperacaoUsuario tipoOperacao;

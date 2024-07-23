@@ -20,6 +20,6 @@ public class Permissao {
 
     @ManyToOne
     @JoinColumn(name = "id_grupo")
-    private Grupo grupo;
+    private Group grupo;
 
 }
