@@ -1,6 +1,6 @@
 package com.fiap.tc.core.domain.requests;
 
-import com.fiap.tc.core.domain.requests.validators.Document;
+import br.com.caelum.stella.bean.validation.CPF;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import javax.validation.constraints.NotEmpty;
 public class CustomerRequest {
 
     @NotEmpty
-    @Document
+    @CPF(message = "CPF inválido")
     @ApiModelProperty(
             value = "CustomerDocument",
             example = "65750888053",
