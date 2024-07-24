@@ -6,6 +6,8 @@
 .classpath
 .project
 .settings/
+.idea/
+.vscode/
 target/
 code_quality_service/
 .DS_Store
