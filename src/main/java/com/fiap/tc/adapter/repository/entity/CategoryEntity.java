@@ -1,5 +1,6 @@
 package com.fiap.tc.adapter.repository.entity;
 
+import com.fiap.tc.adapter.repository.entity.embeddable.Audit;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,9 +13,13 @@ public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private UUID uuid;
+
     private String name;
+
     private String description;
-    @Column(name = "fl_active", columnDefinition = "boolean default true", nullable = false)
-    private boolean active;
+
+    @Embedded
+    private Audit audit;
 }

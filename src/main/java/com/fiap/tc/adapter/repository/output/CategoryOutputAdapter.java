@@ -2,6 +2,7 @@ package com.fiap.tc.adapter.repository.output;
 
 import com.fiap.tc.adapter.repository.CategoryRepository;
 import com.fiap.tc.adapter.repository.entity.CategoryEntity;
+import com.fiap.tc.adapter.repository.entity.embeddable.Audit;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Category;
 import com.fiap.tc.core.port.out.DeleteCategoryOutputPort;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static com.fiap.tc.adapter.repository.mapper.base.MapperConstants.CATEGORY_MAPPER;
@@ -54,13 +56,17 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
     @Override
     public Category save(String name, String description, boolean active) {
         var categoryEntity = categoryPersistenceRepository.findByNameOrDescription(name, description);
-        if (isNull(categoryEntity)) {
-            return CATEGORY_MAPPER.fromEntity(categoryPersistenceRepository.save(buildCategoryEntity(name, description, active)));
+        if (nonNull(categoryEntity)) {
+            categoryEntity.setName(name);
+            categoryEntity.setDescription(description);
+            categoryEntity.getAudit().setActive(active);
+            categoryEntity.getAudit().setUpdatedDate(LocalDateTime.now());
+            return CATEGORY_MAPPER.fromEntity(categoryPersistenceRepository.save(categoryEntity));
+
         }
-        categoryEntity.setName(name);
-        categoryEntity.setDescription(description);
-        categoryEntity.setActive(active);
-        return CATEGORY_MAPPER.fromEntity(categoryPersistenceRepository.save(categoryEntity));
+
+        return CATEGORY_MAPPER.fromEntity(categoryPersistenceRepository.save(buildCategoryEntity(name, description, active)));
+
     }
 
     private CategoryEntity buildCategoryEntity(String name, String description, boolean active) {
@@ -68,7 +74,7 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
         newCategory.setName(name);
         newCategory.setDescription(description);
         newCategory.setUuid(UUID.randomUUID());
-        newCategory.setActive(active);
+        newCategory.setAudit(Audit.builder().active(active).registerDate(LocalDateTime.now()).build());
         return newCategory;
     }
 

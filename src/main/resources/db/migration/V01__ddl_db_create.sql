@@ -142,30 +142,86 @@
     create table category (
        id  serial not null,
         fl_active boolean default true,
+        register_date timestamp,
+        updated_date timestamp,
         description varchar(255),
         name varchar(255),
         uuid uuid,
+        primary key (id)
+    );
+
+    create table customer (
+       id  serial not null,
+        fl_active boolean default true,
+        register_date timestamp,
+        updated_date timestamp,
+        document varchar(20),
+        email varchar(255),
+        name varchar(255),
+        uuid uuid,
+        primary key (id)
+    );
+
+    create table item (
+       id  serial not null,
+        fl_active boolean default true,
+        register_date timestamp,
+        updated_date timestamp,
+        cancel_date timestamp,
+        quantity int4,
+        total numeric(19, 2),
+        unit_value numeric(19, 2),
+        id_order int4 not null,
+        id_product int4 not null,
+        primary key (id)
+    );
+
+    create table order_request (
+       id  serial not null,
+        fl_active boolean default true,
+        register_date timestamp,
+        updated_date timestamp,
+        cancel_date timestamp,
+        payment_date timestamp,
+        status varchar(255) not null,
+        total numeric(19, 2),
+        uuid uuid,
+        id_customer int4,
         primary key (id)
     );
 
     create table product (
-       id  bigserial not null,
+       id  serial not null,
         fl_active boolean default true,
+        register_date timestamp,
+        updated_date timestamp,
         description varchar(255),
         name varchar(255),
+        price numeric(19, 2),
         uuid uuid,
+        id_category int4 not null,
         primary key (id)
     );
 
-    create table product_category (
-       id_product int8 not null,
-        id_category int4 not null,
-        primary key (id_product, id_category)
-    );
+    alter table customer
+       add constraint UK_phlle50dp6ivt0paa1d5gkvk2 unique (document);
 
-    create table customer (
-        document varchar(11) not null,
-        name varchar(20) null,
-        email varchar(255) null,
-        primary key (document)
-    );
+    alter table item
+       add constraint FKmvybm38wikbsa2eh5vcgq2k8j
+       foreign key (id_order)
+       references order_request;
+
+    alter table item
+       add constraint FKf9b4g1jcujxd4mgfyqt54sys2
+       foreign key (id_product)
+       references product;
+
+    alter table order_request
+       add constraint FK4ipjohfnii23loku21jgm6fxr
+       foreign key (id_customer)
+       references customer;
+
+    alter table product
+       add constraint FK5cxv31vuhc7v32omftlxa8k3c
+       foreign key (id_category)
+       references category;
