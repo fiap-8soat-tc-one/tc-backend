@@ -1,4 +1,4 @@
-﻿package com.fiap.tc.core.domain.requests.validators;
+package com.fiap.tc.core.domain.requests.validators;
 import com.fiap.tc.core.domain.requests.validators.impl.DocumentValidator;
 
 import javax.validation.Constraint;

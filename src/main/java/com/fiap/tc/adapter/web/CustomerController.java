@@ -20,8 +20,8 @@ import static org.springframework.http.ResponseEntity.noContent;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping(path = URLMapping.ROOT_PUBLIC_API_CUSTOMERS)
-@Api(tags = "Customer API V1", produces = APPLICATION_JSON_VALUE)
+@RequestMapping
+@Api(tags = "Customer API V1", produces = APPLICATION_JSON_VALUE,  consumes = APPLICATION_JSON_VALUE, authorizations =  @Authorization(value = "JWT"))
 public class CustomerController {
 
     private final RegisterCustomerInputPort registerCustomerInputPort;
@@ -45,9 +45,8 @@ public class CustomerController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "List Categories", response = CustomerEntity.class)
     })
-    @GetMapping
+    @GetMapping(path = URLMapping.ROOT_PRIVATE_API_CUSTOMERS)
     public ResponseEntity<Page<Customer>> list(
-            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @ApiParam(required = true, value = "Categories Pagination") Pageable pageable) {
         return ok(listCustomersInputPort.list(pageable));
     }
@@ -56,7 +55,7 @@ public class CustomerController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Save Category", response = CustomerEntity.class)
     })
-    @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(method = {RequestMethod.POST, RequestMethod.PUT}, produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, path = URLMapping.ROOT_PUBLIC_API_CUSTOMERS)
     public ResponseEntity<Customer> save(
             @RequestBody @Valid CustomerRequest customer) {
 
@@ -67,7 +66,7 @@ public class CustomerController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Find Customer by Document", response = CustomerEntity.class)
     })
-    @GetMapping(path = "/{document}")
+    @GetMapping(path = URLMapping.ROOT_PUBLIC_API_CUSTOMERS + "/{document}")
     public ResponseEntity<Customer> get( 
             @PathVariable String document) {
 
@@ -78,9 +77,8 @@ public class CustomerController {
     @ApiResponses(value = {
             @ApiResponse(code = 204, message = "Delete Customer by Document", response = CustomerEntity.class)
     })
-    @DeleteMapping(path = "/{document}")
+    @GetMapping(path = URLMapping.ROOT_PRIVATE_API_CUSTOMERS + "/{document}")
     public ResponseEntity<Void> delete(
-            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @PathVariable String document) {
         deleteCustomerInputPort.delete(document);
         return noContent().build();

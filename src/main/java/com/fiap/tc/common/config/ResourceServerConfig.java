@@ -24,14 +24,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
             "/webjars/**",
             "/v3/api-docs/**",
             "/swagger-ui/**",
+            "/api/public/**"
     };
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(AUTH_WHITELIST).permitAll()
-                .antMatchers(HttpMethod.GET, "/api/v1/customers/{document}").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/v1/customers").permitAll() 
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()

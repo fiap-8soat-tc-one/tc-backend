@@ -1,4 +1,4 @@
-﻿package com.fiap.tc.core.domain.requests.validators.impl;
+package com.fiap.tc.core.domain.requests.validators.impl;
 
 import com.fiap.tc.core.domain.requests.validators.Document;
 
