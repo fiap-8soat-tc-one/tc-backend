@@ -30,18 +30,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 .withClient("angular")
-                // TODO add properties file
                 .secret("$2a$10$fTeD2sNu0vaqzkBJ9wYSR.ywL7EY.fbti/WpevJd8N/szQ76bDxJy") //@ngul@r0
-                //.secret("ewMblA4KlKVb9mvdTvB/p8E0/cMMWP/Q1moi+tsaLOSbL5aK") //@ngul@r0
                 .scopes("read", "write")
                 .authorizedGrantTypes("password", "refresh_token")
                 .accessTokenValiditySeconds(86400)
                 .refreshTokenValiditySeconds(3600 * 24)
-                //	.accessTokenValiditySeconds(10)
-                //	.refreshTokenValiditySeconds(10)
                 .and()
                 .withClient("mobile")
-                // TODO add properties file
                 .secret("$2a$10$ae5KgmnOXmZVMBIP1c3GNuhti7VpadHxj4pPTmbV94dCBGsLhpkTS") //m0b1l30
                 .scopes("read")
                 .authorizedGrantTypes("password", "refresh_token")
@@ -65,7 +60,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
-        // TODO add into property file config
         accessTokenConverter.setSigningKey("tech-challenge");
         return accessTokenConverter;
     }

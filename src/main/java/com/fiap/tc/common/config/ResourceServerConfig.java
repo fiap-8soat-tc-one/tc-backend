@@ -13,7 +13,6 @@ import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecur
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private static final String[] AUTH_WHITELIST = {
-            // -- Swagger UI v2
             "/v2/api-docs",
             "/swagger-resources",
             "/swagger-resources/**",
@@ -21,12 +20,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
             "/configuration/security",
             "/swagger-ui.html",
             "/webjars/**",
-            // -- Swagger UI v3 (OpenAPI)
             "/v3/api-docs/**",
             "/swagger-ui/**",
             "/api/public/v1/**"
-            // other public endpoints of your API may be appended to this array
-            //"/api/categorias"
     };
 
     @Override

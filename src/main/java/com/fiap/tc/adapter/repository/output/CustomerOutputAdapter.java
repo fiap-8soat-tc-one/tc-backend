@@ -45,7 +45,7 @@ public class CustomerOutputAdapter implements SaveCustomerOutputPort, LoadCustom
         var customer = customerRepository.findByDocument(document);
       
         if (isNull(customer)) {
-            throw new NotFoundException(format("Customer with uuid %s not found!", document));
+            throw new NotFoundException(format("Customer with document %s not found!", document));
         }
         
         return CUSTOMER_MAPPER.fromEntity(customer);
