@@ -10,7 +10,7 @@ public class DocumentValidator implements ConstraintValidator<Document, String> 
     @Override
     public void initialize(Document constraintAnnotation) {
     }
-    
+
     @Override
     public boolean isValid(String document, ConstraintValidatorContext constraintValidatorContext) {
         if (document == null) {

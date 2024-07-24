@@ -2,7 +2,6 @@ package com.fiap.tc.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -13,8 +12,8 @@ import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecur
 
 @Configuration
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
-	
-	private static final String[] AUTH_WHITELIST = {
+
+    private static final String[] AUTH_WHITELIST = {
             "/v2/api-docs",
             "/swagger-resources",
             "/swagger-resources/**",
@@ -25,7 +24,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
             "/v3/api-docs/**",
             "/swagger-ui/**",
             "/api/public/**",
-			"/health"
+            "/health"
     };
 
     @Override

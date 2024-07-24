@@ -21,7 +21,7 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping
-@Api(tags = "Customer API V1", produces = APPLICATION_JSON_VALUE,  consumes = APPLICATION_JSON_VALUE, authorizations =  @Authorization(value = "JWT"))
+@Api(tags = "Customer API V1", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, authorizations = @Authorization(value = "JWT"))
 public class CustomerController {
 
     private final RegisterCustomerInputPort registerCustomerInputPort;
@@ -30,9 +30,9 @@ public class CustomerController {
     private final DeleteCustomerInputPort deleteCustomerInputPort;
 
     public CustomerController(
-            RegisterCustomerInputPort registerCustomerInputPort, 
-            LoadCustomerInputPort loadCustomerInputPort, 
-            ListCustomersInputPort listCustomersInputPort, 
+            RegisterCustomerInputPort registerCustomerInputPort,
+            LoadCustomerInputPort loadCustomerInputPort,
+            ListCustomersInputPort listCustomersInputPort,
             DeleteCustomerInputPort deleteCustomerInputPort) {
         this.registerCustomerInputPort = registerCustomerInputPort;
         this.loadCustomerInputPort = loadCustomerInputPort;
@@ -55,7 +55,7 @@ public class CustomerController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Save Category", response = CustomerEntity.class)
     })
-    @RequestMapping(method = {RequestMethod.POST, RequestMethod.PUT}, produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, path = URLMapping.ROOT_PUBLIC_API_CUSTOMERS)
+    @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, path = URLMapping.ROOT_PUBLIC_API_CUSTOMERS)
     public ResponseEntity<Customer> save(
             @RequestBody @Valid CustomerRequest customer) {
 
@@ -67,7 +67,7 @@ public class CustomerController {
             @ApiResponse(code = 200, message = "Find Customer by Document", response = CustomerEntity.class)
     })
     @GetMapping(path = URLMapping.ROOT_PUBLIC_API_CUSTOMERS + "/{document}")
-    public ResponseEntity<Customer> get( 
+    public ResponseEntity<Customer> get(
             @PathVariable String document) {
 
         return ok(loadCustomerInputPort.load(document));

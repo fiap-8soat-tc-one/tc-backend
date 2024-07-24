@@ -29,7 +29,7 @@ public class OrderEntity {
     private List<ItemEntity> items;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="status", nullable = false)
+    @Column(name = "status", nullable = false)
     private OrderStatus status;
 
     @Embedded

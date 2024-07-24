@@ -18,10 +18,10 @@ public class Profile implements Serializable {
     @Enumerated(EnumType.STRING)
     private ProfileSystem id;
 
-	@Column(name = "nome")
+    @Column(name = "nome")
     private String name;
 
-	@Column(name = "descricao")
+    @Column(name = "descricao")
     private String description;
 
     @Column(name = "fl_ativo", columnDefinition = "boolean default true")

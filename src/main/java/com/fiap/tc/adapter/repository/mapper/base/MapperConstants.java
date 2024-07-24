@@ -8,7 +8,7 @@ public class MapperConstants {
     public static final CategoryMapper CATEGORY_MAPPER = Mappers.getMapper(CategoryMapper.class);
 
     public static final CustomerMapper CUSTOMER_MAPPER = Mappers.getMapper(CustomerMapper.class);
-    
+
     private MapperConstants() {
     }
 

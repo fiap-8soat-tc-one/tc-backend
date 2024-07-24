@@ -24,5 +24,5 @@ public class Module {
 
     @Column(name = "fl_ativo", columnDefinition = "boolean default true")
     private boolean enabled;
-    
+
 }

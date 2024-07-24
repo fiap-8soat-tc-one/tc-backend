@@ -42,13 +42,13 @@ spring:
       #isolate-internal-queries: true
       connection-test-query: SELECT 1
       connection-timeout: 18000
-    
+  
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-#        hbm2ddl.auto: create
-#        hbm2ddl.export_schema: true        
+        #        hbm2ddl.auto: create
+        #        hbm2ddl.export_schema: true        
         show_sql: true
         format_sql: true
         enable_lazy_load_no_trans: true
@@ -62,7 +62,7 @@ app:
     corePoolSize: 20
     maxPoolSize: 300
     queueCapacity: 600
-    
+
 sql:
   query:
     getRoles: >

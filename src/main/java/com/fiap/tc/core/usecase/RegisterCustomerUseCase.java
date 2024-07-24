@@ -19,6 +19,6 @@ public class RegisterCustomerUseCase implements RegisterCustomerInputPort {
 
     @Override
     public Customer register(CustomerRequest customerRequest) {
-        return saveCustomerOutputPort.save(customerRequest.getDocument(), customerRequest.getName(), customerRequest.getEmail());
+        return saveCustomerOutputPort.saveOrUpdate(customerRequest.getDocument(), customerRequest.getName(), customerRequest.getEmail());
     }
 }
