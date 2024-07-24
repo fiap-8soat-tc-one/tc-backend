@@ -29,7 +29,11 @@ public class CustomerController {
     private final ListCustomersInputPort listCustomersInputPort;
     private final DeleteCustomerInputPort deleteCustomerInputPort;
 
-    public CustomerController(RegisterCustomerInputPort registerCustomerInputPort, LoadCustomerInputPort loadCustomerInputPort, ListCustomersInputPort listCustomersInputPort, DeleteCustomerInputPort deleteCustomerInputPort) {
+    public CustomerController(
+            RegisterCustomerInputPort registerCustomerInputPort, 
+            LoadCustomerInputPort loadCustomerInputPort, 
+            ListCustomersInputPort listCustomersInputPort, 
+            DeleteCustomerInputPort deleteCustomerInputPort) {
         this.registerCustomerInputPort = registerCustomerInputPort;
         this.loadCustomerInputPort = loadCustomerInputPort;
         this.listCustomersInputPort = listCustomersInputPort;
@@ -43,7 +47,7 @@ public class CustomerController {
     })
     @GetMapping
     public ResponseEntity<Page<Customer>> list(
-//            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
+            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @ApiParam(required = true, value = "Categories Pagination") Pageable pageable) {
         return ok(listCustomersInputPort.list(pageable));
     }
@@ -54,7 +58,6 @@ public class CustomerController {
     })
     @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Customer> save(
-            //            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @RequestBody @Valid CustomerRequest customer) {
 
         return ok(registerCustomerInputPort.register(customer));
@@ -66,7 +69,6 @@ public class CustomerController {
     })
     @GetMapping(path = "/{document}")
     public ResponseEntity<Customer> get( 
-//            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization, 
             @PathVariable String document) {
 
         return ok(loadCustomerInputPort.load(document));
@@ -78,7 +80,7 @@ public class CustomerController {
     })
     @DeleteMapping(path = "/{document}")
     public ResponseEntity<Void> delete(
-//            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
+            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @PathVariable String document) {
         deleteCustomerInputPort.delete(document);
         return noContent().build();

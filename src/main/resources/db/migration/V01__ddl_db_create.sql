@@ -162,3 +162,10 @@
         id_category int4 not null,
         primary key (id_product, id_category)
     );
+
+    create table customer (
+        document varchar(11) not null,
+        name varchar(20) null,
+        email varchar(255) null,
+        primary key (document)
+    );
