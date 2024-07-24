@@ -10,11 +10,9 @@ import org.mapstruct.Mapping;
 public interface CustomerMapper extends MapperEntity<CustomerEntity, Customer> {
 
     @Override
-    @Mapping(target = "active", source = "audit.active")
     Customer fromEntity(CustomerEntity customerEntity);
 
     @Override
-    @Mapping(target = "active", source = "audit.active")
     CustomerEntity toEntity(Customer customer);
 
 }
