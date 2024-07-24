@@ -1,7 +1,6 @@
 package com.fiap.tc.adapter.repository.entity;
 
 import com.fiap.tc.adapter.repository.entity.embeddable.Audit;
-import com.fiap.tc.core.domain.model.enums.CustomerType;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,7 +18,7 @@ public class CustomerEntity {
 
     private String name;
 
-    @Column(name="document", unique = true, length = 20)
+    @Column(name = "document", unique = true, length = 20)
     private String document;
 
     private String email;
