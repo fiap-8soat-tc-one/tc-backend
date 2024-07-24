@@ -23,9 +23,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	            "/webjars/**",
 	            // -- Swagger UI v3 (OpenAPI)
 	            "/v3/api-docs/**",
-	            "/swagger-ui/**"
+	            "/swagger-ui/**",
 	            // other public endpoints of your API may be appended to this array
-	            //"/api/categorias"
+	            "/api/public/**"
 	    };
 	@Override
 	public void configure(HttpSecurity http) throws Exception {

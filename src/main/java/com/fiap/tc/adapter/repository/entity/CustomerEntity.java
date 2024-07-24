@@ -8,8 +8,8 @@ import java.util.UUID;
 
 @Entity
 @Data
-@Table(name = "category")
-public class CategoryEntity {
+@Table(name = "customer")
+public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,7 +18,10 @@ public class CategoryEntity {
 
     private String name;
 
-    private String description;
+    @Column(name = "document", unique = true, length = 20)
+    private String document;
+
+    private String email;
 
     @Embedded
     private Audit audit;
