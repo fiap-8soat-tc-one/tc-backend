@@ -1,12 +1,11 @@
 package com.fiap.tc.adapter.web;
 
-import com.fasterxml.jackson.databind.util.ClassUtil;
 import com.fiap.tc.adapter.repository.entity.CustomerEntity;
 import com.fiap.tc.core.domain.model.Customer;
-import com.fiap.tc.core.domain.requests.CategoryRequest;
+import com.fiap.tc.core.domain.requests.CustomerRequest;
 import com.fiap.tc.core.port.in.DeleteCustomerInputPort;
 import com.fiap.tc.core.port.in.ListCustomersInputPort;
-import com.fiap.tc.core.port.in.LoadCategoryInputPort;
+import com.fiap.tc.core.port.in.LoadCustomerInputPort;
 import com.fiap.tc.core.port.in.RegisterCustomerInputPort;
 import io.swagger.annotations.*;
 import org.springframework.data.domain.Page;
@@ -21,18 +20,18 @@ import static org.springframework.http.ResponseEntity.noContent;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping(path = URLMapping.ROOT_API_CUSTOMERS)
+@RequestMapping(path = URLMapping.ROOT_PUBLIC_API_CUSTOMERS)
 @Api(tags = "Customer API V1", produces = APPLICATION_JSON_VALUE)
 public class CustomerController {
 
     private final RegisterCustomerInputPort registerCustomerInputPort;
-    private final LoadCategoryInputPort loadCategoryInputPort;
+    private final LoadCustomerInputPort loadCustomerInputPort;
     private final ListCustomersInputPort listCustomersInputPort;
     private final DeleteCustomerInputPort deleteCustomerInputPort;
 
-    public CustomerController(RegisterCustomerInputPort registerCustomerInputPort, LoadCategoryInputPort loadCategoryInputPort, ListCustomersInputPort listCustomersInputPort, DeleteCustomerInputPort deleteCustomerInputPort) {
+    public CustomerController(RegisterCustomerInputPort registerCustomerInputPort, LoadCustomerInputPort loadCustomerInputPort, ListCustomersInputPort listCustomersInputPort, DeleteCustomerInputPort deleteCustomerInputPort) {
         this.registerCustomerInputPort = registerCustomerInputPort;
-        this.loadCategoryInputPort = loadCategoryInputPort;
+        this.loadCustomerInputPort = loadCustomerInputPort;
         this.listCustomersInputPort = listCustomersInputPort;
         this.deleteCustomerInputPort = deleteCustomerInputPort;
     }
@@ -44,9 +43,9 @@ public class CustomerController {
     })
     @GetMapping
     public ResponseEntity<Page<Customer>> list(
-            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
+//            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @ApiParam(required = true, value = "Categories Pagination") Pageable pageable) {
-        return ok(null);
+        return ok(listCustomersInputPort.list(pageable));
     }
 
     @ApiOperation(value = "Save/Update Customer")
@@ -55,32 +54,33 @@ public class CustomerController {
     })
     @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Customer> save(
-            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
-            @RequestBody @Valid CategoryRequest category) {
+            //            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
+            @RequestBody @Valid CustomerRequest customer) {
 
-        return ok(null);
+        return ok(registerCustomerInputPort.register(customer));
     }
 
     @ApiOperation(value = "Find Customer by Document")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Find Category", response = CustomerEntity.class)
+            @ApiResponse(code = 200, message = "Find Customer by Document", response = CustomerEntity.class)
     })
     @GetMapping(path = "/{document}")
-    public ResponseEntity<Customer> get(
-            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
+    public ResponseEntity<Customer> get( 
+//            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization, 
             @PathVariable String document) {
 
-        return ok(null);
+        return ok(loadCustomerInputPort.load(document));
     }
 
     @ApiOperation(value = "Delete Customer")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Delete Category", response = CustomerEntity.class)
+            @ApiResponse(code = 204, message = "Delete Customer by Document", response = CustomerEntity.class)
     })
     @DeleteMapping(path = "/{document}")
     public ResponseEntity<Void> delete(
-            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
+//            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @PathVariable String document) {
+        deleteCustomerInputPort.delete(document);
         return noContent().build();
     }
 }

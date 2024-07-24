@@ -1,4 +1,4 @@
-package com.fiap.tc.common.config.swagger;
+package com.fiap.tc.common.config.token.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

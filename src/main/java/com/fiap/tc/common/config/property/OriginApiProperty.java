@@ -7,15 +7,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 public class OriginApiProperty {
 
-    private final Seguranca seguranca = new Seguranca();
-    private String origem;
+    private final Security security = new Security();
+    private String origin;
 
-    public Seguranca getSeguranca() {
-        return seguranca;
+    public Security getSecurity() {
+        return security;
     }
 
 
-    public static class Seguranca {
+    public static class Security {
 
         private boolean enableHttps;
 

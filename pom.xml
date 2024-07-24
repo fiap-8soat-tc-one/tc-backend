@@ -3,15 +3,12 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.fiap.tc</groupId>
     <artifactId>tc-backend-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-
     <name>tc-backend-api</name>
     <description>TC Backend API</description>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -32,7 +29,6 @@
         <com.thoughtworks.paranamer>2.8</com.thoughtworks.paranamer>
         <lombok.version>1.18.22</lombok.version>
         <springfox-swagger2.version>3.0.0</springfox-swagger2.version>
-
         <embedded-redis.version>0.6</embedded-redis.version>
         <redisson.version>3.13.1</redisson.version>
         <jedis.version>3.3.0</jedis.version>
@@ -41,8 +37,6 @@
         <querydsl-apt.version>4.4.0</querydsl-apt.version>
         <sonar.organization>jcmdsbr</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-
-
     </properties>
 
     <dependencies>
