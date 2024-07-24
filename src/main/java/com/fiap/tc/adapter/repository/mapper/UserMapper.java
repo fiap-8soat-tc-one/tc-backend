@@ -9,5 +9,5 @@ import org.mapstruct.Mapper;
 public interface UsuarioMapper extends MapperEntity<UserEntity, User> {
 
     @Override
-    User fromEntity(UserEntity usuario);
+    User fromEntity(UserEntity user);
 }
