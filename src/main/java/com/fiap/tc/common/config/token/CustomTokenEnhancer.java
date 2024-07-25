@@ -1,27 +1,27 @@
 package com.fiap.tc.common.config.token;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.fiap.tc.common.security.UsuarioSistema;
+import com.fiap.tc.common.security.SystemUser;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CustomTokenEnhancer implements TokenEnhancer {
 
-	@Override
-	public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
-		UsuarioSistema usuarioSistema = (UsuarioSistema) authentication.getPrincipal();
-		
-		Map<String, Object> addInfo = new HashMap<>();
-		addInfo.put("uuid", usuarioSistema.getUsuario().getUuid());
-		addInfo.put("nome", usuarioSistema.getUsuario().getNome());
-		addInfo.put("perfil", usuarioSistema.getUsuario().getPerfis().stream().findFirst().get().getNome());
-		
-		((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(addInfo);
-		return accessToken;
-	}
+    @Override
+    public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
+        SystemUser usuarioSistema = (SystemUser) authentication.getPrincipal();
+
+        Map<String, Object> addInfo = new HashMap<>();
+        addInfo.put("uuid", usuarioSistema.getUser().getUuid());
+        addInfo.put("nome", usuarioSistema.getUser().getName());
+        addInfo.put("perfil", usuarioSistema.getUser().getProfiles().stream().findFirst().get().getName());
+
+        ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(addInfo);
+        return accessToken;
+    }
 
 }

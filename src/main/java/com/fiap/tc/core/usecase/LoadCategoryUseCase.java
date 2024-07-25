@@ -24,3 +24,5 @@ public class LoadCategoryUseCase implements LoadCategoryInputPort {
         return loadCategoryOutputPort.load(uuid);
     }
 }
+
+

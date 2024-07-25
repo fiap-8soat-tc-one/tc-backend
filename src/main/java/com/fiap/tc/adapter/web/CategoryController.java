@@ -3,7 +3,7 @@ package com.fiap.tc.adapter.web;
 import com.fiap.tc.adapter.repository.entity.CategoryEntity;
 import com.fiap.tc.adapter.web.response.DefaultResponse;
 import com.fiap.tc.core.domain.model.Category;
-import com.fiap.tc.core.domain.model.CategoryRequest;
+import com.fiap.tc.core.domain.requests.CategoryRequest;
 import com.fiap.tc.core.port.in.DeleteCategoryInputPort;
 import com.fiap.tc.core.port.in.ListCategoriesInputPort;
 import com.fiap.tc.core.port.in.LoadCategoryInputPort;

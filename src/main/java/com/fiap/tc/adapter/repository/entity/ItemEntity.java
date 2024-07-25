@@ -16,11 +16,11 @@ public class ItemEntity {
     private Integer id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name="id_product", nullable = false)
+    @JoinColumn(name = "id_product", nullable = false)
     private ProductEntity product;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name="id_order", nullable = false)
+    @JoinColumn(name = "id_order", nullable = false)
     private OrderEntity order;
 
     private Integer quantity;

@@ -7,3 +7,4 @@ import java.util.UUID;
 public interface LoadCategoryOutputPort {
     Category load(UUID uuid);
 }
+

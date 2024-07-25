@@ -10,9 +10,9 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @EnableConfigurationProperties(OriginApiProperty.class)
 public class TcBackendApiApplication {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		SpringApplication.run(TcBackendApiApplication.class, args);
-	}
-	
+        SpringApplication.run(TcBackendApiApplication.class, args);
+    }
+
 }

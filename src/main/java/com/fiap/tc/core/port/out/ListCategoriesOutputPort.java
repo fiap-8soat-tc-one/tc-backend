@@ -7,3 +7,4 @@ import org.springframework.data.domain.Pageable;
 public interface ListCategoriesOutputPort {
     Page<Category> list(Pageable pageable);
 }
+

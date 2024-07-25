@@ -1,11 +1,7 @@
 package com.fiap.tc.common.security;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-
-import com.fiap.tc.adapter.repository.entity.core.UsuarioEntity;
+import com.fiap.tc.adapter.repository.UserRepository;
+import com.fiap.tc.adapter.repository.entity.core.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,26 +10,29 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.fiap.tc.adapter.repository.UsuarioRepository;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class AppUserDetailsService implements UserDetailsService {
 
-	@Autowired
-	private UsuarioRepository usuarioRepository;
-	
-	@Override
-	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-		Optional<UsuarioEntity> usuarioOptional = usuarioRepository.findByLogin(login);
-		UsuarioEntity usuario = usuarioOptional.orElseThrow(() -> new UsernameNotFoundException("Usuário e/ou senha incorretos"));
-		return new UsuarioSistema(usuario, getPermissoes(usuario));
-	}
+    @Autowired
+    private UserRepository userRepository;
 
-	private Collection<? extends GrantedAuthority> getPermissoes(UsuarioEntity usuario) {
-		Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-		Collection<String> roles = usuarioRepository.getRoles(usuario.getId());
-		roles.forEach(perm -> authorities.add(new SimpleGrantedAuthority(perm)));
-		return authorities;
-	}
+    @Override
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        Optional<UserEntity> optionalUser = userRepository.findByLogin(login);
+        UserEntity user = optionalUser.orElseThrow(() -> new UsernameNotFoundException("Usuário e/ou senha incorretos"));
+        return new SystemUser(user, getRoles(user));
+    }
+
+    private Collection<? extends GrantedAuthority> getRoles(UserEntity user) {
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+        Collection<String> roles = userRepository.getRoles(user.getId());
+        roles.forEach(perm -> authorities.add(new SimpleGrantedAuthority(perm)));
+        return authorities;
+    }
 
 }

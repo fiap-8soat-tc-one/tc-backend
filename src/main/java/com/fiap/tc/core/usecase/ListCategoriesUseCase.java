@@ -23,3 +23,5 @@ public class ListCategoriesUseCase implements ListCategoriesInputPort {
         return listCategoriesOutputPort.list(pageable);
     }
 }
+
+
