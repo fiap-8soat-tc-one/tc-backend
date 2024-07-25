@@ -6,12 +6,14 @@ import lombok.Data;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 
 @Data
 public class CustomerRequest {
 
     @NotEmpty
-    @CPF(message = "CPF inválido")
+    @CPF(message = "Invalid document")
     @ApiModelProperty(
             value = "CustomerDocument",
             example = "65750888053",
@@ -19,6 +21,7 @@ public class CustomerRequest {
     )
     private String document;
 
+    @Size(max = 255, message = "Invalid name")
     @ApiModelProperty(
             value = "CustomerName",
             required = true,
@@ -27,7 +30,7 @@ public class CustomerRequest {
     )
     private String name;
 
-    @Email
+    @Email(message = "Invalid e-mail")
     @ApiModelProperty(
             value = "CustomerE-mail",
             required = true,
