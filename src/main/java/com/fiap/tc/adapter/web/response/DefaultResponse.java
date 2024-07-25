@@ -12,13 +12,13 @@ import java.util.List;
 public class DefaultResponse {
 
     @ApiModelProperty(
-            value = "Status da resposta",
+            value = "Response status",
             example = "SUCCESS"
     )
     protected String status = "SUCCESS";
     @ApiModelProperty(
-            value = "Mensagens da resposta",
-            example = "[\"Sucesso ao cadastrar usuário\"]"
+            value = "Response messages",
+            example = "[\"Operation successfully completed\"]"
     )
     private List<String> messages = new ArrayList<>();
 

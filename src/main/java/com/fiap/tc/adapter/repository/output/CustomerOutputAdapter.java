@@ -60,18 +60,20 @@ public class CustomerOutputAdapter implements SaveCustomerOutputPort, LoadCustom
     public Customer saveOrUpdate(String document, String name, String email) {
         var customer = customerRepository.findByDocument(document);
 
-        if (isNull(customer)) {
-            return CUSTOMER_MAPPER.fromEntity(customerRepository.save(buildCustomerEntity(document, name, email)));
+        if (nonNull(customer)) {
+
+            var currentAudit = customer.getAudit();
+
+            currentAudit.setUpdatedDate(LocalDateTime.now());
+
+            customer.setName(name);
+            customer.setEmail(email);
+            customer.setAudit(currentAudit);
+
+            return CUSTOMER_MAPPER.fromEntity(customerRepository.save(customer));
         }
-        var currentAudit = customer.getAudit();
         
-        currentAudit.setUpdatedDate(LocalDateTime.now());
-        
-        customer.setName(name);
-        customer.setEmail(email);
-        customer.setAudit(currentAudit);
-        
-        return CUSTOMER_MAPPER.fromEntity(customerRepository.save(customer));
+        return CUSTOMER_MAPPER.fromEntity(customerRepository.save(buildCustomerEntity(document, name, email)));
     }
 
     private CustomerEntity buildCustomerEntity(String document, String name, String email) {
