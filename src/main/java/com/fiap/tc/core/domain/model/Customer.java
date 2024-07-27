@@ -3,8 +3,18 @@ package com.fiap.tc.core.domain.model;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
 public class Customer {
+
+    @ApiModelProperty(
+            value = "Customer Id",
+            example = "7ba2a960-2354-466f-8868-6ad713742407",
+            dataType = "UUID"
+    )
+    private UUID id;
+
     @ApiModelProperty(
             value = "Customer Document",
             example = "65750888053",

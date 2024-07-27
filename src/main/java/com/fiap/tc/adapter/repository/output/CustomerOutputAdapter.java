@@ -5,13 +5,15 @@ import com.fiap.tc.adapter.repository.entity.CustomerEntity;
 import com.fiap.tc.adapter.repository.entity.embeddable.Audit;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Customer;
-import com.fiap.tc.core.port.out.DeleteCustomerOutputPort;
-import com.fiap.tc.core.port.out.ListCustomersOutputPort;
-import com.fiap.tc.core.port.out.LoadCustomerOutputPort;
-import com.fiap.tc.core.port.out.SaveCustomerOutputPort;
+import com.fiap.tc.core.port.out.customer.DeleteCustomerOutputPort;
+import com.fiap.tc.core.port.out.customer.ListCustomersOutputPort;
+import com.fiap.tc.core.port.out.customer.LoadCustomerOutputPort;
+import com.fiap.tc.core.port.out.customer.SaveCustomerOutputPort;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -21,7 +23,7 @@ import static java.lang.String.format;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
-@Repository
+@Service
 public class CustomerOutputAdapter implements SaveCustomerOutputPort, LoadCustomerOutputPort, ListCustomersOutputPort, DeleteCustomerOutputPort {
     private final CustomerRepository customerRepository;
 
@@ -40,7 +42,6 @@ public class CustomerOutputAdapter implements SaveCustomerOutputPort, LoadCustom
 
     @Override
     public Page<Customer> list(Pageable pageable) {
-
         var categories = customerRepository.findAll(pageable);
         return categories.map(CUSTOMER_MAPPER::fromEntity);
     }
@@ -58,21 +59,18 @@ public class CustomerOutputAdapter implements SaveCustomerOutputPort, LoadCustom
 
     @Override
     public Customer saveOrUpdate(String document, String name, String email) {
-        var customer = customerRepository.findByDocument(document);
+        var customerEntity = customerRepository.findByDocument(document);
 
-        if (nonNull(customer)) {
-
-            var currentAudit = customer.getAudit();
-
+        if (nonNull(customerEntity)) {
+            var currentAudit = customerEntity.getAudit();
             currentAudit.setUpdatedDate(LocalDateTime.now());
+            customerEntity.setName(name);
+            customerEntity.setEmail(email);
+            customerEntity.setAudit(currentAudit);
 
-            customer.setName(name);
-            customer.setEmail(email);
-            customer.setAudit(currentAudit);
-
-            return CUSTOMER_MAPPER.fromEntity(customerRepository.save(customer));
+            return CUSTOMER_MAPPER.fromEntity(customerRepository.save(customerEntity));
         }
-        
+
         return CUSTOMER_MAPPER.fromEntity(customerRepository.save(buildCustomerEntity(document, name, email)));
     }
 
@@ -81,7 +79,6 @@ public class CustomerOutputAdapter implements SaveCustomerOutputPort, LoadCustom
         var audit = new Audit();
         audit.setActive(true);
         audit.setRegisterDate(LocalDateTime.now());
-        audit.setUpdatedDate(LocalDateTime.now());
         newCustomer.setName(name);
         newCustomer.setEmail(email);
         newCustomer.setDocument(document);

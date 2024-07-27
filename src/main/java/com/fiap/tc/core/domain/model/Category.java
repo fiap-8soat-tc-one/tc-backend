@@ -10,10 +10,10 @@ public class Category {
 
     @ApiModelProperty(
             value = "UUID Category",
-            example = "123456789",
+            example = "7ba2a960-2354-466f-8868-6ad713742407",
             dataType = "UUID"
     )
-    private UUID uuid;
+    private UUID id;
 
     @ApiModelProperty(
             value = "Category name",
@@ -30,6 +30,7 @@ public class Category {
             dataType = "String"
     )
     private String description;
+
     @ApiModelProperty(
             value = "active status",
             example = "true",

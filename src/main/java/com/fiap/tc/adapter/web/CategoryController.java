@@ -4,10 +4,10 @@ import com.fiap.tc.adapter.repository.entity.CategoryEntity;
 import com.fiap.tc.adapter.web.response.DefaultResponse;
 import com.fiap.tc.core.domain.model.Category;
 import com.fiap.tc.core.domain.requests.CategoryRequest;
-import com.fiap.tc.core.port.in.DeleteCategoryInputPort;
-import com.fiap.tc.core.port.in.ListCategoriesInputPort;
-import com.fiap.tc.core.port.in.LoadCategoryInputPort;
-import com.fiap.tc.core.port.in.RegisterCategoryInputPort;
+import com.fiap.tc.core.port.in.category.DeleteCategoryInputPort;
+import com.fiap.tc.core.port.in.category.ListCategoriesInputPort;
+import com.fiap.tc.core.port.in.category.LoadCategoryInputPort;
+import com.fiap.tc.core.port.in.category.RegisterCategoryInputPort;
 import io.swagger.annotations.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -55,7 +55,7 @@ public class CategoryController {
             @ApiResponse(code = 200, message = "Save Category", response = CategoryEntity.class)
     })
     @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Category> save(
+    public ResponseEntity<Category> saveOrUpdate(
             @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @RequestBody @Valid CategoryRequest category) {
         return ok(registerCategoryInputPort.register(category));
@@ -65,22 +65,22 @@ public class CategoryController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Find Category", response = CategoryEntity.class)
     })
-    @GetMapping(path = "/{uuid}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<Category> get(
             @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
-            @PathVariable UUID uuid) {
-        return ok(loadCategoryInputPort.load(uuid));
+            @PathVariable UUID id) {
+        return ok(loadCategoryInputPort.load(id));
     }
 
     @ApiOperation(value = "Delete Category")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Delete Category", response = CategoryEntity.class)
     })
-    @DeleteMapping(path = "/{uuid}")
+    @DeleteMapping(path = "/{id}")
     public ResponseEntity<DefaultResponse> delete(
             @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
-            @PathVariable UUID uuid) {
-        deleteCategoryInputPort.delete(uuid);
+            @PathVariable UUID id) {
+        deleteCategoryInputPort.delete(id);
         return ok(new DefaultResponse());
     }
 }

@@ -149,94 +149,141 @@ alter table seguranca.usuario_perfil
         foreign key (id_usuario)
             references seguranca.usuario;
 
-create table category
-(
-    id            serial not null,
-    fl_active     boolean default true,
+create table category (
+   id  serial not null,
+    active boolean default true,
     register_date timestamp,
-    updated_date  timestamp,
-    description   varchar(255),
-    name          varchar(255),
-    uuid          uuid,
+    updated_date timestamp,
+    description varchar(255),
+    name varchar(255),
+    uuid uuid,
     primary key (id)
 );
 
-create table customer
-(
-    id            serial not null,
-    fl_active     boolean default true,
+create table customer (
+   id  serial not null,
+    active boolean default true,
     register_date timestamp,
-    updated_date  timestamp,
-    document      varchar(20),
-    email         varchar(255),
-    name          varchar(255),
-    uuid          uuid,
+    updated_date timestamp,
+    document varchar(20),
+    email varchar(255),
+    name varchar(255),
+    uuid uuid,
     primary key (id)
 );
 
-create table item
-(
-    id            serial not null,
-    fl_active     boolean default true,
+create table item (
+   id  serial not null,
+    active boolean default true,
     register_date timestamp,
-    updated_date  timestamp,
-    cancel_date   timestamp,
-    quantity      int4,
-    total         numeric(19, 2),
-    unit_value    numeric(19, 2),
-    id_order      int4   not null,
-    id_product    int4   not null,
+    updated_date timestamp,
+    quantity int4,
+    total numeric(19, 2),
+    unit_value numeric(19, 2),
+    id_order int4 not null,
+    id_product int4 not null,
     primary key (id)
 );
 
-create table order_request
-(
-    id            serial       not null,
-    fl_active     boolean default true,
+create table order_payment (
+   id  serial not null,
+    active boolean default true,
     register_date timestamp,
-    updated_date  timestamp,
-    cancel_date   timestamp,
-    payment_date  timestamp,
-    status        varchar(255) not null,
-    total         numeric(19, 2),
-    uuid          uuid,
-    id_customer   int4,
+    updated_date timestamp,
+    cancel_date timestamp,
+    card_document varchar(30) not null,
+    card_number varchar(30) not null,
+    card_print_name varchar(255) not null,
+    payment_date timestamp,
+    payment_type varchar(20) not null,
+    pending_date timestamp,
+    status varchar(20) not null,
+    total numeric(19, 2),
+    transaction_number varchar(255),
+    transaction_return varchar(255),
+    uuid uuid,
+    id_order int4 not null,
     primary key (id)
 );
 
-create table product
-(
-    id            serial not null,
-    fl_active     boolean default true,
+create table order_payment_historic (
+   id  serial not null,
+    register_date timestamp not null,
+    status varchar(20) not null,
+    id_order_payment int4 not null,
+    primary key (id)
+);
+
+create table order_request (
+   id  serial not null,
+    active boolean default true,
     register_date timestamp,
-    updated_date  timestamp,
-    description   varchar(255),
-    name          varchar(255),
-    price         numeric(19, 2),
-    uuid          uuid,
-    id_category   int4   not null,
+    updated_date timestamp,
+    status varchar(255) not null,
+    total numeric(19, 2),
+    uuid uuid,
+    id_customer int4,
+    primary key (id)
+);
+
+create table order_request_historic (
+   id  serial not null,
+    register_date timestamp not null,
+    status varchar(255) not null,
+    id_order int4,
+    primary key (id)
+);
+
+create table product (
+   id  serial not null,
+    active boolean default true,
+    register_date timestamp,
+    updated_date timestamp,
+    description varchar(255),
+    name varchar(255),
+    price numeric(19, 2),
+    uuid uuid,
+    id_category int4 not null,
     primary key (id)
 );
 
 alter table customer
-    add constraint UK_phlle50dp6ivt0paa1d5gkvk2 unique (document);
+   add constraint UK_phlle50dp6ivt0paa1d5gkvk2 unique (document);
+
+alter table order_payment_historic
+   add constraint UK_ext5379fu4t3ne1rv7fsk00an unique (id_order_payment);
 
 alter table item
-    add constraint FKmvybm38wikbsa2eh5vcgq2k8j
-        foreign key (id_order)
-            references order_request;
+   add constraint FKmvybm38wikbsa2eh5vcgq2k8j
+   foreign key (id_order)
+   references order_request;
 
 alter table item
-    add constraint FKf9b4g1jcujxd4mgfyqt54sys2
-        foreign key (id_product)
-            references product;
+   add constraint FKf9b4g1jcujxd4mgfyqt54sys2
+   foreign key (id_product)
+   references product;
+
+alter table order_payment
+   add constraint FK22ae8c8eusj6bcfeep1jp8l7s
+   foreign key (id_order)
+   references order_request;
+
+alter table order_payment_historic
+   add constraint FKlb7k4tfm886jv3g9urhhwtqtu
+   foreign key (id_order_payment)
+   references order_payment;
 
 alter table order_request
-    add constraint FK4ipjohfnii23loku21jgm6fxr
-        foreign key (id_customer)
-            references customer;
+   add constraint FK4ipjohfnii23loku21jgm6fxr
+   foreign key (id_customer)
+   references customer;
+
+alter table order_request_historic
+   add constraint FKiql9vtdg3qadyne7uy26d9a5v
+   foreign key (id_order)
+   references order_request;
 
 alter table product
-    add constraint FK5cxv31vuhc7v32omftlxa8k3c
-        foreign key (id_category)
-            references category;
+   add constraint FK5cxv31vuhc7v32omftlxa8k3c
+   foreign key (id_category)
+   references category;

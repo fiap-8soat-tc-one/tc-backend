@@ -3,10 +3,10 @@ package com.fiap.tc.adapter.web;
 import com.fiap.tc.adapter.repository.entity.CustomerEntity;
 import com.fiap.tc.core.domain.model.Customer;
 import com.fiap.tc.core.domain.requests.CustomerRequest;
-import com.fiap.tc.core.port.in.DeleteCustomerInputPort;
-import com.fiap.tc.core.port.in.ListCustomersInputPort;
-import com.fiap.tc.core.port.in.LoadCustomerInputPort;
-import com.fiap.tc.core.port.in.RegisterCustomerInputPort;
+import com.fiap.tc.core.port.in.customer.DeleteCustomerInputPort;
+import com.fiap.tc.core.port.in.customer.ListCustomersInputPort;
+import com.fiap.tc.core.port.in.customer.LoadCustomerInputPort;
+import com.fiap.tc.core.port.in.customer.RegisterCustomerInputPort;
 import io.swagger.annotations.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -77,7 +77,7 @@ public class CustomerController {
     @ApiResponses(value = {
             @ApiResponse(code = 204, message = "Delete Customer by Document", response = CustomerEntity.class)
     })
-    @GetMapping(path = URLMapping.ROOT_PRIVATE_API_CUSTOMERS + "/{document}")
+    @DeleteMapping(path = URLMapping.ROOT_PRIVATE_API_CUSTOMERS + "/{document}")
     public ResponseEntity<Void> delete(
             @PathVariable String document) {
         deleteCustomerInputPort.delete(document);

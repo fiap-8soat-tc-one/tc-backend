@@ -24,11 +24,7 @@ spring:
     active: local
   application:
     name: tc-backend-api
-  redis:
-    host: localhost
-    port: 6379
-    timeout: 60000
-  
+
   datasource:
     url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:postgres}
     username: ${DATABASE_USER:postgres}
@@ -63,13 +59,5 @@ app:
     maxPoolSize: 300
     queueCapacity: 600
 
-sql:
-  query:
-    getRoles: >
-      SELECT p.id FROM seguranca.usuario u
-      JOIN seguranca.usuario_perfil up ON u.id = up.id_usuario
-      JOIN seguranca.perfil pa ON up.id_perfil = pa.id
-      JOIN seguranca.perfil_permissao pp ON up.id_perfil = pp.id_perfil
-      JOIN seguranca.permissao p ON pp.id_permissao = p.id
-      WHERE u.id = :id
-      ORDER BY p.id    
+  feature.toggles:
+    orderPaymentMockSuccess: true

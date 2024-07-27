@@ -5,13 +5,13 @@ import com.fiap.tc.adapter.repository.entity.CategoryEntity;
 import com.fiap.tc.adapter.repository.entity.embeddable.Audit;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Category;
-import com.fiap.tc.core.port.out.DeleteCategoryOutputPort;
-import com.fiap.tc.core.port.out.ListCategoriesOutputPort;
-import com.fiap.tc.core.port.out.LoadCategoryOutputPort;
-import com.fiap.tc.core.port.out.SaveCategoryOutputPort;
+import com.fiap.tc.core.port.out.category.DeleteCategoryOutputPort;
+import com.fiap.tc.core.port.out.category.ListCategoriesOutputPort;
+import com.fiap.tc.core.port.out.category.LoadCategoryOutputPort;
+import com.fiap.tc.core.port.out.category.SaveCategoryOutputPort;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -21,32 +21,32 @@ import static java.lang.String.format;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
-@Repository
+@Service
 public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCategoryOutputPort,
         ListCategoriesOutputPort, DeleteCategoryOutputPort {
-    private final CategoryRepository categoryPersistenceRepository;
+    private final CategoryRepository categoryRepository;
 
     public CategoryOutputAdapter(CategoryRepository categoryPersistenceRepository) {
-        this.categoryPersistenceRepository = categoryPersistenceRepository;
+        this.categoryRepository = categoryPersistenceRepository;
     }
 
     @Override
     public void delete(UUID uuid) {
-        var category = categoryPersistenceRepository.findByUuid(uuid);
+        var category = categoryRepository.findByUuid(uuid);
         if (nonNull(category)) {
-            categoryPersistenceRepository.delete(category);
+            categoryRepository.delete(category);
         }
     }
 
     @Override
     public Page<Category> list(Pageable pageable) {
-        Page<CategoryEntity> categories = categoryPersistenceRepository.findAll(pageable);
+        Page<CategoryEntity> categories = categoryRepository.findAll(pageable);
         return categories.map(CATEGORY_MAPPER::fromEntity);
     }
 
     @Override
     public Category load(UUID uuid) {
-        var category = categoryPersistenceRepository.findByUuid(uuid);
+        var category = categoryRepository.findByUuid(uuid);
         if (isNull(category)) {
             throw new NotFoundException(format("Category with uuid %s not found!", uuid));
         }
@@ -54,18 +54,18 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
     }
 
     @Override
-    public Category save(String name, String description, boolean active) {
-        var categoryEntity = categoryPersistenceRepository.findByNameOrDescription(name, description);
+    public Category saveOrUpdate(String name, String description, boolean active) {
+        var categoryEntity = categoryRepository.findByNameOrDescription(name, description);
         if (nonNull(categoryEntity)) {
             categoryEntity.setName(name);
             categoryEntity.setDescription(description);
             categoryEntity.getAudit().setActive(active);
             categoryEntity.getAudit().setUpdatedDate(LocalDateTime.now());
-            return CATEGORY_MAPPER.fromEntity(categoryPersistenceRepository.save(categoryEntity));
+            return CATEGORY_MAPPER.fromEntity(categoryRepository.save(categoryEntity));
 
         }
 
-        return CATEGORY_MAPPER.fromEntity(categoryPersistenceRepository.save(buildCategoryEntity(name, description, active)));
+        return CATEGORY_MAPPER.fromEntity(categoryRepository.save(buildCategoryEntity(name, description, active)));
 
     }
 
