@@ -1,11 +1,10 @@
 package com.fiap.tc.core.usecase.order;
 
-import com.fiap.tc.core.domain.model.Order;
+import com.fiap.tc.common.qrcode.QRCodeGenerator;
 import com.fiap.tc.core.domain.requests.OrderRequest;
+import com.fiap.tc.core.domain.response.OrderResponse;
 import com.fiap.tc.core.port.in.order.RegisterOrderInputPort;
 import com.fiap.tc.core.port.out.order.RegisterOrderOutputPort;
-import com.fiap.tc.core.port.out.order.RegisterOrderPaymentOutputPort;
-import com.fiap.tc.core.port.out.order.UpdateStatusOrderOutputPort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -13,23 +12,19 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class RegisterOrderUseCase implements RegisterOrderInputPort {
     private final RegisterOrderOutputPort registerOrderOutputPort;
-    private final RegisterOrderPaymentOutputPort registerOrderPaymentOutputPort;
-    private final UpdateStatusOrderOutputPort updateStatusOrderOutputPort;
+    private final QRCodeGenerator qrCodeGenerator;
 
-    public RegisterOrderUseCase(RegisterOrderOutputPort registerOrderOutputPort,
-                                RegisterOrderPaymentOutputPort registerOrderPaymentOutputPort,
-                                UpdateStatusOrderOutputPort updateStatusOrderOutputPort) {
+    public RegisterOrderUseCase(RegisterOrderOutputPort registerOrderOutputPort, QRCodeGenerator qrCodeGenerator) {
         this.registerOrderOutputPort = registerOrderOutputPort;
-        this.registerOrderPaymentOutputPort = registerOrderPaymentOutputPort;
-        this.updateStatusOrderOutputPort = updateStatusOrderOutputPort;
+        this.qrCodeGenerator = qrCodeGenerator;
     }
 
     @Override
-    public Order register(OrderRequest orderRequest) {
-        var order = registerOrderOutputPort.save(orderRequest.getIdCustomer(), orderRequest.getOrderPaymentRequest(),
-                orderRequest.getOrderItems());
-        var orderPayment = registerOrderPaymentOutputPort.register(orderRequest.getOrderPaymentRequest(), order.getId());
-
-        return updateStatusOrderOutputPort.update(order.getId(), orderPayment.getStatus().getOrderStatus());
+    public OrderResponse register(OrderRequest orderRequest) {
+        var order = registerOrderOutputPort.save(orderRequest.getIdCustomer(), orderRequest.getOrderItems());
+        return OrderResponse.builder()
+                .qrCodeOrderBase64(qrCodeGenerator.generate(order.orderWithTotalAsText()))
+                .order(order)
+                .build();
     }
 }

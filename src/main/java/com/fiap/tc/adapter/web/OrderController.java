@@ -4,6 +4,7 @@ import com.fiap.tc.adapter.repository.entity.CategoryEntity;
 import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.requests.OrderRequest;
 import com.fiap.tc.core.domain.requests.OrderStatusRequest;
+import com.fiap.tc.core.domain.response.OrderResponse;
 import com.fiap.tc.core.port.in.order.ListOrdersReadyPreparingInputPort;
 import com.fiap.tc.core.port.in.order.LoadOrderInputPort;
 import com.fiap.tc.core.port.in.order.RegisterOrderInputPort;
@@ -42,10 +43,10 @@ public class OrderController {
 
     @ApiOperation(value = "Find Order")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Find Order", response = Order.class)
+            @ApiResponse(code = 200, message = "Find Order", response = OrderResponse.class)
     })
     @GetMapping(path = URLMapping.ROOT_PRIVATE_API_ORDERS + "/{id}")
-    public ResponseEntity<Order> get(
+    public ResponseEntity<OrderResponse> get(
             @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @PathVariable UUID id) {
         return ok(loadOrderInputPort.load(id));
@@ -53,10 +54,10 @@ public class OrderController {
 
     @ApiOperation(value = "Register Customer Orders")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Save Category", response = Order.class)
+            @ApiResponse(code = 200, message = "Save Category", response = OrderResponse.class)
     })
     @PostMapping(path = URLMapping.ROOT_PUBLIC_API_ORDERS, produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Order> register(
+    public ResponseEntity<OrderResponse> register(
             @RequestBody @Valid OrderRequest request) {
         return ok(registerOrderInputPort.register(request));
     }

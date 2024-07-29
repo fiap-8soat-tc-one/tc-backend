@@ -2,18 +2,23 @@ package com.fiap.tc.adapter.repository.output;
 
 import com.fiap.tc.adapter.repository.OrderPaymentRepository;
 import com.fiap.tc.adapter.repository.OrderRepository;
+import com.fiap.tc.adapter.repository.builder.OrderPaymentHistoricBuilder;
+import com.fiap.tc.adapter.repository.entity.OrderPaymentEntity;
 import com.fiap.tc.adapter.repository.entity.embeddable.Audit;
 import com.fiap.tc.adapter.repository.mapper.base.MapperConstants;
-import com.fiap.tc.core.domain.model.OrderGatewayPayment;
+import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.OrderPayment;
+import com.fiap.tc.core.domain.model.enums.PaymentResult;
+import com.fiap.tc.core.domain.requests.OrderPaymentRequest;
 import com.fiap.tc.core.port.out.payment.RegisterPaymentOutputPort;
-import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
+import static java.lang.String.format;
+import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
 @Service
@@ -27,31 +32,53 @@ public class RegisterPaymentOutputAdapter implements RegisterPaymentOutputPort {
     }
 
     @Override
-    public OrderPayment saveOrUpdate(OrderGatewayPayment orderGatewayPayment, UUID idOrder) {
-        var orderEntity = orderRepository.findByUuid(idOrder);
+    public OrderPayment saveOrUpdate(OrderPaymentRequest orderPaymentRequest) {
+        var orderEntity = orderRepository.findByUuid(UUID.fromString(orderPaymentRequest.getTransactionNumber()));
+        if (isNull(orderEntity)) {
+            throw new NotFoundException(format("Order with uuid %s not found!", orderPaymentRequest.getTransactionNumber()));
+        }
 
-        var orderPaymentEntity = orderPaymentRepository.findByOrderUuid(idOrder);
+        var orderPaymentEntity = orderPaymentRepository.findByOrderUuid(orderEntity.getUuid());
 
         if (nonNull(orderPaymentEntity)) {
             orderPaymentEntity.getAudit().setUpdatedDate(LocalDateTime.now());
-            orderPaymentEntity.setStatus(orderGatewayPayment.getStatus());
-            orderPaymentEntity.setTransactionNumber(orderGatewayPayment.getTransactionNumber());
-            orderPaymentEntity.setTransactionReturn(orderGatewayPayment.getTransactionReturn());
-            Optional.of(orderGatewayPayment.getPaymentDate()).ifPresent(orderPaymentEntity::setPaymentDate);
-            Optional.of(orderGatewayPayment.getPendingDate()).ifPresent(orderPaymentEntity::setPendingDate);
+            orderPaymentEntity.setResult(orderPaymentRequest.getResult());
+            orderPaymentEntity.setPaymentType(orderPaymentRequest.getPaymentType());
+            orderPaymentEntity.setTransactionDocument(orderPaymentRequest.getTransactionDocument());
+            orderPaymentEntity.setTransactionNumber(orderPaymentRequest.getTransactionNumber());
+            orderPaymentEntity.setTransactionMessage(orderPaymentRequest.getTransactionMessage());
+            orderPaymentEntity.getPayment_historic()
+                    .add(OrderPaymentHistoricBuilder.create(orderPaymentEntity, orderPaymentRequest.getResult()));
+            setDatesResult(orderPaymentRequest, orderPaymentEntity);
 
             orderPaymentRepository.save(orderPaymentEntity);
 
-            return OrderPayment.builder().id(orderPaymentEntity.getUuid()).status(orderPaymentEntity.getStatus()).build();
+            return OrderPayment.builder()
+                    .id(orderPaymentEntity.getUuid())
+                    .idOrder(orderEntity.getUuid())
+                    .status(orderPaymentEntity.getResult())
+                    .build();
         }
 
-        var newOrderPaymentEntity = MapperConstants.ORDER_GATEWAY_PAYMENT_MAPPER.toEntity(orderGatewayPayment);
+        var newOrderPaymentEntity = MapperConstants.ORDER_PAYMENT_MAPPER.toEntity(orderPaymentRequest);
 
         newOrderPaymentEntity.setUuid(UUID.randomUUID());
         newOrderPaymentEntity.setOrder(orderEntity);
         newOrderPaymentEntity.setAudit(Audit.builder().active(true).registerDate(LocalDateTime.now()).build());
-
+        setDatesResult(orderPaymentRequest, newOrderPaymentEntity);
         orderPaymentRepository.save(newOrderPaymentEntity);
-        return OrderPayment.builder().id(newOrderPaymentEntity.getUuid()).status(newOrderPaymentEntity.getStatus()).build();
+        return OrderPayment.builder()
+                .id(newOrderPaymentEntity.getUuid())
+                .idOrder(orderEntity.getUuid())
+                .status(newOrderPaymentEntity.getResult())
+                .build();
+    }
+
+    private void setDatesResult(OrderPaymentRequest orderPaymentRequest, OrderPaymentEntity orderPaymentEntity) {
+        Optional.of(orderPaymentRequest.getResult())
+                .filter(result -> result.equals(PaymentResult.SUCCESS))
+                .ifPresentOrElse(
+                        result -> orderPaymentEntity.setResultSuccessDate(LocalDateTime.now()),
+                        () -> orderPaymentEntity.setResultErrorDate(LocalDateTime.now()));
     }
 }

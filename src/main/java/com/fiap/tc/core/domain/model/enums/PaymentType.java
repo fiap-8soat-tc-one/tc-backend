@@ -7,7 +7,8 @@ import lombok.Getter;
 @Getter
 public enum PaymentType {
     DEBIT("payment with debit card"),
-    CREDIT("payment with credit card");
+    CREDIT("payment with credit card"),
+    PIX("payment with pix");
 
     private final String description;
 }

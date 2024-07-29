@@ -1,8 +1,8 @@
 package com.fiap.tc.core.port.in.order;
 
-import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.requests.OrderRequest;
+import com.fiap.tc.core.domain.response.OrderResponse;
 
 public interface RegisterOrderInputPort {
-    Order register(OrderRequest orderRequest);
+    OrderResponse register(OrderRequest orderRequest);
 }

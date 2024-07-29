@@ -1,6 +1,7 @@
 package com.fiap.tc.adapter.repository.output;
 
 import com.fiap.tc.adapter.repository.OrderRepository;
+import com.fiap.tc.adapter.repository.builder.OrderHistoricBuilder;
 import com.fiap.tc.adapter.repository.mapper.base.MapperConstants;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Order;
@@ -37,6 +38,7 @@ public class OrderOutputAdapter implements UpdateStatusOrderOutputPort, LoadOrde
         }
         orderEntity.setStatus(status);
         orderEntity.getAudit().setUpdatedDate(LocalDateTime.now());
+        orderEntity.getOrderHistoric().add(OrderHistoricBuilder.create(orderEntity, orderEntity.getStatus()));
         return MapperConstants.ORDER_MAPPER.fromEntity(orderRepository.save(orderEntity));
     }
 

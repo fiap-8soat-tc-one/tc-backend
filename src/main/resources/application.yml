@@ -58,6 +58,3 @@ app:
     corePoolSize: 20
     maxPoolSize: 300
     queueCapacity: 600
-
-  feature.toggles:
-    orderPaymentMockSuccess: true

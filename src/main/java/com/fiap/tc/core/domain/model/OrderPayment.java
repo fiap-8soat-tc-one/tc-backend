@@ -1,6 +1,6 @@
 package com.fiap.tc.core.domain.model;
 
-import com.fiap.tc.core.domain.model.enums.PaymentStatus;
+import com.fiap.tc.core.domain.model.enums.PaymentResult;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,5 +14,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class OrderPayment {
     private UUID id;
-    private PaymentStatus status;
+    private UUID idOrder;
+    private PaymentResult status;
 }

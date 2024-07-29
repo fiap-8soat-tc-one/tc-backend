@@ -9,9 +9,6 @@ import java.util.UUID;
 @Data
 public class OrderRequest {
     @Valid
-    private OrderPaymentRequest orderPaymentRequest;
-
-    @Valid
     private List<OrderItemRequest> orderItems;
 
     private UUID idCustomer;

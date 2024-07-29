@@ -1,20 +1,26 @@
 package com.fiap.tc.adapter.repository.entity;
 
-import com.fiap.tc.core.domain.model.enums.PaymentStatus;
+import com.fiap.tc.core.domain.model.enums.PaymentResult;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "order_payment_historic")
 public class OrderPaymentHistoricEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_order_payment", nullable = false)
     private OrderPaymentEntity payment;
 
@@ -22,7 +28,7 @@ public class OrderPaymentHistoricEntity {
     private LocalDateTime registerDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false, length = 20)
-    private PaymentStatus status;
+    @Column(name = "result", nullable = false, length = 20)
+    private PaymentResult result;
 
 }

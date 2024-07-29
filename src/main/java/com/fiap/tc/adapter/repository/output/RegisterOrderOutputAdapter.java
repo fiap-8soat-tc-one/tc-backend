@@ -3,6 +3,7 @@ package com.fiap.tc.adapter.repository.output;
 import com.fiap.tc.adapter.repository.CustomerRepository;
 import com.fiap.tc.adapter.repository.OrderRepository;
 import com.fiap.tc.adapter.repository.ProductRepository;
+import com.fiap.tc.adapter.repository.builder.OrderHistoricBuilder;
 import com.fiap.tc.adapter.repository.entity.OrderEntity;
 import com.fiap.tc.adapter.repository.entity.OrderItemEntity;
 import com.fiap.tc.adapter.repository.entity.embeddable.Audit;
@@ -11,7 +12,6 @@ import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
 import com.fiap.tc.core.domain.requests.OrderItemRequest;
-import com.fiap.tc.core.domain.requests.OrderPaymentRequest;
 import com.fiap.tc.core.port.out.order.RegisterOrderOutputPort;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +40,7 @@ public class RegisterOrderOutputAdapter implements RegisterOrderOutputPort {
     }
 
     @Override
-    public Order save(UUID customerId, OrderPaymentRequest orderPaymentRequest, List<OrderItemRequest> itemsRequest) {
+    public Order save(UUID customerId, List<OrderItemRequest> itemsRequest) {
         var customerEntity = customerRepository.findByUuid(customerId);
 
         OrderEntity orderEntity = new OrderEntity();
@@ -51,6 +51,7 @@ public class RegisterOrderOutputAdapter implements RegisterOrderOutputPort {
         orderEntity.setStatus(OrderStatus.RECEIVED);
 
         add_items(itemsRequest, orderEntity);
+        orderEntity.getOrderHistoric().add(OrderHistoricBuilder.create(orderEntity, orderEntity.getStatus()));
 
         var orderEntitySaved = orderRepository.save(orderEntity);
 

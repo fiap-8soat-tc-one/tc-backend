@@ -190,17 +190,14 @@ create table order_payment (
     active boolean default true,
     register_date timestamp,
     updated_date timestamp,
-    cancel_date timestamp,
-    card_document varchar(30) not null,
-    card_number varchar(30) not null,
-    card_print_name varchar(255) not null,
-    payment_date timestamp,
     payment_type varchar(20) not null,
-    pending_date timestamp,
-    status varchar(20) not null,
+    result varchar(20) not null,
+    result_error_date timestamp,
+    result_success_date timestamp,
     total numeric(19, 2),
+    transaction_document varchar(30) not null,
+    transaction_message varchar(255),
     transaction_number varchar(255),
-    transaction_return varchar(255),
     uuid uuid,
     id_order int4 not null,
     primary key (id)
@@ -209,7 +206,7 @@ create table order_payment (
 create table order_payment_historic (
    id  serial not null,
     register_date timestamp not null,
-    status varchar(20) not null,
+    result varchar(20) not null,
     id_order_payment int4 not null,
     primary key (id)
 );
@@ -249,9 +246,6 @@ create table product (
 
 alter table customer
    add constraint UK_phlle50dp6ivt0paa1d5gkvk2 unique (document);
-
-alter table order_payment_historic
-   add constraint UK_ext5379fu4t3ne1rv7fsk00an unique (id_order_payment);
 
 alter table item
    add constraint FKmvybm38wikbsa2eh5vcgq2k8j

@@ -1,7 +1,10 @@
 package com.fiap.tc.adapter.repository.entity;
 
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -9,6 +12,9 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @Table(name = "order_request_historic")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderHistoricEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

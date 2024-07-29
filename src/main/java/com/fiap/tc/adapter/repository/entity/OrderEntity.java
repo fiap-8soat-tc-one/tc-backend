@@ -6,6 +6,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,7 +26,7 @@ public class OrderEntity {
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OrderBy(value = "register_date DESC")
-    private List<OrderHistoricEntity> orderHistoric;
+    private List<OrderHistoricEntity> orderHistoric = new ArrayList<>();
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OrderBy(value = "register_date DESC")

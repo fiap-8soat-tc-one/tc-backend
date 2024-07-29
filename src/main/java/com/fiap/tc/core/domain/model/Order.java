@@ -3,6 +3,7 @@ package com.fiap.tc.core.domain.model;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -42,4 +43,11 @@ public class Order {
     private Long waitTime;
 
     private List<OrderItem> items;
+
+    @JsonIgnore
+    public String orderWithTotalAsText() {
+        var text = new StringBuilder();
+        text.append(id).append("-").append(total);
+        return text.toString();
+    }
 }
