@@ -74,22 +74,22 @@ As informações dispostas no sistema de pedidos precisarão ser gerenciadas pel
 
 [Clique aqui para ser redirecionado para wiki de configuração do ambiente de desenvolvimento local](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/docs/config/README.md)
 
-## Configuração do ambiente Docker/Docker Compose :cloud:
+## Configuração do ambiente Docker/Docker Compose :heavy_check_mark:
 
 [Clique aqui para ser redirecionado para wiki de configuração do ambiente Docker](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/docs/docker/README.md)
 
-## Manual/Documentação de funcionalidade (Swagger/Open API)
+## Manual/Documentação de funcionalidade (Swagger/Open API) :heavy_check_mark:
 
 [Clique aqui para ser redirecionado para documentação das funcionalidade](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/docs/api/README.md)
 
-## Domain Storytelling
+## Domain Storytelling :heavy_check_mark:
 
 [Clique aqui para ser redirecionado para documentação do domain storytelling no miro](https://miro.com/app/board/uXjVK1Bf4Q4=/)
 
-## Event Storming
-
+## Event Storming :heavy_check_mark:
+ 
 [Clique aqui para ser redirecionado para documentação do event storming no miro](https://miro.com/app/board/uXjVK1Bf4Q4=/)
 
-## Domain Mapping
+## Domain Mapping :heavy_check_mark:
 
 ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/assets/domain-mapping.drawio.png)
