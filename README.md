@@ -1,6 +1,6 @@
 # Tech Challenge Backend Api
 
-## O Desafio
+## O Desafio :triangular_flag_on_post:
 
 Há uma lanchonete de bairro que está expandindo devido seu grande sucesso. Porém, com a expansão e sem um sistema de controle de pedidos, o atendimento aos clientes pode ser caótico e confuso. Por exemplo, imagine que um cliente faça um pedido complexo, como um hambúrguer personalizado com ingredientes específicos, acompanhado de batatas fritas e uma bebida. O atendente pode anotar o pedido em um papel e entregá-lo à cozinha, mas não há garantia de que o pedido será preparado corretamente.
 
@@ -50,9 +50,7 @@ Para solucionar o problema, a lanchonete irá investir em um sistema de autoaten
 
 As informações dispostas no sistema de pedidos precisarão ser gerenciadas pelo estabelecimento através de um painel administrativo.
 
-
-
-## Time :sunglasses:
+## Time :file_folder:
 
 - Myller Lobo
 - Jean Carlos
@@ -77,6 +75,6 @@ As informações dispostas no sistema de pedidos precisarão ser gerenciadas pel
 [Clique aqui para ser redirecionado para wiki de configuração do ambiente de desenvolvimento local](../tc-backend/docs/config/README.md)
 
 
-## Configuração do ambiente Docker/Docker Compose
+## Configuração do ambiente Docker/Docker Compose :cloud:
 
 [Clique aqui para ser redirecionado para wiki de configuração do ambiente Docker](../tc-backend/docs/docker/README.md)
