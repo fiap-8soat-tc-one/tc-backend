@@ -81,3 +81,15 @@ As informações dispostas no sistema de pedidos precisarão ser gerenciadas pel
 ## Manual/Documentação de funcionalidade (Swagger/Open API)
 
 [Clique aqui para ser redirecionado para documentação das funcionalidade](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/docs/api/README.md)
+
+## Domain Storytelling
+
+[Clique aqui para ser redirecionado para documentação do domain storytelling no miro](https://miro.com/app/board/uXjVK1Bf4Q4=/)
+
+## Event Storming
+
+[Clique aqui para ser redirecionado para documentação do event storming no miro](https://miro.com/app/board/uXjVK1Bf4Q4=/)
+
+## Domain Mapping
+
+![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/assets/domain-mapping.drawio.png)
