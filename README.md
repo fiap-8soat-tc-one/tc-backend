@@ -50,7 +50,7 @@ Para solucionar o problema, a lanchonete irá investir em um sistema de autoaten
 
 As informações dispostas no sistema de pedidos precisarão ser gerenciadas pelo estabelecimento através de um painel administrativo.
 
-## Time :file_folder:
+## Time :construction_worker:
 
 - Myller Lobo
 - Jean Carlos
@@ -74,7 +74,10 @@ As informações dispostas no sistema de pedidos precisarão ser gerenciadas pel
 
 [Clique aqui para ser redirecionado para wiki de configuração do ambiente de desenvolvimento local](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/docs/config/README.md)
 
-
 ## Configuração do ambiente Docker/Docker Compose :cloud:
 
 [Clique aqui para ser redirecionado para wiki de configuração do ambiente Docker](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/docs/docker/README.md)
+
+## Manual/Documentação de funcionalidade (Swagger/Open API)
+
+[Clique aqui para ser redirecionado para documentação das funcionalidade](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/docs/swagger/README.md)

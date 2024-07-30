@@ -1,17 +1,17 @@
-# Setup do ambiente de desenvolvimento local
+# Setup do ambiente de desenvolvimento local :rocket:
 
-## Pré-requisitos
+## Pré-requisitos :warning:
 
 - [Intellij IDEA (Community ou superior)](https://www.jetbrains.com/pt-br/idea/)
 - [DBeaver](https://dbeaver.io/)
 - [Docker](https://www.docker.com/)
 - [GIT](https://git-scm.com/)
 
-## PostgreSQL
+## PostgreSQL :floppy_disk:
 
 PostgreSQL é um sistema de gerenciamento de banco de dados relacional e objeto-relacional (ORDBMS) de código aberto. Ele é conhecido por sua robustez, extensibilidade e conformidade com os padrões SQL. Foi desenvolvido para ser altamente escalável, suportando grandes volumes de dados e usuários simultâneos.
 
-### Vantagens do PostgreSQL
+### Vantagens do PostgreSQL :heavy_check_mark:
 
 1. **Conformidade com SQL:** PostgreSQL é altamente compatível com o padrão SQL, garantindo portabilidade e facilidade de uso.
 2. **Extensibilidade:** Permite a criação de tipos de dados personalizados, funções e operadores, oferecendo grande flexibilidade.
@@ -26,7 +26,7 @@ PostgreSQL é um sistema de gerenciamento de banco de dados relacional e objeto-
 2. **Recursos Avançados:** Algumas funcionalidades avançadas podem ter uma curva de aprendizado íngreme.
 3. **Desempenho em Ambientes Pequenos:** Em aplicações muito pequenas ou menos complexas, pode ser considerado pesado em comparação com alternativas mais leves.
 
-### Sinergia com Java
+### Sinergia com Java :heavy_check_mark:
 
 1. **JDBC (Java Database Connectivity):** O PostgreSQL possui drivers JDBC robustos, permitindo uma integração suave com aplicações Java.
 2. **ORMs (Object-Relational Mappers):** Ferramentas como Hibernate e JPA (Java Persistence API) funcionam muito bem com PostgreSQL, facilitando o mapeamento objeto-relacional e reduzindo a complexidade do código.
@@ -35,7 +35,7 @@ PostgreSQL é um sistema de gerenciamento de banco de dados relacional e objeto-
 5. **Ferramentas de Desenvolvimento:** Existem várias ferramentas de desenvolvimento e bibliotecas em Java que oferecem suporte direto para PostgreSQL, melhorando a produtividade do desenvolvedor.
 6. **Escalabilidade e Manutenção:** Aplicações em Java com PostgreSQL são fáceis de escalar e manter, graças à robustez e confiabilidade de ambos.
 
-### Instalação/Hospedagem do PostgreSQL
+### Instalação/Hospedagem do PostgreSQL :heavy_check_mark:
 
 O modelo escolhido para o tech challanger foi a utilização de contêineres Docker.
 Optamos por uma imagem do tipo alpine, levando em consideração a facilidade de implantação em cenários de desenvolvimento onde as mudanças são frequentes e precisamos trazer celeridade nos processos de desenvolvimento além da eficiência de recursos, considerando o ambiente "produtivo" como as maquinas dos avaliadores do tech challanger, não possuimos dados sobre os recursos de CPU/Memória então optar por um ambiente menor nos garante mais estabilidade para os possíveis testes que possam acontecer.
@@ -53,7 +53,7 @@ Após a execução dos comandos acima, validar a conectividade através do CLI o
 
 ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/assets/setup-postgres.png)
 
-## Intellij e JAVA 17
+## Intellij e JAVA 17 :factory:
 
 Java 17 é uma versão de Long-Term Support (LTS) do Java lançada em setembro de 2021 pela Oracle. Esta versão terá suporte estendido até 2029.
 
@@ -95,7 +95,7 @@ Para ambiente de desenvolvimento optamos pela IDE da jetbrains, uma vez que ela 
    - **Rápido e Responsivo:** Desempenho eficiente, mesmo em projetos grandes e complexos.
    - **Índices de Código:** IntelliJ cria índices de código inteligentes para busca e navegação rápidas.
 
-### Setup da IDE
+### Setup da IDE :vertical_traffic_light:
 
 1. **Clone do Repositório**
    - Clone o repositório a partir do link: `https://github.com/fiap-8soat-tc-one/tc-backend.git`
