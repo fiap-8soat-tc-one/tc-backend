@@ -28,9 +28,9 @@ Tech challenge pos tech fiap backend app part 1
 
 ## Configuração de ambiente de desenvolvimento local  :heavy_check_mark:
 
-[Clique aqui para ser redirecionado para wiki de configuração do ambiente de desenvolvimento local](../tc-backend/docs/setup.md)
+[Clique aqui para ser redirecionado para wiki de configuração do ambiente de desenvolvimento local](../tc-backend/docs/config/README.md)
 
 
 ## Configuração do ambiente Docker/Docker Compose
 
-[Clique aqui para ser redirecionado para wiki de configuração do ambiente Docker](../tc-backend/docs/docker.md)
+[Clique aqui para ser redirecionado para wiki de configuração do ambiente Docker](../tc-backend/docs/docker/README.md)
