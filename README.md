@@ -72,9 +72,9 @@ As informações dispostas no sistema de pedidos precisarão ser gerenciadas pel
 
 ## Configuração de ambiente de desenvolvimento local  :heavy_check_mark:
 
-[Clique aqui para ser redirecionado para wiki de configuração do ambiente de desenvolvimento local](../tc-backend/docs/config/README.md)
+[Clique aqui para ser redirecionado para wiki de configuração do ambiente de desenvolvimento local](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/docs/config/README.md)
 
 
 ## Configuração do ambiente Docker/Docker Compose :cloud:
 
-[Clique aqui para ser redirecionado para wiki de configuração do ambiente Docker](../tc-backend/docs/docker/README.md)
+[Clique aqui para ser redirecionado para wiki de configuração do ambiente Docker](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/docs/docker/README.md)
