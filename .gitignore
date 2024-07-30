@@ -1,0 +1,13 @@
+*.log
+*.idea
+*.iml
+*.swp
+.factorypath
+.classpath
+.project
+.settings/
+.idea/
+.vscode/
+target/
+code_quality_service/
+.DS_Store

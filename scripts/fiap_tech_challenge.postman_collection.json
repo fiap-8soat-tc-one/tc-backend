@@ -1,0 +1,593 @@
+{
+	"info": {
+		"_postman_id": "33fc06f2-9ec9-4f25-90e4-784daf6d02ea",
+		"name": "fiap tech challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3542532"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YW5ndWxhcjpAbmd1bEByMA=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Cookie",
+						"value": "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJteWxsZXIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiYXRpIjoiNzg3NTFjMjEtMTEyNS00MzQ0LTg0OWEtMDQ5NGNhOGVhOGQzIiwibm9tZSI6Ik15bGxlciBTYWthZ3VjaGkiLCJleHAiOjE3MjA3MjkxNzIsInV1aWQiOiIzNDg0OGUyMC05Njc5LTExZWItOWUxMy0wMjQyYWMxMTAwMDIiLCJhdXRob3JpdGllcyI6WyJDQURBU1RSQVJfVVNVQVJJTyIsIlNJTkNST05JWkFSX0NQRiIsIkNPTlNVTFRBUl9VU1VBUklPIiwiRURJVEFSX1VTVUFSSU8iLCJFWENMVUlSX1VTVUFSSU8iLCJMSVNUQVJfVVNVQVJJT1MiXSwianRpIjoiNjE0MDMxNDEtOTdmYi00NmVkLTkwOTQtODFhN2Y2NzNhMWIyIiwiY2xpZW50X2lkIjoiYW5ndWxhciIsInBlcmZpbCI6IkFkbWluaXN0cmFkb3IifQ.YVzpP9pNBeRZHZbomj5KcXwtVN0_AoILz00IjYRzZXA",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "myller",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categories list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/private/v1/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"private",
+						"v1",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get category",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/private/v1/categories/52ad266d-bcb5-4101-a8e1-cc45cc83afad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"private",
+						"v1",
+						"categories",
+						"52ad266d-bcb5-4101-a8e1-cc45cc83afad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete category",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/private/v1/categories/d8a007ec-358d-4349-b01b-f46a6e133406",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"private",
+						"v1",
+						"categories",
+						"d8a007ec-358d-4349-b01b-f46a6e133406"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save-update category",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"lalalaasss\",\r\n    \"description\": \"description lalal2\",\r\n    \"active\": true\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/private/v1/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"private",
+						"v1",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "order register",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_customer\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"order_items\": [\r\n        {\r\n            \"id_product\": \"b1f859e6-07df-4b67-a1cd-74d946442207\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"id_product\": \"68a589ce-979f-4350-bcd6-ca049f3beb16\",\r\n            \"quantity\": 2\r\n        },\r\n        {\r\n            \"id_product\": \"56199d36-969b-4e1b-9515-f84ffed6a19b\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"id_product\": \"7b3c010c-9f03-4a56-8c85-b519a5f6b86e\",\r\n            \"quantity\": 1\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/public/v1/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"public",
+						"v1",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "payment process",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payment_type\": \"PIX\",\r\n    \"result\": \"SUCCESS\",\r\n    \"total\": 73.25,\r\n    \"transaction_document\": 65750888053,\r\n    \"transaction_message\": \"transaction ok\",\r\n    \"transaction_number\": \"7ce3bd32-b322-43d6-b771-a045d1c57bc0\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/public/v1/hook/orders/payment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"public",
+						"v1",
+						"hook",
+						"orders",
+						"payment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "order update status",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"690f367e-10c8-4b93-b61d-2e9f8bed4e56\",\r\n    \"status\": \"READY\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/private/v1/orders/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"private",
+						"v1",
+						"orders",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "order get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_customer\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"order_items\": [\r\n        {\r\n            \"id_product\": \"b1f859e6-07df-4b67-a1cd-74d946442207\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"id_product\": \"68a589ce-979f-4350-bcd6-ca049f3beb16\",\r\n            \"quantity\": 2\r\n        },\r\n        {\r\n            \"id_product\": \"56199d36-969b-4e1b-9515-f84ffed6a19b\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"id_product\": \"7b3c010c-9f03-4a56-8c85-b519a5f6b86e\",\r\n            \"quantity\": 1\r\n        }\r\n    ],\r\n    \"order_payment_request\": {\r\n        \"card_cvc\": \"123\",\r\n        \"card_expire_date\": \"10/30\",\r\n        \"card_number\": \"4111111111111111\",\r\n        \"card_document\": \"88404071039\",\r\n        \"card_print_name\": \"Myller Lobo\",\r\n        \"payment_type\": \"CREDIT\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/private/v1/orders/468d76dd-dae5-4f13-8f1e-efeee51d21ed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"private",
+						"v1",
+						"orders",
+						"468d76dd-dae5-4f13-8f1e-efeee51d21ed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "order list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/private/v1/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"private",
+						"v1",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "customer save-update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"document\": 65750888053,\r\n    \"email\": \"lucas.silva@gmail.com\",\r\n    \"name\": \"Silva\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/public/v1/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"public",
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "customer get",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/public/v1/customers/88404071039",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"public",
+						"v1",
+						"customers",
+						"88404071039"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ping public",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/public/v1/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"public",
+						"v1",
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
