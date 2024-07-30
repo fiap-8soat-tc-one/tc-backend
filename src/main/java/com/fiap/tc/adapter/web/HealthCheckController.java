@@ -13,18 +13,18 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping(path = URLMapping.ROOT_API_PING)
-@Api(tags = "Ping", produces = APPLICATION_JSON_VALUE)
-public class PingController {
+@RequestMapping(path = URLMapping.ROOT_API_HEALTH)
+@Api(tags = "HealthCheck", produces = APPLICATION_JSON_VALUE)
+public class HealthCheckController {
 
 
-    @ApiOperation(value = "Ping")
+    @ApiOperation(value = "HealthCheck")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Pong", response = String.class)
+            @ApiResponse(code = 200, message = "Ready", response = String.class)
     })
     @GetMapping
     public ResponseEntity<String> ping() {
-        return ok("Pong");
+        return ok("Ready");
     }
 }
 
