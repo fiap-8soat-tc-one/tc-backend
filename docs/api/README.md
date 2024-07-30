@@ -10,7 +10,9 @@
 
 ## Buscar produtos por categoria
 
-## Fake checkout (apenas enviar os produtos escolhidos para a fila. O checkout é a finalização do pedido).
+## Fake checkout 
+
+- Nota: Apenas enviar os produtos escolhidos para a fila. O checkout é a finalização do pedido
 
 ## Listar os pedidos
 
@@ -30,4 +32,4 @@
 
 ## Postman Collection
 
-[Clique aqui para donwload](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/scripts/fiap_tech_challenge.postman_collection.json)
+[Clique aqui para ser redirecionado para collection do postman](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/scripts/fiap_tech_challenge.postman_collection.json)
