@@ -16,31 +16,31 @@
         <relativePath/>
     </parent>
 
-	<properties>
-		<java.version>1.17</java.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<spring-security-oauth2.version>2.2.4.RELEASE</spring-security-oauth2.version>
-		<spring-security-jwt.version>1.0.9.RELEASE</spring-security-jwt.version>
-		<org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
-		<jacoco.version>0.8.6</jacoco.version>
-		<fixture-factory.version>3.1.0</fixture-factory.version>
-		<org.reflections>0.9.10</org.reflections>
-		<com.thoughtworks.paranamer>2.8</com.thoughtworks.paranamer>
-		<lombok.version>1.18.22</lombok.version>
-		<springfox-swagger2.version>3.0.0</springfox-swagger2.version>
+    <properties>
+        <java.version>1.17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring-security-oauth2.version>2.2.4.RELEASE</spring-security-oauth2.version>
+        <spring-security-jwt.version>1.0.9.RELEASE</spring-security-jwt.version>
+        <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+        <jacoco.version>0.8.6</jacoco.version>
+        <fixture-factory.version>3.1.0</fixture-factory.version>
+        <org.reflections>0.9.10</org.reflections>
+        <com.thoughtworks.paranamer>2.8</com.thoughtworks.paranamer>
+        <lombok.version>1.18.22</lombok.version>
+        <springfox-swagger2.version>3.0.0</springfox-swagger2.version>
 
-		<embedded-redis.version>0.6</embedded-redis.version>
-		<redisson.version>3.13.1</redisson.version>
-		<jedis.version>3.3.0</jedis.version>
-		<epoll.version>4.1.50.Final</epoll.version>
-		<caelum.stella.version>2.1.5</caelum.stella.version>
-		<querydsl-apt.version>4.4.0</querydsl-apt.version>
-		<sonar.organization>jcmdsbr</sonar.organization>
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <embedded-redis.version>0.6</embedded-redis.version>
+        <redisson.version>3.13.1</redisson.version>
+        <jedis.version>3.3.0</jedis.version>
+        <epoll.version>4.1.50.Final</epoll.version>
+        <caelum.stella.version>2.1.5</caelum.stella.version>
+        <querydsl-apt.version>4.4.0</querydsl-apt.version>
+        <sonar.organization>jcmdsbr</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
 
-	</properties>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -62,11 +62,11 @@
             <scope>runtime</scope>
         </dependency>
 
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-boot-starter</artifactId>
-			<version>${springfox-swagger2.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>${springfox-swagger2.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -116,21 +116,6 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>${springfox-swagger2.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectreactor</groupId>
-            <artifactId>reactor-spring</artifactId>
-            <version>1.0.1.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -207,18 +192,20 @@
         </dependency>
 
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.5.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.5.2</version>
         </dependency>
 
     </dependencies>

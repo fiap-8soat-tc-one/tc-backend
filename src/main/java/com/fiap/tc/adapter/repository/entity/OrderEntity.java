@@ -6,7 +6,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,7 +26,11 @@ public class OrderEntity {
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OrderBy(value = "register_date DESC")
-    private List<ItemEntity> items;
+    private List<OrderHistoricEntity> orderHistoric = new ArrayList<>();
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OrderBy(value = "register_date DESC")
+    private List<OrderItemEntity> items;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
@@ -34,12 +38,6 @@ public class OrderEntity {
 
     @Embedded
     private Audit audit;
-
-    @Column(name = "cancel_date")
-    private LocalDateTime cancelDate;
-
-    @Column(name = "payment_date")
-    private LocalDateTime paymentDate;
 
     private BigDecimal total;
 

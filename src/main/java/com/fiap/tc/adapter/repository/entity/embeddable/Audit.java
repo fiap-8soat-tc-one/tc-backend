@@ -22,6 +22,6 @@ public class Audit {
     @Column(name = "updated_date")
     private LocalDateTime updatedDate;
 
-    @Column(name = "fl_active", columnDefinition = "boolean default true")
-    private Boolean active;
+    @Column(name = "active", columnDefinition = "boolean default true")
+    private boolean active = true;
 }

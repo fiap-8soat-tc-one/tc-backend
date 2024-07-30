@@ -11,10 +11,12 @@ public interface CategoryMapper extends MapperEntity<CategoryEntity, Category> {
 
     @Override
     @Mapping(target = "active", source = "audit.active")
+    @Mapping(target = "id", source = "uuid")
     Category fromEntity(CategoryEntity categoryEntity);
 
     @Override
     @Mapping(source = "active", target = "audit.active")
+    @Mapping(target = "id", ignore = true)
     CategoryEntity toEntity(Category category);
 
 
