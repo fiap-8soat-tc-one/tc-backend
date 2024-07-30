@@ -58,7 +58,7 @@ ENTRYPOINT ["java", "-jar", "tc-backend-api.jar"]
 
 ```
 
-## Docker Compose :whale2:
+## Docker Compose :whale:
 
 Docker Compose é uma ferramenta para definir e gerenciar multi-contêineres Docker de maneira simplificada, dentro do ambiente do tech challenger, precisamos iniciar tanto o PostgreSQL quanto a própria aplicação e para isso iremos utilizar do Docker Compose.
 
