@@ -20,7 +20,7 @@ Ao adota essa plataforma garantimos as seguintes vantagens:
 
 As imagens base escolhidas para estruturação da aplicação em formato de contêiner foram `slim`, são imagens menores facilitando a subida da aplicação e manutenção da mesma.
 
-### Slim x Alpine
+### Slim x Alpine :warning:
 
 - Slim: Possuem um bom equilíbrio entre o tamanho reduzido e compatibilidade com pacotes, mantendo a mesma versão da distro original a qual foi baseada.
 - Alpine: Extremamente economia de espaço, porém pode exigir um conhecimento maior para configuração e gerenciamento de pacotes da distribuição.

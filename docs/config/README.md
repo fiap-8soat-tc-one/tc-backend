@@ -20,12 +20,6 @@ PostgreSQL é um sistema de gerenciamento de banco de dados relacional e objeto-
 5. **Transações ACID:** Garantia de integridade e consistência dos dados através de transações completas com Atomicidade, Consistência, Isolamento e Durabilidade.
 6. **Comunidade Ativa:** Um grande número de desenvolvedores e documentação disponível, facilitando a resolução de problemas e o aprendizado.
 
-### Desvantagens do PostgreSQL
-
-1. **Complexidade de Configuração:** Pode ser mais complexo de configurar e otimizar em comparação com outros bancos de dados.
-2. **Recursos Avançados:** Algumas funcionalidades avançadas podem ter uma curva de aprendizado íngreme.
-3. **Desempenho em Ambientes Pequenos:** Em aplicações muito pequenas ou menos complexas, pode ser considerado pesado em comparação com alternativas mais leves.
-
 ### Sinergia com Java :heavy_check_mark:
 
 1. **JDBC (Java Database Connectivity):** O PostgreSQL possui drivers JDBC robustos, permitindo uma integração suave com aplicações Java.
@@ -95,7 +89,7 @@ Para ambiente de desenvolvimento optamos pela IDE da jetbrains, uma vez que ela 
    - **Rápido e Responsivo:** Desempenho eficiente, mesmo em projetos grandes e complexos.
    - **Índices de Código:** IntelliJ cria índices de código inteligentes para busca e navegação rápidas.
 
-### Setup da IDE :vertical_traffic_light:
+### Setup da IDE :rotating_light:
 
 1. **Clone do Repositório**
    - Clone o repositório a partir do link: `https://github.com/fiap-8soat-tc-one/tc-backend.git`

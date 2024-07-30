@@ -80,4 +80,4 @@ As informações dispostas no sistema de pedidos precisarão ser gerenciadas pel
 
 ## Manual/Documentação de funcionalidade (Swagger/Open API)
 
-[Clique aqui para ser redirecionado para documentação das funcionalidade](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/docs/swagger/README.md)
+[Clique aqui para ser redirecionado para documentação das funcionalidade](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/docs/api/README.md)
