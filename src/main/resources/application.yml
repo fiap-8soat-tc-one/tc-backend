@@ -1,0 +1,60 @@
+# Server Configuration
+server:
+  port: 8080
+  undertow:
+    threads:
+      worker: 30
+  session:
+    persistent: false # performance
+    store-dir: /var/log/app # performance
+
+# Pool Connection and Postgres settings
+spring:
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+    date-format: yyyy-MM-dd
+  
+  mvc:
+    format:
+      date: yyyy-MM-dd
+      date-time: yyyy-MM-dd HH:mm:ss
+      time: HH:mm:ss
+  profiles:
+    active: local
+  application:
+    name: tc-backend-api
+
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:postgres}
+    username: ${DATABASE_USER:postgres}
+    password: ${DATABASE_PASS:123456}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      minimum-idle: 2
+      maximum-pool-size: 10
+      pool-name: TcBackendApiPool
+      idle-timeout: 9000
+      #isolate-internal-queries: true
+      connection-test-query: SELECT 1
+      connection-timeout: 18000
+  
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        #        hbm2ddl.auto: create
+        #        hbm2ddl.export_schema: true        
+        show_sql: true
+        format_sql: true
+        enable_lazy_load_no_trans: true
+    open-in-view: false
+
+
+app:
+  cache.user.token: true
+  mvc.async.request-timeout: 10000
+  thread.async:
+    corePoolSize: 20
+    maxPoolSize: 300
+    queueCapacity: 600
