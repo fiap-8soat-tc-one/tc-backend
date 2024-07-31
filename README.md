@@ -84,10 +84,10 @@ As informações dispostas no sistema de pedidos precisarão ser gerenciadas pel
 
 ## Domain Storytelling :heavy_check_mark:
 
-[Clique aqui para ser redirecionado para documentação do domain storytelling no miro](https://miro.com/app/board/uXjVK1Bf4Q4=/)
+[Clique aqui para ser redirecionado para documentação do domain storytelling no miro](https://miro.com/app/board/uXjVKuUez2Q=/)
 
 ## Event Storming :heavy_check_mark:
- 
+
 [Clique aqui para ser redirecionado para documentação do event storming no miro](https://miro.com/app/board/uXjVK1Bf4Q4=/)
 
 ## Domain Mapping :heavy_check_mark:
