@@ -1,6 +1,5 @@
 package com.fiap.tc.adapter.web;
 
-import com.fiap.tc.adapter.repository.entity.CustomerEntity;
 import com.fiap.tc.core.domain.model.Customer;
 import com.fiap.tc.core.domain.requests.CustomerRequest;
 import com.fiap.tc.core.port.in.customer.DeleteCustomerInputPort;

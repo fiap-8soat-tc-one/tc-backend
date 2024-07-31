@@ -11,8 +11,6 @@ import com.fiap.tc.core.port.out.customer.LoadCustomerOutputPort;
 import com.fiap.tc.core.port.out.customer.SaveCustomerOutputPort;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
