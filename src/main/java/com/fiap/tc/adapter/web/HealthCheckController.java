@@ -14,18 +14,16 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping(path = URLMapping.ROOT_API_HEALTH)
-@Api(tags = "HealthCheck", produces = APPLICATION_JSON_VALUE)
+@Api(tags = "HealthCheck API V1", produces = APPLICATION_JSON_VALUE)
 public class HealthCheckController {
 
-
-    @ApiOperation(value = "HealthCheck")
+    @ApiOperation(value = "Perform a health check", notes = "(Public Administrative Endpoint) This endpoint is responsible for validating the application's health.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Ready", response = String.class)
+            @ApiResponse(code = 200, message = "Application is healthy", response = String.class)
     })
     @GetMapping
     public ResponseEntity<String> ping() {
         return ok("Ready");
     }
 }
-
 
