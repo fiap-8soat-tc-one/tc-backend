@@ -80,7 +80,8 @@ As informações dispostas no sistema de pedidos precisarão ser gerenciadas pel
 
 ## Manual/Documentação de funcionalidade (Swagger/Open API) :heavy_check_mark:
 
-[Clique aqui para ser redirecionado para documentação das funcionalidade](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/docs/api/README.md)
+- **Para todos os endpoints privado se faz necessário gerar o token via endpoint login**
+[Clique aqui para ser redirecionado para documentação das funcionalidade](https://documenter.getpostman.com/view/7393190/2sA3kd9cgG)
 
 ## Domain Storytelling :heavy_check_mark:
 
@@ -93,3 +94,8 @@ As informações dispostas no sistema de pedidos precisarão ser gerenciadas pel
 ## Domain Mapping :heavy_check_mark:
 
 ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/assets/domain-mapping.drawio.png)
+
+## Requisitos não funcionais que seram implementados no futuro
+
+- Testes de Unidade.
+- Fluxo de cadastro de usuários administrativos, hoje está fixo apenas um, via carga de banco pelo flyway.

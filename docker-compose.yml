@@ -34,7 +34,12 @@ services:
       DATABASE_PASS: ${POSTGRES_PASSWORD}
       DATABASE_PORT: 5432
       DATABASE_NAME: ${POSTGRES_DB}
-
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/public/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
 volumes:
   pgdata:
     external: false

@@ -1,0 +1,683 @@
+{
+	"info": {
+		"_postman_id": "bacc72d9-d990-4b54-a2e1-422388f6c13e",
+		"name": "FIAP Tech Challenger",
+		"description": "Há uma lanchonete de bairro que está expandindo devido seu grande sucesso. Porém, com a expansão e sem um sistema de controle de pedidos, o atendimento aos clientes pode ser caótico e confuso. Por exemplo, imagine que um cliente faça um pedido complexo, como um hambúrguer personalizado com ingredientes específicos, acompanhado de batatas fritas e uma bebida. O atendente pode anotar o pedido em um papel e entregá-lo à cozinha, mas não há garantia de que o pedido será preparado corretamente.\n\nSem um sistema de controle de pedidos, pode haver confusão entre os atendentes e a cozinha, resultando em atrasos na preparação e entrega dos pedidos. Os pedidos podem ser perdidos, mal interpretados ou esquecidos, levando à insatisfação dos clientes e a perda de negócios.\n\nEm resumo, um sistema de controle de pedidos é essencial para garantir que a lanchonete possa atender os clientes de maneira eficiente, gerenciando seus pedidos e estoques de forma adequada. Sem ele, expandir a lanchonete pode acabar não dando certo, resultando em clientes insatisfeitos e impactando os negócios de forma negativa.\n\nPara solucionar o problema, a lanchonete irá investir em um sistema de autoatendimento de fast food, que é composto por uma série de dispositivos e interfaces que permitem aos clientes selecionar e fazer pedidos sem precisar interagir com um atendente, com as seguintes funcionalidades:",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7393190"
+	},
+	"item": [
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "list of customers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/private/v1/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"private",
+								"v1",
+								"customers"
+							]
+						},
+						"description": "(Endpoint privado) Consulta toda a base de clientes cadastrada para possíveis campanhas promocionais"
+					},
+					"response": []
+				},
+				{
+					"name": "get customer by cpf",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/public/v1/customers/88404071039",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"v1",
+								"customers",
+								"88404071039"
+							]
+						},
+						"description": "(Endpoint publico) Os clientes são apresentados a uma interface de seleção na qual podem optar por se identificarem via CPF, esse endpoint é responsável por alimentar essa consulta."
+					},
+					"response": []
+				},
+				{
+					"name": "create/update customer",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"document\": 65750888053,\r\n    \"email\": \"lucas.silva@gmail.com\",\r\n    \"name\": \"Silva\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/public/v1/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"v1",
+								"customers"
+							]
+						},
+						"description": "(Endpoint publico) Os clientes são apresentados a uma interface de seleção na qual podem optar por se cadastrarem através do nome/e-mail e cpf, esse endpoint é responsável por realizar esse cadastro"
+					},
+					"response": []
+				}
+			],
+			"description": "**Gerenciar clientes**  \nCom a identificação dos clientes o estabelecimento pode trabalhar em campanhas promocionais."
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "payment process",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"payment_type\": \"CREDIT\",\r\n    \"result\": \"SUCCESS\",\r\n    \"total\": 73.25,\r\n    \"transaction_document\": 65750888053,\r\n    \"transaction_message\": \"transaction confirmed\",\r\n    \"transaction_number\": \"6c320a61-aa19-46e3-bc05-c719eb127022\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/public/v1/hook/orders/payment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"v1",
+								"hook",
+								"orders",
+								"payment"
+							]
+						},
+						"description": "(Endpoint publico) Endpoint responsável por realizar receber os parâmetros na interface de seleção respectivos ao pagamento e efetua-lo."
+					},
+					"response": []
+				}
+			],
+			"description": "Fluxo de Pagamento:\n\n- O sistema deverá possuir uma opção de pagamento integrada para MVP. A forma de pagamento oferecida será via QRCode do Mercado Pago.\n    \n- Nesse MVP será realizado um `fake checkout` para o fluxo de pagamento, sem integração direta com algum o Mercado Pago"
+		},
+		{
+			"name": "OAuth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"bearer\", pm.response.json().access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic dGNfY2xpZW50OnRlY2hfY2hhbGxlbmdlX2FwcA=="
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Cookie",
+								"value": "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJteWxsZXIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiYXRpIjoiNzg3NTFjMjEtMTEyNS00MzQ0LTg0OWEtMDQ5NGNhOGVhOGQzIiwibm9tZSI6Ik15bGxlciBTYWthZ3VjaGkiLCJleHAiOjE3MjA3MjkxNzIsInV1aWQiOiIzNDg0OGUyMC05Njc5LTExZWItOWUxMy0wMjQyYWMxMTAwMDIiLCJhdXRob3JpdGllcyI6WyJDQURBU1RSQVJfVVNVQVJJTyIsIlNJTkNST05JWkFSX0NQRiIsIkNPTlNVTFRBUl9VU1VBUklPIiwiRURJVEFSX1VTVUFSSU8iLCJFWENMVUlSX1VTVUFSSU8iLCJMSVNUQVJfVVNVQVJJT1MiXSwianRpIjoiNjE0MDMxNDEtOTdmYi00NmVkLTkwOTQtODFhN2Y2NzNhMWIyIiwiY2xpZW50X2lkIjoiYW5ndWxhciIsInBlcmZpbCI6IkFkbWluaXN0cmFkb3IifQ.YVzpP9pNBeRZHZbomj5KcXwtVN0_AoILz00IjYRzZXA",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "myller",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"oauth",
+								"token"
+							]
+						},
+						"description": "(Endpoint publico administrativo) Endpoint responsável por realizar o login administrativo na plataforma, para efetuar cadastro de produtos, categorias e gestão interna de clientes.\n\n**Todos os endpoints privados, necessitam do bearer token de acesso gerado por este endpoint.**"
+					},
+					"response": []
+				}
+			],
+			"description": "Gestão de Acessos"
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "list categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/private/v1/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"private",
+								"v1",
+								"categories"
+							]
+						},
+						"description": "(Endpoint privado) Endpoint responsável por listar as categorias cadastradas no sistema da lanchonete, utilizado na tela administrativa para auxiliar na criação dos produtos."
+					},
+					"response": []
+				},
+				{
+					"name": "get category by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/private/v1/categories/52ad266d-bcb5-4101-a8e1-cc45cc83afad",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"private",
+								"v1",
+								"categories",
+								"52ad266d-bcb5-4101-a8e1-cc45cc83afad"
+							]
+						},
+						"description": "(Endpoint privado) Endpoint responsável por buscar uma categoria através do seu identificador unico, utilizado na tela administrativa para auxiliar na criação dos produtos."
+					},
+					"response": []
+				},
+				{
+					"name": "delete category by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/private/v1/categories/d8a007ec-358d-4349-b01b-f46a6e133406",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"private",
+								"v1",
+								"categories",
+								"d8a007ec-358d-4349-b01b-f46a6e133406"
+							]
+						},
+						"description": "(Endpoint privado) Endpoint responsável por remover uma categoria através do seu identificador unico, utilizado na tela administrativa de gestão de categorias e produtos."
+					},
+					"response": []
+				},
+				{
+					"name": "create/update category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"lalalaasss\",\r\n    \"description\": \"description lalal2\",\r\n    \"active\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/private/v1/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"private",
+								"v1",
+								"categories"
+							]
+						},
+						"description": "(Endpoint privado) Endpoint responsável por criar ou alterar uma categoria, utilizado na tela administrativa de gestão de categorias e produtos."
+					},
+					"response": []
+				}
+			],
+			"description": "Gerenciar Categorias:\n\n- Os produtos dispostos para escolha do cliente serão gerenciados pelo estabelecimento, definindo nome, categoria, preço, descrição e imagens. Para esse sistema teremos categorias fixas:\n    \n    - Lanche\n        \n    - Acompanhamento\n        \n    - Bebida\n        \n    - Sobremesa"
+		},
+		{
+			"name": "Infraestructure",
+			"item": [
+				{
+					"name": "health check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/public/v1/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"v1",
+								"health"
+							]
+						},
+						"description": "(Endpoint publico administrativo) Endpoint responsável por validar a saúde da aplicação."
+					},
+					"response": []
+				}
+			],
+			"description": "Fluxo de endpoints voltados a infraestrutura para verificar a saúde do sistema."
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "create order",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_customer\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"order_items\": [\r\n        {\r\n            \"id_product\": \"b1f859e6-07df-4b67-a1cd-74d946442207\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"id_product\": \"68a589ce-979f-4350-bcd6-ca049f3beb16\",\r\n            \"quantity\": 2\r\n        },\r\n        {\r\n            \"id_product\": \"56199d36-969b-4e1b-9515-f84ffed6a19b\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"id_product\": \"7b3c010c-9f03-4a56-8c85-b519a5f6b86e\",\r\n            \"quantity\": 1\r\n        }\r\n    ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/public/v1/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"v1",
+								"orders"
+							]
+						},
+						"description": "(Endpoint publico) Endpoint responsável por criar o pedido, recebendo os identificadores dos produtos e suas quantidades."
+					},
+					"response": []
+				},
+				{
+					"name": "update status order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"690f367e-10c8-4b93-b61d-2e9f8bed4e56\",\r\n    \"status\": \"READY\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/private/v1/orders/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"private",
+								"v1",
+								"orders",
+								"status"
+							]
+						},
+						"description": "(Endpoint privado) Endpoint responsável por atualizar o status do pedido para acompanhamento, tanto da cozinha quanto do cliente (reflete no monitor do sistema). Os status possiveis são:\n\n- Confirmed -> Confirmado (Pedido confirmado pelo cliente)\n    \n- Pending -> Pendente de Pagamento (Aguardando pagamento do cliente)\n    \n- Received -> Recebido (Pedido pago e recebido pela Cozinha)\n    \n- Preparing -> Em Preparação (Pedido em preparação pela Cozinha)\n    \n- Ready -> Pronto (Pedido pronto para retirada do cliente)\n    \n- Finished -> Finalizado (Pedido retirado pelo cliente)\n    \n- Canceled -> Cancelado (Pedido cancelado pelo cliente ou cozinha)"
+					},
+					"response": []
+				},
+				{
+					"name": "get order by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_customer\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"order_items\": [\r\n        {\r\n            \"id_product\": \"b1f859e6-07df-4b67-a1cd-74d946442207\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"id_product\": \"68a589ce-979f-4350-bcd6-ca049f3beb16\",\r\n            \"quantity\": 2\r\n        },\r\n        {\r\n            \"id_product\": \"56199d36-969b-4e1b-9515-f84ffed6a19b\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"id_product\": \"7b3c010c-9f03-4a56-8c85-b519a5f6b86e\",\r\n            \"quantity\": 1\r\n        }\r\n    ],\r\n    \"order_payment_request\": {\r\n        \"card_cvc\": \"123\",\r\n        \"card_expire_date\": \"10/30\",\r\n        \"card_number\": \"4111111111111111\",\r\n        \"card_document\": \"88404071039\",\r\n        \"card_print_name\": \"Myller Lobo\",\r\n        \"payment_type\": \"CREDIT\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/private/v1/orders/468d76dd-dae5-4f13-8f1e-efeee51d21ed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"private",
+								"v1",
+								"orders",
+								"468d76dd-dae5-4f13-8f1e-efeee51d21ed"
+							]
+						},
+						"description": "(Endpoint privado) Endpoint responsável buscar o pedido via identificador unico."
+					},
+					"response": []
+				},
+				{
+					"name": "list of orders",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/private/v1/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"private",
+								"v1",
+								"orders"
+							]
+						},
+						"description": "(Endpoint privado) Endpoint responsável por listar todos os pedidos"
+					},
+					"response": []
+				}
+			],
+			"description": "Pedidos:\n\nApós a identificação ou não do cliente, a próxima etapa é a criação do pedido através da ação de selecionar combos de produtos:\n\n- Lanche\n    \n- Acompanhamento\n    \n- Bebida\n    \n- Sobremesa"
+		}
+	]
+}

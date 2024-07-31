@@ -5,18 +5,27 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.ApiKey;
-import springfox.documentation.service.AuthorizationScope;
-import springfox.documentation.service.SecurityReference;
+import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spi.service.contexts.ApiListingContext;
+import springfox.documentation.spi.service.contexts.DocumentationContext;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import springfox.documentation.spi.service.ApiListingScannerPlugin;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
@@ -34,11 +43,14 @@ public class SwaggerConfig {
                 .groupName("General")
                 .select()
                 .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.regex("/oauth/.*").negate())
+                .paths(PathSelectors.regex("/error").negate())
                 .build()
                 .apiInfo(apiInfo())
                 .securitySchemes(List.of(getBearer()))
                 .securityContexts(Collections.singletonList(securityContext()));
     }
+
 
     @Bean
     public Docket privateDocumentation(Environment env) {
