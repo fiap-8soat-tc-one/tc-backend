@@ -11,6 +11,7 @@ import io.swagger.annotations.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -46,6 +47,7 @@ public class CustomerController {
             @ApiResponse(code = 200, message = "List Categories", response = CustomerEntity.class)
     })
     @GetMapping(path = URLMapping.ROOT_PRIVATE_API_CUSTOMERS)
+    @PreAuthorize("hasAuthority('LIST_CUSTOMERS')")
     public ResponseEntity<Page<Customer>> list(
             @ApiParam(required = true, value = "Categories Pagination") Pageable pageable) {
         return ok(listCustomersInputPort.list(pageable));
@@ -78,6 +80,7 @@ public class CustomerController {
             @ApiResponse(code = 204, message = "Delete Customer by Document", response = CustomerEntity.class)
     })
     @DeleteMapping(path = URLMapping.ROOT_PRIVATE_API_CUSTOMERS + "/{document}")
+    @PreAuthorize("hasAuthority('DELETE_CUSTOMERS')")
     public ResponseEntity<Void> delete(
             @PathVariable String document) {
         deleteCustomerInputPort.delete(document);

@@ -12,6 +12,7 @@ import io.swagger.annotations.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -44,6 +45,7 @@ public class CategoryController {
             @ApiResponse(code = 200, message = "List Categories", response = CategoryEntity.class)
     })
     @GetMapping
+    @PreAuthorize("hasAuthority('LIST_CATEGORIES')")
     public ResponseEntity<Page<Category>> list(
             @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @ApiParam(required = true, value = "Categories Pagination") Pageable pageable) {
@@ -55,6 +57,7 @@ public class CategoryController {
             @ApiResponse(code = 200, message = "Save Category", response = CategoryEntity.class)
     })
     @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAuthority('REGISTER_CATEGORIES')")
     public ResponseEntity<Category> saveOrUpdate(
             @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @RequestBody @Valid CategoryRequest category) {
@@ -66,6 +69,7 @@ public class CategoryController {
             @ApiResponse(code = 200, message = "Find Category", response = CategoryEntity.class)
     })
     @GetMapping(path = "/{id}")
+    @PreAuthorize("hasAuthority('SEARCH_CATEGORIES')")
     public ResponseEntity<Category> get(
             @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @PathVariable UUID id) {
@@ -77,6 +81,7 @@ public class CategoryController {
             @ApiResponse(code = 200, message = "Delete Category", response = CategoryEntity.class)
     })
     @DeleteMapping(path = "/{id}")
+    @PreAuthorize("hasAuthority('DELETE_CATEGORIES')")
     public ResponseEntity<DefaultResponse> delete(
             @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @PathVariable UUID id) {
