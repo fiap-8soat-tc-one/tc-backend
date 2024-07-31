@@ -13,6 +13,7 @@ import io.swagger.annotations.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -46,6 +47,7 @@ public class OrderController {
             @ApiResponse(code = 200, message = "Find Order", response = OrderResponse.class)
     })
     @GetMapping(path = URLMapping.ROOT_PRIVATE_API_ORDERS + "/{id}")
+    @PreAuthorize("hasAuthority('SEARCH_ORDERS')")
     public ResponseEntity<OrderResponse> get(
             @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @PathVariable UUID id) {
@@ -67,6 +69,7 @@ public class OrderController {
             @ApiResponse(code = 200, message = "Update Order Status", response = Order.class)
     })
     @PutMapping(path = URLMapping.ROOT_PRIVATE_API_ORDERS + "/status", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAuthority('UPDATE_STATUS_ORDERS')")
     public ResponseEntity<Order> updateStatus(
             @RequestBody @Valid OrderStatusRequest request) {
         return ok(updateStatusOrderInputPort.update(request));
@@ -77,6 +80,7 @@ public class OrderController {
             @ApiResponse(code = 200, message = "List Orders Preparing or Ready", response = CategoryEntity.class)
     })
     @GetMapping(path = URLMapping.ROOT_PRIVATE_API_ORDERS)
+    @PreAuthorize("hasAuthority('LIST_ORDERS')")
     public ResponseEntity<Page<Order>> list(
             @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @ApiParam(required = true, value = "Orders Pagination") Pageable pageable) {

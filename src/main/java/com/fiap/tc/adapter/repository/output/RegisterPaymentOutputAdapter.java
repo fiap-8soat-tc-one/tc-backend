@@ -65,6 +65,8 @@ public class RegisterPaymentOutputAdapter implements RegisterPaymentOutputPort {
         newOrderPaymentEntity.setUuid(UUID.randomUUID());
         newOrderPaymentEntity.setOrder(orderEntity);
         newOrderPaymentEntity.setAudit(Audit.builder().active(true).registerDate(LocalDateTime.now()).build());
+        newOrderPaymentEntity.getPayment_historic()
+                .add(OrderPaymentHistoricBuilder.create(newOrderPaymentEntity, orderPaymentRequest.getResult()));
         setDatesResult(orderPaymentRequest, newOrderPaymentEntity);
         orderPaymentRepository.save(newOrderPaymentEntity);
         return OrderPayment.builder()
