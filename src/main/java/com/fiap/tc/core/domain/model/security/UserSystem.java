@@ -1,11 +1,11 @@
-package com.fiap.tc.core.domain.model;
+package com.fiap.tc.core.domain.model.security;
 
 import lombok.Data;
 
 import java.util.UUID;
 
 @Data
-public class User {
+public class UserSystem {
     private UUID uuid;
     private String name;
     private String email;

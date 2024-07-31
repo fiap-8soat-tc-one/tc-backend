@@ -1,7 +1,7 @@
 package com.fiap.tc.common.security;
 
 import com.fiap.tc.adapter.repository.UserRepository;
-import com.fiap.tc.adapter.repository.entity.core.UserEntity;
+import com.fiap.tc.adapter.repository.entity.security.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,7 +24,7 @@ public class AppUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         Optional<UserEntity> optionalUser = userRepository.findByLogin(login);
-        UserEntity user = optionalUser.orElseThrow(() -> new UsernameNotFoundException("Usuário e/ou senha incorretos"));
+        UserEntity user = optionalUser.orElseThrow(() -> new UsernameNotFoundException("User Authentication Error"));
         return new SystemUser(user, getRoles(user));
     }
 

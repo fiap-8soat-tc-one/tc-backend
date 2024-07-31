@@ -26,19 +26,15 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private ClientConfig clientConfig;
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("angular")
-                .secret("$2a$10$fTeD2sNu0vaqzkBJ9wYSR.ywL7EY.fbti/WpevJd8N/szQ76bDxJy") //@ngul@r0
+                .withClient(clientConfig.getName())
+                .secret(clientConfig.getSecret())
                 .scopes("read", "write")
-                .authorizedGrantTypes("password", "refresh_token")
-                .accessTokenValiditySeconds(86400)
-                .refreshTokenValiditySeconds(3600 * 24)
-                .and()
-                .withClient("mobile")
-                .secret("$2a$10$ae5KgmnOXmZVMBIP1c3GNuhti7VpadHxj4pPTmbV94dCBGsLhpkTS") //m0b1l30
-                .scopes("read")
                 .authorizedGrantTypes("password", "refresh_token")
                 .accessTokenValiditySeconds(86400)
                 .refreshTokenValiditySeconds(3600 * 24);
@@ -60,7 +56,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
-        accessTokenConverter.setSigningKey("tech-challenge");
+        accessTokenConverter.setSigningKey(clientConfig.getSignKey());
         return accessTokenConverter;
     }
 

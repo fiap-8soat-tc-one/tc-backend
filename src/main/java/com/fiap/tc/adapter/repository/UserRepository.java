@@ -1,6 +1,6 @@
 package com.fiap.tc.adapter.repository;
 
-import com.fiap.tc.adapter.repository.entity.core.UserEntity;
+import com.fiap.tc.adapter.repository.entity.security.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -14,7 +14,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     Optional<UserEntity> findByLogin(String login);
 
-    @Query(nativeQuery = true, value = "SELECT p.id FROM seguranca.usuario u JOIN seguranca.usuario_perfil up ON u.id = up.id_usuario JOIN seguranca.perfil pa ON up.id_perfil = pa.id JOIN seguranca.perfil_permissao pp ON up.id_perfil = pp.id_perfil JOIN seguranca.permissao p ON pp.id_permissao = p.id WHERE u.id = :id ORDER BY p.id")
+    @Query(nativeQuery = true, value = "select p.id from security.user_system u join security.user_profile up on u.id = up.id_user join security.profile pf on up.id_profile = pf.id join security.roles_profile rp on up.id_profile = rp.id_profile join security.role p on rp.id_role = p.id where u.id = :id order by p.id")
     Collection<String> getRoles(Long id);
 
 }
