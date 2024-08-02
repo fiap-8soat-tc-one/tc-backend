@@ -1,6 +1,7 @@
 package com.fiap.tc.adapter.web;
 
 import com.fiap.tc.adapter.repository.entity.CategoryEntity;
+import com.fiap.tc.adapter.web.response.DefaultResponse;
 import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.requests.OrderRequest;
 import com.fiap.tc.core.domain.requests.OrderStatusRequest;
@@ -71,9 +72,10 @@ public class OrderController {
     })
     @PutMapping(path = URLMapping.ROOT_PRIVATE_API_ORDERS + "/status", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('UPDATE_STATUS_ORDERS')")
-    public ResponseEntity<Order> updateStatus(
+    public ResponseEntity<DefaultResponse> updateStatus(
             @RequestBody @Valid OrderStatusRequest request) {
-        return ok(updateStatusOrderInputPort.update(request));
+        updateStatusOrderInputPort.update(request);
+        return ok(new DefaultResponse());
     }
 
     @ApiOperation(value = "List Orders Preparing or Ready")

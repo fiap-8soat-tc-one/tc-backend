@@ -31,15 +31,16 @@ public class OrderOutputAdapter implements UpdateStatusOrderOutputPort, LoadOrde
     }
 
     @Override
-    public Order update(UUID idOrder, OrderStatus status) {
+    public void update(UUID idOrder, OrderStatus status) {
         var orderEntity = orderRepository.findByUuid(idOrder);
         if (isNull(orderEntity)) {
             throw new NotFoundException(format("Order id %s not found!", idOrder));
         }
+        orderEntity.getStatus().getValidator().validate(status);
         orderEntity.setStatus(status);
         orderEntity.getAudit().setUpdatedDate(LocalDateTime.now());
         orderEntity.getOrderHistoric().add(OrderHistoricBuilder.create(orderEntity, orderEntity.getStatus()));
-        return MapperConstants.ORDER_MAPPER.fromEntity(orderRepository.save(orderEntity));
+        orderRepository.save(orderEntity);
     }
 
     @Override
