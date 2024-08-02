@@ -4,6 +4,7 @@ import com.fiap.tc.adapter.repository.entity.CategoryEntity;
 import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.requests.OrderRequest;
 import com.fiap.tc.core.domain.requests.OrderStatusRequest;
+import com.fiap.tc.core.domain.response.OrderListResponse;
 import com.fiap.tc.core.domain.response.OrderResponse;
 import com.fiap.tc.core.port.in.order.ListOrdersReadyPreparingInputPort;
 import com.fiap.tc.core.port.in.order.LoadOrderInputPort;
@@ -81,7 +82,7 @@ public class OrderController {
     })
     @GetMapping(path = URLMapping.ROOT_PRIVATE_API_ORDERS)
     @PreAuthorize("hasAuthority('LIST_ORDERS')")
-    public ResponseEntity<Page<Order>> list(
+    public ResponseEntity<Page<OrderListResponse>> list(
             @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @ApiParam(required = true, value = "Orders Pagination") Pageable pageable) {
         return ok(listOrdersReadyPreparingInputPort.list(pageable));

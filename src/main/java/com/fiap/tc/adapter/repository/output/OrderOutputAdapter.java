@@ -6,6 +6,7 @@ import com.fiap.tc.adapter.repository.mapper.base.MapperConstants;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
+import com.fiap.tc.core.domain.response.OrderListResponse;
 import com.fiap.tc.core.port.out.order.ListOrdersReadyPreparingOutputPort;
 import com.fiap.tc.core.port.out.order.LoadOrderOutputPort;
 import com.fiap.tc.core.port.out.order.UpdateStatusOrderOutputPort;
@@ -17,7 +18,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import static com.fiap.tc.adapter.repository.mapper.base.MapperConstants.ORDER_MAPPER;
 import static java.lang.String.format;
 import static java.util.Objects.isNull;
 
@@ -52,8 +52,8 @@ public class OrderOutputAdapter implements UpdateStatusOrderOutputPort, LoadOrde
     }
 
     @Override
-    public Page<Order> list(List<OrderStatus> status, Pageable pageable) {
+    public Page<OrderListResponse> list(List<OrderStatus> status, Pageable pageable) {
         var ordersEntity = orderRepository.findByStatusIn(status, pageable);
-        return ordersEntity.map(ORDER_MAPPER::fromEntity);
+        return ordersEntity.map(MapperConstants.ORDER_LIST_MAPPER::fromEntity);
     }
 }

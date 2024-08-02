@@ -14,10 +14,13 @@ public class MapperConstants {
 
     public static final OrderMapper ORDER_MAPPER = Mappers.getMapper(OrderMapper.class);
 
+    public static final OrderListMapper ORDER_LIST_MAPPER = Mappers.getMapper(OrderListMapper.class);
+
     public static final OrderItemMapper ORDER_ITEM_MAPPER = Mappers.getMapper(OrderItemMapper.class);
 
     public static final OrderPaymentMapper ORDER_PAYMENT_MAPPER = Mappers.getMapper(OrderPaymentMapper.class);
 
-    public static final OrderGatewayPaymentMapper ORDER_GATEWAY_PAYMENT_MAPPER = Mappers.getMapper(OrderGatewayPaymentMapper.class);
+    public static final OrderHistoricMapper ORDER_HISTORIC_MAPPER = Mappers.getMapper(OrderHistoricMapper.class);
+
 
 }

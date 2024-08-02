@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
+import static com.fiap.tc.common.constants.OrderConstants.PAYMENT_LINK_STATUS;
+
 @Service
 @Slf4j
 public class LoadOrderUseCase implements LoadOrderInputPort {
@@ -24,7 +26,8 @@ public class LoadOrderUseCase implements LoadOrderInputPort {
     public OrderResponse load(UUID uuid) {
         var order = loadOrderOutputPort.load(uuid);
         return OrderResponse.builder()
-                .qrCodeOrderBase64(qrCodeGenerator.generate(order.orderWithTotalAsText()))
+                .qrCodePaymentBase64(PAYMENT_LINK_STATUS.contains(order.getStatus())
+                        ? qrCodeGenerator.generate(order.orderWithTotalAsText()) : null)
                 .order(order)
                 .build();
     }
