@@ -59,5 +59,4 @@ public class OrderPaymentEntity {
     private LocalDateTime resultErrorDate;
 
 
-
 }

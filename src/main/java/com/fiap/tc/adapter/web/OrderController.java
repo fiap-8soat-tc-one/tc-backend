@@ -1,6 +1,5 @@
 package com.fiap.tc.adapter.web;
 
-import com.fiap.tc.adapter.repository.entity.CategoryEntity;
 import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.requests.OrderRequest;
 import com.fiap.tc.core.domain.requests.OrderStatusRequest;
@@ -42,50 +41,53 @@ public class OrderController {
         this.listOrdersReadyPreparingInputPort = listOrdersReadyPreparingInputPort;
     }
 
-    @ApiOperation(value = "Find Order")
+    @ApiOperation(value = "get order by id", notes = "(Private Endpoint) This endpoint is responsible for fetching the order using its unique identifier.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Find Order", response = OrderResponse.class)
+            @ApiResponse(code = 200, message = "Successfully retrieved order", response = OrderResponse.class),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
     })
     @GetMapping(path = URLMapping.ROOT_PRIVATE_API_ORDERS + "/{id}")
     @PreAuthorize("hasAuthority('SEARCH_ORDERS')")
     public ResponseEntity<OrderResponse> get(
             @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
-            @PathVariable UUID id) {
+            @ApiParam(value = "ID of the order to be retrieved", required = true) @PathVariable UUID id) {
         return ok(loadOrderInputPort.load(id));
     }
 
-    @ApiOperation(value = "Register Customer Orders")
+    @ApiOperation(value = "create order", notes = "(Public Endpoint) This endpoint is responsible for creating the order, receiving the product identifiers and their quantities.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Save Category", response = OrderResponse.class)
+            @ApiResponse(code = 200, message = "Successfully registered order", response = OrderResponse.class),
     })
     @PostMapping(path = URLMapping.ROOT_PUBLIC_API_ORDERS, produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<OrderResponse> register(
-            @RequestBody @Valid OrderRequest request) {
+            @ApiParam(value = "Order details for creating a new order", required = true) @RequestBody @Valid OrderRequest request) {
         return ok(registerOrderInputPort.register(request));
     }
 
-    @ApiOperation(value = "Update Order Status")
+    @ApiOperation(value = "update order status", notes = "(Private Endpoint) This endpoint is responsible for updating the order status for tracking by both the kitchen and the customer (reflected on the system monitor).")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Update Order Status", response = Order.class)
+            @ApiResponse(code = 200, message = "Successfully updated order status", response = Order.class),
+            @ApiResponse(code = 401, message = "You are not authorized to perform this action"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
     })
     @PutMapping(path = URLMapping.ROOT_PRIVATE_API_ORDERS + "/status", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('UPDATE_STATUS_ORDERS')")
     public ResponseEntity<Order> updateStatus(
-            @RequestBody @Valid OrderStatusRequest request) {
+            @ApiParam(value = "Order status update details", required = true) @RequestBody @Valid OrderStatusRequest request) {
         return ok(updateStatusOrderInputPort.update(request));
     }
 
-    @ApiOperation(value = "List Orders Preparing or Ready")
+    @ApiOperation(value = "list of orders", notes = "(Private Endpoint) This endpoint is responsible for listing all orders.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "List Orders Preparing or Ready", response = CategoryEntity.class)
+            @ApiResponse(code = 200, message = "Successfully retrieved list of orders", response = Order.class, responseContainer = "Page"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
     })
     @GetMapping(path = URLMapping.ROOT_PRIVATE_API_ORDERS)
     @PreAuthorize("hasAuthority('LIST_ORDERS')")
     public ResponseEntity<Page<Order>> list(
-            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
             @ApiParam(required = true, value = "Orders Pagination") Pageable pageable) {
         return ok(listOrdersReadyPreparingInputPort.list(pageable));
     }
-
-
 }
