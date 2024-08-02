@@ -2,7 +2,6 @@ package com.fiap.tc.core.domain.exception.handler;
 
 import com.fiap.tc.adapter.web.response.DefaultResponse;
 import com.fiap.tc.core.domain.exception.BadRequestException;
-import com.fiap.tc.core.domain.exception.IntegrationException;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,7 +87,7 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(value = {BadRequestException.class, IllegalStateException.class, IllegalArgumentException.class,
-            NoSuchElementException.class, IntegrationException.class})
+            NoSuchElementException.class})
     public ResponseEntity<DefaultResponse> badRequestExceptionHandler(RuntimeException e) {
 
         log.warn(e.getMessage(), e);

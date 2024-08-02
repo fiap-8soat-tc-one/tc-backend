@@ -23,7 +23,7 @@ public class RegisterOrderUseCase implements RegisterOrderInputPort {
     public OrderResponse register(OrderRequest orderRequest) {
         var order = registerOrderOutputPort.save(orderRequest.getIdCustomer(), orderRequest.getOrderItems());
         return OrderResponse.builder()
-                .qrCodeOrderBase64(qrCodeGenerator.generate(order.orderWithTotalAsText()))
+                .qrCodePaymentBase64(qrCodeGenerator.generate(order.orderWithTotalAsText()))
                 .order(order)
                 .build();
     }

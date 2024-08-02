@@ -13,5 +13,6 @@ import lombok.NoArgsConstructor;
 public class OrderResponse {
 
     private Order order;
-    private String qrCodeOrderBase64;
+    private String qrCodePaymentBase64;
+    private Integer waitTime;
 }

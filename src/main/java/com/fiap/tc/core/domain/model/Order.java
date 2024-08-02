@@ -34,15 +34,9 @@ public class Order {
     )
     private OrderStatus status;
 
-    @ApiModelProperty(
-            value = "Order wait time in minutes",
-            required = true,
-            example = "10",
-            dataType = "long"
-    )
-    private Long waitTime;
-
     private List<OrderItem> items;
+
+    private List<OrderHistoric> orderHistoric;
 
     @JsonIgnore
     public String orderWithTotalAsText() {

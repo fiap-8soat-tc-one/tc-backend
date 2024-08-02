@@ -1,8 +1,11 @@
 package com.fiap.tc.adapter.web;
 
+import com.fiap.tc.adapter.repository.entity.CategoryEntity;
+import com.fiap.tc.adapter.web.response.DefaultResponse;
 import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.requests.OrderRequest;
 import com.fiap.tc.core.domain.requests.OrderStatusRequest;
+import com.fiap.tc.core.domain.response.OrderListResponse;
 import com.fiap.tc.core.domain.response.OrderResponse;
 import com.fiap.tc.core.port.in.order.ListOrdersReadyPreparingInputPort;
 import com.fiap.tc.core.port.in.order.LoadOrderInputPort;
@@ -41,17 +44,15 @@ public class OrderController {
         this.listOrdersReadyPreparingInputPort = listOrdersReadyPreparingInputPort;
     }
 
-    @ApiOperation(value = "get order by id", notes = "(Private Endpoint) This endpoint is responsible for fetching the order using its unique identifier.")
+    @ApiOperation(value = "Find Order")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully retrieved order", response = OrderResponse.class),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 200, message = "Find Order", response = OrderResponse.class)
     })
     @GetMapping(path = URLMapping.ROOT_PRIVATE_API_ORDERS + "/{id}")
     @PreAuthorize("hasAuthority('SEARCH_ORDERS')")
     public ResponseEntity<OrderResponse> get(
             @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
-            @ApiParam(value = "ID of the order to be retrieved", required = true) @PathVariable UUID id) {
+            @PathVariable UUID id) {
         return ok(loadOrderInputPort.load(id));
     }
 
@@ -67,26 +68,27 @@ public class OrderController {
 
     @ApiOperation(value = "update order status", notes = "(Private Endpoint) This endpoint is responsible for updating the order status for tracking by both the kitchen and the customer (reflected on the system monitor).")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully updated order status", response = Order.class),
+            @ApiResponse(code = 200, message = "Successfully updated order status", response = DefaultResponse.class),
             @ApiResponse(code = 401, message = "You are not authorized to perform this action"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
     })
     @PutMapping(path = URLMapping.ROOT_PRIVATE_API_ORDERS + "/status", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('UPDATE_STATUS_ORDERS')")
-    public ResponseEntity<Order> updateStatus(
+    public ResponseEntity<DefaultResponse> updateStatus(
             @ApiParam(value = "Order status update details", required = true) @RequestBody @Valid OrderStatusRequest request) {
-        return ok(updateStatusOrderInputPort.update(request));
+        updateStatusOrderInputPort.update(request);
+        return ok(new DefaultResponse());
     }
 
     @ApiOperation(value = "list of orders", notes = "(Private Endpoint) This endpoint is responsible for listing all orders.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully retrieved list of orders", response = Order.class, responseContainer = "Page"),
+            @ApiResponse(code = 200, message = "Successfully retrieved list of orders", response = OrderListResponse.class, responseContainer = "Page"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
     })
     @GetMapping(path = URLMapping.ROOT_PRIVATE_API_ORDERS)
     @PreAuthorize("hasAuthority('LIST_ORDERS')")
-    public ResponseEntity<Page<Order>> list(
+    public ResponseEntity<Page<OrderListResponse>> list(
             @ApiParam(required = true, value = "Orders Pagination") Pageable pageable) {
         return ok(listOrdersReadyPreparingInputPort.list(pageable));
     }
