@@ -63,7 +63,7 @@ docker run --name tech-challenge -p 5432:5432 -e POSTGRES_PASSWORD=123456 -d pos
 Após a execução dos comandos acima, validar a conectividade através do CLI ou interface visual da sua preferência, aqui
 iremos utilizar o [DBeaver](https://dbeaver.io/).
 
-![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/assets/setup-postgres.png)
+![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/assets/setup-postgres.png)
 
 ## Intellij e JAVA 17 :factory:
 
@@ -125,27 +125,27 @@ sem necessidade de configurações avançadas, além disso em seu kit de ferrame
     - Abra o projeto através da IDE e acesse o caminho `File -> Project Structure`.
     - NA sessão `Plataform Settings -> SDKs` instale o open-jdk 17, segue abaixo a imagem:
 
-   ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/assets/setup-intellij-jdk.png)
+   ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/assets/setup-intellij-jdk.png)
 
 3. **Configuração do Maven**
     - Com projeto aberto através da IDE acessar o caminho `Run -> Edit Configuration`
     - Adicionar o seguinte comando maven `mvn clean package`, segue abaixo a imagem:
 
-   ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/assets/setup-intellij-maven.png)
+   ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/assets/setup-intellij-maven.png)
 
     - Executar o comando deve apresentar o seguinte resultado
 
-   ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/assets/setup-intellij-maven-result.png)
+   ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/assets/setup-intellij-maven-result.png)
 
 4. **Execução da aplicação localmente**
     - Com projeto aberto através da IDE acessar o caminho `Run -> Edit Configuration`
     - Adicionaras seguintes configurações:
 
-   ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/assets/setup-intellij-app.png)
+   ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/assets/setup-intellij-app.png)
 
     - Executar a aplicação e o resultado experado deve ser:
 
-   ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/feature/review-readme/assets/setup-intellij-maven-result.png)
+   ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/assets/setup-intellij-maven-result.png)
 
     - **A aplicação está configurada para o flyway gerar as tabelas no PostgreSQL, abra o DBeaver ou a ferramenta da sua
       escolha e confira se as tabelas do sistema foram criadas.**
