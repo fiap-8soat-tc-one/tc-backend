@@ -23,7 +23,7 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping(path = URLMapping.ROOT_API_CATEGORIES)
-@Api(tags = "Categories API V1", produces = APPLICATION_JSON_VALUE)
+@Api(tags = "Categories API V1", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
 public class CategoryController {
 
     private final RegisterCategoryInputPort registerCategoryInputPort;
@@ -40,51 +40,55 @@ public class CategoryController {
         this.listCategoriesInputPort = listCategoriesInputPort;
     }
 
-    @ApiOperation(value = "List Categories")
+    @ApiOperation(value = "list of categories", notes = "(Private Endpoint) This endpoint is responsible for listing the categories registered in the snack bar's system. It is used on the administrative screen to assist in product creation.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "List Categories", response = CategoryEntity.class)
+            @ApiResponse(code = 200, message = "Successfully retrieved list", response = Category.class, responseContainer = "Page"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
     })
     @GetMapping
     @PreAuthorize("hasAuthority('LIST_CATEGORIES')")
     public ResponseEntity<Page<Category>> list(
-            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
-            @ApiParam(required = true, value = "Categories Pagination") Pageable pageable) {
+            @ApiParam(required = true, value = "Pagination information") Pageable pageable) {
         return ok(listCategoriesInputPort.list(pageable));
     }
 
-    @ApiOperation(value = "Save/Update Category")
+    @ApiOperation(value = "create/update category", notes = "(Private Endpoint) This endpoint is responsible for creating or modifying a category. It is used on the administrative screen for managing categories and products.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Save Category", response = CategoryEntity.class)
+            @ApiResponse(code = 200, message = "Successfully saved/updated category", response = CategoryEntity.class),
+            @ApiResponse(code = 401, message = "You are not authorized to perform this action"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
     })
     @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('REGISTER_CATEGORIES')")
     public ResponseEntity<Category> saveOrUpdate(
-            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
-            @RequestBody @Valid CategoryRequest category) {
+            @ApiParam(value = "Category details for saving/updating", required = true) @RequestBody @Valid CategoryRequest category) {
         return ok(registerCategoryInputPort.register(category));
     }
 
-    @ApiOperation(value = "Find Category")
+    @ApiOperation(value = "get category by id", notes = "(Private Endpoint) This endpoint is responsible for fetching a category through its unique identifier. It is used on the administrative screen to assist in product creation.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Find Category", response = CategoryEntity.class)
+            @ApiResponse(code = 200, message = "Successfully retrieved category", response = CategoryEntity.class),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
     })
     @GetMapping(path = "/{id}")
     @PreAuthorize("hasAuthority('SEARCH_CATEGORIES')")
     public ResponseEntity<Category> get(
-            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
-            @PathVariable UUID id) {
+            @ApiParam(value = "ID of the category to be retrieved", required = true) @PathVariable UUID id) {
         return ok(loadCategoryInputPort.load(id));
     }
 
-    @ApiOperation(value = "Delete Category")
+    @ApiOperation(value = "delete category by id", notes = "(Private Endpoint) This endpoint is responsible for removing a category through its unique identifier. It is used on the administrative screen for managing categories and products.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Delete Category", response = CategoryEntity.class)
+            @ApiResponse(code = 200, message = "Successfully deleted category", response = CategoryEntity.class),
+            @ApiResponse(code = 401, message = "You are not authorized to perform this action"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
     })
     @DeleteMapping(path = "/{id}")
     @PreAuthorize("hasAuthority('DELETE_CATEGORIES')")
     public ResponseEntity<DefaultResponse> delete(
-            @ApiParam(required = true, value = "Authorization: Bearer <TOKEN>") @RequestHeader(value = "Authorization") String authorization,
-            @PathVariable UUID id) {
+            @ApiParam(value = "ID of the category to be deleted", required = true) @PathVariable UUID id) {
         deleteCategoryInputPort.delete(id);
         return ok(new DefaultResponse());
     }

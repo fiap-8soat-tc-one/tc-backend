@@ -1,8 +1,56 @@
-# Tech Challenge Backend Api
+# Tech Challenge Backend API
 
-Tech challenge pos tech fiap backend app part 1
+## O Desafio :triangular_flag_on_post:
 
-# Team
+Uma lanchonete de bairro está em expansão devido ao seu grande sucesso. Entretanto, com essa expansão e a ausência de um sistema de controle de pedidos, o atendimento aos clientes pode tornar-se caótico e confuso. Por exemplo, imagine que um cliente faça um pedido complexo, como um hambúrguer personalizado com ingredientes específicos, acompanhado de batatas fritas e uma bebida. O atendente pode anotar o pedido em um papel e entregá-lo à cozinha, mas não há garantia de que o pedido será preparado corretamente.
+
+Sem um sistema de controle de pedidos, pode haver confusão entre os atendentes e a cozinha, resultando em atrasos na preparação e entrega dos pedidos. Pedidos podem ser perdidos, mal interpretados ou esquecidos, levando à insatisfação dos clientes e à perda de negócios.
+
+Em resumo, um sistema de controle de pedidos é essencial para garantir que a lanchonete possa atender os clientes de maneira eficiente, gerenciando seus pedidos e estoques de forma adequada. Sem ele, a expansão da lanchonete pode não ser bem-sucedida, resultando em clientes insatisfeitos e impactando negativamente os negócios.
+
+Para solucionar o problema, a lanchonete irá investir em um sistema de autoatendimento de fast food, composto por uma série de dispositivos e interfaces que permitem aos clientes selecionar e fazer pedidos sem precisar interagir com um atendente, com as seguintes funcionalidades:
+
+1. **Pedido**
+    - Os clientes são apresentados a uma interface de seleção na qual podem optar por se identificarem via CPF, se cadastrarem com nome e e-mail, ou não se identificar. A montagem do combo segue a sequência a seguir, sendo todas as etapas opcionais:
+        - Lanche
+        - Acompanhamento
+        - Bebida
+        - Sobremesa
+
+**Em cada etapa, são exibidos o nome, descrição e preço de cada produto.**
+
+2. **Pagamento**
+    - O sistema deverá possuir uma opção de pagamento integrada para o MVP, sendo a forma de pagamento oferecida via QRCode do Mercado Pago.
+    - Nesse MVP, será realizado um `fake checkout` para o fluxo de pagamento, sem integração direta com o Mercado Pago.
+
+3. **Acompanhamento**
+    - Uma vez que o pedido é confirmado e pago, ele é enviado para a cozinha para ser preparado. Simultaneamente, deve aparecer em um monitor para o cliente acompanhar o progresso do seu pedido com as seguintes etapas:
+        - Recebido
+        - Em preparação
+        - Pronto
+        - Finalizado
+
+4. **Entrega**
+    - Quando o pedido estiver pronto, o sistema deverá notificar o cliente que ele está disponível para retirada. Ao ser retirado, o pedido deve ser atualizado para o status finalizado.
+
+**Além das etapas do cliente, o estabelecimento precisa de um acesso administrativo:**
+
+1. **Gerenciar clientes**
+    - Com a identificação dos clientes, o estabelecimento pode trabalhar em campanhas promocionais.
+
+2. **Gerenciar produtos e categorias**
+    - Os produtos dispostos para escolha do cliente serão gerenciados pelo estabelecimento, definindo nome, categoria, preço, descrição e imagens. Para esse sistema, teremos categorias fixas:
+        - Lanche
+        - Acompanhamento
+        - Bebida
+        - Sobremesa
+
+3. **Acompanhamento de pedidos**
+    - Deve ser possível acompanhar os pedidos em andamento e o tempo de espera de cada pedido.
+
+As informações dispostas no sistema de pedidos precisarão ser gerenciadas pelo estabelecimento através de um painel administrativo.
+
+## Equipe :construction_worker:
 
 - Myller Lobo
 - Jean Carlos
@@ -10,110 +58,144 @@ Tech challenge pos tech fiap backend app part 1
 - Vanderly
 - Thiago
 
-## Requirements
+## Pré-Requisitos :exclamation:
 
 - Maven 3
 - Java 17 (Open JDK 17)
 - Postgres 15
 - Docker Desktop
-- Intellij IDEA
+- IntelliJ IDEA
 - DBeaver SQL Client
 - Postman
 
-## Instalattion
+---
 
-### Install and run postgres docker image:
+## Configuração de Ambiente de Desenvolvimento Local  :heavy_check_mark:
 
-```
-docker pull postgres:15.3-alpine
-docker run --name tech-challenge -p 5432:5432 -e POSTGRES_PASSWORD=123456 -d postgres:15.3-alpine
+[Clique aqui para ser redirecionado para a wiki de configuração do ambiente de desenvolvimento local](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/docs/config/README.md)
 
-```
+## Configuração do Ambiente Docker/Docker Compose :heavy_check_mark:
 
-### After run postgres check database connection using a sql client recomend DBeaver:
+- **A aplicação está configurada para o Flyway gerar as tabelas no PostgreSQL. Abra o DBeaver ou a ferramenta de sua escolha e verifique se as tabelas do sistema foram criadas.**
 
-![image](https://github.com/user-attachments/assets/d8e9f080-da41-424a-b865-1ad8c558946d)
+[Clique aqui para ser redirecionado para a wiki de configuração do ambiente Docker](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/docs/docker/README.md)
 
-### Open Intellij IDEA and add Jdk 17
+## Manual/Documentação de Funcionalidades (Swagger/Open API) :heavy_check_mark:
 
-Clone the project and import from branch main into Intellij IDEA
-After go to File -> Project Structure
+- **Para todos os endpoints privados, é necessário gerar o token via endpoint login**
 
-![image](https://github.com/user-attachments/assets/01d7aebb-4a17-42d2-ba97-85328cd7ea4d)
+- **É possível acessar o Swagger/Open API da aplicação pela seguinte URL: `http://localhost:8080/swagger-ui/index.html`**
 
-### Configure a Maven command
+### Workflow de Execução das APIs
 
-Intellij go to Run -> Edit Configuration and add a new maven configuration select java option jre Jdk 17 and run to
-build the project
+**Segue abaixo o descritivo simplificado da jornada das APIs dentro do sistema, esses diagramas servem apenas para materializar a jornada do ClienteXTerminalxSistemaXCozinha, mas em nenhum momento substitui o detalhamento/especificação realizados no Domain Storytelling e Event Storming criados, favor utiliza-los como fonte da verdade**
 
-```
-mvn clean package
+1 - **Criação do Pedido a partir de um cliente identificado**
 
-```
+```mermaid
+sequenceDiagram
+    Cliente->>+Terminal de Autoatendimento: 1 - Informa CPF para identificação.
+    Terminal de Autoatendimento->>+Sistema: 2 - [GET] http://localhost:8080/api/public/v1/customers/{cpf}
+    Sistema-->>-Terminal de Autoatendimento: Retorna dados do cliente identificado.
+    Terminal de Autoatendimento-->>-Cliente: Exibir dados do cliente.
+    Cliente->>+Terminal de Autoatendimento: 3 - Buscar produtos para montar o pedido.
+    Terminal de Autoatendimento->>+Sistema: 4 - [GET] http://localhost:8080/api/public/v1/customers/{cpf}
+    Sistema-->>-Terminal de Autoatendimento: Retorna dados dos produtos.
+   Terminal de Autoatendimento-->>-Cliente: Exibir dados do produto.
 
-![image](https://github.com/user-attachments/assets/d3509542-039e-40a8-b991-abfbd490d9fd)
-
-![image](https://github.com/user-attachments/assets/aeebcb45-c371-40a3-ba9e-293e092df939)
-
-### Run the app
-
-To run the app go to Run -> Edit Configuration and add a new application config and run:
-![image](https://github.com/user-attachments/assets/f7146723-222d-47fb-b2e7-bd1a25ee32db)
-
-![image](https://github.com/user-attachments/assets/21757490-e659-43ad-9ddc-d2bcd33a3560)
-
-### Verify Install
-
-Check logs app into intellij console and DBeaver with the tables created
-
-![image](https://github.com/user-attachments/assets/b2bcd347-9f95-4432-ace8-83be704b800d)
-
-You can check the swagger api
-
-```
-http://localhost:8080/swagger-ui/index.html
+    Cliente->>+Terminal de Autoatendimento: 5 - Escolhe produtos e realiza pedido.
+    Terminal de Autoatendimento->>+Sistema: 6 - [POST] http://localhost:8080/api/public/v1/orders
+    Sistema-->>-Terminal de Autoatendimento: Retorna dados do pedido cadastrado/recebido.
+    Terminal de Autoatendimento-->>-Cliente: Exibir tela de pagamento.
 ```
 
-![image](https://github.com/user-attachments/assets/f299e869-6080-431a-9c3f-2ab187117005)
+**Observação:**
 
-### Test app
+- **Os fluxos de 1 a 2 são opicionais.**
+- **Não é necessário informar campo id_customer no payload do POST v1/orders uma vez que esse campo é opcional com base na escolha do usuário se identificar ou não.**
 
-Using a postman is necessary to get a bearer jwt token and after to execute a category crud operations
+---
 
-Login app:
+3 - **Pagamento do Pedido**
 
-  ```
-  curl --location 'http://localhost:8080/oauth/token' \
---header 'Authorization: Basic YW5ndWxhcjpAbmd1bEByMA==' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'username=myller' \
---data-urlencode 'password=12345678' \
---data-urlencode 'grant_type=password'
-
-  ```
-
-![image](https://github.com/user-attachments/assets/5a6574a1-ad07-4629-bc3b-ec4c6c1e3d7d)
-
-Copy the "access_token" generated from the response and execute a list categories api to test the authentication:
-
-```
-curl --location 'http://localhost:8080/api/private/v1/categories' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer [access token]'
-
+```mermaid
+sequenceDiagram
+    Fake Pagamento->>+Sistema: 1 - [POST] http://localhost:8080/api/public/v1/hook/orders/payment
+    Sistema-->>-Fake Pagamento: Return Status Code 200 for Success or 4xx/5xx for errors
 ```
 
-![image](https://github.com/user-attachments/assets/f766c3d8-c447-4166-bd12-5da86cae812f)
+---
 
+4 - **Acompanhamento e Preparação de Pedido na Cozinha**
 
+```mermaid
+sequenceDiagram
+    Cozinha->>+Terminal interno: 1 - Buscar pedidos confirmados para iniciar os preparos.
+    Terminal interno->>+Sistema: 2 - [GET] http://localhost:8080/api/private/v1/orders
+    Sistema-->>-Terminal interno: Retorna pedidos pendentes para preparo ou prontos para retiradas.
+    Terminal interno-->>-Cozinha: Exibir dados para cozinha iniciar os preparos.
 
+    Cozinha->>+Terminal interno: 3 - Seleciona pedido e altera status para em preparação (PREPARING)
+    Terminal interno->>+Sistema: 4 - [PUT] http://localhost:8080/api/private/v1/orders/status
+    Sistema-->>-Terminal interno: Retorna status do pedido alterado com sucesso.
+    Terminal interno-->>-Cozinha: Exibir mudança de status do pedido.
+    Cozinha->>+Terminal interno: 5 - Seleciona pedido e altera status para em pronto para retirada (READY)
+    Terminal interno->>+Sistema: 6 - [PUT] http://localhost:8080/api/private/v1/orders/status
+    Sistema-->>-Terminal interno: Retorna status do pedido alterado com sucesso.
+    Terminal interno-->>-Cozinha: Exibir mudança de status do pedido.
+```
 
+---
 
+5 - **Finalização do pedido**
 
+```mermaid
+sequenceDiagram
+    Atendente->>+Terminal interno: 1 - Seleciona pedido e altera status para finalizado após retirada do cliente (FINISHED)
+    Terminal interno->>+Sistema: 2 - [PUT] http://localhost:8080/api/private/v1/orders/status
+    Sistema-->>-Terminal interno: Retorna status do pedido alterado com sucesso.
+    Terminal interno-->>-Atendente: Exibir mudança de status do pedido.
+```
 
+[Clique aqui para ser redirecionado para a documentação das APIs e suas funcionalidades](https://documenter.getpostman.com/view/7393190/2sA3kd9cgG)
 
+## Domain Storytelling :heavy_check_mark:
 
+[Clique aqui para ser redirecionado para a documentação do domain storytelling](https://miro.com/app/board/uXjVKuUez2Q=/)
 
+## Dicionário de Linguagem Onipresente/Ubíqua
 
+| Palavra | Descrição |
+|-|-|
+|Lanchonete| Estabelecimento onde a solução/sistema será aplicado.|
+|Cliente|Pessoa que realiza pedidos na lanchonete.|
+|Cozinha|Setor da lanchonete responsável por preparar todos os produtos do combo.|
+|Administrador/Usuário Sistêmico|Pessoa que cadastra produtos no sistema.|
+|Sistema de Controle de Pedidos| Sistema que soluciona o problema da lanchonete, automatizando a coleta de pedidos, pagamento e comunicação com a cozinha.|
+|Monitor/Terminal|No Contexto da Cozinha: Display onde são exibidos os pedidos na cozinha pendentes de preparo. No Contexto do Cliente: Display onde o cliente consegue acompanhar o status dos seus pedidos.|
+|Promoção|Oferta de produtos com desconto customizada por cliente.|
+|Pagamento|Ação realizada pelo cliente ao fazer a leitura do QR code do Mercado Pago para realizar o pagamento do pedido.|
+|Pedido|Pedido de combo realizado pelo cliente.|
+|Pedido Recebido|Status transiente, não registrado pelo sistema, que antecede o processo de pagamento do pedido.|
+|Pedido Confirmado|Status do pedido após a conclusão do pagamento e encaminhamento para a cozinha.|
+|Pedido Pendente|Status transiente, que indica que o processo de pagamento do pedido está pendente por conta de falha.|
+|Pedido Em Preparação|Status do pedido após a cozinha iniciar o preparo.|
+|Pedido Pronto|Status do pedido após a cozinha terminar o preparo e disponibilizar para retirada pelo cliente.|
+|Pedido Finalizado|Status do pedido após ser retirado pelo cliente.|
+|Pedido Cancelado|Status do pedido após ser cancelado pelo cliente ou pela cozinha.|
+|Acompanhamento| No Contexto de Itens do Pedido: Item que acompanha o hambúrguer, como, por exemplo, batata frita. No Contexto do Pedido: Funcionalidade que permite ao cliente acompanhar o status do seu pedido no monitor.|
 
+## Event Storming :heavy_check_mark:
+
+[Clique aqui para ser redirecionado para a documentação do event storming](https://miro.com/app/board/uXjVK1Bf4Q4=/)
+
+## Domain Mapping :heavy_check_mark:
+
+![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/assets/domain-mapping.drawio.png)
+
+## Requisitos não funcionais a serem implementados no futuro
+
+- Testes de Unidade.
+- Testes de Integração.
+- Testes de Carga/Estresse.
+- Cadastro de usuário sistêmico.

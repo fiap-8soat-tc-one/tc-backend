@@ -22,5 +22,6 @@
 **/secrets.dev.yaml
 **/values.dev.yaml
 **/target
+**/.idea
 LICENSE
 README.md

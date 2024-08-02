@@ -6,24 +6,40 @@ services:
     container_name: tc-postgres
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123456
-      POSTGRES_DB: postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - 5432:5432
     volumes:
-      - /var/data/pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   tc-backend:
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     image: tc-backend
     build: .
     ports:
       - 8080:8080
     restart: always
     environment:
-      - DATABASE_HOST=postgres
-      - DATABASE_USER=postgres
-      - DATABASE_PASS=123456
-      - DATABASE_PORT=5432
-      - DATABASE_NAME=postgres
+      DATABASE_HOST: postgres
+      DATABASE_USER: ${POSTGRES_USER}
+      DATABASE_PASS: ${POSTGRES_PASSWORD}
+      DATABASE_PORT: 5432
+      DATABASE_NAME: ${POSTGRES_DB}
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/api/public/v1/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+volumes:
+  pgdata:
+    external: false

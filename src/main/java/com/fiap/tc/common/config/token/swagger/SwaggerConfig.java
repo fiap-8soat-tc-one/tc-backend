@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.ApiKey;
@@ -34,11 +35,14 @@ public class SwaggerConfig {
                 .groupName("General")
                 .select()
                 .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.regex("/oauth/.*").negate())
+                .paths(PathSelectors.regex("/error").negate())
                 .build()
                 .apiInfo(apiInfo())
                 .securitySchemes(List.of(getBearer()))
                 .securityContexts(Collections.singletonList(securityContext()));
     }
+
 
     @Bean
     public Docket privateDocumentation(Environment env) {
@@ -46,7 +50,7 @@ public class SwaggerConfig {
                 .groupName("Private")
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(regex("(/api/v1/private/.*)"))
+                .paths(regex("(/api/private/v1.*)"))
                 .build()
                 .apiInfo(apiInfo())
                 .securitySchemes(List.of(getBearer()))
@@ -59,7 +63,7 @@ public class SwaggerConfig {
                 .groupName("Public")
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(regex("/api/v1/public/.*"))
+                .paths(regex("/api/public/v1.*"))
                 .build()
                 .apiInfo(apiInfo())
                 .securitySchemes(List.of(getBearer()))

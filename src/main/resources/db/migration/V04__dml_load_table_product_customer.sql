@@ -21,7 +21,7 @@ VALUES (3, 'a763f6ce-1122-434b-9721-b348db2894e6', 'soft drink', 'Coca cola 350 
 INSERT INTO product(id_category, uuid, name, description, price, register_date)
 VALUES (4, '7b3c010c-9f03-4a56-8c85-b519a5f6b86e', 'Milk Flan', 'Milk Flan 100g', 12.75, now());
 INSERT INTO product(id_category, uuid, name, description, price, register_date)
-VALUES (4, 'f6d7f266-33d9-42aa-a2ee-63d2e08f5176', 'Cake', 'Chocolate Cake Slice 100g' , 13.45, now());
+VALUES (4, 'f6d7f266-33d9-42aa-a2ee-63d2e08f5176', 'Cake', 'Chocolate Cake Slice 100g', 13.45, now());
 
 --insert customer
 INSERT INTO customer(uuid, name, document, email, register_date)
