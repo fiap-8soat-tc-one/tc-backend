@@ -3,7 +3,6 @@ package com.fiap.tc.adapter.repository.mapper;
 import com.fiap.tc.adapter.repository.entity.OrderEntity;
 import com.fiap.tc.adapter.repository.entity.OrderHistoricEntity;
 import com.fiap.tc.adapter.repository.mapper.base.MapperEntity;
-import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
 import com.fiap.tc.core.domain.response.OrderListResponse;
 import org.mapstruct.Mapper;
@@ -14,7 +13,6 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static com.fiap.tc.common.constants.OrderConstants.WAIT_TIME_STATUS;
 
@@ -45,7 +43,7 @@ public interface OrderListMapper extends MapperEntity<OrderEntity, OrderListResp
             List<LocalDateTime> preparingDates = orderEntity.getOrderHistoric().stream()
                     .filter(historic -> historic.getStatus().equals(OrderStatus.PREPARING))
                     .map(OrderHistoricEntity::getRegisterDate)
-                    .collect(Collectors.toList());
+                    .toList();
 
             return preparingDates.stream().findFirst();
         }

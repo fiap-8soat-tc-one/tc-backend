@@ -14,10 +14,8 @@ public abstract class OrderStatusValidatorTemplate implements OrderStatusValidat
     public void validate(OrderStatus status) {
         var allowedNextStatus = next();
         if (!allowedNextStatus.contains(status)) {
-            throw new BadRequestException(format("Status %s is a invalid next state!", status.name()));
+            throw new BadRequestException(format("Status %s is in a invalid next state!", status.name()));
         }
-
-        log.info("status {} is valid!", status.name());
 
     }
 

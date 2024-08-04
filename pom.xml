@@ -23,23 +23,16 @@
         <spring-security-oauth2.version>2.2.4.RELEASE</spring-security-oauth2.version>
         <spring-security-jwt.version>1.0.9.RELEASE</spring-security-jwt.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
-        <jacoco.version>0.8.6</jacoco.version>
+        <jacoco.version>0.8.12</jacoco.version>
         <fixture-factory.version>3.1.0</fixture-factory.version>
         <org.reflections>0.9.10</org.reflections>
         <com.thoughtworks.paranamer>2.8</com.thoughtworks.paranamer>
         <lombok.version>1.18.22</lombok.version>
         <springfox-swagger2.version>3.0.0</springfox-swagger2.version>
-
-        <embedded-redis.version>0.6</embedded-redis.version>
-        <redisson.version>3.13.1</redisson.version>
-        <jedis.version>3.3.0</jedis.version>
-        <epoll.version>4.1.50.Final</epoll.version>
         <caelum.stella.version>2.1.5</caelum.stella.version>
-        <querydsl-apt.version>4.4.0</querydsl-apt.version>
+        <google.zxing.version>3.5.2</google.zxing.version>
         <sonar.organization>jcmdsbr</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-
-
     </properties>
 
     <dependencies>
@@ -176,22 +169,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-apt</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-jpa</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-sql</artifactId>
-            <version>${querydsl-apt.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
@@ -199,35 +176,19 @@
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
-            <version>3.5.2</version>
+            <version>${google.zxing.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>javase</artifactId>
-            <version>3.5.2</version>
+            <version>${google.zxing.version}</version>
         </dependency>
 
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>com.mysema.maven</groupId>
-                <artifactId>apt-maven-plugin</artifactId>
-                <version>1.1.3</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>process</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>target/generated-sources/java</outputDirectory>
-                            <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -258,8 +219,9 @@
                 <version>${jacoco.version}</version>
                 <configuration>
                     <includes>
-                        <include>com/fiap/tc/usecase/service/**/*</include>
-                        <include>com/fiap/tc/usecase/*</include>
+                        <include>com/fiap/tc/adapter/repository/output/**/*</include>
+                        <include>com/fiap/tc/core/usecase/**/*</include>
+                        <include>com/fiap/tc/adapter/web/**/*Controller*</include>
                     </includes>
                 </configuration>
                 <executions>
@@ -270,7 +232,7 @@
                     </execution>
                     <execution>
                         <id>jacoco-report</id>
-                        <phase>verify</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>

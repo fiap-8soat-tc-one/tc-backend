@@ -7,6 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.hibernate.tool.hbm2ddl.SchemaExport.Action;
 import org.hibernate.tool.schema.TargetType;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
@@ -17,26 +18,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import static org.junit.Assert.assertTrue;
-
 @Slf4j
 public class GenerateSchemaTest {
     @Test
     public void generate() {
-        Map<String, String> settings = new HashMap<>();
-
-        /*
-         * settings.put("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
-         * settings.put("hibernate.hbm2ddl.auto", "create");
-         * settings.put("hibernate.dialect.storage_engine", "innodb");
-         * settings.put("hibernate.physical_naming_strategy",
-         * "org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy");
-         */
-
-        settings.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-        settings.put("hibernate.hbm2ddl.auto", "create");
-        settings.put("hibernate.physical_naming_strategy", "org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy");
-
+        final var settings = getSettings();
 
         MetadataSources metadataSources = new MetadataSources(
                 new StandardServiceRegistryBuilder()
@@ -44,7 +30,8 @@ public class GenerateSchemaTest {
                         .build()
         );
 
-        Reflections reflections = new Reflections("com.fiap.tc.adapter.repository.entity", new SubTypesScanner(false));
+        Reflections reflections = new Reflections("com.fiap.tc.adapter.repository.entity",
+                new SubTypesScanner(false));
 
         Set<String> entityNames = reflections.getAllTypes();
         entityNames.forEach(metadataSources::addAnnotatedClassName);
@@ -69,8 +56,17 @@ public class GenerateSchemaTest {
         schemaExport.execute(EnumSet.of(TargetType.SCRIPT), Action.CREATE, metadata);
 
 
-        assertTrue(outputFile.exists());
+        Assertions.assertTrue(outputFile.exists());
 
         log.info("Finished");
+    }
+
+    private Map<String, String> getSettings() {
+        Map<String, String> settings = new HashMap<>();
+        settings.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        settings.put("hibernate.hbm2ddl.auto", "create");
+        settings.put("hibernate.physical_naming_strategy",
+                "org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy");
+        return settings;
     }
 }

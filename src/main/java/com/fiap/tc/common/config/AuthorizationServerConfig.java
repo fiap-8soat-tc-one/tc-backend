@@ -36,8 +36,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .secret(clientConfig.getSecret())
                 .scopes("read", "write")
                 .authorizedGrantTypes("password", "refresh_token")
-                .accessTokenValiditySeconds(86400)
-                .refreshTokenValiditySeconds(3600 * 24);
+                .accessTokenValiditySeconds(clientConfig.getTokenExpirationTime())
+                .refreshTokenValiditySeconds(clientConfig.getRefreshTokenExpirationTime());
     }
 
     @Override
@@ -45,11 +45,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
         tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), accessTokenConverter()));
 
-        endpoints
-
-                .tokenStore(tokenStore())
+        endpoints.tokenStore(tokenStore())
                 .tokenEnhancer(tokenEnhancerChain)
-                .reuseRefreshTokens(false)
                 .userDetailsService(userDetailsService)
                 .authenticationManager(authenticationManager);
     }
