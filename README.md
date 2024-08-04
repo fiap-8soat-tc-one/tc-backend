@@ -82,7 +82,7 @@ As informações dispostas no sistema de pedidos precisarão ser gerenciadas pel
 
 ## Manual/Documentação de Funcionalidades (Swagger/Open API) :heavy_check_mark:
 
-- **Para todos os endpoints privados, é necessário gerar o token via endpoint login**
+- **Para todos os endpoints privados, é necessário gerar o token via endpoint login(POST /oauth/token)**
 
 - **É possível acessar o Swagger/Open API da aplicação pela seguinte URL: `http://localhost:8080/swagger-ui/index.html`**
 
@@ -121,7 +121,7 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     Fake Pagamento->>+Sistema: 1 - [POST] http://localhost:8080/api/public/v1/hook/orders/payment
-    Sistema-->>-Fake Pagamento: Return Status Code 200 for Success or 4xx/5xx for errors
+    Sistema-->>-Fake Pagamento: Return Status Code 200 and result SUCCESS/ERROR
 ```
 
 ---
