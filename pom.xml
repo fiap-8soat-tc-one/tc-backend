@@ -219,9 +219,8 @@
                 <version>${jacoco.version}</version>
                 <configuration>
                     <includes>
-                        <include>com/fiap/tc/adapter/repository/output/**/*</include>
                         <include>com/fiap/tc/core/usecase/**/*</include>
-                        <include>com/fiap/tc/adapter/web/**/*Controller*</include>
+                        <include>com/fiap/tc/adapter/repository/output/**</include>
                     </includes>
                 </configuration>
                 <executions>
@@ -231,8 +230,8 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>jacoco-report</id>
-                        <phase>package</phase>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
