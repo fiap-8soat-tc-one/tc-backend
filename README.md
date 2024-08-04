@@ -99,7 +99,7 @@ sequenceDiagram
     Sistema-->>-Terminal de Autoatendimento: Retorna dados do cliente identificado.
     Terminal de Autoatendimento-->>-Cliente: Exibir dados do cliente.
     Cliente->>+Terminal de Autoatendimento: 3 - Buscar produtos para montar o pedido.
-    Terminal de Autoatendimento->>+Sistema: 4 - [GET] http://localhost:8080/api/public/v1/products
+    Terminal de Autoatendimento->>+Sistema: 4 - [GET] http://localhost:8080/api/public/v1/products/categories/{categoryId}
     Sistema-->>-Terminal de Autoatendimento: Retorna dados dos produtos.
    Terminal de Autoatendimento-->>-Cliente: Exibir dados do produto.
 
