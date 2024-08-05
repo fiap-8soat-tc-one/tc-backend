@@ -1,5 +1,6 @@
 package com.fiap.tc.core.usecase.order;
 
+import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
 import com.fiap.tc.core.domain.response.OrderListResponse;
 import com.fiap.tc.core.port.in.order.ListOrdersReadyPreparingInputPort;
@@ -23,7 +24,7 @@ public class ListOrdersReadyPreparingUseCase implements ListOrdersReadyPreparing
 
     @Override
     public Page<OrderListResponse> list(Pageable pageable) {
-        return listOrdersReadyPreparingOutputPort.list(List.of(OrderStatus.CONFIRMED, OrderStatus.PREPARING, OrderStatus.READY), pageable);
+        return listOrdersReadyPreparingOutputPort.list(List.of(OrderStatus.PREPARING, OrderStatus.READY), pageable);
     }
 }
 
