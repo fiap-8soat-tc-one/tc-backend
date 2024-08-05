@@ -82,7 +82,7 @@ As informações dispostas no sistema de pedidos precisarão ser gerenciadas pel
 
 ## Manual/Documentação de Funcionalidades (Swagger/Open API) :heavy_check_mark:
 
-- **Para todos os endpoints privados, é necessário gerar o token via endpoint login**
+- **Para todos os endpoints privados, é necessário gerar o token via endpoint login(POST /oauth/token)**
 
 - **É possível acessar o Swagger/Open API da aplicação pela seguinte URL: `http://localhost:8080/swagger-ui/index.html`**
 
@@ -99,7 +99,7 @@ sequenceDiagram
     Sistema-->>-Terminal de Autoatendimento: Retorna dados do cliente identificado.
     Terminal de Autoatendimento-->>-Cliente: Exibir dados do cliente.
     Cliente->>+Terminal de Autoatendimento: 3 - Buscar produtos para montar o pedido.
-    Terminal de Autoatendimento->>+Sistema: 4 - [GET] http://localhost:8080/api/public/v1/customers/{cpf}
+    Terminal de Autoatendimento->>+Sistema: 4 - [GET] http://localhost:8080/api/public/v1/products/categories/{categoryId}
     Sistema-->>-Terminal de Autoatendimento: Retorna dados dos produtos.
    Terminal de Autoatendimento-->>-Cliente: Exibir dados do produto.
 
@@ -121,7 +121,7 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     Fake Pagamento->>+Sistema: 1 - [POST] http://localhost:8080/api/public/v1/hook/orders/payment
-    Sistema-->>-Fake Pagamento: Return Status Code 200 for Success or 4xx/5xx for errors
+    Sistema-->>-Fake Pagamento: Return Status Code 200 and result SUCCESS/ERROR
 ```
 
 ---
@@ -130,16 +130,16 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    Cozinha->>+Terminal interno: 1 - Buscar pedidos confirmados para iniciar os preparos.
+    Cozinha->>+Terminal interno: 1 - Buscar pedidos com status "Confirmado" para iniciar os preparos.
     Terminal interno->>+Sistema: 2 - [GET] http://localhost:8080/api/private/v1/orders
-    Sistema-->>-Terminal interno: Retorna pedidos pendentes para preparo ou prontos para retiradas.
+    Sistema-->>-Terminal interno: Retorna pedidos com status "Confirmado", "Pendente para Preparo" ou "Pronto para Retirada".
     Terminal interno-->>-Cozinha: Exibir dados para cozinha iniciar os preparos.
 
-    Cozinha->>+Terminal interno: 3 - Seleciona pedido e altera status para em preparação (PREPARING)
+    Cozinha->>+Terminal interno: 3 - Seleciona pedido e altera status para "Em Preparação" (PREPARING)
     Terminal interno->>+Sistema: 4 - [PUT] http://localhost:8080/api/private/v1/orders/status
     Sistema-->>-Terminal interno: Retorna status do pedido alterado com sucesso.
     Terminal interno-->>-Cozinha: Exibir mudança de status do pedido.
-    Cozinha->>+Terminal interno: 5 - Seleciona pedido e altera status para em pronto para retirada (READY)
+    Cozinha->>+Terminal interno: 5 - Seleciona pedido e altera status para "Pronto para Retirada" (READY)
     Terminal interno->>+Sistema: 6 - [PUT] http://localhost:8080/api/private/v1/orders/status
     Sistema-->>-Terminal interno: Retorna status do pedido alterado com sucesso.
     Terminal interno-->>-Cozinha: Exibir mudança de status do pedido.
@@ -151,7 +151,7 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    Atendente->>+Terminal interno: 1 - Seleciona pedido e altera status para finalizado após retirada do cliente (FINISHED)
+    Atendente->>+Terminal interno: 1 - Seleciona pedido e altera status para "Finalizado" após retirada do cliente (FINISHED)
     Terminal interno->>+Sistema: 2 - [PUT] http://localhost:8080/api/private/v1/orders/status
     Sistema-->>-Terminal interno: Retorna status do pedido alterado com sucesso.
     Terminal interno-->>-Atendente: Exibir mudança de status do pedido.
@@ -165,25 +165,25 @@ sequenceDiagram
 
 ## Dicionário de Linguagem Onipresente/Ubíqua
 
-| Palavra | Descrição |
-|-|-|
-|Lanchonete| Estabelecimento onde a solução/sistema será aplicado.|
-|Cliente|Pessoa que realiza pedidos na lanchonete.|
-|Cozinha|Setor da lanchonete responsável por preparar todos os produtos do combo.|
-|Administrador/Usuário Sistêmico|Pessoa que cadastra produtos no sistema.|
-|Sistema de Controle de Pedidos| Sistema que soluciona o problema da lanchonete, automatizando a coleta de pedidos, pagamento e comunicação com a cozinha.|
-|Monitor/Terminal|No Contexto da Cozinha: Display onde são exibidos os pedidos na cozinha pendentes de preparo. No Contexto do Cliente: Display onde o cliente consegue acompanhar o status dos seus pedidos.|
-|Promoção|Oferta de produtos com desconto customizada por cliente.|
-|Pagamento|Ação realizada pelo cliente ao fazer a leitura do QR code do Mercado Pago para realizar o pagamento do pedido.|
-|Pedido|Pedido de combo realizado pelo cliente.|
-|Pedido Recebido|Status transiente, não registrado pelo sistema, que antecede o processo de pagamento do pedido.|
-|Pedido Confirmado|Status do pedido após a conclusão do pagamento e encaminhamento para a cozinha.|
-|Pedido Pendente|Status transiente, que indica que o processo de pagamento do pedido está pendente por conta de falha.|
-|Pedido Em Preparação|Status do pedido após a cozinha iniciar o preparo.|
-|Pedido Pronto|Status do pedido após a cozinha terminar o preparo e disponibilizar para retirada pelo cliente.|
-|Pedido Finalizado|Status do pedido após ser retirado pelo cliente.|
-|Pedido Cancelado|Status do pedido após ser cancelado pelo cliente ou pela cozinha.|
-|Acompanhamento| No Contexto de Itens do Pedido: Item que acompanha o hambúrguer, como, por exemplo, batata frita. No Contexto do Pedido: Funcionalidade que permite ao cliente acompanhar o status do seu pedido no monitor.|
+| Palavra                         | Descrição                                                                                                                                                                                                    |
+|---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Lanchonete                      | Estabelecimento onde a solução/sistema será aplicado.                                                                                                                                                        |
+| Cliente                         | Pessoa que realiza pedidos na lanchonete.                                                                                                                                                                    |
+| Cozinha                         | Setor da lanchonete responsável por preparar todos os produtos do combo.                                                                                                                                     |
+| Administrador/Usuário Sistêmico | Pessoa que cadastra produtos no sistema.                                                                                                                                                                     |
+| Sistema de Controle de Pedidos  | Sistema que soluciona o problema da lanchonete, automatizando a coleta de pedidos, pagamento e comunicação com a cozinha.                                                                                    |
+| Monitor/Terminal                | No Contexto da Cozinha: Display onde são exibidos os pedidos na cozinha pendentes de preparo. No Contexto do Cliente: Display onde o cliente consegue acompanhar o status dos seus pedidos.                  |
+| Promoção                        | Oferta de produtos com desconto customizada por cliente.                                                                                                                                                     |
+| Pagamento                       | Ação realizada pelo cliente ao fazer a leitura do QR code do Mercado Pago para realizar o pagamento do pedido.                                                                                               |
+| Pedido                          | Pedido de combo realizado pelo cliente.                                                                                                                                                                      |
+| RECEIVED/Pedido Recebido        | Pedido aguardando pagamento pelo cliente)                                                                                                                                                                    |
+| CONFIRMED/Pedido Confirmado     | Status do pedido após a conclusão do pagamento e encaminhamento para a cozinha.                                                                                                                              |
+| PEDING/Pedido Pendente          | Status do pedido após uma falha no fluxo de pagamento.                                                                                                                                                       |
+| PREPARING/Pedido Em Preparação  | Status do pedido após a cozinha iniciar o preparo.                                                                                                                                                           |
+| READY/Pedido Pronto             | Status do pedido após a cozinha terminar o preparo e disponibilizar para retirada pelo cliente.                                                                                                              |
+| FINISHED/Pedido Finalizado      | Status do pedido após ser retirado pelo cliente.                                                                                                                                                             |
+| CANCELED/Pedido Cancelado       | Status do pedido após ser cancelado pelo cliente ou pela cozinha.                                                                                                                                            |
+| Acompanhamento                  | No Contexto de Itens do Pedido: Item que acompanha o hambúrguer, como, por exemplo, batata frita. No Contexto do Pedido: Funcionalidade que permite ao cliente acompanhar o status do seu pedido no monitor. |
 
 ## Event Storming :heavy_check_mark:
 
