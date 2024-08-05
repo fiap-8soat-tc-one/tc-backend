@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.UUID;
 
 import static java.lang.String.format;
-import static java.util.Objects.isNull;
 
 @Service
 public class OrderOutputAdapter implements UpdateStatusOrderOutputPort, LoadOrderOutputPort, ListOrdersReadyPreparingOutputPort {
@@ -32,24 +31,30 @@ public class OrderOutputAdapter implements UpdateStatusOrderOutputPort, LoadOrde
 
     @Override
     public void update(UUID idOrder, OrderStatus status) {
-        var orderEntity = orderRepository.findByUuid(idOrder);
-        if (isNull(orderEntity)) {
+
+        var orderEntityOptional = orderRepository.findByUuid(idOrder);
+
+        if (orderEntityOptional.isEmpty()) {
             throw new NotFoundException(format("Order id %s not found!", idOrder));
         }
+
+        var orderEntity = orderEntityOptional.get();
+
         orderEntity.getStatus().getValidator().validate(status);
         orderEntity.setStatus(status);
         orderEntity.getAudit().setUpdatedDate(LocalDateTime.now());
         orderEntity.getOrderHistoric().add(OrderHistoricBuilder.create(orderEntity, orderEntity.getStatus()));
+
         orderRepository.save(orderEntity);
     }
 
     @Override
     public Order load(UUID uuid) {
-        var orderEntity = MapperConstants.ORDER_MAPPER.fromEntity(orderRepository.findByUuid(uuid));
-        if (isNull(orderEntity)) {
+        var orderEntityOptional = orderRepository.findByUuid(uuid);
+        if (orderEntityOptional.isEmpty()) {
             throw new NotFoundException(format("Order id %s not found!", uuid));
         }
-        return orderEntity;
+        return MapperConstants.ORDER_MAPPER.fromEntity(orderEntityOptional.get());
     }
 
     @Override

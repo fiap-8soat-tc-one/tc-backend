@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Integer> {
+
     Optional<CategoryEntity> findByName(String name);
 
     Optional<CategoryEntity> findByUuid(UUID uuid);

@@ -18,8 +18,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static java.lang.String.format;
-import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
 
 @Service
 public class RegisterPaymentOutputAdapter implements RegisterPaymentOutputPort {
@@ -33,14 +31,16 @@ public class RegisterPaymentOutputAdapter implements RegisterPaymentOutputPort {
 
     @Override
     public OrderPayment saveOrUpdate(OrderPaymentRequest orderPaymentRequest) {
-        var orderEntity = orderRepository.findByUuid(UUID.fromString(orderPaymentRequest.getTransactionNumber()));
-        if (isNull(orderEntity)) {
+        var orderEntityOptional = orderRepository.findByUuid(UUID.fromString(orderPaymentRequest.getTransactionNumber()));
+        if (orderEntityOptional.isEmpty()) {
             throw new NotFoundException(format("Order with uuid %s not found!", orderPaymentRequest.getTransactionNumber()));
         }
 
-        var orderPaymentEntity = orderPaymentRepository.findByOrderUuid(orderEntity.getUuid());
+        var orderEntity = orderEntityOptional.get();
+        var orderPaymentEntityOptional = orderPaymentRepository.findByOrderUuid(orderEntity.getUuid());
 
-        if (nonNull(orderPaymentEntity)) {
+        if (orderPaymentEntityOptional.isPresent()) {
+            var orderPaymentEntity = orderPaymentEntityOptional.get();
             orderPaymentEntity.getAudit().setUpdatedDate(LocalDateTime.now());
             orderPaymentEntity.setResult(orderPaymentRequest.getResult());
             orderPaymentEntity.setPaymentType(orderPaymentRequest.getPaymentType());
@@ -55,8 +55,8 @@ public class RegisterPaymentOutputAdapter implements RegisterPaymentOutputPort {
 
             return OrderPayment.builder()
                     .id(orderPaymentEntity.getUuid())
-                    .idOrder(orderEntity.getUuid())
-                    .status(orderPaymentEntity.getResult())
+                    .idOrder(orderPaymentEntity.getUuid())
+                    .result(orderPaymentEntity.getResult())
                     .build();
         }
 
@@ -72,7 +72,7 @@ public class RegisterPaymentOutputAdapter implements RegisterPaymentOutputPort {
         return OrderPayment.builder()
                 .id(newOrderPaymentEntity.getUuid())
                 .idOrder(orderEntity.getUuid())
-                .status(newOrderPaymentEntity.getResult())
+                .result(newOrderPaymentEntity.getResult())
                 .build();
     }
 
