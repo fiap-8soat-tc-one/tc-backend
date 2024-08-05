@@ -6,8 +6,8 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum PaymentResult {
-    SUCCESS("payment confirmed", OrderStatus.CONFIRMED),
-    ERROR("payment pending", OrderStatus.PENDING);
+    SUCCESS("order payed", OrderStatus.PREPARING),
+    ERROR("order pending", OrderStatus.PENDING);
 
     private final String description;
     private final OrderStatus orderStatus;

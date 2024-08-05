@@ -8,6 +8,6 @@ import java.util.List;
 public class ReceivedOrderStatusValidator extends OrderStatusValidatorTemplate {
     @Override
     public List<OrderStatus> next() {
-        return List.of(OrderStatus.CONFIRMED, OrderStatus.PENDING, OrderStatus.CANCELED);
+        return List.of(OrderStatus.PREPARING, OrderStatus.PENDING, OrderStatus.CANCELED);
     }
 }

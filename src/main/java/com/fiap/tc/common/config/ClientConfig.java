@@ -11,4 +11,6 @@ public class ClientConfig {
     private String name;
     private String secret;
     private String signKey;
+    private Integer tokenExpirationTime;
+    private Integer refreshTokenExpirationTime;
 }

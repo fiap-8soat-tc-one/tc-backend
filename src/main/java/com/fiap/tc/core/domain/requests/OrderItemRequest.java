@@ -4,11 +4,13 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Data
 public class OrderItemRequest {
 
+    @NotNull
     @ApiModelProperty(
             value = "Order Product Id",
             required = true,
@@ -17,6 +19,7 @@ public class OrderItemRequest {
     )
     private UUID idProduct;
 
+    @NotNull
     @Min(value = 1, message = "Invalid quantity")
     @ApiModelProperty(
             value = "Order quantity",

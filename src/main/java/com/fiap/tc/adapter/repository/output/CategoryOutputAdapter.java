@@ -18,8 +18,6 @@ import java.util.UUID;
 
 import static com.fiap.tc.adapter.repository.mapper.base.MapperConstants.CATEGORY_MAPPER;
 import static java.lang.String.format;
-import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
 
 @Service
 public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCategoryOutputPort,
@@ -32,10 +30,8 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
 
     @Override
     public void delete(UUID uuid) {
-        var category = categoryRepository.findByUuid(uuid);
-        if (nonNull(category)) {
-            categoryRepository.delete(category);
-        }
+        var categoryEntityOptional = categoryRepository.findByUuid(uuid);
+        categoryEntityOptional.ifPresent(categoryRepository::delete);
     }
 
     @Override
@@ -46,17 +42,18 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
 
     @Override
     public Category load(UUID uuid) {
-        var category = categoryRepository.findByUuid(uuid);
-        if (isNull(category)) {
+        var categoryEntityOptional = categoryRepository.findByUuid(uuid);
+        if (categoryEntityOptional.isEmpty()) {
             throw new NotFoundException(format("Category with uuid %s not found!", uuid));
         }
-        return CATEGORY_MAPPER.fromEntity(category);
+        return CATEGORY_MAPPER.fromEntity(categoryEntityOptional.get());
     }
 
     @Override
     public Category saveOrUpdate(String name, String description, boolean active) {
-        var categoryEntity = categoryRepository.findByNameOrDescription(name, description);
-        if (nonNull(categoryEntity)) {
+        var categoryEntityOptional = categoryRepository.findByName(name);
+        if (categoryEntityOptional.isPresent()) {
+            var categoryEntity = categoryEntityOptional.get();
             categoryEntity.setName(name);
             categoryEntity.setDescription(description);
             categoryEntity.getAudit().setActive(active);
