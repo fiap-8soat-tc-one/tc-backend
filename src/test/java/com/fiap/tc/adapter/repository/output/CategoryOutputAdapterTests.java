@@ -84,7 +84,7 @@ public class CategoryOutputAdapterTests extends BaseTest {
     }
 
     @Test
-    public void loadNotFoundTest() {
+    public void categoryNotFoundTest() {
 
         when(categoryRepository.findByUuid(RANDOM_UUID)).thenReturn(Optional.empty());
 

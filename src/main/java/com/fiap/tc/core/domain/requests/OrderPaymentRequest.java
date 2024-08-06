@@ -25,7 +25,7 @@ public class OrderPaymentRequest {
     @NotNull
     @ApiModelProperty(
             value = "Transaction Message Result - Order Id",
-            example = "transaction successfull",
+            example = "transaction successfully",
             dataType = "String"
     )
     @Size(max = 255, message = "Invalid Transaction Message Result")

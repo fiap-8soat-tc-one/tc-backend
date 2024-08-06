@@ -18,8 +18,6 @@ import java.util.UUID;
 
 import static com.fiap.tc.adapter.repository.mapper.base.MapperConstants.CUSTOMER_MAPPER;
 import static java.lang.String.format;
-import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
 
 @Service
 public class CustomerOutputAdapter implements SaveCustomerOutputPort, LoadCustomerOutputPort, ListCustomersOutputPort, DeleteCustomerOutputPort {
@@ -31,11 +29,8 @@ public class CustomerOutputAdapter implements SaveCustomerOutputPort, LoadCustom
 
     @Override
     public void delete(String document) {
-        var customer = customerRepository.findByDocument(document);
-
-        if (nonNull(customer)) {
-            customerRepository.delete(customer);
-        }
+        var customerEntityOptional = customerRepository.findByDocument(document);
+        customerEntityOptional.ifPresent(customerRepository::delete);
     }
 
     @Override
@@ -46,20 +41,21 @@ public class CustomerOutputAdapter implements SaveCustomerOutputPort, LoadCustom
 
     @Override
     public Customer load(String document) {
-        var customer = customerRepository.findByDocument(document);
+        var customerEntityOptional = customerRepository.findByDocument(document);
 
-        if (isNull(customer)) {
+        if (customerEntityOptional.isEmpty()) {
             throw new NotFoundException(format("Customer with document %s not found!", document));
         }
 
-        return CUSTOMER_MAPPER.fromEntity(customer);
+        return CUSTOMER_MAPPER.fromEntity(customerEntityOptional.get());
     }
 
     @Override
     public Customer saveOrUpdate(String document, String name, String email) {
-        var customerEntity = customerRepository.findByDocument(document);
+        var customerEntityOptional = customerRepository.findByDocument(document);
 
-        if (nonNull(customerEntity)) {
+        if (customerEntityOptional.isPresent()) {
+            var customerEntity = customerEntityOptional.get();
             var currentAudit = customerEntity.getAudit();
             currentAudit.setUpdatedDate(LocalDateTime.now());
             customerEntity.setName(name);

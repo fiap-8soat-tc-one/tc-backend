@@ -8,7 +8,6 @@ import com.fiap.tc.adapter.repository.entity.embeddable.Audit;
 import com.fiap.tc.core.domain.model.Category;
 import com.fiap.tc.core.domain.requests.CategoryRequest;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class CategoryTemplates implements TemplateLoader {
@@ -39,13 +38,6 @@ public class CategoryTemplates implements TemplateLoader {
             {
                 add("name", random("Sandwich", "Sides", "Drink", "Dessert"));
                 add("description", random("Sandwich", "Sides", "Drink", "Dessert"));
-                add("active", true);
-            }
-        });
-
-        Fixture.of(Audit.class).addTemplate("valid", new Rule() {
-            {
-                add("registerDate", LocalDateTime.now());
                 add("active", true);
             }
         });

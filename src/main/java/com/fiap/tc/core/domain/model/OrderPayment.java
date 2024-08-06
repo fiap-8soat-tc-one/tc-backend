@@ -12,8 +12,9 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderPayment {
+public class
+OrderPayment {
     private UUID id;
     private UUID idOrder;
-    private PaymentResult status;
+    private PaymentResult result;
 }

@@ -8,12 +8,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface OrderRepository extends JpaRepository<OrderEntity, Integer> {
 
-    OrderEntity findByUuid(UUID uuid);
+    Optional<OrderEntity> findByUuid(UUID uuid);
 
     Page<OrderEntity> findByStatusIn(List<OrderStatus> status, Pageable pageable);
 }

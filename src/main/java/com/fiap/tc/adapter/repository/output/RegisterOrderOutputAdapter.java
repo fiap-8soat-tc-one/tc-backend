@@ -23,7 +23,6 @@ import java.util.UUID;
 
 import static java.lang.String.format;
 import static java.math.BigDecimal.valueOf;
-import static java.util.Objects.isNull;
 import static org.springframework.util.CollectionUtils.isEmpty;
 
 @Service
@@ -41,13 +40,15 @@ public class RegisterOrderOutputAdapter implements RegisterOrderOutputPort {
 
     @Override
     public Order save(UUID customerId, List<OrderItemRequest> itemsRequest) {
-        var customerEntity = customerRepository.findByUuid(customerId);
+        var customerEntityOptional = customerRepository.findByUuid(customerId);
 
         OrderEntity orderEntity = new OrderEntity();
 
         orderEntity.setAudit(Audit.builder().active(true).registerDate(LocalDateTime.now()).build());
         orderEntity.setUuid(UUID.randomUUID());
-        orderEntity.setCustomer(customerEntity);
+
+        customerEntityOptional.ifPresent(orderEntity::setCustomer);
+
         orderEntity.setStatus(OrderStatus.RECEIVED);
 
         add_items(itemsRequest, orderEntity);
@@ -68,11 +69,12 @@ public class RegisterOrderOutputAdapter implements RegisterOrderOutputPort {
 
     private OrderItemEntity buildOrderItemsEntity(OrderItemRequest itemRequest, OrderEntity orderEntity) {
 
-        var productEntity = productRepository.findByUuid(itemRequest.getIdProduct());
-        if (isNull(productEntity)) {
+        var productEntityOptional = productRepository.findByUuid(itemRequest.getIdProduct());
+        if (productEntityOptional.isEmpty()) {
             throw new NotFoundException(format("Product with id %s not found!", itemRequest.getIdProduct()));
         }
 
+        var productEntity = productEntityOptional.get();
         var orderItemEntity = new OrderItemEntity();
 
         orderItemEntity.setOrder(orderEntity);

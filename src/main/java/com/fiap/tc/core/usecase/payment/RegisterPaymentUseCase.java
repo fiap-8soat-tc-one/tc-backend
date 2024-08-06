@@ -20,7 +20,6 @@ public class RegisterPaymentUseCase implements RegisterPaymentInputPort {
     @Override
     public void register(OrderPaymentRequest orderPaymentRequest) {
         var orderPayment = registerPaymentOutputPort.saveOrUpdate(orderPaymentRequest);
-        updateStatusOrderOutputPort.update(orderPayment.getIdOrder(), orderPayment.getStatus().getOrderStatus());
-
+        updateStatusOrderOutputPort.update(orderPayment.getIdOrder(), orderPayment.getResult().getOrderStatus());
     }
 }
