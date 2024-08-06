@@ -60,6 +60,6 @@ app:
     name: tc_client
     secret: $2a$12$aNBFov6o75DX51iVqd5mM.Z5S.Wi7xHMS3OzcU5386TWRi28Y691W
     signKey: tech-challenge
-    tokenExpirationTime: 3600
-    refreshTokenExpirationTime: 43200
+    tokenExpirationTime: 86400
+    refreshTokenExpirationTime: 86400
 

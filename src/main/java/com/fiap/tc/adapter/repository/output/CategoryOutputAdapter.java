@@ -22,27 +22,27 @@ import static java.lang.String.format;
 @Service
 public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCategoryOutputPort,
         ListCategoriesOutputPort, DeleteCategoryOutputPort {
-    private final CategoryRepository categoryRepository;
+    private final CategoryRepository repository;
 
     public CategoryOutputAdapter(CategoryRepository categoryPersistenceRepository) {
-        this.categoryRepository = categoryPersistenceRepository;
+        this.repository = categoryPersistenceRepository;
     }
 
     @Override
     public void delete(UUID uuid) {
-        var categoryEntityOptional = categoryRepository.findByUuid(uuid);
-        categoryEntityOptional.ifPresent(categoryRepository::delete);
+        var categoryEntityOptional = repository.findByUuid(uuid);
+        categoryEntityOptional.ifPresent(repository::delete);
     }
 
     @Override
     public Page<Category> list(Pageable pageable) {
-        Page<CategoryEntity> categories = categoryRepository.findAll(pageable);
+        Page<CategoryEntity> categories = repository.findAll(pageable);
         return categories.map(CATEGORY_MAPPER::fromEntity);
     }
 
     @Override
     public Category load(UUID uuid) {
-        var categoryEntityOptional = categoryRepository.findByUuid(uuid);
+        var categoryEntityOptional = repository.findByUuid(uuid);
         if (categoryEntityOptional.isEmpty()) {
             throw new NotFoundException(format("Category with uuid %s not found!", uuid));
         }
@@ -51,18 +51,18 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
 
     @Override
     public Category saveOrUpdate(String name, String description, boolean active) {
-        var categoryEntityOptional = categoryRepository.findByName(name);
+        var categoryEntityOptional = repository.findByName(name);
         if (categoryEntityOptional.isPresent()) {
             var categoryEntity = categoryEntityOptional.get();
             categoryEntity.setName(name);
             categoryEntity.setDescription(description);
             categoryEntity.getAudit().setActive(active);
             categoryEntity.getAudit().setUpdatedDate(LocalDateTime.now());
-            return CATEGORY_MAPPER.fromEntity(categoryRepository.save(categoryEntity));
+            return CATEGORY_MAPPER.fromEntity(repository.save(categoryEntity));
 
         }
 
-        return CATEGORY_MAPPER.fromEntity(categoryRepository.save(buildCategoryEntity(name, description, active)));
+        return CATEGORY_MAPPER.fromEntity(repository.save(buildCategoryEntity(name, description, active)));
 
     }
 
