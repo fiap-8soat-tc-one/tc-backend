@@ -1,10 +1,10 @@
-package com.fiap.tc.common.constants;
+package com.fiap.tc.infrastructure.constants;
 
-import com.fiap.tc.core.domain.model.enums.OrderStatus;
+import com.fiap.tc.core.domain.enums.OrderStatus;
 
 import java.util.List;
 
-import static com.fiap.tc.core.domain.model.enums.OrderStatus.*;
+import static com.fiap.tc.core.domain.enums.OrderStatus.*;
 
 
 public class OrderConstants {
