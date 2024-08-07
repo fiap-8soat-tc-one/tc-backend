@@ -1,8 +1,8 @@
-package com.fiap.tc.infrastructure.adapter.repository.output;
+package com.fiap.tc.infrastructure.adapter.persistence.output;
 
-import com.fiap.tc.infrastructure.adapter.repository.OrderRepository;
-import com.fiap.tc.infrastructure.adapter.repository.builder.OrderHistoricBuilder;
-import com.fiap.tc.infrastructure.adapter.repository.mapper.base.MapperConstants;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderRepository;
+import com.fiap.tc.infrastructure.adapter.persistence.builder.OrderHistoricBuilder;
+import com.fiap.tc.infrastructure.adapter.persistence.mapper.base.MapperConstants;
 import com.fiap.tc.core.exceptions.NotFoundException;
 import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.enums.OrderStatus;

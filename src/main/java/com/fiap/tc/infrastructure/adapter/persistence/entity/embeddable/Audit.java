@@ -1,4 +1,4 @@
-package com.fiap.tc.infrastructure.adapter.repository.entity.embeddable;
+package com.fiap.tc.infrastructure.adapter.persistence.entity.embeddable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

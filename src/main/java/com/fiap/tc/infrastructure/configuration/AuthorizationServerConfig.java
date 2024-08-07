@@ -1,6 +1,6 @@
-package com.fiap.tc.common.config;
+package com.fiap.tc.infrastructure.configuration;
 
-import com.fiap.tc.common.config.token.CustomTokenEnhancer;
+import com.fiap.tc.infrastructure.configuration.token.CustomTokenEnhancer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

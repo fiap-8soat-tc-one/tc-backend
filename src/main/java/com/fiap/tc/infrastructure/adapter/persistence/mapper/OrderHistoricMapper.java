@@ -1,7 +1,7 @@
-package com.fiap.tc.infrastructure.adapter.repository.mapper;
+package com.fiap.tc.infrastructure.adapter.persistence.mapper;
 
-import com.fiap.tc.infrastructure.adapter.repository.entity.OrderHistoricEntity;
-import com.fiap.tc.infrastructure.adapter.repository.mapper.base.MapperEntity;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderHistoricEntity;
+import com.fiap.tc.infrastructure.adapter.persistence.mapper.base.MapperEntity;
 import com.fiap.tc.core.domain.model.OrderHistoric;
 import org.mapstruct.Mapper;
 

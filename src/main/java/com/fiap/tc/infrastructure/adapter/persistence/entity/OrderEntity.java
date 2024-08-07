@@ -1,6 +1,6 @@
-package com.fiap.tc.infrastructure.adapter.repository.entity;
+package com.fiap.tc.infrastructure.adapter.persistence.entity;
 
-import com.fiap.tc.infrastructure.adapter.repository.entity.embeddable.Audit;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.embeddable.Audit;
 import com.fiap.tc.core.domain.enums.OrderStatus;
 import lombok.Data;
 

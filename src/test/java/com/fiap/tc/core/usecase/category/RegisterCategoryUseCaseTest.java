@@ -1,9 +1,10 @@
 package com.fiap.tc.core.usecase.category;
 
 import br.com.six2six.fixturefactory.Fixture;
+import com.fiap.tc.application.usecase.category.RegisterCategoryUseCase;
 import com.fiap.tc.core.domain.model.Category;
-import com.fiap.tc.core.domain.requests.CategoryRequest;
-import com.fiap.tc.core.port.out.category.SaveCategoryOutputPort;
+import com.fiap.tc.infrastructure.adapter.web.requests.CategoryRequest;
+import com.fiap.tc.application.port.out.category.SaveCategoryOutputPort;
 import com.fiap.tc.util.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

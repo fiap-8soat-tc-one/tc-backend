@@ -1,4 +1,4 @@
-package com.fiap.tc.infrastructure.adapter.persistence;
+package com.fiap.tc.infrastructure.adapter.persistence.repositories;
 
 import com.fiap.tc.infrastructure.adapter.persistence.entity.security.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

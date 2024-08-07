@@ -1,4 +1,4 @@
-package com.fiap.tc.core.port.out.order;
+package com.fiap.tc.application.port.out.order;
 
 import com.fiap.tc.core.domain.enums.OrderStatus;
 

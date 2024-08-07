@@ -1,4 +1,4 @@
-package com.fiap.tc.core.usecase.order;
+package com.fiap.tc.application.usecase.order;
 
 import com.fiap.tc.core.domain.enums.OrderStatus;
 import com.fiap.tc.core.domain.model.OrderList;

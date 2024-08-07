@@ -1,4 +1,4 @@
-package com.fiap.tc.infrastructure.adapter.web.cors;
+package com.fiap.tc.infrastructure.configuration.cors;
 
 import com.fiap.tc.infrastructure.configuration.property.OriginApiProperty;
 import org.springframework.beans.factory.annotation.Autowired;

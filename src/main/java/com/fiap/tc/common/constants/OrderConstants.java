@@ -1,4 +1,4 @@
-package com.fiap.tc.infrastructure.constants;
+package com.fiap.tc.common.constants;
 
 import com.fiap.tc.core.domain.enums.OrderStatus;
 

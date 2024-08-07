@@ -1,13 +1,13 @@
-package com.fiap.tc.infrastructure.adapter.repository.output;
+package com.fiap.tc.infrastructure.adapter.persistence.output;
 
-import com.fiap.tc.infrastructure.adapter.repository.CustomerRepository;
-import com.fiap.tc.infrastructure.adapter.repository.OrderRepository;
-import com.fiap.tc.infrastructure.adapter.repository.ProductRepository;
-import com.fiap.tc.infrastructure.adapter.repository.builder.OrderHistoricBuilder;
-import com.fiap.tc.infrastructure.adapter.repository.entity.OrderEntity;
-import com.fiap.tc.infrastructure.adapter.repository.entity.OrderItemEntity;
-import com.fiap.tc.infrastructure.adapter.repository.entity.embeddable.Audit;
-import com.fiap.tc.infrastructure.adapter.repository.mapper.base.MapperConstants;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.CustomerRepository;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderRepository;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.ProductRepository;
+import com.fiap.tc.infrastructure.adapter.persistence.builder.OrderHistoricBuilder;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderEntity;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderItemEntity;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.embeddable.Audit;
+import com.fiap.tc.infrastructure.adapter.persistence.mapper.base.MapperConstants;
 import com.fiap.tc.core.exceptions.NotFoundException;
 import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.enums.OrderStatus;

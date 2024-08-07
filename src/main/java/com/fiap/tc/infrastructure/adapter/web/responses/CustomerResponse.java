@@ -1,4 +1,4 @@
-package com.fiap.tc.infrastructure.adapter.web.requests.response;
+package com.fiap.tc.infrastructure.adapter.web.responses;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

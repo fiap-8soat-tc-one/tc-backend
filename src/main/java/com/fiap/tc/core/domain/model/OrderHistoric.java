@@ -1,6 +1,6 @@
 package com.fiap.tc.core.domain.model;
 
-import com.fiap.tc.core.domain.model.enums.OrderStatus;
+import com.fiap.tc.core.domain.enums.OrderStatus;
 import lombok.Data;
 
 import java.time.LocalDateTime;

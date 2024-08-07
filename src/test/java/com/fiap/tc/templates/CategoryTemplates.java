@@ -3,10 +3,10 @@ package com.fiap.tc.templates;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.fiap.tc.adapter.repository.entity.CategoryEntity;
-import com.fiap.tc.adapter.repository.entity.embeddable.Audit;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.CategoryEntity;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.embeddable.Audit;
 import com.fiap.tc.core.domain.model.Category;
-import com.fiap.tc.core.domain.requests.CategoryRequest;
+import com.fiap.tc.infrastructure.adapter.web.requests.CategoryRequest;
 
 import java.util.UUID;
 

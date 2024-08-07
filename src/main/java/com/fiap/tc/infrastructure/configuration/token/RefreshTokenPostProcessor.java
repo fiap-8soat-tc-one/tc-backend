@@ -1,4 +1,4 @@
-package com.fiap.tc.infrastructure.security.token;
+package com.fiap.tc.infrastructure.configuration.token;
 
 import com.fiap.tc.infrastructure.configuration.property.OriginApiProperty;
 import org.springframework.beans.factory.annotation.Autowired;

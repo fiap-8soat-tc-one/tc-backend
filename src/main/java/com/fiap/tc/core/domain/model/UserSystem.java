@@ -1,4 +1,4 @@
-package com.fiap.tc.core.domain.model.security;
+package com.fiap.tc.core.domain.model;
 
 import lombok.Data;
 

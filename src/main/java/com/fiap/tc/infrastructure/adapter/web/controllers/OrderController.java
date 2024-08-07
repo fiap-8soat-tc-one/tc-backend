@@ -1,11 +1,11 @@
 package com.fiap.tc.infrastructure.adapter.web.controllers;
 
 import com.fiap.tc.infrastructure.adapter.web.URLMapping;
-import com.fiap.tc.infrastructure.adapter.web.response.DefaultResponse;
+import com.fiap.tc.infrastructure.adapter.web.responses.DefaultResponse;
 import com.fiap.tc.infrastructure.adapter.web.requests.OrderRequest;
 import com.fiap.tc.infrastructure.adapter.web.requests.OrderStatusRequest;
-import com.fiap.tc.infrastructure.adapter.web.response.OrderListResponse;
-import com.fiap.tc.infrastructure.adapter.web.response.OrderResponse;
+import com.fiap.tc.infrastructure.adapter.web.responses.OrderListResponse;
+import com.fiap.tc.infrastructure.adapter.web.responses.OrderResponse;
 import com.fiap.tc.core.domain.model.OrderList;
 import com.fiap.tc.application.port.in.order.ListOrdersReadyPreparingInputPort;
 import com.fiap.tc.application.port.in.order.LoadOrderInputPort;

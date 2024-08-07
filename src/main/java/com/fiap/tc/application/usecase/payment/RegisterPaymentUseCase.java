@@ -1,4 +1,4 @@
-package com.fiap.tc.core.usecase.payment;
+package com.fiap.tc.application.usecase.payment;
 
 import com.fiap.tc.infrastructure.adapter.web.requests.OrderPaymentRequest;
 import com.fiap.tc.application.port.in.payment.RegisterPaymentInputPort;

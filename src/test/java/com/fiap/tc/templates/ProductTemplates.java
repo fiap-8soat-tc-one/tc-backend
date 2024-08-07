@@ -3,9 +3,9 @@ package com.fiap.tc.templates;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.fiap.tc.adapter.repository.entity.CategoryEntity;
-import com.fiap.tc.adapter.repository.entity.ProductEntity;
-import com.fiap.tc.adapter.repository.entity.embeddable.Audit;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.CategoryEntity;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.ProductEntity;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.embeddable.Audit;
 
 import java.math.BigDecimal;
 import java.util.UUID;

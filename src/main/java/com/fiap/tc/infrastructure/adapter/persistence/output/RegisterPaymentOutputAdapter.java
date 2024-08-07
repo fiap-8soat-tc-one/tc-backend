@@ -1,11 +1,11 @@
-package com.fiap.tc.infrastructure.adapter.repository.output;
+package com.fiap.tc.infrastructure.adapter.persistence.output;
 
-import com.fiap.tc.infrastructure.adapter.repository.OrderPaymentRepository;
-import com.fiap.tc.infrastructure.adapter.repository.OrderRepository;
-import com.fiap.tc.infrastructure.adapter.repository.builder.OrderPaymentHistoricBuilder;
-import com.fiap.tc.infrastructure.adapter.repository.entity.OrderPaymentEntity;
-import com.fiap.tc.infrastructure.adapter.repository.entity.embeddable.Audit;
-import com.fiap.tc.infrastructure.adapter.repository.mapper.base.MapperConstants;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderPaymentRepository;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderRepository;
+import com.fiap.tc.infrastructure.adapter.persistence.builder.OrderPaymentHistoricBuilder;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderPaymentEntity;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.embeddable.Audit;
+import com.fiap.tc.infrastructure.adapter.persistence.mapper.base.MapperConstants;
 import com.fiap.tc.core.exceptions.NotFoundException;
 import com.fiap.tc.core.domain.model.OrderPayment;
 import com.fiap.tc.core.domain.enums.PaymentResult;

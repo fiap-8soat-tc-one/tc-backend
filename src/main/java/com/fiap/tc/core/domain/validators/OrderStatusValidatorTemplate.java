@@ -1,7 +1,7 @@
-package com.fiap.tc.core.domain.behavior.order.status.validator;
+package com.fiap.tc.core.domain.validators;
 
-import com.fiap.tc.core.domain.exception.BadRequestException;
 import com.fiap.tc.core.domain.enums.OrderStatus;
+import com.fiap.tc.core.exceptions.BadRequestException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;

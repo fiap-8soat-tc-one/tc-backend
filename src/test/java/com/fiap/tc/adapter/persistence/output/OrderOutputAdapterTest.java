@@ -1,4 +1,4 @@
-package com.fiap.tc.adapter.repository.output;
+package com.fiap.tc.adapter.persistence.output;
 
 import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderRepository;

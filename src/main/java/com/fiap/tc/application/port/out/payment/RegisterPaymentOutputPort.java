@@ -1,4 +1,4 @@
-package com.fiap.tc.core.port.out.payment;
+package com.fiap.tc.application.port.out.payment;
 
 import com.fiap.tc.core.domain.model.OrderPayment;
 import com.fiap.tc.infrastructure.adapter.web.requests.OrderPaymentRequest;

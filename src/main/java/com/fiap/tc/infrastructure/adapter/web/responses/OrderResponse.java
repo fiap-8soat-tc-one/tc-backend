@@ -1,4 +1,4 @@
-package com.fiap.tc.infrastructure.adapter.web.requests.response;
+package com.fiap.tc.infrastructure.adapter.web.responses;
 
 import com.fiap.tc.core.domain.model.Order;
 import lombok.AllArgsConstructor;

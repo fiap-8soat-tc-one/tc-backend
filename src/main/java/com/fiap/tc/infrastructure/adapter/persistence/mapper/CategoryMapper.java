@@ -1,7 +1,7 @@
-package com.fiap.tc.infrastructure.adapter.repository.mapper;
+package com.fiap.tc.infrastructure.adapter.persistence.mapper;
 
-import com.fiap.tc.infrastructure.adapter.repository.entity.CategoryEntity;
-import com.fiap.tc.infrastructure.adapter.repository.mapper.base.MapperEntity;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.CategoryEntity;
+import com.fiap.tc.infrastructure.adapter.persistence.mapper.base.MapperEntity;
 import com.fiap.tc.core.domain.model.Category;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

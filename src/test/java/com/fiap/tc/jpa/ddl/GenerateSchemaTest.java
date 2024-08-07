@@ -30,7 +30,7 @@ public class GenerateSchemaTest {
                         .build()
         );
 
-        Reflections reflections = new Reflections("com.fiap.tc.adapter.repository.entity",
+        Reflections reflections = new Reflections("com.fiap.tc.infrastructure.adapter.persistence.entity",
                 new SubTypesScanner(false));
 
         Set<String> entityNames = reflections.getAllTypes();

@@ -1,4 +1,4 @@
-package com.fiap.tc.core.usecase.customer;
+package com.fiap.tc.application.usecase.customer;
 
 import com.fiap.tc.core.domain.model.Customer;
 import com.fiap.tc.infrastructure.adapter.web.requests.CustomerRequest;

@@ -1,4 +1,4 @@
-package com.fiap.tc.core.usecase.customer;
+package com.fiap.tc.application.usecase.customer;
 
 import com.fiap.tc.application.port.in.customer.DeleteCustomerInputPort;
 import com.fiap.tc.application.port.out.customer.DeleteCustomerOutputPort;

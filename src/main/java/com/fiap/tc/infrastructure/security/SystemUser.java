@@ -1,6 +1,6 @@
-package com.fiap.tc.common.security;
+package com.fiap.tc.infrastructure.security;
 
-import com.fiap.tc.infrastructure.adapter.repository.entity.security.UserEntity;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.security.UserEntity;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

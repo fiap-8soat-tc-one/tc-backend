@@ -1,7 +1,7 @@
 package com.fiap.tc.infrastructure.adapter.web.controllers;
 
 import com.fiap.tc.infrastructure.adapter.web.URLMapping;
-import com.fiap.tc.infrastructure.adapter.web.response.CustomerResponse;
+import com.fiap.tc.infrastructure.adapter.web.responses.CustomerResponse;
 import com.fiap.tc.core.domain.model.Customer;
 import com.fiap.tc.infrastructure.adapter.web.requests.CustomerRequest;
 import com.fiap.tc.application.port.in.customer.DeleteCustomerInputPort;

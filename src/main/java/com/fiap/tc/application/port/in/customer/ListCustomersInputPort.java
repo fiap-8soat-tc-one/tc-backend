@@ -1,4 +1,4 @@
-package com.fiap.tc.core.port.in.customer;
+package com.fiap.tc.application.port.in.customer;
 
 import com.fiap.tc.core.domain.model.Customer;
 import org.springframework.data.domain.Page;

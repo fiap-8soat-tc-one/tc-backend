@@ -1,4 +1,4 @@
-package com.fiap.tc.common.config.serialize;
+package com.fiap.tc.infrastructure.configuration.serialize;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;

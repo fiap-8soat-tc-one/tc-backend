@@ -1,4 +1,4 @@
-package com.fiap.tc.core.usecase.category;
+package com.fiap.tc.application.usecase.category;
 
 import com.fiap.tc.application.port.in.category.DeleteCategoryInputPort;
 import com.fiap.tc.application.port.out.category.DeleteCategoryOutputPort;

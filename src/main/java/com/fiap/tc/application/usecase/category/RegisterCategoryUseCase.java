@@ -1,4 +1,4 @@
-package com.fiap.tc.core.usecase.category;
+package com.fiap.tc.application.usecase.category;
 
 import com.fiap.tc.core.domain.model.Category;
 import com.fiap.tc.infrastructure.adapter.web.requests.CategoryRequest;

@@ -1,10 +1,9 @@
-package com.fiap.tc.infrastructure.adapter.web.requests.response;
+package com.fiap.tc.infrastructure.adapter.web.responses;
 
 import com.fiap.tc.core.domain.enums.OrderStatus;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 

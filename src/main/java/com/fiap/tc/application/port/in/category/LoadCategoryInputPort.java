@@ -1,4 +1,4 @@
-package com.fiap.tc.core.port.in.category;
+package com.fiap.tc.application.port.in.category;
 
 import com.fiap.tc.core.domain.model.Category;
 

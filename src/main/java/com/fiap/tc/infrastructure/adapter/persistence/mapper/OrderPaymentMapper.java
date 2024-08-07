@@ -1,7 +1,7 @@
-package com.fiap.tc.infrastructure.adapter.repository.mapper;
+package com.fiap.tc.infrastructure.adapter.persistence.mapper;
 
-import com.fiap.tc.infrastructure.adapter.repository.entity.OrderPaymentEntity;
-import com.fiap.tc.infrastructure.adapter.repository.mapper.base.MapperEntity;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderPaymentEntity;
+import com.fiap.tc.infrastructure.adapter.persistence.mapper.base.MapperEntity;
 import com.fiap.tc.infrastructure.adapter.web.requests.OrderPaymentRequest;
 import org.mapstruct.Mapper;
 

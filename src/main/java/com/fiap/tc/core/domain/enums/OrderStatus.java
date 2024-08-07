@@ -1,6 +1,6 @@
-package com.fiap.tc.core.domain.model.enums;
+package com.fiap.tc.core.domain.enums;
 
-import com.fiap.tc.core.domain.behavior.order.status.validator.*;
+import com.fiap.tc.core.domain.validators.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

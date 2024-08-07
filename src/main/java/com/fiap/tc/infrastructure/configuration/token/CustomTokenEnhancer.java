@@ -1,6 +1,6 @@
-package com.fiap.tc.common.config.token;
+package com.fiap.tc.infrastructure.configuration.token;
 
-import com.fiap.tc.common.security.SystemUser;
+import com.fiap.tc.infrastructure.security.SystemUser;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;

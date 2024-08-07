@@ -1,7 +1,8 @@
 package com.fiap.tc.core.usecase.order;
 
-import com.fiap.tc.core.domain.model.enums.OrderStatus;
-import com.fiap.tc.core.port.out.order.ListOrdersReadyPreparingOutputPort;
+import com.fiap.tc.application.usecase.order.ListOrdersReadyPreparingUseCase;
+import com.fiap.tc.core.domain.enums.OrderStatus;
+import com.fiap.tc.application.port.out.order.ListOrdersReadyPreparingOutputPort;
 import com.fiap.tc.util.BaseTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

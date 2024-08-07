@@ -1,4 +1,4 @@
-package com.fiap.tc.common.config;
+package com.fiap.tc.infrastructure.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

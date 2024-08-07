@@ -1,4 +1,4 @@
-package com.fiap.tc.core.usecase.order;
+package com.fiap.tc.application.usecase.order;
 
 import com.fiap.tc.infrastructure.adapter.web.requests.OrderStatusRequest;
 import com.fiap.tc.application.port.in.order.UpdateStatusOrderInputPort;

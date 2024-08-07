@@ -1,4 +1,4 @@
-package com.fiap.tc.infrastructure.adapter.repository.entity.security;
+package com.fiap.tc.infrastructure.adapter.persistence.entity.security;
 
 import com.fiap.tc.core.domain.enums.ProfileSystem;
 import lombok.Data;

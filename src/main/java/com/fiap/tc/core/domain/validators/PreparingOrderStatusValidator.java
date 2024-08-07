@@ -1,4 +1,4 @@
-package com.fiap.tc.core.domain.behavior.order.status.validator;
+package com.fiap.tc.core.domain.validators;
 
 import com.fiap.tc.core.domain.enums.OrderStatus;
 
