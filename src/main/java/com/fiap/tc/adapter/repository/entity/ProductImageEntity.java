@@ -27,8 +27,6 @@ public class ProductImageEntity {
 
     private String image;
 
-    private String checksum;
-
     @Embedded
     private Audit audit;
 

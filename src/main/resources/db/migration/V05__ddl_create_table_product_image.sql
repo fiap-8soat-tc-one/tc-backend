@@ -7,7 +7,6 @@ create table product_image (
     updated_date timestamp,
     description varchar(255),
     image text,
-    checksum varchar(255),
     name varchar(255),
     uuid uuid,
     id_product int4 not null,

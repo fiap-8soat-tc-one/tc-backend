@@ -6,8 +6,7 @@ import com.fiap.tc.adapter.repository.entity.ProductEntity;
 import com.fiap.tc.adapter.repository.entity.ProductImageEntity;
 import com.fiap.tc.adapter.repository.entity.embeddable.Audit;
 import com.fiap.tc.adapter.repository.mapper.base.MapperConstants;
-import com.fiap.tc.common.config.UploadConfig;
-import com.fiap.tc.core.domain.exception.BadRequestException;
+import com.fiap.tc.adapter.repository.output.validator.upload.ProductImageValidatorExecutor;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Product;
 import com.fiap.tc.core.domain.model.ProductImage;
@@ -16,7 +15,10 @@ import com.fiap.tc.core.port.out.product.RegisterProductImagesOutputPort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -26,14 +28,14 @@ import static org.springframework.util.CollectionUtils.isEmpty;
 @Service
 public class ProductImagesOutputAdapter implements RegisterProductImagesOutputPort, DeleteProductImagesOutputPort {
 
-    private final UploadConfig uploadConfig;
+    private final ProductImageValidatorExecutor validator;
     private final ProductRepository productRepository;
     private final ProductImageRepository productImageRepository;
 
-    public ProductImagesOutputAdapter(UploadConfig uploadConfig,
+    public ProductImagesOutputAdapter(ProductImageValidatorExecutor productImageValidatorProcessor,
                                       ProductRepository productRepository,
                                       ProductImageRepository productImageRepository) {
-        this.uploadConfig = uploadConfig;
+        this.validator = productImageValidatorProcessor;
         this.productRepository = productRepository;
         this.productImageRepository = productImageRepository;
     }
@@ -60,7 +62,7 @@ public class ProductImagesOutputAdapter implements RegisterProductImagesOutputPo
 
         var productEntity = validateAndGetProduct(idProduct);
 
-        validateImages(productEntity, images);
+        validator.execute(productEntity, images);
 
         return uploadImagesAndSave(productEntity, images);
 
@@ -92,45 +94,4 @@ public class ProductImagesOutputAdapter implements RegisterProductImagesOutputPo
 
         return productImageEntity;
     }
-
-    private void validateImages(ProductEntity productEntity, List<ProductImage> images) {
-        validateMaxImagesByProduct(productEntity, images);
-        validateImagesMaxLengthAndMimeTypes(images);
-    }
-
-    private void validateImagesMaxLengthAndMimeTypes(List<ProductImage> images) {
-        List<String> errors = new ArrayList<>();
-        images.forEach(productImage -> validateImage(productImage, errors));
-        if (!errors.isEmpty()) {
-            String errorMessage = errors.stream().map(String::valueOf).collect(Collectors.joining(","));
-            throw new BadRequestException(errorMessage, errors);
-        }
-    }
-
-    private void validateMaxImagesByProduct(ProductEntity productEntity, List<ProductImage> images) {
-        if (!isEmpty(productEntity.getImages())) {
-            var totalImagesPreview = productEntity.getImages().size() + images.size();
-            if (totalImagesPreview > uploadConfig.getMaxProductImages()) {
-                throw new BadRequestException(format("Product id %s max product images reached %d",
-                        productEntity.getUuid(),
-                        uploadConfig.getMaxProductImages()));
-            }
-        }
-    }
-
-    private void validateImage(ProductImage productImage, List<String> errors) {
-        var imageBase64 = productImage.getImage().split(",");
-        var mimeType = imageBase64[0];
-        var imageBase64Length = imageBase64[1].length();
-
-        if (!uploadConfig.getMimeTypes().contains(mimeType)) {
-            errors.add(format("Invalid image extension for '%s' allowed %s", productImage.getName(), uploadConfig.getMimeTypes()));
-        }
-        if (imageBase64Length > uploadConfig.getMaxLength()) {
-            errors.add(format("Invalid image for '%s' max length %s KB", productImage.getName(),
-                    uploadConfig.getMaxLength() / 1000));
-        }
-
-    }
-
 }
