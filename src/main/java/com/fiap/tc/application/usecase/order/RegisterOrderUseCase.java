@@ -1,10 +1,10 @@
 package com.fiap.tc.application.usecase.order;
 
+import com.fiap.tc.application.port.in.order.RegisterOrderInputPort;
+import com.fiap.tc.application.port.out.order.RegisterOrderOutputPort;
 import com.fiap.tc.common.util.QRCodeGenerator;
 import com.fiap.tc.infrastructure.adapter.web.requests.OrderRequest;
 import com.fiap.tc.infrastructure.adapter.web.responses.OrderResponse;
-import com.fiap.tc.application.port.in.order.RegisterOrderInputPort;
-import com.fiap.tc.application.port.out.order.RegisterOrderOutputPort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

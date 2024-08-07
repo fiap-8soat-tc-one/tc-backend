@@ -1,15 +1,15 @@
 package com.fiap.tc.infrastructure.adapter.persistence.output;
 
-import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderRepository;
-import com.fiap.tc.infrastructure.adapter.persistence.builder.OrderHistoricBuilder;
-import com.fiap.tc.infrastructure.adapter.persistence.mapper.base.MapperConstants;
-import com.fiap.tc.core.exceptions.NotFoundException;
-import com.fiap.tc.core.domain.model.Order;
-import com.fiap.tc.core.domain.enums.OrderStatus;
-import com.fiap.tc.core.domain.model.OrderList;
 import com.fiap.tc.application.port.out.order.ListOrdersReadyPreparingOutputPort;
 import com.fiap.tc.application.port.out.order.LoadOrderOutputPort;
 import com.fiap.tc.application.port.out.order.UpdateStatusOrderOutputPort;
+import com.fiap.tc.core.domain.enums.OrderStatus;
+import com.fiap.tc.core.domain.model.Order;
+import com.fiap.tc.core.domain.model.OrderList;
+import com.fiap.tc.core.exceptions.NotFoundException;
+import com.fiap.tc.infrastructure.adapter.persistence.builder.OrderHistoricBuilder;
+import com.fiap.tc.infrastructure.adapter.persistence.mapper.base.MapperConstants;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

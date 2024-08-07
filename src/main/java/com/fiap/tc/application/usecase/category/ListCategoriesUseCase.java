@@ -1,8 +1,8 @@
 package com.fiap.tc.application.usecase.category;
 
-import com.fiap.tc.core.domain.model.Category;
 import com.fiap.tc.application.port.in.category.ListCategoriesInputPort;
 import com.fiap.tc.application.port.out.category.ListCategoriesOutputPort;
+import com.fiap.tc.core.domain.model.Category;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

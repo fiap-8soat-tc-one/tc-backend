@@ -1,11 +1,11 @@
 package com.fiap.tc.infrastructure.adapter.persistence.mapper;
 
-import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderEntity;
-import com.fiap.tc.infrastructure.adapter.persistence.mapper.base.MapperEntity;
 import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.model.OrderHistoric;
 import com.fiap.tc.core.domain.model.OrderItem;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderEntity;
 import com.fiap.tc.infrastructure.adapter.persistence.mapper.base.MapperConstants;
+import com.fiap.tc.infrastructure.adapter.persistence.mapper.base.MapperEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

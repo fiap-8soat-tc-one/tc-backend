@@ -1,10 +1,10 @@
 package com.fiap.tc.adapter.persistence.output;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.infrastructure.adapter.persistence.repositories.CategoryRepository;
-import com.fiap.tc.infrastructure.adapter.persistence.entity.CategoryEntity;
 import com.fiap.tc.core.exceptions.NotFoundException;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.CategoryEntity;
 import com.fiap.tc.infrastructure.adapter.persistence.output.CategoryOutputAdapter;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.CategoryRepository;
 import com.fiap.tc.infrastructure.adapter.web.requests.CategoryRequest;
 import com.fiap.tc.util.BaseTest;
 import org.junit.jupiter.api.Assertions;

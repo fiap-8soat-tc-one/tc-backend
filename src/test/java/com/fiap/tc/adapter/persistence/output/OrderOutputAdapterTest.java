@@ -1,11 +1,11 @@
 package com.fiap.tc.adapter.persistence.output;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderRepository;
-import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderEntity;
-import com.fiap.tc.core.exceptions.NotFoundException;
 import com.fiap.tc.core.domain.enums.OrderStatus;
+import com.fiap.tc.core.exceptions.NotFoundException;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderEntity;
 import com.fiap.tc.infrastructure.adapter.persistence.output.OrderOutputAdapter;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderRepository;
 import com.fiap.tc.infrastructure.adapter.web.requests.OrderStatusRequest;
 import com.fiap.tc.util.BaseTest;
 import org.junit.jupiter.api.Assertions;

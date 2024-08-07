@@ -1,9 +1,9 @@
 package com.fiap.tc.application.usecase.order;
 
-import com.fiap.tc.core.domain.enums.OrderStatus;
-import com.fiap.tc.core.domain.model.OrderList;
 import com.fiap.tc.application.port.in.order.ListOrdersReadyPreparingInputPort;
 import com.fiap.tc.application.port.out.order.ListOrdersReadyPreparingOutputPort;
+import com.fiap.tc.core.domain.enums.OrderStatus;
+import com.fiap.tc.core.domain.model.OrderList;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

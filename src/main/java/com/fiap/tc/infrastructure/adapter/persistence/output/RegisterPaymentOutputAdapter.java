@@ -1,16 +1,16 @@
 package com.fiap.tc.infrastructure.adapter.persistence.output;
 
-import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderPaymentRepository;
-import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderRepository;
+import com.fiap.tc.application.port.out.payment.RegisterPaymentOutputPort;
+import com.fiap.tc.core.domain.enums.PaymentResult;
+import com.fiap.tc.core.domain.model.OrderPayment;
+import com.fiap.tc.core.exceptions.NotFoundException;
 import com.fiap.tc.infrastructure.adapter.persistence.builder.OrderPaymentHistoricBuilder;
 import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderPaymentEntity;
 import com.fiap.tc.infrastructure.adapter.persistence.entity.embeddable.Audit;
 import com.fiap.tc.infrastructure.adapter.persistence.mapper.base.MapperConstants;
-import com.fiap.tc.core.exceptions.NotFoundException;
-import com.fiap.tc.core.domain.model.OrderPayment;
-import com.fiap.tc.core.domain.enums.PaymentResult;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderPaymentRepository;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderRepository;
 import com.fiap.tc.infrastructure.adapter.web.requests.OrderPaymentRequest;
-import com.fiap.tc.application.port.out.payment.RegisterPaymentOutputPort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

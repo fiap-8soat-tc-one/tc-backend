@@ -1,7 +1,7 @@
 package com.fiap.tc.infrastructure.adapter.persistence.entity;
 
-import com.fiap.tc.infrastructure.adapter.persistence.entity.embeddable.Audit;
 import com.fiap.tc.core.domain.enums.OrderStatus;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.embeddable.Audit;
 import lombok.Data;
 
 import javax.persistence.*;

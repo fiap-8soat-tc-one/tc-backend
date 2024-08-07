@@ -1,10 +1,10 @@
 package com.fiap.tc.infrastructure.adapter.persistence.mapper;
 
+import com.fiap.tc.core.domain.enums.OrderStatus;
+import com.fiap.tc.core.domain.model.OrderList;
 import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderEntity;
 import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderHistoricEntity;
 import com.fiap.tc.infrastructure.adapter.persistence.mapper.base.MapperEntity;
-import com.fiap.tc.core.domain.enums.OrderStatus;
-import com.fiap.tc.core.domain.model.OrderList;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

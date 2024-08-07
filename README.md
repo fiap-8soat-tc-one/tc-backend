@@ -2,16 +2,28 @@
 
 ## O Desafio :triangular_flag_on_post:
 
-Uma lanchonete de bairro está em expansão devido ao seu grande sucesso. Entretanto, com essa expansão e a ausência de um sistema de controle de pedidos, o atendimento aos clientes pode tornar-se caótico e confuso. Por exemplo, imagine que um cliente faça um pedido complexo, como um hambúrguer personalizado com ingredientes específicos, acompanhado de batatas fritas e uma bebida. O atendente pode anotar o pedido em um papel e entregá-lo à cozinha, mas não há garantia de que o pedido será preparado corretamente.
+Uma lanchonete de bairro está em expansão devido ao seu grande sucesso. Entretanto, com essa expansão e a ausência de um
+sistema de controle de pedidos, o atendimento aos clientes pode tornar-se caótico e confuso. Por exemplo, imagine que um
+cliente faça um pedido complexo, como um hambúrguer personalizado com ingredientes específicos, acompanhado de batatas
+fritas e uma bebida. O atendente pode anotar o pedido em um papel e entregá-lo à cozinha, mas não há garantia de que o
+pedido será preparado corretamente.
 
-Sem um sistema de controle de pedidos, pode haver confusão entre os atendentes e a cozinha, resultando em atrasos na preparação e entrega dos pedidos. Pedidos podem ser perdidos, mal interpretados ou esquecidos, levando à insatisfação dos clientes e à perda de negócios.
+Sem um sistema de controle de pedidos, pode haver confusão entre os atendentes e a cozinha, resultando em atrasos na
+preparação e entrega dos pedidos. Pedidos podem ser perdidos, mal interpretados ou esquecidos, levando à insatisfação
+dos clientes e à perda de negócios.
 
-Em resumo, um sistema de controle de pedidos é essencial para garantir que a lanchonete possa atender os clientes de maneira eficiente, gerenciando seus pedidos e estoques de forma adequada. Sem ele, a expansão da lanchonete pode não ser bem-sucedida, resultando em clientes insatisfeitos e impactando negativamente os negócios.
+Em resumo, um sistema de controle de pedidos é essencial para garantir que a lanchonete possa atender os clientes de
+maneira eficiente, gerenciando seus pedidos e estoques de forma adequada. Sem ele, a expansão da lanchonete pode não ser
+bem-sucedida, resultando em clientes insatisfeitos e impactando negativamente os negócios.
 
-Para solucionar o problema, a lanchonete irá investir em um sistema de autoatendimento de fast food, composto por uma série de dispositivos e interfaces que permitem aos clientes selecionar e fazer pedidos sem precisar interagir com um atendente, com as seguintes funcionalidades:
+Para solucionar o problema, a lanchonete irá investir em um sistema de autoatendimento de fast food, composto por uma
+série de dispositivos e interfaces que permitem aos clientes selecionar e fazer pedidos sem precisar interagir com um
+atendente, com as seguintes funcionalidades:
 
 1. **Pedido**
-    - Os clientes são apresentados a uma interface de seleção na qual podem optar por se identificarem via CPF, se cadastrarem com nome e e-mail, ou não se identificar. A montagem do combo segue a sequência a seguir, sendo todas as etapas opcionais:
+    - Os clientes são apresentados a uma interface de seleção na qual podem optar por se identificarem via CPF, se
+      cadastrarem com nome e e-mail, ou não se identificar. A montagem do combo segue a sequência a seguir, sendo todas
+      as etapas opcionais:
         - Lanche
         - Acompanhamento
         - Bebida
@@ -20,18 +32,21 @@ Para solucionar o problema, a lanchonete irá investir em um sistema de autoaten
 **Em cada etapa, são exibidos o nome, descrição e preço de cada produto.**
 
 2. **Pagamento**
-    - O sistema deverá possuir uma opção de pagamento integrada para o MVP, sendo a forma de pagamento oferecida via QRCode do Mercado Pago.
+    - O sistema deverá possuir uma opção de pagamento integrada para o MVP, sendo a forma de pagamento oferecida via
+      QRCode do Mercado Pago.
     - Nesse MVP, será realizado um `fake checkout` para o fluxo de pagamento, sem integração direta com o Mercado Pago.
 
 3. **Acompanhamento**
-    - Uma vez que o pedido é confirmado e pago, ele é enviado para a cozinha para ser preparado. Simultaneamente, deve aparecer em um monitor para o cliente acompanhar o progresso do seu pedido com as seguintes etapas:
+    - Uma vez que o pedido é confirmado e pago, ele é enviado para a cozinha para ser preparado. Simultaneamente, deve
+      aparecer em um monitor para o cliente acompanhar o progresso do seu pedido com as seguintes etapas:
         - Recebido
         - Em preparação
         - Pronto
         - Finalizado
 
 4. **Entrega**
-    - Quando o pedido estiver pronto, o sistema deverá notificar o cliente que ele está disponível para retirada. Ao ser retirado, o pedido deve ser atualizado para o status finalizado.
+    - Quando o pedido estiver pronto, o sistema deverá notificar o cliente que ele está disponível para retirada. Ao ser
+      retirado, o pedido deve ser atualizado para o status finalizado.
 
 **Além das etapas do cliente, o estabelecimento precisa de um acesso administrativo:**
 
@@ -39,7 +54,8 @@ Para solucionar o problema, a lanchonete irá investir em um sistema de autoaten
     - Com a identificação dos clientes, o estabelecimento pode trabalhar em campanhas promocionais.
 
 2. **Gerenciar produtos e categorias**
-    - Os produtos dispostos para escolha do cliente serão gerenciados pelo estabelecimento, definindo nome, categoria, preço, descrição e imagens. Para esse sistema, teremos categorias fixas:
+    - Os produtos dispostos para escolha do cliente serão gerenciados pelo estabelecimento, definindo nome, categoria,
+      preço, descrição e imagens. Para esse sistema, teremos categorias fixas:
         - Lanche
         - Acompanhamento
         - Bebida
@@ -48,7 +64,8 @@ Para solucionar o problema, a lanchonete irá investir em um sistema de autoaten
 3. **Acompanhamento de pedidos**
     - Deve ser possível acompanhar os pedidos em andamento e o tempo de espera de cada pedido.
 
-As informações dispostas no sistema de pedidos precisarão ser gerenciadas pelo estabelecimento através de um painel administrativo.
+As informações dispostas no sistema de pedidos precisarão ser gerenciadas pelo estabelecimento através de um painel
+administrativo.
 
 ## Equipe :construction_worker:
 
@@ -76,7 +93,8 @@ As informações dispostas no sistema de pedidos precisarão ser gerenciadas pel
 
 ## Configuração do Ambiente Docker/Docker Compose :heavy_check_mark:
 
-- **A aplicação está configurada para o Flyway gerar as tabelas no PostgreSQL. Abra o DBeaver ou a ferramenta de sua escolha e verifique se as tabelas do sistema foram criadas.**
+- **A aplicação está configurada para o Flyway gerar as tabelas no PostgreSQL. Abra o DBeaver ou a ferramenta de sua
+  escolha e verifique se as tabelas do sistema foram criadas.**
 
 [Clique aqui para ser redirecionado para a wiki de configuração do ambiente Docker](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/docs/docker/README.md)
 
@@ -84,11 +102,14 @@ As informações dispostas no sistema de pedidos precisarão ser gerenciadas pel
 
 - **Para todos os endpoints privados, é necessário gerar o token via endpoint login(POST /oauth/token)**
 
-- **É possível acessar o Swagger/Open API da aplicação pela seguinte URL: `http://localhost:8080/swagger-ui/index.html`**
+- **É possível acessar o Swagger/Open API da aplicação pela seguinte URL: `http://localhost:8080/swagger-ui/index.html`
+  **
 
 ### Workflow de Execução das APIs
 
-**Segue abaixo o descritivo simplificado da jornada das APIs dentro do sistema, esses diagramas servem apenas para materializar a jornada do ClienteXTerminalxSistemaXCozinha, mas em nenhum momento substitui o detalhamento/especificação realizados no Domain Storytelling e Event Storming criados, favor utiliza-los como fonte da verdade**
+**Segue abaixo o descritivo simplificado da jornada das APIs dentro do sistema, esses diagramas servem apenas para
+materializar a jornada do ClienteXTerminalxSistemaXCozinha, mas em nenhum momento substitui o detalhamento/especificação
+realizados no Domain Storytelling e Event Storming criados, favor utiliza-los como fonte da verdade**
 
 1 - **Criação do Pedido a partir de um cliente identificado**
 
@@ -112,7 +133,8 @@ sequenceDiagram
 **Observação:**
 
 - **Os fluxos de 1 a 2 são opicionais.**
-- **Não é necessário informar campo id_customer no payload do POST v1/orders uma vez que esse campo é opcional com base na escolha do usuário se identificar ou não.**
+- **Não é necessário informar campo id_customer no payload do POST v1/orders uma vez que esse campo é opcional com base
+  na escolha do usuário se identificar ou não.**
 
 ---
 

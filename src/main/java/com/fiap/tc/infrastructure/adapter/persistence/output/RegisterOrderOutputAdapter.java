@@ -1,18 +1,18 @@
 package com.fiap.tc.infrastructure.adapter.persistence.output;
 
-import com.fiap.tc.infrastructure.adapter.persistence.repositories.CustomerRepository;
-import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderRepository;
-import com.fiap.tc.infrastructure.adapter.persistence.repositories.ProductRepository;
+import com.fiap.tc.application.port.out.order.RegisterOrderOutputPort;
+import com.fiap.tc.core.domain.enums.OrderStatus;
+import com.fiap.tc.core.domain.model.Order;
+import com.fiap.tc.core.exceptions.NotFoundException;
 import com.fiap.tc.infrastructure.adapter.persistence.builder.OrderHistoricBuilder;
 import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderEntity;
 import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderItemEntity;
 import com.fiap.tc.infrastructure.adapter.persistence.entity.embeddable.Audit;
 import com.fiap.tc.infrastructure.adapter.persistence.mapper.base.MapperConstants;
-import com.fiap.tc.core.exceptions.NotFoundException;
-import com.fiap.tc.core.domain.model.Order;
-import com.fiap.tc.core.domain.enums.OrderStatus;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.CustomerRepository;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderRepository;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.ProductRepository;
 import com.fiap.tc.infrastructure.adapter.web.requests.OrderItemRequest;
-import com.fiap.tc.application.port.out.order.RegisterOrderOutputPort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

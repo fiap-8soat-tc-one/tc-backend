@@ -1,12 +1,12 @@
 package com.fiap.tc.adapter.persistence.output;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderPaymentRepository;
-import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderRepository;
+import com.fiap.tc.core.exceptions.NotFoundException;
 import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderEntity;
 import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderPaymentEntity;
-import com.fiap.tc.core.exceptions.NotFoundException;
 import com.fiap.tc.infrastructure.adapter.persistence.output.RegisterPaymentOutputAdapter;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderPaymentRepository;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.OrderRepository;
 import com.fiap.tc.infrastructure.adapter.web.requests.OrderPaymentRequest;
 import com.fiap.tc.util.BaseTest;
 import org.junit.jupiter.api.Assertions;

@@ -1,10 +1,10 @@
 package com.fiap.tc.adapter.persistence.output;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.infrastructure.adapter.persistence.repositories.CustomerRepository;
-import com.fiap.tc.infrastructure.adapter.persistence.entity.CustomerEntity;
 import com.fiap.tc.core.exceptions.NotFoundException;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.CustomerEntity;
 import com.fiap.tc.infrastructure.adapter.persistence.output.CustomerOutputAdapter;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.CustomerRepository;
 import com.fiap.tc.infrastructure.adapter.web.requests.CustomerRequest;
 import com.fiap.tc.util.BaseTest;
 import org.junit.jupiter.api.Assertions;

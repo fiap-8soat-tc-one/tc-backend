@@ -1,14 +1,14 @@
 package com.fiap.tc.infrastructure.adapter.persistence.output;
 
-import com.fiap.tc.infrastructure.adapter.persistence.repositories.CategoryRepository;
-import com.fiap.tc.infrastructure.adapter.persistence.entity.CategoryEntity;
-import com.fiap.tc.infrastructure.adapter.persistence.entity.embeddable.Audit;
-import com.fiap.tc.core.exceptions.NotFoundException;
-import com.fiap.tc.core.domain.model.Category;
 import com.fiap.tc.application.port.out.category.DeleteCategoryOutputPort;
 import com.fiap.tc.application.port.out.category.ListCategoriesOutputPort;
 import com.fiap.tc.application.port.out.category.LoadCategoryOutputPort;
 import com.fiap.tc.application.port.out.category.SaveCategoryOutputPort;
+import com.fiap.tc.core.domain.model.Category;
+import com.fiap.tc.core.exceptions.NotFoundException;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.CategoryEntity;
+import com.fiap.tc.infrastructure.adapter.persistence.entity.embeddable.Audit;
+import com.fiap.tc.infrastructure.adapter.persistence.repositories.CategoryRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

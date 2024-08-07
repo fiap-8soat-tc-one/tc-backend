@@ -1,9 +1,9 @@
 package com.fiap.tc.application.usecase.category;
 
-import com.fiap.tc.core.domain.model.Category;
-import com.fiap.tc.infrastructure.adapter.web.requests.CategoryRequest;
 import com.fiap.tc.application.port.in.category.RegisterCategoryInputPort;
 import com.fiap.tc.application.port.out.category.SaveCategoryOutputPort;
+import com.fiap.tc.core.domain.model.Category;
+import com.fiap.tc.infrastructure.adapter.web.requests.CategoryRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

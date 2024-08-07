@@ -1,14 +1,14 @@
 package com.fiap.tc.infrastructure.adapter.web.controllers;
 
-import com.fiap.tc.infrastructure.adapter.web.URLMapping;
-import com.fiap.tc.infrastructure.adapter.web.responses.CategoryResponse;
-import com.fiap.tc.infrastructure.adapter.web.responses.DefaultResponse;
-import com.fiap.tc.core.domain.model.Category;
-import com.fiap.tc.infrastructure.adapter.web.requests.CategoryRequest;
 import com.fiap.tc.application.port.in.category.DeleteCategoryInputPort;
 import com.fiap.tc.application.port.in.category.ListCategoriesInputPort;
 import com.fiap.tc.application.port.in.category.LoadCategoryInputPort;
 import com.fiap.tc.application.port.in.category.RegisterCategoryInputPort;
+import com.fiap.tc.core.domain.model.Category;
+import com.fiap.tc.infrastructure.adapter.web.URLMapping;
+import com.fiap.tc.infrastructure.adapter.web.requests.CategoryRequest;
+import com.fiap.tc.infrastructure.adapter.web.responses.CategoryResponse;
+import com.fiap.tc.infrastructure.adapter.web.responses.DefaultResponse;
 import io.swagger.annotations.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

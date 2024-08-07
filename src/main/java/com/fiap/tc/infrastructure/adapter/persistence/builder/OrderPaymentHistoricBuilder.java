@@ -1,8 +1,8 @@
 package com.fiap.tc.infrastructure.adapter.persistence.builder;
 
+import com.fiap.tc.core.domain.enums.PaymentResult;
 import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderPaymentEntity;
 import com.fiap.tc.infrastructure.adapter.persistence.entity.OrderPaymentHistoricEntity;
-import com.fiap.tc.core.domain.enums.PaymentResult;
 
 import java.time.LocalDateTime;
 

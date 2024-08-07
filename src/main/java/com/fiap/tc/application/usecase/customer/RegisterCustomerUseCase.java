@@ -1,9 +1,9 @@
 package com.fiap.tc.application.usecase.customer;
 
-import com.fiap.tc.core.domain.model.Customer;
-import com.fiap.tc.infrastructure.adapter.web.requests.CustomerRequest;
 import com.fiap.tc.application.port.in.customer.RegisterCustomerInputPort;
 import com.fiap.tc.application.port.out.customer.SaveCustomerOutputPort;
+import com.fiap.tc.core.domain.model.Customer;
+import com.fiap.tc.infrastructure.adapter.web.requests.CustomerRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
