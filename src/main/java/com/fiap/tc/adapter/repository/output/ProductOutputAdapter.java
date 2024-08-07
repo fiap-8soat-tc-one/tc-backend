@@ -19,7 +19,8 @@ import static com.fiap.tc.adapter.repository.mapper.base.MapperConstants.PRODUCT
 import static java.lang.String.format;
 
 @Service
-public class ProductOutputAdapter implements LoadProductOutputPort, RegisterProductOutputPort, ListProductsByCategoryOutputPort, DeleteProductOutputPort, UpdateProductOutputPort {
+public class ProductOutputAdapter implements LoadProductOutputPort, RegisterProductOutputPort,
+        ListProductsByCategoryOutputPort, DeleteProductOutputPort, UpdateProductOutputPort {
 
     private final ProductRepository repository;
     private final CategoryRepository categoryRepository;
@@ -58,10 +59,15 @@ public class ProductOutputAdapter implements LoadProductOutputPort, RegisterProd
         var categoryEntity = getValidCategoryEntity(product.getIdCategory());
 
         if (productEntityOptional.isPresent()) {
-            return updateProduct(product, productEntityOptional.get(), getValidCategoryEntity(product.getIdCategory()));
+            return updateProduct(product, productEntityOptional.get(), categoryEntity);
         }
 
         return saveProduct(product, categoryEntity);
+    }
+
+    @Override
+    public Product update(Product product) {
+        return updateProduct(product, validate(product), getValidCategoryEntity(product.getIdCategory()));
     }
 
     private Product saveProduct(Product product, CategoryEntity categoryEntity) {
@@ -82,23 +88,7 @@ public class ProductOutputAdapter implements LoadProductOutputPort, RegisterProd
         return categoryEntityOptional.get();
     }
 
-    private Product updateProduct(Product product, ProductEntity productEntity, CategoryEntity categoryEntity) {
-        productEntity.setName(product.getName());
-        productEntity.setDescription(product.getDescription());
-        productEntity.setCategory(categoryEntity);
-        productEntity.setPrice(product.getPrice());
-        productEntity.getAudit().setUpdatedDate(LocalDateTime.now());
-
-        return PRODUCT_MAPPER.fromEntity(repository.save(productEntity));
-    }
-
-    @Override
-    public Product update(Product product) {
-        return validateAndUpdate(product);
-    }
-
-    private Product validateAndUpdate(Product product) {
-
+    private ProductEntity validate(Product product) {
         var productEntityOptional = repository.findByUuid(product.getId());
 
         var productEntityExpectedOptional = repository.findByName(product.getName());
@@ -110,7 +100,17 @@ public class ProductOutputAdapter implements LoadProductOutputPort, RegisterProd
         if (productEntityExpectedOptional.isPresent()) {
             throw new BadRequestException(format("Product with expected name %s already exists!", product.getName()));
         }
-
-        return updateProduct(product, productEntityOptional.get(), getValidCategoryEntity(product.getIdCategory()));
+        return productEntityOptional.get();
     }
+
+    private Product updateProduct(Product product, ProductEntity productEntity, CategoryEntity categoryEntity) {
+        productEntity.setName(product.getName());
+        productEntity.setDescription(product.getDescription());
+        productEntity.setCategory(categoryEntity);
+        productEntity.setPrice(product.getPrice());
+        productEntity.getAudit().setUpdatedDate(LocalDateTime.now());
+
+        return PRODUCT_MAPPER.fromEntity(repository.save(productEntity));
+    }
+
 }

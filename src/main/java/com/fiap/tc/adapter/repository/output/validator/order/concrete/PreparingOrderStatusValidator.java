@@ -8,6 +8,6 @@ import java.util.List;
 public class PreparingOrderStatusValidator extends OrderStatusValidatorTemplate {
     @Override
     public List<OrderStatus> next() {
-        return List.of(OrderStatus.READY);
+        return List.of(OrderStatus.READY, OrderStatus.CANCELED);
     }
 }

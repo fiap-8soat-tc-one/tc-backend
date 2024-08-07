@@ -4,7 +4,7 @@ import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.core.domain.model.Category;
 import com.fiap.tc.core.domain.requests.CategoryRequest;
 import com.fiap.tc.core.port.out.category.SaveCategoryOutputPort;
-import com.fiap.tc.util.BaseTest;
+import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,7 +17,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class RegisterCategoryUseCaseTest extends BaseTest {
+public class RegisterCategoryUseCaseTest extends FixtureTest {
 
     @Mock
     private SaveCategoryOutputPort saveCategoryOutputPort;

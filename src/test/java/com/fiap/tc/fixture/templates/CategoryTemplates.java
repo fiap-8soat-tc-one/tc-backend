@@ -1,4 +1,4 @@
-package com.fiap.tc.templates;
+package com.fiap.tc.fixture.templates;
 
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;

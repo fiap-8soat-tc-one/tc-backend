@@ -12,11 +12,11 @@ import java.util.UUID;
 @Service
 public class ListProductsByCategoryUseCase implements ListProductsByCategoryInputPort {
 
+    private final ListProductsByCategoryOutputPort listProductsByCategoryOutputPort;
+
     public ListProductsByCategoryUseCase(ListProductsByCategoryOutputPort listProductsByCategoryOutputPort) {
         this.listProductsByCategoryOutputPort = listProductsByCategoryOutputPort;
     }
-
-    private final ListProductsByCategoryOutputPort listProductsByCategoryOutputPort;
 
     @Override
     public Page<Product> list(UUID idCategory, Pageable pageable) {

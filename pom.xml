@@ -222,6 +222,9 @@
                         <include>com/fiap/tc/core/usecase/**/*</include>
                         <include>com/fiap/tc/adapter/repository/output/**</include>
                     </includes>
+                    <excludes>
+                        <exclude>com/fiap/tc/adapter/repository/output/validator/upload/ProductImageValidatorWrapper*</exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>

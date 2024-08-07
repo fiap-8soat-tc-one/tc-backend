@@ -1,7 +1,7 @@
 package com.fiap.tc.core.usecase.category;
 
 import com.fiap.tc.core.port.out.category.DeleteCategoryOutputPort;
-import com.fiap.tc.util.BaseTest;
+import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -11,10 +11,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @ExtendWith(MockitoExtension.class)
-public class DeleteCategoryUseCaseTest extends BaseTest {
+public class DeleteCategoryUseCaseTest extends FixtureTest {
 
     @Mock
     private DeleteCategoryOutputPort deleteCategoryOutputPort;

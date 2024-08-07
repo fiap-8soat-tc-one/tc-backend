@@ -7,7 +7,7 @@ import com.fiap.tc.adapter.repository.entity.OrderEntity;
 import com.fiap.tc.adapter.repository.entity.OrderPaymentEntity;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.requests.OrderPaymentRequest;
-import com.fiap.tc.util.BaseTest;
+import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class RegisterPaymentOutputAdapterTest extends BaseTest {
+public class RegisterPaymentOutputAdapterTest extends FixtureTest {
 
     public static final UUID UUID = java.util.UUID.randomUUID();
 

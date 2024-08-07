@@ -60,7 +60,7 @@ public class ProductController {
             @ApiResponse(code = 401, message = "You are not authorized to perform this action"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
     })
-    @PutMapping(path = URLMapping.ROOT_PRIVATE_API_PRODUCTS, produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(path = URLMapping.ROOT_PRIVATE_API_PRODUCTS, produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('REGISTER_PRODUCTS')")
     public ResponseEntity<Product> saveOrUpdate(
             @ApiParam(value = "Product details for saving/updating", required = true) @RequestBody @Valid ProductRequest request) {

@@ -3,7 +3,7 @@ package com.fiap.tc.core.usecase.category;
 import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.core.domain.model.Category;
 import com.fiap.tc.core.port.out.category.LoadCategoryOutputPort;
-import com.fiap.tc.util.BaseTest;
+import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ import java.util.UUID;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class LoadCategoryUseCaseTest extends BaseTest {
+public class LoadCategoryUseCaseTest extends FixtureTest {
 
     @Mock
     private LoadCategoryOutputPort loadCategoryOutputPort;

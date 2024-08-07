@@ -3,12 +3,10 @@ package com.fiap.tc.adapter.repository.output;
 import com.fiap.tc.adapter.repository.CategoryRepository;
 import com.fiap.tc.adapter.repository.entity.CategoryEntity;
 import com.fiap.tc.adapter.repository.entity.embeddable.Audit;
+import com.fiap.tc.core.domain.exception.BadRequestException;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Category;
-import com.fiap.tc.core.port.out.category.DeleteCategoryOutputPort;
-import com.fiap.tc.core.port.out.category.ListCategoriesOutputPort;
-import com.fiap.tc.core.port.out.category.LoadCategoryOutputPort;
-import com.fiap.tc.core.port.out.category.SaveCategoryOutputPort;
+import com.fiap.tc.core.port.out.category.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -21,7 +19,7 @@ import static java.lang.String.format;
 
 @Service
 public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCategoryOutputPort,
-        ListCategoriesOutputPort, DeleteCategoryOutputPort {
+        ListCategoriesOutputPort, DeleteCategoryOutputPort, UpdateCategoryOutputPort {
     private final CategoryRepository repository;
 
     public CategoryOutputAdapter(CategoryRepository categoryPersistenceRepository) {
@@ -75,4 +73,33 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
         return newCategory;
     }
 
+    @Override
+    public Category update(UUID idCategory, String name, String description, boolean active) {
+        var categoryEntity = validate(idCategory, name);
+        return updateCategory(name, description, active, categoryEntity);
+    }
+
+    private CategoryEntity validate(UUID idCategory, String name) {
+        var categoryEntityOptional = repository.findByUuid(idCategory);
+
+        if (categoryEntityOptional.isEmpty()) {
+            throw new NotFoundException(format("Category with id %s not found!", idCategory));
+        }
+
+        var categoryExpectedEntityOptional = repository.findByName(name);
+
+        if (categoryExpectedEntityOptional.isPresent()) {
+            throw new BadRequestException(format("Category with expected name %s already exists!", name));
+        }
+        return categoryEntityOptional.get();
+    }
+
+    private Category updateCategory(String name, String description, boolean active, CategoryEntity categoryEntity) {
+        categoryEntity.setName(name);
+        categoryEntity.setDescription(description);
+        categoryEntity.getAudit().setUpdatedDate(LocalDateTime.now());
+        categoryEntity.getAudit().setActive(active);
+
+        return CATEGORY_MAPPER.fromEntity(repository.save(categoryEntity));
+    }
 }

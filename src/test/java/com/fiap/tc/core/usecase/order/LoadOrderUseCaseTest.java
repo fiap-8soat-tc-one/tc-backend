@@ -6,7 +6,7 @@ import com.fiap.tc.adapter.repository.mapper.base.MapperConstants;
 import com.fiap.tc.common.qrcode.QRCodeGenerator;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
 import com.fiap.tc.core.port.out.order.LoadOrderOutputPort;
-import com.fiap.tc.util.BaseTest;
+import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class LoadOrderUseCaseTest extends BaseTest {
+public class LoadOrderUseCaseTest extends FixtureTest {
 
     public static final UUID UUID = java.util.UUID.randomUUID();
     @Mock

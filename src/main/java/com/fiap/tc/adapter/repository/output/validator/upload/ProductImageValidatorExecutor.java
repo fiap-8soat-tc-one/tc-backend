@@ -29,7 +29,7 @@ public class ProductImageValidatorExecutor {
         initValidators();
     }
 
-    public void initValidators() {
+    private void initValidators() {
         productImageValidatorList = new LinkedList<>();
         productImageValidatorList.add(productImagesMaxSizeValidator);
         productImageValidatorList.add(imageExtensionValidator);
@@ -46,9 +46,9 @@ public class ProductImageValidatorExecutor {
                     .uploadListSize(images.size())
                     .productImage(image)
                     .build();
-
             productImageValidatorList.forEach(validator -> validator.execute(wrapper, errors));
         });
+
 
         if (!errors.isEmpty()) {
             String errorMessage = errors.stream().map(String::valueOf).collect(Collectors.joining(","));

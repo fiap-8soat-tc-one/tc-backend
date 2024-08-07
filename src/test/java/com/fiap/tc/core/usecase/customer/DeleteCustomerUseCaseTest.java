@@ -1,7 +1,7 @@
 package com.fiap.tc.core.usecase.customer;
 
 import com.fiap.tc.core.port.out.customer.DeleteCustomerOutputPort;
-import com.fiap.tc.util.BaseTest;
+import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -12,7 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.ArgumentMatchers.anyString;
 
 @ExtendWith(MockitoExtension.class)
-public class DeleteCustomerUseCaseTest extends BaseTest {
+public class DeleteCustomerUseCaseTest extends FixtureTest {
 
     public static final String DOCUMENT = "11111111111";
     @Mock
