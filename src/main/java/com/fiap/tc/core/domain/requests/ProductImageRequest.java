@@ -4,23 +4,22 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
 public class ProductImageRequest {
 
     @NotEmpty
-    @Size(max = 255, message = "Invalid product name")
+    @Size(max = 255, message = "Invalid product image name")
     @ApiModelProperty(
-            value = "Product name",
+            value = "Product image name",
             required = true,
             example = "hamburger",
             dataType = "String"
     )
     private String name;
 
-    @Size(max = 255, message = "Invalid product description")
+    @Size(max = 255, message = "Invalid product image description")
     @ApiModelProperty(
             value = "Product description",
             example = "hamburger 200g",
@@ -28,7 +27,7 @@ public class ProductImageRequest {
     )
     private String description;
 
-    @NotNull
+    @NotEmpty
     @ApiModelProperty(
             value = "Product Image base64 encoded",
             dataType = "String",

@@ -55,7 +55,7 @@ public class CategoryController {
 
     @ApiOperation(value = "create/update category", notes = "(Private Endpoint) This endpoint is responsible for creating or modifying a category. It is used on the administrative screen for managing categories and products.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully saved/updated category", response = CategoryEntity.class),
+            @ApiResponse(code = 200, message = "Successfully saved/updated category", response = Category.class),
             @ApiResponse(code = 401, message = "You are not authorized to perform this action"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
     })
@@ -81,7 +81,7 @@ public class CategoryController {
 
     @ApiOperation(value = "delete category by id", notes = "(Private Endpoint) This endpoint is responsible for removing a category through its unique identifier. It is used on the administrative screen for managing categories and products.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully deleted category", response = CategoryEntity.class),
+            @ApiResponse(code = 200, message = "Successfully deleted category", response = Category.class),
             @ApiResponse(code = 401, message = "You are not authorized to perform this action"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
     })

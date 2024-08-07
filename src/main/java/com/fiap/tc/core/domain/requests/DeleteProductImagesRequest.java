@@ -12,6 +12,9 @@ import java.util.UUID;
 public class DeleteProductImagesRequest {
 
     @NotNull
+    private UUID idProduct;
+
+    @NotNull
     @Size(min = 1)
     @Valid
     private List<UUID> images;

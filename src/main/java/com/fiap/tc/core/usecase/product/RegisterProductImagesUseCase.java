@@ -6,8 +6,6 @@ import com.fiap.tc.core.port.in.product.RegisterProductImagesInputPort;
 import com.fiap.tc.core.port.out.product.RegisterProductImagesOutputPort;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 import static com.fiap.tc.adapter.repository.mapper.base.MapperConstants.PRODUCT_IMAGE_REQUEST_MAPPER;
 
 @Service
@@ -19,8 +17,8 @@ public class RegisterProductImagesUseCase implements RegisterProductImagesInputP
     }
 
     @Override
-    public Product register(UUID idProduct, RegisterProductImagesRequest request) {
+    public Product register(RegisterProductImagesRequest request) {
         var productImages = request.getImages().stream().map(PRODUCT_IMAGE_REQUEST_MAPPER::toEntity).toList();
-        return registerProductImagesOutputPort.save(idProduct, productImages);
+        return registerProductImagesOutputPort.save(request.getIdProduct(), productImages);
     }
 }
