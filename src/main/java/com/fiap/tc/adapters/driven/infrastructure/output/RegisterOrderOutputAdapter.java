@@ -4,9 +4,9 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.Custo
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.builder.OrderHistoricBuilder;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.OrderEntity;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.OrderItemEntity;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.embeddable.Audit;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderItemEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Order;

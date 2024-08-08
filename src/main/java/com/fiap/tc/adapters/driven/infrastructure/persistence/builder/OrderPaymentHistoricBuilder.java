@@ -1,7 +1,7 @@
 package com.fiap.tc.adapters.driven.infrastructure.persistence.builder;
 
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.OrderPaymentEntity;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.OrderPaymentHistoricEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderPaymentEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderPaymentHistoricEntity;
 import com.fiap.tc.core.domain.model.enums.PaymentResult;
 
 import java.time.LocalDateTime;

@@ -4,7 +4,7 @@ import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.adapters.driven.infrastructure.output.ProductImagesOutputAdapter;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductImageRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.ProductEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
 import com.fiap.tc.adapters.driven.infrastructure.output.validator.upload.ProductImageValidatorExecutor;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Product;

@@ -1,6 +1,6 @@
 package com.fiap.tc.adapters.driven.infrastructure.persistence.repositories;
 
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.OrderPaymentEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderPaymentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -3,7 +3,7 @@ package com.fiap.tc.adapters.repository.output.validator.upload;
 import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.adapters.driven.infrastructure.output.validator.upload.ProductImageValidator;
 import com.fiap.tc.adapters.driven.infrastructure.output.validator.upload.ProductImageValidatorExecutor;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.ProductEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
 import com.fiap.tc.core.domain.exception.BadRequestException;
 import com.fiap.tc.core.domain.model.ProductImage;
 import com.fiap.tc.fixture.FixtureTest;

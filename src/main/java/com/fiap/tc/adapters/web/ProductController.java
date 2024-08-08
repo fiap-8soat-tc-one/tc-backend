@@ -1,6 +1,6 @@
 package com.fiap.tc.adapters.web;
 
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.CategoryEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CategoryEntity;
 import com.fiap.tc.adapters.web.response.DefaultResponse;
 import com.fiap.tc.core.application.port.in.product.*;
 import com.fiap.tc.core.domain.model.Product;

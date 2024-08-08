@@ -1,7 +1,7 @@
 package com.fiap.tc.adapters.driven.infrastructure.persistence.builder;
 
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.OrderEntity;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.OrderHistoricEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderHistoricEntity;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
 
 import java.time.LocalDateTime;

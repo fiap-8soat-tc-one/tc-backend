@@ -1,8 +1,8 @@
 package com.fiap.tc.adapters.driven.infrastructure.output;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CustomerRepository;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.CustomerEntity;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.embeddable.Audit;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CustomerEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Customer;
 import com.fiap.tc.core.application.port.out.customer.DeleteCustomerOutputPort;

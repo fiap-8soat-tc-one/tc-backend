@@ -1,6 +1,6 @@
-package com.fiap.tc.adapters.driven.infrastructure.persistence.entity;
+package com.fiap.tc.adapters.driven.infrastructure.persistence.entities;
 
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.embeddable.Audit;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
 import lombok.Data;
 
 import javax.persistence.*;

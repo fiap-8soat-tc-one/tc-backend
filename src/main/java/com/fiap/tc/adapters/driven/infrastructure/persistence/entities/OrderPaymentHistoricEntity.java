@@ -1,4 +1,4 @@
-package com.fiap.tc.adapters.driven.infrastructure.persistence.entity;
+package com.fiap.tc.adapters.driven.infrastructure.persistence.entities;
 
 import com.fiap.tc.core.domain.model.enums.PaymentResult;
 import lombok.AllArgsConstructor;

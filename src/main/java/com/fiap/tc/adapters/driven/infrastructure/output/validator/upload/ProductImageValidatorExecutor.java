@@ -1,6 +1,6 @@
 package com.fiap.tc.adapters.driven.infrastructure.output.validator.upload;
 
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.ProductEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
 import com.fiap.tc.core.domain.exception.BadRequestException;
 import com.fiap.tc.core.domain.model.ProductImage;
 import org.springframework.stereotype.Component;

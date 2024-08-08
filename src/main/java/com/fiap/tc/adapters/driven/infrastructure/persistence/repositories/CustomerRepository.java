@@ -1,6 +1,6 @@
 package com.fiap.tc.adapters.driven.infrastructure.persistence.repositories;
 
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.CustomerEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CustomerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
 package com.fiap.tc.adapters.driven.security;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.UserRepository;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.security.UserEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.security.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

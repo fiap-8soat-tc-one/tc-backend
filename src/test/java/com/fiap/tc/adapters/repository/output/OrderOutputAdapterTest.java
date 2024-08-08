@@ -3,7 +3,7 @@ package com.fiap.tc.adapters.repository.output;
 import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.adapters.driven.infrastructure.output.OrderOutputAdapter;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.OrderEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEntity;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
 import com.fiap.tc.core.domain.requests.OrderStatusRequest;
