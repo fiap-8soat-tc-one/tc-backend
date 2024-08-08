@@ -5,7 +5,7 @@ import com.fiap.tc.adapter.repository.CustomerRepository;
 import com.fiap.tc.adapter.repository.entity.CustomerEntity;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.requests.CustomerRequest;
-import com.fiap.tc.util.BaseTest;
+import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class CustomerOutputAdapterTest extends BaseTest {
+public class CustomerOutputAdapterTest extends FixtureTest {
 
     public static final String DOCUMENT = "11111111111";
     @Mock

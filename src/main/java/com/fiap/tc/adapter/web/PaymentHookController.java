@@ -16,7 +16,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping(path = URLMapping.ROOT_PUBLIC_API_PAYMENT)
+@RequestMapping(path = URLMapping.ROOT_PUBLIC_API_PAYMENTS)
 @Api(tags = "Orders Payment Hook API V1", produces = APPLICATION_JSON_VALUE)
 public class PaymentHookController {
 

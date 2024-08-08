@@ -3,7 +3,7 @@ package com.fiap.tc.core.usecase.order;
 import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.core.domain.requests.OrderStatusRequest;
 import com.fiap.tc.core.port.out.order.UpdateStatusOrderOutputPort;
-import com.fiap.tc.util.BaseTest;
+import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,7 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class UpdateStatusOrderUseCaseTest extends BaseTest {
+public class UpdateStatusOrderUseCaseTest extends FixtureTest {
 
     @Mock
     private UpdateStatusOrderOutputPort updateStatusOrderOutputPort;

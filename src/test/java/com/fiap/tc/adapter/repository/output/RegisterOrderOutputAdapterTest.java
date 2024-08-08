@@ -9,7 +9,7 @@ import com.fiap.tc.adapter.repository.entity.OrderEntity;
 import com.fiap.tc.adapter.repository.entity.ProductEntity;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.requests.OrderRequest;
-import com.fiap.tc.util.BaseTest;
+import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class RegisterOrderOutputAdapterTest extends BaseTest {
+public class RegisterOrderOutputAdapterTest extends FixtureTest {
 
     public static final UUID UUID = java.util.UUID.randomUUID();
 
@@ -74,7 +74,7 @@ public class RegisterOrderOutputAdapterTest extends BaseTest {
         assertNotNull(order);
         verify(customerRepository).findByUuid(orderRequest.getIdCustomer());
         verify(productRepository, times(2)).findByUuid(idProduct);
-        verify(orderRepository).save(Mockito.any());
+        verify(orderRepository, times(2)).save(Mockito.any());
 
     }
 
@@ -88,7 +88,7 @@ public class RegisterOrderOutputAdapterTest extends BaseTest {
 
         assertNotNull(order);
         verify(customerRepository).findByUuid(orderRequest.getIdCustomer());
-        verify(orderRepository).save(Mockito.any());
+        verify(orderRepository, times(2)).save(Mockito.any());
 
     }
 

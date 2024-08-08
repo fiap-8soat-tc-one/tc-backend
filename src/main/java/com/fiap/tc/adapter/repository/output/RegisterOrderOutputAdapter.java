@@ -14,6 +14,7 @@ import com.fiap.tc.core.domain.model.enums.OrderStatus;
 import com.fiap.tc.core.domain.requests.OrderItemRequest;
 import com.fiap.tc.core.port.out.order.RegisterOrderOutputPort;
 import org.springframework.stereotype.Service;
+import org.sqids.Sqids;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -28,6 +29,7 @@ import static org.springframework.util.CollectionUtils.isEmpty;
 @Service
 public class RegisterOrderOutputAdapter implements RegisterOrderOutputPort {
 
+    public static final int ORDER_NUMBER_MIN_LENGTH = 4;
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
     private final CustomerRepository customerRepository;
@@ -54,9 +56,18 @@ public class RegisterOrderOutputAdapter implements RegisterOrderOutputPort {
         add_items(itemsRequest, orderEntity);
         orderEntity.getOrderHistoric().add(OrderHistoricBuilder.create(orderEntity, orderEntity.getStatus()));
 
-        var orderEntitySaved = orderRepository.save(orderEntity);
+        return persist(orderEntity);
+    }
 
-        return MapperConstants.ORDER_MAPPER.fromEntity(orderEntitySaved);
+    private Order persist(OrderEntity orderEntity) {
+
+        orderEntity = orderRepository.save(orderEntity);
+
+        Sqids sqids = Sqids.builder().minLength(ORDER_NUMBER_MIN_LENGTH).build();
+        var orderNumber = sqids.encode(List.of(orderEntity.getId().longValue()));
+        orderEntity.setOrderNumber(orderNumber);
+
+        return MapperConstants.ORDER_MAPPER.fromEntity(orderRepository.save(orderEntity));
     }
 
     private void add_items(List<OrderItemRequest> itemsRequest, OrderEntity orderEntity) {

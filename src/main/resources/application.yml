@@ -43,7 +43,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        show_sql: true
+        show_sql: false
         format_sql: true
         enable_lazy_load_no_trans: true
     open-in-view: false
@@ -60,6 +60,11 @@ app:
     name: tc_client
     secret: $2a$12$aNBFov6o75DX51iVqd5mM.Z5S.Wi7xHMS3OzcU5386TWRi28Y691W
     signKey: tech-challenge
-    tokenExpirationTime: 3600
-    refreshTokenExpirationTime: 43200
+    tokenExpirationTime: 86400
+    refreshTokenExpirationTime: 86400
+  config:
+    upload:
+      mimeTypes: data:image/png;base64, data:image/jpg;base64
+      maxLength: 1024000
+      maxProductImages: 5
 

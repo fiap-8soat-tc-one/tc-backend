@@ -25,4 +25,8 @@ public class DefaultResponse {
     public void setMessage(String message) {
         messages.add(message);
     }
+
+    public void setMessages(List<String> errorMessages) {
+        messages.addAll(errorMessages);
+    }
 }

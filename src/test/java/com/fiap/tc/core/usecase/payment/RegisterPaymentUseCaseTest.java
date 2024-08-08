@@ -5,7 +5,7 @@ import com.fiap.tc.core.domain.model.OrderPayment;
 import com.fiap.tc.core.domain.requests.OrderPaymentRequest;
 import com.fiap.tc.core.port.out.order.UpdateStatusOrderOutputPort;
 import com.fiap.tc.core.port.out.payment.RegisterPaymentOutputPort;
-import com.fiap.tc.util.BaseTest;
+import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class RegisterPaymentUseCaseTest extends BaseTest {
+public class RegisterPaymentUseCaseTest extends FixtureTest {
 
     @Mock
     private RegisterPaymentOutputPort registerPaymentOutputPort;

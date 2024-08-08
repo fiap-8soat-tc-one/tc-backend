@@ -39,7 +39,6 @@ public class OrderOutputAdapter implements UpdateStatusOrderOutputPort, LoadOrde
         }
 
         var orderEntity = orderEntityOptional.get();
-
         orderEntity.getStatus().getValidator().validate(status);
         orderEntity.setStatus(status);
         orderEntity.getAudit().setUpdatedDate(LocalDateTime.now());
@@ -47,6 +46,7 @@ public class OrderOutputAdapter implements UpdateStatusOrderOutputPort, LoadOrde
 
         orderRepository.save(orderEntity);
     }
+
 
     @Override
     public Order load(UUID uuid) {

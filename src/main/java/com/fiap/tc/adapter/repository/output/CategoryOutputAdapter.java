@@ -3,12 +3,10 @@ package com.fiap.tc.adapter.repository.output;
 import com.fiap.tc.adapter.repository.CategoryRepository;
 import com.fiap.tc.adapter.repository.entity.CategoryEntity;
 import com.fiap.tc.adapter.repository.entity.embeddable.Audit;
+import com.fiap.tc.core.domain.exception.BadRequestException;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Category;
-import com.fiap.tc.core.port.out.category.DeleteCategoryOutputPort;
-import com.fiap.tc.core.port.out.category.ListCategoriesOutputPort;
-import com.fiap.tc.core.port.out.category.LoadCategoryOutputPort;
-import com.fiap.tc.core.port.out.category.SaveCategoryOutputPort;
+import com.fiap.tc.core.port.out.category.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -21,28 +19,28 @@ import static java.lang.String.format;
 
 @Service
 public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCategoryOutputPort,
-        ListCategoriesOutputPort, DeleteCategoryOutputPort {
-    private final CategoryRepository categoryRepository;
+        ListCategoriesOutputPort, DeleteCategoryOutputPort, UpdateCategoryOutputPort {
+    private final CategoryRepository repository;
 
     public CategoryOutputAdapter(CategoryRepository categoryPersistenceRepository) {
-        this.categoryRepository = categoryPersistenceRepository;
+        this.repository = categoryPersistenceRepository;
     }
 
     @Override
     public void delete(UUID uuid) {
-        var categoryEntityOptional = categoryRepository.findByUuid(uuid);
-        categoryEntityOptional.ifPresent(categoryRepository::delete);
+        var categoryEntityOptional = repository.findByUuid(uuid);
+        categoryEntityOptional.ifPresent(repository::delete);
     }
 
     @Override
     public Page<Category> list(Pageable pageable) {
-        Page<CategoryEntity> categories = categoryRepository.findAll(pageable);
+        Page<CategoryEntity> categories = repository.findAll(pageable);
         return categories.map(CATEGORY_MAPPER::fromEntity);
     }
 
     @Override
     public Category load(UUID uuid) {
-        var categoryEntityOptional = categoryRepository.findByUuid(uuid);
+        var categoryEntityOptional = repository.findByUuid(uuid);
         if (categoryEntityOptional.isEmpty()) {
             throw new NotFoundException(format("Category with uuid %s not found!", uuid));
         }
@@ -51,18 +49,18 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
 
     @Override
     public Category saveOrUpdate(String name, String description, boolean active) {
-        var categoryEntityOptional = categoryRepository.findByName(name);
+        var categoryEntityOptional = repository.findByName(name);
         if (categoryEntityOptional.isPresent()) {
             var categoryEntity = categoryEntityOptional.get();
             categoryEntity.setName(name);
             categoryEntity.setDescription(description);
             categoryEntity.getAudit().setActive(active);
             categoryEntity.getAudit().setUpdatedDate(LocalDateTime.now());
-            return CATEGORY_MAPPER.fromEntity(categoryRepository.save(categoryEntity));
+            return CATEGORY_MAPPER.fromEntity(repository.save(categoryEntity));
 
         }
 
-        return CATEGORY_MAPPER.fromEntity(categoryRepository.save(buildCategoryEntity(name, description, active)));
+        return CATEGORY_MAPPER.fromEntity(repository.save(buildCategoryEntity(name, description, active)));
 
     }
 
@@ -75,4 +73,33 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
         return newCategory;
     }
 
+    @Override
+    public Category update(UUID idCategory, String name, String description, boolean active) {
+        var categoryEntity = validate(idCategory, name);
+        return updateCategory(name, description, active, categoryEntity);
+    }
+
+    private CategoryEntity validate(UUID idCategory, String name) {
+        var categoryEntityOptional = repository.findByUuid(idCategory);
+
+        if (categoryEntityOptional.isEmpty()) {
+            throw new NotFoundException(format("Category with id %s not found!", idCategory));
+        }
+
+        var categoryExpectedEntityOptional = repository.findByName(name);
+
+        if (categoryExpectedEntityOptional.isPresent()) {
+            throw new BadRequestException(format("Category with expected name %s already exists!", name));
+        }
+        return categoryEntityOptional.get();
+    }
+
+    private Category updateCategory(String name, String description, boolean active, CategoryEntity categoryEntity) {
+        categoryEntity.setName(name);
+        categoryEntity.setDescription(description);
+        categoryEntity.getAudit().setUpdatedDate(LocalDateTime.now());
+        categoryEntity.getAudit().setActive(active);
+
+        return CATEGORY_MAPPER.fromEntity(repository.save(categoryEntity));
+    }
 }

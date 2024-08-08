@@ -5,6 +5,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -24,7 +26,9 @@ public class ProductEntity {
 
     private BigDecimal price;
 
-    //TODO add list image to product
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OrderBy(value = "register_date DESC")
+    private List<ProductImageEntity> images = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_category", nullable = false)

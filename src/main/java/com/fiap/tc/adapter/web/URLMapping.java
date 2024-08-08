@@ -10,7 +10,12 @@ public class URLMapping {
     public static final String ROOT_PUBLIC_API_CUSTOMERS = ROOT_PUBLIC_API_PATH + "/customers";
     public static final String ROOT_PRIVATE_API_ORDERS = ROOT_PRIVATE_API_PATH + "/orders";
     public static final String ROOT_PUBLIC_API_ORDERS = ROOT_PUBLIC_API_PATH + "/orders";
-    public static final String ROOT_PUBLIC_API_PAYMENT = ROOT_PUBLIC_API_PATH + "/hook/orders/payment";
+    public static final String ROOT_PUBLIC_API_PAYMENTS = ROOT_PUBLIC_API_PATH + "/hook/orders/payment";
+    public static final String ROOT_PRIVATE_API_PRODUCTS = ROOT_PRIVATE_API_PATH + "/products";
+    public static final String ROOT_PUBLIC_API_PRODUCTS = ROOT_PUBLIC_API_PATH + "/products";
+    public static final String ROOT_PRIVATE_API_PRODUCTS_IMAGES = ROOT_PRIVATE_API_PATH + "/products/images";
+
+
 }
 
 

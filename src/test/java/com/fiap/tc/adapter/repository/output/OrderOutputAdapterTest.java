@@ -6,7 +6,7 @@ import com.fiap.tc.adapter.repository.entity.OrderEntity;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
 import com.fiap.tc.core.domain.requests.OrderStatusRequest;
-import com.fiap.tc.util.BaseTest;
+import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class OrderOutputAdapterTest extends BaseTest {
+public class OrderOutputAdapterTest extends FixtureTest {
 
     public static final UUID UUID = java.util.UUID.randomUUID();
 

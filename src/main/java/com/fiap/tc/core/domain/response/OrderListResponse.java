@@ -17,6 +17,13 @@ public class OrderListResponse {
     private UUID id;
 
     @ApiModelProperty(
+            value = "Order Number",
+            example = "EfhxLZ",
+            dataType = "String"
+    )
+    private String orderNumber;
+
+    @ApiModelProperty(
             value = "Order status",
             required = true,
             example = "READY",

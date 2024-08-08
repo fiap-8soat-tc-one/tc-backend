@@ -4,10 +4,9 @@ import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.adapter.repository.entity.OrderEntity;
 import com.fiap.tc.adapter.repository.mapper.base.MapperConstants;
 import com.fiap.tc.common.qrcode.QRCodeGenerator;
-import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.requests.OrderRequest;
 import com.fiap.tc.core.port.out.order.RegisterOrderOutputPort;
-import com.fiap.tc.util.BaseTest;
+import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +20,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class RegisterOrderUseCaseTest extends BaseTest {
+public class RegisterOrderUseCaseTest extends FixtureTest {
 
     @Mock
     private RegisterOrderOutputPort registerOrderOutputPort;

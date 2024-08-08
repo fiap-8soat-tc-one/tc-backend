@@ -19,6 +19,13 @@ public class Order {
     private UUID id;
 
     @ApiModelProperty(
+            value = "Order Number",
+            example = "EfhxLZ",
+            dataType = "String"
+    )
+    private String orderNumber;
+
+    @ApiModelProperty(
             value = "Order total value",
             example = "50.00",
             dataType = "BigDecimal"

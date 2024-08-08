@@ -3,9 +3,10 @@ package com.fiap.tc.adapter.repository.output;
 import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.adapter.repository.CategoryRepository;
 import com.fiap.tc.adapter.repository.entity.CategoryEntity;
+import com.fiap.tc.core.domain.exception.BadRequestException;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.requests.CategoryRequest;
-import com.fiap.tc.util.BaseTest;
+import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,9 +28,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class CategoryOutputAdapterTests extends BaseTest {
+public class CategoryOutputAdapterTests extends FixtureTest {
 
     public static final UUID RANDOM_UUID = UUID.randomUUID();
+    public static final UUID ID_CATEGORY = UUID.randomUUID();
 
     @Mock
     private CategoryRepository categoryRepository;
@@ -120,6 +122,45 @@ public class CategoryOutputAdapterTests extends BaseTest {
         assertNotNull(category);
         verify(categoryRepository).findByName(request.getName());
         verify(categoryRepository).save(Mockito.any());
+    }
+
+    @Test
+    public void updateCategoryWithIdTest() {
+        when(categoryRepository.findByUuid(ID_CATEGORY)).thenReturn(Optional.of(categoryEntity));
+        when(categoryRepository.findByName(request.getName())).thenReturn(Optional.empty());
+        when(categoryRepository.save(categoryEntity)).thenReturn(categoryEntity);
+
+        var category = categoryOutputAdapter.update(ID_CATEGORY, request.getName(),
+                request.getDescription(), request.getActive());
+
+        assertNotNull(category);
+        verify(categoryRepository).findByName(request.getName());
+        verify(categoryRepository).findByUuid(ID_CATEGORY);
+        verify(categoryRepository).save(Mockito.any());
+    }
+
+    @Test
+    public void launchBadRequestExceptionOnUpdateCategoryWithIdWhenCategoryAlreadyExistsTest() {
+        when(categoryRepository.findByUuid(ID_CATEGORY)).thenReturn(Optional.of(categoryEntity));
+        when(categoryRepository.findByName(request.getName())).thenReturn(Optional.of(categoryEntity));
+
+
+        var assertThrows = Assertions.assertThrows(BadRequestException.class, () -> categoryOutputAdapter.update(ID_CATEGORY, request.getName(),
+                request.getDescription(), request.getActive()));
+
+
+        assertTrue(assertThrows.getMessage().contains("already exists"));
+    }
+
+    @Test
+    public void launchNotFoundExceptionOnUpdateCategoryWithIdWhenCategoryNotExistsTest() {
+        when(categoryRepository.findByUuid(ID_CATEGORY)).thenReturn(Optional.empty());
+
+        var assertThrows = Assertions.assertThrows(NotFoundException.class, () -> categoryOutputAdapter.update(ID_CATEGORY, request.getName(),
+                request.getDescription(), request.getActive()));
+
+
+        assertTrue(assertThrows.getMessage().contains("not found"));
     }
 
 }

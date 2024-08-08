@@ -190,6 +190,7 @@ create table order_request
     register_date timestamp,
     updated_date  timestamp,
     status        varchar(255) not null,
+    order_number  varchar(20),
     total         numeric(19, 2),
     uuid          uuid,
     id_customer   int4,

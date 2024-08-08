@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.ResponseEntity.status;
+import static org.springframework.util.CollectionUtils.isEmpty;
 
 @RestControllerAdvice
 @Slf4j
@@ -63,7 +64,24 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
         return status(NOT_FOUND).body(response);
     }
 
-    @ExceptionHandler(value = {BadRequestException.class, IllegalStateException.class, IllegalArgumentException.class,
+    @ExceptionHandler(value = {BadRequestException.class})
+    public ResponseEntity<DefaultResponse> badRequestExceptionHandler(BadRequestException e) {
+
+        log.warn(e.getMessage(), e);
+
+        DefaultResponse response = new DefaultResponse();
+        response.setStatus(BAD_REQUEST.name());
+        if (!isEmpty(e.getErrors())) {
+            response.setMessages(e.getErrors());
+        } else {
+            response.setMessage(e.getMessage());
+        }
+
+
+        return status(BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(value = {IllegalStateException.class, IllegalArgumentException.class,
             NoSuchElementException.class})
     public ResponseEntity<DefaultResponse> badRequestExceptionHandler(RuntimeException e) {
 
