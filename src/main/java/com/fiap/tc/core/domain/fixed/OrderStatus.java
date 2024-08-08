@@ -2,8 +2,6 @@ package com.fiap.tc.core.domain.fixed;
 
 import com.fiap.tc.adapters.driven.infrastructure.outputs.validators.order.OrderStatusValidator;
 import com.fiap.tc.adapters.driven.infrastructure.outputs.validators.order.concrete.*;
-import com.fiap.tc.adapters.repository.output.validator.order.*;
-import com.fiap.tc.adapters.repository.output.validator.order.concrete.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

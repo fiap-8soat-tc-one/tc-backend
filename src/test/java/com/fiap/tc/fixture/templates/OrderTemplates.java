@@ -4,7 +4,6 @@ import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.*;
-import com.fiap.tc.adapters.repository.entity.*;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
 import com.fiap.tc.core.domain.entities.OrderPayment;
 import com.fiap.tc.core.domain.fixed.OrderStatus;
