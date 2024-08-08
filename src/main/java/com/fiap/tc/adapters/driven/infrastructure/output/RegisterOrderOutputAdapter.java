@@ -3,7 +3,7 @@ package com.fiap.tc.adapters.driven.infrastructure.output;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CustomerRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.builder.OrderHistoricBuilder;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.builders.OrderHistoricBuilder;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderItemEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;

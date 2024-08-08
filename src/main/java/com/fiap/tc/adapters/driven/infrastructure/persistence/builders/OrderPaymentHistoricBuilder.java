@@ -1,4 +1,4 @@
-package com.fiap.tc.adapters.driven.infrastructure.persistence.builder;
+package com.fiap.tc.adapters.driven.infrastructure.persistence.builders;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderPaymentEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderPaymentHistoricEntity;

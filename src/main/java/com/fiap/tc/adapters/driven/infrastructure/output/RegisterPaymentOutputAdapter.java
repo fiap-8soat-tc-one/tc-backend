@@ -2,7 +2,7 @@ package com.fiap.tc.adapters.driven.infrastructure.output;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderPaymentRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.builder.OrderPaymentHistoricBuilder;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.builders.OrderPaymentHistoricBuilder;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderPaymentEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
