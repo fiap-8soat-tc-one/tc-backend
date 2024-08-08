@@ -1,6 +1,5 @@
 package com.fiap.tc.core.domain.entities;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.UUID;

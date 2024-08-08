@@ -1,10 +1,11 @@
 package com.fiap.tc.adapters.driver.presentation.controllers;
 
 import com.fiap.tc.adapters.driver.presentation.URLMapping;
-import com.fiap.tc.adapters.driver.presentation.response.DefaultResponse;
-import com.fiap.tc.core.domain.entities.Product;
 import com.fiap.tc.adapters.driver.presentation.requests.DeleteProductImagesRequest;
 import com.fiap.tc.adapters.driver.presentation.requests.RegisterProductImagesRequest;
+import com.fiap.tc.adapters.driver.presentation.response.DefaultResponse;
+import com.fiap.tc.adapters.driver.presentation.response.ProductImageResponse;
+import com.fiap.tc.adapters.driver.presentation.response.ProductResponse;
 import com.fiap.tc.core.application.ports.in.product.DeleteProductImagesInputPort;
 import com.fiap.tc.core.application.ports.in.product.RegisterProductImagesInputPort;
 import io.swagger.annotations.*;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import static com.fiap.tc.adapters.driver.presentation.mappers.base.MapperConstants.PRODUCT_MAPPER;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -33,15 +35,15 @@ public class ProductImagesController {
 
     @ApiOperation(value = "upload product images", notes = "(Private Endpoint) This endpoint is responsible for upload product images. It is used on the administrative screen for managing categories and products.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully uploaded product images", response = Product.class),
+            @ApiResponse(code = 200, message = "Successfully uploaded product images", response = ProductImageResponse.class),
             @ApiResponse(code = 401, message = "You are not authorized to perform this action"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
     })
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('REGISTER_PRODUCTS')")
-    public ResponseEntity<Product> upload(
+    public ResponseEntity<ProductResponse> upload(
             @ApiParam(value = "Product Image details for upload", required = true) @RequestBody @Valid RegisterProductImagesRequest request) {
-        return ok(registerProductImagesInputPort.register(request));
+        return ok(PRODUCT_MAPPER.fromDomain(registerProductImagesInputPort.register(request)));
     }
 
     @ApiOperation(value = "delete product images by ids", notes = "(Private Endpoint) This endpoint is responsible for removing images of a product. It is used on the administrative screen for managing categories and products.")

@@ -5,10 +5,18 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.UUID;
 
 @Data
 public class CategoryResponse {
 
+    @ApiModelProperty(
+            value = "Category Id",
+            example = "7ba2a960-2354-466f-8868-6ad713742407",
+            dataType = "UUID"
+    )
+    private UUID id;
+    
     @NotEmpty
     @Size(max = 255, message = "Invalid category name")
     @ApiModelProperty(

@@ -24,10 +24,5 @@ public class MapperConstants {
 
     public static final ProductMapper PRODUCT_MAPPER = Mappers.getMapper(ProductMapper.class);
 
-    public static final ProductRequestMapper PRODUCT_REQUEST_MAPPER = Mappers.getMapper(ProductRequestMapper.class);
-
     public static final ProductImageMapper PRODUCT_IMAGE_MAPPER = Mappers.getMapper(ProductImageMapper.class);
-
-    public static final ProductImageRequestMapper PRODUCT_IMAGE_REQUEST_MAPPER = Mappers.getMapper(ProductImageRequestMapper.class);
-
 }

@@ -1,8 +1,8 @@
-package com.fiap.tc.adapters.driven.infrastructure.persistence.mappers;
+package com.fiap.tc.adapters.driver.presentation.mappers;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperEntity;
-import com.fiap.tc.core.domain.entities.ProductImage;
 import com.fiap.tc.adapters.driver.presentation.requests.ProductImageRequest;
+import com.fiap.tc.core.domain.entities.ProductImage;
 import org.mapstruct.Mapper;
 
 @Mapper
