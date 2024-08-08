@@ -1,7 +1,8 @@
-package com.fiap.tc.adapters.driver.web;
+package com.fiap.tc.adapters.driver.presentation.controllers;
 
-import com.fiap.tc.adapters.driver.web.response.DefaultResponse;
-import com.fiap.tc.core.domain.requests.OrderPaymentRequest;
+import com.fiap.tc.adapters.driver.presentation.URLMapping;
+import com.fiap.tc.adapters.driver.presentation.response.DefaultResponse;
+import com.fiap.tc.adapters.driver.presentation.requests.OrderPaymentRequest;
 import com.fiap.tc.core.application.port.in.payment.RegisterPaymentInputPort;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;

@@ -1,5 +1,6 @@
-package com.fiap.tc.adapters.driver.web;
+package com.fiap.tc.adapters.driver.presentation.controllers;
 
+import com.fiap.tc.adapters.driver.presentation.URLMapping;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

@@ -1,4 +1,4 @@
-package com.fiap.tc.core.domain.requests;
+package com.fiap.tc.adapters.driver.presentation.requests;
 
 import lombok.Data;
 

@@ -6,7 +6,7 @@ import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CustomerEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
 import com.fiap.tc.core.domain.model.Customer;
-import com.fiap.tc.core.domain.requests.CustomerRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.CustomerRequest;
 
 import java.util.UUID;
 

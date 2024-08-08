@@ -5,7 +5,7 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEnti
 import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
 import com.fiap.tc.core.application.utils.QRCodeGenerator;
 import com.fiap.tc.core.application.usecase.order.RegisterOrderUseCase;
-import com.fiap.tc.core.domain.requests.OrderRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.OrderRequest;
 import com.fiap.tc.core.application.port.out.order.RegisterOrderOutputPort;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.BeforeEach;

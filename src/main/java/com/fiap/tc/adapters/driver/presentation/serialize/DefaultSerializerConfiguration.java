@@ -1,4 +1,4 @@
-package com.fiap.tc.adapters.driver.serialize;
+package com.fiap.tc.adapters.driver.presentation.serialize;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;

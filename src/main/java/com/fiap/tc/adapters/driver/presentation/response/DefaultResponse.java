@@ -1,4 +1,4 @@
-package com.fiap.tc.adapters.driver.web.response;
+package com.fiap.tc.adapters.driver.presentation.response;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

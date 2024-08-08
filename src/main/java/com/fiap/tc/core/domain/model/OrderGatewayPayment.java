@@ -1,7 +1,7 @@
 package com.fiap.tc.core.domain.model;
 
 import com.fiap.tc.core.domain.model.enums.PaymentResult;
-import com.fiap.tc.core.domain.requests.OrderPaymentRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.OrderPaymentRequest;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,7 +1,7 @@
 package com.fiap.tc.core.application.usecase.customer;
 
 import com.fiap.tc.core.domain.model.Customer;
-import com.fiap.tc.core.domain.requests.CustomerRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.CustomerRequest;
 import com.fiap.tc.core.application.port.in.customer.RegisterCustomerInputPort;
 import com.fiap.tc.core.application.port.out.customer.SaveCustomerOutputPort;
 import lombok.extern.slf4j.Slf4j;

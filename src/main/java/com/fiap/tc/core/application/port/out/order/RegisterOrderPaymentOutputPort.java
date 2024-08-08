@@ -1,7 +1,7 @@
 package com.fiap.tc.core.application.port.out.order;
 
 import com.fiap.tc.core.domain.model.OrderPayment;
-import com.fiap.tc.core.domain.requests.OrderPaymentRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.OrderPaymentRequest;
 
 import java.util.UUID;
 

@@ -1,4 +1,4 @@
-package com.fiap.tc.core.domain.response;
+package com.fiap.tc.adapters.driver.presentation.response;
 
 import com.fiap.tc.core.domain.model.Order;
 import lombok.AllArgsConstructor;

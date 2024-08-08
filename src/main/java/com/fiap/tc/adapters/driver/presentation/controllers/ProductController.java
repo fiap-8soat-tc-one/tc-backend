@@ -1,10 +1,11 @@
-package com.fiap.tc.adapters.driver.web;
+package com.fiap.tc.adapters.driver.presentation.controllers;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CategoryEntity;
-import com.fiap.tc.adapters.driver.web.response.DefaultResponse;
+import com.fiap.tc.adapters.driver.presentation.URLMapping;
+import com.fiap.tc.adapters.driver.presentation.response.DefaultResponse;
 import com.fiap.tc.core.application.port.in.product.*;
 import com.fiap.tc.core.domain.model.Product;
-import com.fiap.tc.core.domain.requests.ProductRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.ProductRequest;
 import io.swagger.annotations.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,6 +1,6 @@
 package com.fiap.tc.core.application.port.in.order;
 
-import com.fiap.tc.core.domain.response.OrderResponse;
+import com.fiap.tc.adapters.driver.presentation.response.OrderResponse;
 
 import java.util.UUID;
 

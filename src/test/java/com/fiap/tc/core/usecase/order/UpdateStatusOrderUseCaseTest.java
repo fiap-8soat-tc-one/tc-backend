@@ -2,7 +2,7 @@ package com.fiap.tc.core.usecase.order;
 
 import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.core.application.usecase.order.UpdateStatusOrderUseCase;
-import com.fiap.tc.core.domain.requests.OrderStatusRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.OrderStatusRequest;
 import com.fiap.tc.core.application.port.out.order.UpdateStatusOrderOutputPort;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,4 +1,4 @@
-package com.fiap.tc.core.domain.requests;
+package com.fiap.tc.adapters.driver.presentation.requests;
 
 import br.com.caelum.stella.bean.validation.CPF;
 import com.fiap.tc.core.domain.model.enums.PaymentResult;

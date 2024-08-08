@@ -1,4 +1,4 @@
-package com.fiap.tc.adapters.driver.web;
+package com.fiap.tc.adapters.driver.presentation.controllers;
 
 import com.fiap.tc.adapters.driven.security.property.OriginApiProperty;
 import io.swagger.annotations.*;

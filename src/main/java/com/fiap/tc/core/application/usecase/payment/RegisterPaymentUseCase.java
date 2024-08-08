@@ -1,7 +1,7 @@
 package com.fiap.tc.core.application.usecase.payment;
 
 import com.fiap.tc.core.application.port.in.payment.RegisterPaymentInputPort;
-import com.fiap.tc.core.domain.requests.OrderPaymentRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.OrderPaymentRequest;
 import com.fiap.tc.core.application.port.out.order.UpdateStatusOrderOutputPort;
 import com.fiap.tc.core.application.port.out.payment.RegisterPaymentOutputPort;
 import org.springframework.stereotype.Service;

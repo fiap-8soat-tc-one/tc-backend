@@ -10,10 +10,10 @@ import com.fiap.tc.core.domain.model.OrderPayment;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
 import com.fiap.tc.core.domain.model.enums.PaymentResult;
 import com.fiap.tc.core.domain.model.enums.PaymentType;
-import com.fiap.tc.core.domain.requests.OrderItemRequest;
-import com.fiap.tc.core.domain.requests.OrderPaymentRequest;
-import com.fiap.tc.core.domain.requests.OrderRequest;
-import com.fiap.tc.core.domain.requests.OrderStatusRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.OrderItemRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.OrderPaymentRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.OrderRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.OrderStatusRequest;
 
 import java.math.BigDecimal;
 import java.util.UUID;

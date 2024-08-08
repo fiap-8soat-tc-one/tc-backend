@@ -1,10 +1,11 @@
-package com.fiap.tc.adapters.driver.web;
+package com.fiap.tc.adapters.driver.presentation.controllers;
 
-import com.fiap.tc.adapters.driver.web.response.DefaultResponse;
-import com.fiap.tc.core.domain.requests.OrderRequest;
-import com.fiap.tc.core.domain.requests.OrderStatusRequest;
-import com.fiap.tc.core.domain.response.OrderListResponse;
-import com.fiap.tc.core.domain.response.OrderResponse;
+import com.fiap.tc.adapters.driver.presentation.URLMapping;
+import com.fiap.tc.adapters.driver.presentation.response.DefaultResponse;
+import com.fiap.tc.adapters.driver.presentation.requests.OrderRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.OrderStatusRequest;
+import com.fiap.tc.adapters.driver.presentation.response.OrderListResponse;
+import com.fiap.tc.adapters.driver.presentation.response.OrderResponse;
 import com.fiap.tc.core.application.port.in.order.ListOrdersReadyPreparingInputPort;
 import com.fiap.tc.core.application.port.in.order.LoadOrderInputPort;
 import com.fiap.tc.core.application.port.in.order.RegisterOrderInputPort;

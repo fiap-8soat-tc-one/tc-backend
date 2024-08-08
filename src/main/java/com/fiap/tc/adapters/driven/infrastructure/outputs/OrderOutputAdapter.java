@@ -6,7 +6,7 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.Mappe
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
-import com.fiap.tc.core.domain.response.OrderListResponse;
+import com.fiap.tc.adapters.driver.presentation.response.OrderListResponse;
 import com.fiap.tc.core.application.port.out.order.ListOrdersReadyPreparingOutputPort;
 import com.fiap.tc.core.application.port.out.order.LoadOrderOutputPort;
 import com.fiap.tc.core.application.port.out.order.UpdateStatusOrderOutputPort;

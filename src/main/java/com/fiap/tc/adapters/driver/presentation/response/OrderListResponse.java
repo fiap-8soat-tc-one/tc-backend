@@ -1,4 +1,4 @@
-package com.fiap.tc.core.domain.response;
+package com.fiap.tc.adapters.driver.presentation.response;
 
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
 import io.swagger.annotations.ApiModelProperty;

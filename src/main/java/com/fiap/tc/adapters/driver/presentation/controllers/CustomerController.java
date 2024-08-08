@@ -1,7 +1,8 @@
-package com.fiap.tc.adapters.driver.web;
+package com.fiap.tc.adapters.driver.presentation.controllers;
 
+import com.fiap.tc.adapters.driver.presentation.URLMapping;
 import com.fiap.tc.core.domain.model.Customer;
-import com.fiap.tc.core.domain.requests.CustomerRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.CustomerRequest;
 import com.fiap.tc.core.application.port.in.customer.DeleteCustomerInputPort;
 import com.fiap.tc.core.application.port.in.customer.ListCustomersInputPort;
 import com.fiap.tc.core.application.port.in.customer.LoadCustomerInputPort;

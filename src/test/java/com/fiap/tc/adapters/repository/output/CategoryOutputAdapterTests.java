@@ -6,7 +6,7 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.Categ
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CategoryEntity;
 import com.fiap.tc.core.domain.exception.BadRequestException;
 import com.fiap.tc.core.domain.exception.NotFoundException;
-import com.fiap.tc.core.domain.requests.CategoryRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.CategoryRequest;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

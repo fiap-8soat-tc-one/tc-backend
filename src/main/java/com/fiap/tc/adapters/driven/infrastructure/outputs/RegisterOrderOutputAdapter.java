@@ -11,7 +11,7 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.Mappe
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
-import com.fiap.tc.core.domain.requests.OrderItemRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.OrderItemRequest;
 import com.fiap.tc.core.application.port.out.order.RegisterOrderOutputPort;
 import org.springframework.stereotype.Service;
 import org.sqids.Sqids;

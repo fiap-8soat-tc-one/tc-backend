@@ -9,10 +9,10 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductIm
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
 import com.fiap.tc.core.domain.model.Product;
 import com.fiap.tc.core.domain.model.ProductImage;
-import com.fiap.tc.core.domain.requests.DeleteProductImagesRequest;
-import com.fiap.tc.core.domain.requests.ProductImageRequest;
-import com.fiap.tc.core.domain.requests.ProductRequest;
-import com.fiap.tc.core.domain.requests.RegisterProductImagesRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.DeleteProductImagesRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.ProductImageRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.ProductRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.RegisterProductImagesRequest;
 
 import java.math.BigDecimal;
 import java.util.List;

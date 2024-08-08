@@ -3,7 +3,7 @@ package com.fiap.tc.core.usecase.customer;
 import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.core.application.usecase.customer.RegisterCustomerUseCase;
 import com.fiap.tc.core.domain.model.Customer;
-import com.fiap.tc.core.domain.requests.CustomerRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.CustomerRequest;
 import com.fiap.tc.core.application.port.out.customer.SaveCustomerOutputPort;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,9 +1,10 @@
-package com.fiap.tc.adapters.driver.web;
+package com.fiap.tc.adapters.driver.presentation.controllers;
 
-import com.fiap.tc.adapters.driver.web.response.DefaultResponse;
+import com.fiap.tc.adapters.driver.presentation.URLMapping;
+import com.fiap.tc.adapters.driver.presentation.response.DefaultResponse;
 import com.fiap.tc.core.domain.model.Product;
-import com.fiap.tc.core.domain.requests.DeleteProductImagesRequest;
-import com.fiap.tc.core.domain.requests.RegisterProductImagesRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.DeleteProductImagesRequest;
+import com.fiap.tc.adapters.driver.presentation.requests.RegisterProductImagesRequest;
 import com.fiap.tc.core.application.port.in.product.DeleteProductImagesInputPort;
 import com.fiap.tc.core.application.port.in.product.RegisterProductImagesInputPort;
 import io.swagger.annotations.*;
