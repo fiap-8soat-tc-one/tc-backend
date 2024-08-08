@@ -10,7 +10,7 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddabl
 import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
 import com.fiap.tc.core.domain.exceptions.NotFoundException;
 import com.fiap.tc.core.domain.entities.Order;
-import com.fiap.tc.core.domain.fixed.OrderStatus;
+import com.fiap.tc.core.domain.enums.OrderStatus;
 import com.fiap.tc.adapters.driver.presentation.requests.OrderItemRequest;
 import com.fiap.tc.core.application.ports.out.order.RegisterOrderOutputPort;
 import org.springframework.stereotype.Service;

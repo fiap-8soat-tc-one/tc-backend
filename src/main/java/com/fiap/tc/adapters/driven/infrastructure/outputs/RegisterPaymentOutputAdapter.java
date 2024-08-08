@@ -8,7 +8,7 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddabl
 import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
 import com.fiap.tc.core.domain.exceptions.NotFoundException;
 import com.fiap.tc.core.domain.entities.OrderPayment;
-import com.fiap.tc.core.domain.fixed.PaymentResult;
+import com.fiap.tc.core.domain.enums.PaymentResult;
 import com.fiap.tc.adapters.driver.presentation.requests.OrderPaymentRequest;
 import com.fiap.tc.core.application.ports.out.payment.RegisterPaymentOutputPort;
 import org.springframework.stereotype.Service;

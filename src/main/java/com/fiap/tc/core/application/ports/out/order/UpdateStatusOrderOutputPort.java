@@ -1,6 +1,6 @@
 package com.fiap.tc.core.application.ports.out.order;
 
-import com.fiap.tc.core.domain.fixed.OrderStatus;
+import com.fiap.tc.core.domain.enums.OrderStatus;
 
 import java.util.UUID;
 

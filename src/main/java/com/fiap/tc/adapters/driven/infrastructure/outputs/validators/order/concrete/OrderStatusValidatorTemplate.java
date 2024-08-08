@@ -2,7 +2,7 @@ package com.fiap.tc.adapters.driven.infrastructure.outputs.validators.order.conc
 
 import com.fiap.tc.adapters.driven.infrastructure.outputs.validators.order.OrderStatusValidator;
 import com.fiap.tc.core.domain.exceptions.BadRequestException;
-import com.fiap.tc.core.domain.fixed.OrderStatus;
+import com.fiap.tc.core.domain.enums.OrderStatus;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;

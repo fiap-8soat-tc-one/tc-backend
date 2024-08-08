@@ -14,6 +14,4 @@ public class Authentication implements Principal {
     public String getName() {
         return uuid.toString();
     }
-
-
 }

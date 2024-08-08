@@ -1,6 +1,6 @@
 package com.fiap.tc.core.domain.entities;
 
-import com.fiap.tc.core.domain.fixed.PaymentResult;
+import com.fiap.tc.core.domain.enums.PaymentResult;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

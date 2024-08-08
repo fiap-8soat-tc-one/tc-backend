@@ -5,7 +5,7 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEnti
 import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
 import com.fiap.tc.core.application.utils.QRCodeGenerator;
 import com.fiap.tc.core.application.usecase.order.LoadOrderUseCase;
-import com.fiap.tc.core.domain.fixed.OrderStatus;
+import com.fiap.tc.core.domain.enums.OrderStatus;
 import com.fiap.tc.core.application.ports.out.order.LoadOrderOutputPort;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.BeforeEach;
