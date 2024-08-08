@@ -157,7 +157,7 @@ sequenceDiagram
     Terminal interno-->>-Atendente: Exibir mudança de status do pedido.
 ```
 
-[Clique aqui para ser redirecionado para a documentação das APIs e suas funcionalidades](https://documenter.getpostman.com/view/7393190/2sA3kd9cgG)
+[Clique aqui para ser redirecionado para a documentação das APIs e suas funcionalidades](https://documenter.getpostman.com/view/37556926/2sA3s1oXsw)
 
 ## Domain Storytelling :heavy_check_mark:
 

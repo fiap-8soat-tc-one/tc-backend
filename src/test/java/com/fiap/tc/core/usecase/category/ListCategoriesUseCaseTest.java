@@ -1,6 +1,7 @@
 package com.fiap.tc.core.usecase.category;
 
-import com.fiap.tc.core.port.out.category.ListCategoriesOutputPort;
+import com.fiap.tc.core.application.ports.out.category.ListCategoriesOutputPort;
+import com.fiap.tc.core.application.usecase.category.ListCategoriesUseCase;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

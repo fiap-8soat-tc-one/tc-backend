@@ -1,11 +1,12 @@
 package com.fiap.tc.core.usecase.order;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.adapter.repository.entity.OrderEntity;
-import com.fiap.tc.adapter.repository.mapper.base.MapperConstants;
-import com.fiap.tc.common.qrcode.QRCodeGenerator;
-import com.fiap.tc.core.domain.requests.OrderRequest;
-import com.fiap.tc.core.port.out.order.RegisterOrderOutputPort;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
+import com.fiap.tc.core.application.utils.QRCodeGenerator;
+import com.fiap.tc.core.application.usecase.order.RegisterOrderUseCase;
+import com.fiap.tc.adapters.driver.presentation.requests.OrderRequest;
+import com.fiap.tc.core.application.ports.out.order.RegisterOrderOutputPort;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
