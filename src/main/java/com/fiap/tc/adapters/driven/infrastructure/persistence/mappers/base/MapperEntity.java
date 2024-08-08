@@ -1,4 +1,4 @@
-package com.fiap.tc.adapters.driven.infrastructure.persistence.mapper.base;
+package com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base;
 
 import org.mapstruct.InheritInverseConfiguration;
 

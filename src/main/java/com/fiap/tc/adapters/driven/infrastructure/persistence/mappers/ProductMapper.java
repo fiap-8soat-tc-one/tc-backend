@@ -1,7 +1,7 @@
-package com.fiap.tc.adapters.driven.infrastructure.persistence.mapper;
+package com.fiap.tc.adapters.driven.infrastructure.persistence.mappers;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.ProductEntity;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.mapper.base.MapperEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperEntity;
 import com.fiap.tc.core.domain.model.Product;
 import com.fiap.tc.core.domain.model.ProductImage;
 import org.mapstruct.Mapper;
@@ -11,7 +11,7 @@ import org.mapstruct.Named;
 import java.util.Collections;
 import java.util.List;
 
-import static com.fiap.tc.adapters.driven.infrastructure.persistence.mapper.base.MapperConstants.PRODUCT_IMAGE_MAPPER;
+import static com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants.PRODUCT_IMAGE_MAPPER;
 import static org.springframework.util.CollectionUtils.isEmpty;
 
 @Mapper

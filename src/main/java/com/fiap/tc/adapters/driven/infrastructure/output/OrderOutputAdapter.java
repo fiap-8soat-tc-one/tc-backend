@@ -2,7 +2,7 @@ package com.fiap.tc.adapters.driven.infrastructure.output;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.builder.OrderHistoricBuilder;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.mapper.base.MapperConstants;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;

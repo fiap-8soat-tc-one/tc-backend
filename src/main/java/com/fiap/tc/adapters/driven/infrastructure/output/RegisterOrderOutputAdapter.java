@@ -7,7 +7,7 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.builder.OrderHisto
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.OrderEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.OrderItemEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.embeddable.Audit;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.mapper.base.MapperConstants;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Order;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;

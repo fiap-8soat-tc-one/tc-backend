@@ -6,7 +6,7 @@ import com.fiap.tc.core.domain.requests.ProductRequest;
 import com.fiap.tc.core.application.port.out.product.RegisterProductOutputPort;
 import org.springframework.stereotype.Service;
 
-import static com.fiap.tc.adapters.driven.infrastructure.persistence.mapper.base.MapperConstants.PRODUCT_REQUEST_MAPPER;
+import static com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants.PRODUCT_REQUEST_MAPPER;
 
 @Service
 public class RegisterProductUseCase implements RegisterProductInputPort {

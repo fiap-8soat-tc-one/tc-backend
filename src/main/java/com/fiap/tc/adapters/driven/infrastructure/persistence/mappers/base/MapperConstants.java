@@ -1,6 +1,6 @@
-package com.fiap.tc.adapters.driven.infrastructure.persistence.mapper.base;
+package com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base;
 
-import com.fiap.tc.adapters.driven.infrastructure.persistence.mapper.*;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.*;
 import org.mapstruct.factory.Mappers;
 
 public class MapperConstants {

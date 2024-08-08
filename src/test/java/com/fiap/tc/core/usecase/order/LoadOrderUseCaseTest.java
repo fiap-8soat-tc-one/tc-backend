@@ -2,7 +2,7 @@ package com.fiap.tc.core.usecase.order;
 
 import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.OrderEntity;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.mapper.base.MapperConstants;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
 import com.fiap.tc.core.application.utils.QRCodeGenerator;
 import com.fiap.tc.core.application.usecase.order.LoadOrderUseCase;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
