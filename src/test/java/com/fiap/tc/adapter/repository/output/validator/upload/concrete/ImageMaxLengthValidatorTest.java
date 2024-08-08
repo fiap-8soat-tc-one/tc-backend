@@ -4,8 +4,10 @@ import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.adapter.repository.entity.ProductEntity;
 import com.fiap.tc.adapter.repository.output.validator.upload.ProductImageValidatorWrapper;
 import com.fiap.tc.common.config.UploadConfig;
+import com.fiap.tc.core.domain.exception.BadRequestException;
 import com.fiap.tc.core.domain.model.ProductImage;
 import com.fiap.tc.fixture.FixtureTest;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 public class ImageMaxLengthValidatorTest extends FixtureTest {
@@ -28,11 +31,13 @@ public class ImageMaxLengthValidatorTest extends FixtureTest {
     private List<String> errors;
     private ProductEntity productEntity;
     private List<ProductImage> productImageList;
+    private List<ProductImage> productWithInvalidImageList;
 
     @BeforeEach
     public void setUp() {
         productEntity = Fixture.from(ProductEntity.class).gimme("with-images");
         productImageList = Fixture.from(ProductImage.class).gimme(1, "valid");
+        productWithInvalidImageList = Fixture.from(ProductImage.class).gimme(1, "invalid");
         errors = new ArrayList<>();
         wrapper = ProductImageValidatorWrapper.builder()
                 .productEntity(productEntity)
@@ -56,7 +61,25 @@ public class ImageMaxLengthValidatorTest extends FixtureTest {
     }
 
     @Test
+    public void launchErrorOnValidateWhenInvalidImageTest() {
+        wrapper = ProductImageValidatorWrapper.builder()
+                .productEntity(productEntity)
+                .uploadListSize(productWithInvalidImageList.size())
+                .productImage(productWithInvalidImageList.get(0))
+                .build();
+
+        imageMaxLengthValidator = new ImageMaxLengthValidator(uploadConfig);
+
+        var assertThrows = Assertions.assertThrows(BadRequestException.class,
+                () -> imageMaxLengthValidator.execute(wrapper, errors));
+
+
+        assertTrue(assertThrows.getMessage().contains("Invalid image"));
+    }
+
+    @Test
     public void executeMaxLengthValidatorWhenValidLengthTest() {
+
         uploadConfig.setMaxLength(100000);
         imageMaxLengthValidator = new ImageMaxLengthValidator(uploadConfig);
 

@@ -27,7 +27,7 @@ public class ProductEntity {
     private BigDecimal price;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @OrderBy(value = "register_date")
+    @OrderBy(value = "register_date DESC")
     private List<ProductImageEntity> images = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)

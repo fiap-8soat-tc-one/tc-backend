@@ -20,6 +20,9 @@ public class OrderEntity {
 
     private UUID uuid;
 
+    @Column(name = "order_number")
+    private String orderNumber;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_customer")
     private CustomerEntity customer;

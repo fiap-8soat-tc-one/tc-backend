@@ -3,6 +3,7 @@ package com.fiap.tc.adapter.repository.output.validator.upload.concrete;
 import com.fiap.tc.adapter.repository.output.validator.upload.ProductImageValidator;
 import com.fiap.tc.adapter.repository.output.validator.upload.ProductImageValidatorWrapper;
 import com.fiap.tc.common.config.UploadConfig;
+import com.fiap.tc.core.domain.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -22,11 +23,19 @@ public class ImageMaxLengthValidator implements ProductImageValidator {
     @Override
     public void execute(ProductImageValidatorWrapper wrapper, List<String> errors) {
         var productImage = wrapper.getProductImage();
-        var imageBase64Length = productImage.getImage().split(",")[1].length();
+        String[] imageBase64 = productImage.getImage().split(",");
+        if (imageBase64.length == 1) {
+            throw new BadRequestException(format("Invalid image '%s'",
+                    wrapper.getProductImage().getName()));
+        }
+
+        var imageBase64Length = imageBase64[1].length();
 
         if (imageBase64Length > uploadConfig.getMaxLength()) {
             errors.add(format("Invalid image for '%s' max length %s KB", productImage.getName(),
                     uploadConfig.getMaxLength() / 1000));
         }
+
+
     }
 }
