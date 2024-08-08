@@ -1,7 +1,7 @@
 package com.fiap.tc.adapters.repository.output;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.adapters.driven.infrastructure.output.ProductOutputAdapter;
+import com.fiap.tc.adapters.driven.infrastructure.outputs.ProductOutputAdapter;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CategoryRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CategoryEntity;

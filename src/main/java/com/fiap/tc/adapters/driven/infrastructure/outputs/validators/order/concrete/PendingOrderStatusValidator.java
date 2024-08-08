@@ -1,4 +1,4 @@
-package com.fiap.tc.adapters.driven.infrastructure.output.validator.order.concrete;
+package com.fiap.tc.adapters.driven.infrastructure.outputs.validators.order.concrete;
 
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
 

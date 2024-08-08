@@ -1,4 +1,4 @@
-package com.fiap.tc.adapters.driven.infrastructure.output;
+package com.fiap.tc.adapters.driven.infrastructure.outputs;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CategoryRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CategoryEntity;

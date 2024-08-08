@@ -1,6 +1,6 @@
-package com.fiap.tc.adapters.driven.infrastructure.output;
+package com.fiap.tc.adapters.driven.infrastructure.outputs;
 
-import com.fiap.tc.adapters.driven.infrastructure.output.validator.upload.ProductImageValidatorExecutor;
+import com.fiap.tc.adapters.driven.infrastructure.outputs.validators.upload.ProductImageValidatorExecutor;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductImageRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;

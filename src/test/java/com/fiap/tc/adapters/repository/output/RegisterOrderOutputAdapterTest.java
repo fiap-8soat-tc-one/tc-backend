@@ -1,7 +1,7 @@
 package com.fiap.tc.adapters.repository.output;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.adapters.driven.infrastructure.output.RegisterOrderOutputAdapter;
+import com.fiap.tc.adapters.driven.infrastructure.outputs.RegisterOrderOutputAdapter;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CustomerRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;

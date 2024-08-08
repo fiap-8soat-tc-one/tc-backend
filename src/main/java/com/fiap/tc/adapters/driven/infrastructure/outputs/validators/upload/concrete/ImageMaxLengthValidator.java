@@ -1,7 +1,7 @@
-package com.fiap.tc.adapters.driven.infrastructure.output.validator.upload.concrete;
+package com.fiap.tc.adapters.driven.infrastructure.outputs.validators.upload.concrete;
 
-import com.fiap.tc.adapters.driven.infrastructure.output.validator.upload.ProductImageValidator;
-import com.fiap.tc.adapters.driven.infrastructure.output.validator.upload.ProductImageValidatorWrapper;
+import com.fiap.tc.adapters.driven.infrastructure.outputs.validators.upload.ProductImageValidator;
+import com.fiap.tc.adapters.driven.infrastructure.outputs.validators.upload.ProductImageValidatorWrapper;
 import com.fiap.tc.common.config.UploadConfig;
 import com.fiap.tc.core.domain.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Qualifier;

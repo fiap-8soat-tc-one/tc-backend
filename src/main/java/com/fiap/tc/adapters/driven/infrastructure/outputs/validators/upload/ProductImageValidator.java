@@ -1,4 +1,4 @@
-package com.fiap.tc.adapters.driven.infrastructure.output.validator.upload;
+package com.fiap.tc.adapters.driven.infrastructure.outputs.validators.upload;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.fiap.tc.adapters.driven.infrastructure.output.validator.upload;
+package com.fiap.tc.adapters.driven.infrastructure.outputs.validators.upload;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
 import com.fiap.tc.core.domain.model.ProductImage;
