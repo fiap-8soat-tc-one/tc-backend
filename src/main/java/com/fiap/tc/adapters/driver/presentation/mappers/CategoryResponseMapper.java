@@ -6,7 +6,7 @@ import com.fiap.tc.core.domain.entities.Category;
 import org.mapstruct.Mapper;
 
 @Mapper
-public interface CategoryMapper extends MapperEntity<Category, CategoryResponse> {
+public interface CategoryResponseMapper extends MapperEntity<Category, CategoryResponse> {
 
     @Override
     Category toDomain(CategoryResponse category);

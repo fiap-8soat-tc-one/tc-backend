@@ -1,11 +1,11 @@
-package com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base;
+package com.fiap.tc.adapters.driver.presentation.mappers.base;
 
 import org.mapstruct.InheritInverseConfiguration;
 
 public interface MapperEntity<E, D> {
 
-    E toEntity(D dto);
+    E toDomain(D dto);
 
     @InheritInverseConfiguration
-    D fromEntity(E entity);
+    D fromDomain(E entity);
 }
