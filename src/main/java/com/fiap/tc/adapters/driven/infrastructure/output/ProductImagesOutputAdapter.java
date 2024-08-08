@@ -1,12 +1,12 @@
-package com.fiap.tc.adapters.repository.output;
+package com.fiap.tc.adapters.driven.infrastructure.output;
 
-import com.fiap.tc.adapters.repository.ProductImageRepository;
-import com.fiap.tc.adapters.repository.ProductRepository;
-import com.fiap.tc.adapters.repository.entity.ProductEntity;
-import com.fiap.tc.adapters.repository.entity.ProductImageEntity;
-import com.fiap.tc.adapters.repository.entity.embeddable.Audit;
-import com.fiap.tc.adapters.repository.mapper.base.MapperConstants;
-import com.fiap.tc.adapters.repository.output.validator.upload.ProductImageValidatorExecutor;
+import com.fiap.tc.adapters.driven.infrastructure.output.validator.upload.ProductImageValidatorExecutor;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductImageRepository;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.ProductEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.ProductImageEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.embeddable.Audit;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.mapper.base.MapperConstants;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.Product;
 import com.fiap.tc.core.domain.model.ProductImage;

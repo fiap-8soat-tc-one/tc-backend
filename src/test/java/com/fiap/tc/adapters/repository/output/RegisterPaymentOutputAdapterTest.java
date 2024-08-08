@@ -1,10 +1,11 @@
 package com.fiap.tc.adapters.repository.output;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.adapters.repository.OrderPaymentRepository;
-import com.fiap.tc.adapters.repository.OrderRepository;
-import com.fiap.tc.adapters.repository.entity.OrderEntity;
-import com.fiap.tc.adapters.repository.entity.OrderPaymentEntity;
+import com.fiap.tc.adapters.driven.infrastructure.output.RegisterPaymentOutputAdapter;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderPaymentRepository;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.OrderEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.OrderPaymentEntity;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.requests.OrderPaymentRequest;
 import com.fiap.tc.fixture.FixtureTest;

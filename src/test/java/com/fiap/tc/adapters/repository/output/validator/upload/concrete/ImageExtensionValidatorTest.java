@@ -1,8 +1,9 @@
 package com.fiap.tc.adapters.repository.output.validator.upload.concrete;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.adapters.repository.entity.ProductEntity;
-import com.fiap.tc.adapters.repository.output.validator.upload.ProductImageValidatorWrapper;
+import com.fiap.tc.adapters.driven.infrastructure.output.validator.upload.concrete.ImageExtensionValidator;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.ProductEntity;
+import com.fiap.tc.adapters.driven.infrastructure.output.validator.upload.ProductImageValidatorWrapper;
 import com.fiap.tc.common.config.UploadConfig;
 import com.fiap.tc.core.domain.model.ProductImage;
 import com.fiap.tc.fixture.FixtureTest;

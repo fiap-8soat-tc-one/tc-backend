@@ -1,6 +1,6 @@
-package com.fiap.tc.adapters.repository.output.validator.upload;
+package com.fiap.tc.adapters.driven.infrastructure.output.validator.upload;
 
-import com.fiap.tc.adapters.repository.entity.ProductEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.ProductEntity;
 import com.fiap.tc.core.domain.model.ProductImage;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

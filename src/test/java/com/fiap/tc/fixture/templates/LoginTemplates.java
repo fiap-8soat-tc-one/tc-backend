@@ -3,7 +3,7 @@ package com.fiap.tc.fixture.templates;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.fiap.tc.adapters.repository.entity.security.UserEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.security.UserEntity;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.UUID;

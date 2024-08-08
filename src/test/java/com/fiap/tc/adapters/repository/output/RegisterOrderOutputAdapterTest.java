@@ -1,12 +1,13 @@
 package com.fiap.tc.adapters.repository.output;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.adapters.repository.CustomerRepository;
-import com.fiap.tc.adapters.repository.OrderRepository;
-import com.fiap.tc.adapters.repository.ProductRepository;
-import com.fiap.tc.adapters.repository.entity.CustomerEntity;
-import com.fiap.tc.adapters.repository.entity.OrderEntity;
-import com.fiap.tc.adapters.repository.entity.ProductEntity;
+import com.fiap.tc.adapters.driven.infrastructure.output.RegisterOrderOutputAdapter;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CustomerRepository;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.CustomerEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.OrderEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entity.ProductEntity;
 import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.requests.OrderRequest;
 import com.fiap.tc.fixture.FixtureTest;
