@@ -1,4 +1,4 @@
-package com.fiap.tc.common.security;
+package com.fiap.tc.adapters.driven.security;
 
 import com.fiap.tc.adapters.repository.UserRepository;
 import com.fiap.tc.adapters.repository.entity.security.UserEntity;
