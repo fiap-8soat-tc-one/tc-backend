@@ -1,6 +1,6 @@
 package com.fiap.tc.adapters.driven.infrastructure.outputs.validators.order.concrete;
 
-import com.fiap.tc.core.domain.model.enums.OrderStatus;
+import com.fiap.tc.core.domain.fixed.OrderStatus;
 
 import java.util.List;
 

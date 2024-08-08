@@ -1,6 +1,6 @@
 package com.fiap.tc.adapters.driven.infrastructure.persistence.entities.security;
 
-import com.fiap.tc.core.domain.enums.ProfileSystem;
+import com.fiap.tc.core.domain.fixed.ProfileSystem;
 import lombok.Data;
 
 import javax.persistence.*;

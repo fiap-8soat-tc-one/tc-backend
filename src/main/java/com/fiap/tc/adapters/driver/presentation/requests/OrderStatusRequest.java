@@ -1,6 +1,6 @@
 package com.fiap.tc.adapters.driver.presentation.requests;
 
-import com.fiap.tc.core.domain.model.enums.OrderStatus;
+import com.fiap.tc.core.domain.fixed.OrderStatus;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;

@@ -2,9 +2,9 @@ package com.fiap.tc.core.usecase.product;
 
 import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.core.application.usecase.product.UpdateProductUseCase;
-import com.fiap.tc.core.domain.model.Product;
+import com.fiap.tc.core.domain.entities.Product;
 import com.fiap.tc.adapters.driver.presentation.requests.ProductRequest;
-import com.fiap.tc.core.application.port.out.product.UpdateProductOutputPort;
+import com.fiap.tc.core.application.ports.out.product.UpdateProductOutputPort;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

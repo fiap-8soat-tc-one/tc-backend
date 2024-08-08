@@ -2,8 +2,8 @@ package com.fiap.tc.adapters.driven.infrastructure.persistence.mappers;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperEntity;
-import com.fiap.tc.core.domain.model.Product;
-import com.fiap.tc.core.domain.model.ProductImage;
+import com.fiap.tc.core.domain.entities.Product;
+import com.fiap.tc.core.domain.entities.ProductImage;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

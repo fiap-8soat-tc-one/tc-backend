@@ -1,6 +1,6 @@
 package com.fiap.tc.adapters.driven.infrastructure.persistence.entities;
 
-import com.fiap.tc.core.domain.model.enums.OrderStatus;
+import com.fiap.tc.core.domain.fixed.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

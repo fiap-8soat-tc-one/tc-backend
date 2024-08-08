@@ -1,7 +1,7 @@
 package com.fiap.tc.core.application.usecase.product;
 
-import com.fiap.tc.core.application.port.in.product.DeleteProductInputPort;
-import com.fiap.tc.core.application.port.out.product.DeleteProductOutputPort;
+import com.fiap.tc.core.application.ports.in.product.DeleteProductInputPort;
+import com.fiap.tc.core.application.ports.out.product.DeleteProductOutputPort;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

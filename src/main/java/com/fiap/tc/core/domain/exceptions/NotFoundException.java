@@ -1,4 +1,4 @@
-package com.fiap.tc.core.domain.exception;
+package com.fiap.tc.core.domain.exceptions;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
 

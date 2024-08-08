@@ -4,10 +4,10 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.Categ
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CategoryEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
-import com.fiap.tc.core.application.port.out.product.*;
-import com.fiap.tc.core.domain.exception.BadRequestException;
-import com.fiap.tc.core.domain.exception.NotFoundException;
-import com.fiap.tc.core.domain.model.Product;
+import com.fiap.tc.core.application.ports.out.product.*;
+import com.fiap.tc.core.domain.exceptions.BadRequestException;
+import com.fiap.tc.core.domain.exceptions.NotFoundException;
+import com.fiap.tc.core.domain.entities.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

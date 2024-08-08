@@ -2,7 +2,7 @@ package com.fiap.tc.adapters.driven.infrastructure.persistence.mappers;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CustomerEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperEntity;
-import com.fiap.tc.core.domain.model.Customer;
+import com.fiap.tc.core.domain.entities.Customer;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

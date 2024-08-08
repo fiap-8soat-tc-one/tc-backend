@@ -3,7 +3,7 @@ package com.fiap.tc.adapters.driver.presentation.controllers;
 import com.fiap.tc.adapters.driver.presentation.URLMapping;
 import com.fiap.tc.adapters.driver.presentation.response.DefaultResponse;
 import com.fiap.tc.adapters.driver.presentation.requests.OrderPaymentRequest;
-import com.fiap.tc.core.application.port.in.payment.RegisterPaymentInputPort;
+import com.fiap.tc.core.application.ports.in.payment.RegisterPaymentInputPort;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

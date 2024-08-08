@@ -2,11 +2,11 @@ package com.fiap.tc.adapters.driver.presentation.controllers;
 
 import com.fiap.tc.adapters.driver.presentation.URLMapping;
 import com.fiap.tc.adapters.driver.presentation.response.DefaultResponse;
-import com.fiap.tc.core.domain.model.Product;
+import com.fiap.tc.core.domain.entities.Product;
 import com.fiap.tc.adapters.driver.presentation.requests.DeleteProductImagesRequest;
 import com.fiap.tc.adapters.driver.presentation.requests.RegisterProductImagesRequest;
-import com.fiap.tc.core.application.port.in.product.DeleteProductImagesInputPort;
-import com.fiap.tc.core.application.port.in.product.RegisterProductImagesInputPort;
+import com.fiap.tc.core.application.ports.in.product.DeleteProductImagesInputPort;
+import com.fiap.tc.core.application.ports.in.product.RegisterProductImagesInputPort;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

@@ -5,7 +5,7 @@ import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CategoryEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
-import com.fiap.tc.core.domain.model.Category;
+import com.fiap.tc.core.domain.entities.Category;
 import com.fiap.tc.adapters.driver.presentation.requests.CategoryRequest;
 
 import java.util.UUID;

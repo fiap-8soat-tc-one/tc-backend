@@ -1,6 +1,6 @@
 package com.fiap.tc.adapters.driver.presentation.response;
 
-import com.fiap.tc.core.domain.model.Order;
+import com.fiap.tc.core.domain.entities.Order;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

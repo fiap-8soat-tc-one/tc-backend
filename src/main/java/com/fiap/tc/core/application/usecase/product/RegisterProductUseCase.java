@@ -1,9 +1,9 @@
 package com.fiap.tc.core.application.usecase.product;
 
-import com.fiap.tc.core.application.port.in.product.RegisterProductInputPort;
-import com.fiap.tc.core.domain.model.Product;
+import com.fiap.tc.core.application.ports.in.product.RegisterProductInputPort;
+import com.fiap.tc.core.domain.entities.Product;
 import com.fiap.tc.adapters.driver.presentation.requests.ProductRequest;
-import com.fiap.tc.core.application.port.out.product.RegisterProductOutputPort;
+import com.fiap.tc.core.application.ports.out.product.RegisterProductOutputPort;
 import org.springframework.stereotype.Service;
 
 import static com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants.PRODUCT_REQUEST_MAPPER;

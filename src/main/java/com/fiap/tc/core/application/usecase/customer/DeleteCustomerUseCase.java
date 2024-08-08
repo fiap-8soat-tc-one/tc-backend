@@ -1,7 +1,7 @@
 package com.fiap.tc.core.application.usecase.customer;
 
-import com.fiap.tc.core.application.port.in.customer.DeleteCustomerInputPort;
-import com.fiap.tc.core.application.port.out.customer.DeleteCustomerOutputPort;
+import com.fiap.tc.core.application.ports.in.customer.DeleteCustomerInputPort;
+import com.fiap.tc.core.application.ports.out.customer.DeleteCustomerOutputPort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

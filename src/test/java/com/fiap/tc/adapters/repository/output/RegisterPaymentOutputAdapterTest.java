@@ -6,7 +6,7 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.Order
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderPaymentEntity;
-import com.fiap.tc.core.domain.exception.NotFoundException;
+import com.fiap.tc.core.domain.exceptions.NotFoundException;
 import com.fiap.tc.adapters.driver.presentation.requests.OrderPaymentRequest;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Assertions;

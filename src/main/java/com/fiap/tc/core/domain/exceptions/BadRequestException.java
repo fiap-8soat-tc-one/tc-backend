@@ -1,4 +1,4 @@
-package com.fiap.tc.core.domain.exception;
+package com.fiap.tc.core.domain.exceptions;
 
 import lombok.Getter;
 import lombok.Setter;

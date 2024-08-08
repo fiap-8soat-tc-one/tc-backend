@@ -2,8 +2,8 @@ package com.fiap.tc.core.usecase.category;
 
 import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.core.application.usecase.category.LoadCategoryUseCase;
-import com.fiap.tc.core.domain.model.Category;
-import com.fiap.tc.core.application.port.out.category.LoadCategoryOutputPort;
+import com.fiap.tc.core.domain.entities.Category;
+import com.fiap.tc.core.application.ports.out.category.LoadCategoryOutputPort;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

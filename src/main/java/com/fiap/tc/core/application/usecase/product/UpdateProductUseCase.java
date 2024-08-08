@@ -1,10 +1,10 @@
 package com.fiap.tc.core.application.usecase.product;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
-import com.fiap.tc.core.application.port.in.product.UpdateProductInputPort;
-import com.fiap.tc.core.domain.model.Product;
+import com.fiap.tc.core.application.ports.in.product.UpdateProductInputPort;
+import com.fiap.tc.core.domain.entities.Product;
 import com.fiap.tc.adapters.driver.presentation.requests.ProductRequest;
-import com.fiap.tc.core.application.port.out.product.UpdateProductOutputPort;
+import com.fiap.tc.core.application.ports.out.product.UpdateProductOutputPort;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

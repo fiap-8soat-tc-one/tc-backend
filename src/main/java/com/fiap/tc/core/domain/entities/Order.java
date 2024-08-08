@@ -1,6 +1,6 @@
 package com.fiap.tc.core.domain.entities;
 
-import com.fiap.tc.core.domain.enums.OrderStatus;
+import com.fiap.tc.core.domain.fixed.OrderStatus;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.codehaus.jackson.annotate.JsonIgnore;

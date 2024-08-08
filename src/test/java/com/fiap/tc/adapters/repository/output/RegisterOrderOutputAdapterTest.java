@@ -8,7 +8,7 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.Produ
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CustomerEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
-import com.fiap.tc.core.domain.exception.NotFoundException;
+import com.fiap.tc.core.domain.exceptions.NotFoundException;
 import com.fiap.tc.adapters.driver.presentation.requests.OrderRequest;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Assertions;

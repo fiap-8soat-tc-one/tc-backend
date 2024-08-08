@@ -1,6 +1,6 @@
 package com.fiap.tc.core.usecase.customer;
 
-import com.fiap.tc.core.application.port.out.customer.ListCustomersOutputPort;
+import com.fiap.tc.core.application.ports.out.customer.ListCustomersOutputPort;
 import com.fiap.tc.core.application.usecase.customer.ListCustomersUseCase;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Test;

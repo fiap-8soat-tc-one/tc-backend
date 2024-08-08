@@ -8,11 +8,11 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEnti
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderItemEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
-import com.fiap.tc.core.domain.exception.NotFoundException;
-import com.fiap.tc.core.domain.model.Order;
-import com.fiap.tc.core.domain.model.enums.OrderStatus;
+import com.fiap.tc.core.domain.exceptions.NotFoundException;
+import com.fiap.tc.core.domain.entities.Order;
+import com.fiap.tc.core.domain.fixed.OrderStatus;
 import com.fiap.tc.adapters.driver.presentation.requests.OrderItemRequest;
-import com.fiap.tc.core.application.port.out.order.RegisterOrderOutputPort;
+import com.fiap.tc.core.application.ports.out.order.RegisterOrderOutputPort;
 import org.springframework.stereotype.Service;
 import org.sqids.Sqids;
 

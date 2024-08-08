@@ -1,12 +1,12 @@
 package com.fiap.tc.adapters.driver.presentation.controllers;
 
 import com.fiap.tc.adapters.driver.presentation.URLMapping;
-import com.fiap.tc.core.domain.model.Customer;
+import com.fiap.tc.core.domain.entities.Customer;
 import com.fiap.tc.adapters.driver.presentation.requests.CustomerRequest;
-import com.fiap.tc.core.application.port.in.customer.DeleteCustomerInputPort;
-import com.fiap.tc.core.application.port.in.customer.ListCustomersInputPort;
-import com.fiap.tc.core.application.port.in.customer.LoadCustomerInputPort;
-import com.fiap.tc.core.application.port.in.customer.RegisterCustomerInputPort;
+import com.fiap.tc.core.application.ports.in.customer.DeleteCustomerInputPort;
+import com.fiap.tc.core.application.ports.in.customer.ListCustomersInputPort;
+import com.fiap.tc.core.application.ports.in.customer.LoadCustomerInputPort;
+import com.fiap.tc.core.application.ports.in.customer.RegisterCustomerInputPort;
 import io.swagger.annotations.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -7,8 +7,8 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CategoryE
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductImageEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
-import com.fiap.tc.core.domain.model.Product;
-import com.fiap.tc.core.domain.model.ProductImage;
+import com.fiap.tc.core.domain.entities.Product;
+import com.fiap.tc.core.domain.entities.ProductImage;
 import com.fiap.tc.adapters.driver.presentation.requests.DeleteProductImagesRequest;
 import com.fiap.tc.adapters.driver.presentation.requests.ProductImageRequest;
 import com.fiap.tc.adapters.driver.presentation.requests.ProductRequest;

@@ -1,8 +1,8 @@
 package com.fiap.tc.core.application.usecase.customer;
 
-import com.fiap.tc.core.domain.model.Customer;
-import com.fiap.tc.core.application.port.in.customer.ListCustomersInputPort;
-import com.fiap.tc.core.application.port.out.customer.ListCustomersOutputPort;
+import com.fiap.tc.core.domain.entities.Customer;
+import com.fiap.tc.core.application.ports.in.customer.ListCustomersInputPort;
+import com.fiap.tc.core.application.ports.out.customer.ListCustomersOutputPort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

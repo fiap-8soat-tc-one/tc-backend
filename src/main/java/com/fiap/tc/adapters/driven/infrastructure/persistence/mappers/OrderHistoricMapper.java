@@ -2,7 +2,7 @@ package com.fiap.tc.adapters.driven.infrastructure.persistence.mappers;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderHistoricEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperEntity;
-import com.fiap.tc.core.domain.model.OrderHistoric;
+import com.fiap.tc.core.domain.entities.OrderHistoric;
 import org.mapstruct.Mapper;
 
 @Mapper

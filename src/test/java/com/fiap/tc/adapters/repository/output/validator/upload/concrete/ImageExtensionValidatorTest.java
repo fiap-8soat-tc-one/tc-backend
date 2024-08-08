@@ -5,7 +5,7 @@ import com.fiap.tc.adapters.driven.infrastructure.outputs.validators.upload.conc
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
 import com.fiap.tc.adapters.driven.infrastructure.outputs.validators.upload.ProductImageValidatorWrapper;
 import com.fiap.tc.adapters.driven.security.configurations.UploadConfig;
-import com.fiap.tc.core.domain.model.ProductImage;
+import com.fiap.tc.core.domain.entities.ProductImage;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

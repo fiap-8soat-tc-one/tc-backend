@@ -6,9 +6,9 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.Produ
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
 import com.fiap.tc.adapters.driven.infrastructure.outputs.validators.upload.ProductImageValidatorExecutor;
-import com.fiap.tc.core.domain.exception.NotFoundException;
-import com.fiap.tc.core.domain.model.Product;
-import com.fiap.tc.core.domain.model.ProductImage;
+import com.fiap.tc.core.domain.exceptions.NotFoundException;
+import com.fiap.tc.core.domain.entities.Product;
+import com.fiap.tc.core.domain.entities.ProductImage;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
