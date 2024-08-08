@@ -1,4 +1,4 @@
-package com.fiap.tc.common.token;
+package com.fiap.tc.adapters.driven.security.token;
 
 import org.apache.catalina.util.ParameterMap;
 import org.springframework.core.Ordered;

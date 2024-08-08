@@ -1,4 +1,4 @@
-package com.fiap.tc.adapters.web;
+package com.fiap.tc.adapters.driver.web;
 
 public class URLMapping {
 

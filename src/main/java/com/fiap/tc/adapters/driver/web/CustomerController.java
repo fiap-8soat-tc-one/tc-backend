@@ -1,4 +1,4 @@
-package com.fiap.tc.adapters.web;
+package com.fiap.tc.adapters.driver.web;
 
 import com.fiap.tc.core.domain.model.Customer;
 import com.fiap.tc.core.domain.requests.CustomerRequest;

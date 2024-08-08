@@ -1,6 +1,6 @@
-package com.fiap.tc.adapters.web;
+package com.fiap.tc.adapters.driver.web;
 
-import com.fiap.tc.adapters.web.response.DefaultResponse;
+import com.fiap.tc.adapters.driver.web.response.DefaultResponse;
 import com.fiap.tc.core.domain.requests.OrderPaymentRequest;
 import com.fiap.tc.core.application.port.in.payment.RegisterPaymentInputPort;
 import io.swagger.annotations.*;

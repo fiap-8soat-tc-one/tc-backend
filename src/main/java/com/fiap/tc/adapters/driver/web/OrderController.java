@@ -1,6 +1,6 @@
-package com.fiap.tc.adapters.web;
+package com.fiap.tc.adapters.driver.web;
 
-import com.fiap.tc.adapters.web.response.DefaultResponse;
+import com.fiap.tc.adapters.driver.web.response.DefaultResponse;
 import com.fiap.tc.core.domain.requests.OrderRequest;
 import com.fiap.tc.core.domain.requests.OrderStatusRequest;
 import com.fiap.tc.core.domain.response.OrderListResponse;

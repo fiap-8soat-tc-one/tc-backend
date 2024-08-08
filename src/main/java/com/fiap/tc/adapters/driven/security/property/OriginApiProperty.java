@@ -1,4 +1,4 @@
-package com.fiap.tc.common.config.property;
+package com.fiap.tc.adapters.driven.security.property;
 
 import lombok.Data;
 import lombok.Getter;

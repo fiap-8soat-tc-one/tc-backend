@@ -1,4 +1,4 @@
-package com.fiap.tc.common.config;
+package com.fiap.tc.adapters.driven.security.configurations;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

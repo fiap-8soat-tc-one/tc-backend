@@ -2,7 +2,7 @@ package com.fiap.tc.adapters.driven.infrastructure.outputs.validators.upload.con
 
 import com.fiap.tc.adapters.driven.infrastructure.outputs.validators.upload.ProductImageValidator;
 import com.fiap.tc.adapters.driven.infrastructure.outputs.validators.upload.ProductImageValidatorWrapper;
-import com.fiap.tc.common.config.UploadConfig;
+import com.fiap.tc.adapters.driven.security.configurations.UploadConfig;
 import com.fiap.tc.core.domain.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;

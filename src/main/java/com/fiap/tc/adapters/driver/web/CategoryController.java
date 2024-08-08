@@ -1,7 +1,7 @@
-package com.fiap.tc.adapters.web;
+package com.fiap.tc.adapters.driver.web;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CategoryEntity;
-import com.fiap.tc.adapters.web.response.DefaultResponse;
+import com.fiap.tc.adapters.driver.web.response.DefaultResponse;
 import com.fiap.tc.core.application.port.in.category.*;
 import com.fiap.tc.core.domain.model.Category;
 import com.fiap.tc.core.domain.requests.CategoryRequest;

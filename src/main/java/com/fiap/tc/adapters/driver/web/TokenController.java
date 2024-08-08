@@ -1,6 +1,6 @@
-package com.fiap.tc.adapters.web;
+package com.fiap.tc.adapters.driver.web;
 
-import com.fiap.tc.common.config.property.OriginApiProperty;
+import com.fiap.tc.adapters.driven.security.property.OriginApiProperty;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

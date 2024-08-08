@@ -1,6 +1,6 @@
-package com.fiap.tc.common.cors;
+package com.fiap.tc.adapters.driven.security.cors;
 
-import com.fiap.tc.common.config.property.OriginApiProperty;
+import com.fiap.tc.adapters.driven.security.property.OriginApiProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

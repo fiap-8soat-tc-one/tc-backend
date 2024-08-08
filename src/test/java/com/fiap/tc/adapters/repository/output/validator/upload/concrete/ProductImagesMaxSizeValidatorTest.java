@@ -4,7 +4,7 @@ import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.adapters.driven.infrastructure.outputs.validators.upload.concrete.ProductImagesMaxSizeValidator;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
 import com.fiap.tc.adapters.driven.infrastructure.outputs.validators.upload.ProductImageValidatorWrapper;
-import com.fiap.tc.common.config.UploadConfig;
+import com.fiap.tc.adapters.driven.security.configurations.UploadConfig;
 import com.fiap.tc.core.domain.exception.BadRequestException;
 import com.fiap.tc.core.domain.model.ProductImage;
 import com.fiap.tc.fixture.FixtureTest;

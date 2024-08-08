@@ -1,6 +1,6 @@
-package com.fiap.tc.common.token;
+package com.fiap.tc.adapters.driven.security.token;
 
-import com.fiap.tc.common.config.property.OriginApiProperty;
+import com.fiap.tc.adapters.driven.security.property.OriginApiProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;

@@ -1,4 +1,4 @@
-package com.fiap.tc.adapters.driven.security;
+package com.fiap.tc.adapters.driven.security.models;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.security.UserEntity;
 import lombok.Getter;

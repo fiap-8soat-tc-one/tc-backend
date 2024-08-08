@@ -1,6 +1,6 @@
-package com.fiap.tc.adapters.web;
+package com.fiap.tc.adapters.driver.web;
 
-import com.fiap.tc.adapters.web.response.DefaultResponse;
+import com.fiap.tc.adapters.driver.web.response.DefaultResponse;
 import com.fiap.tc.core.domain.model.Product;
 import com.fiap.tc.core.domain.requests.DeleteProductImagesRequest;
 import com.fiap.tc.core.domain.requests.RegisterProductImagesRequest;
