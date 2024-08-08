@@ -9,10 +9,10 @@ import org.mapstruct.Mapper;
 public interface CategoryResponseMapper extends MapperEntity<Category, CategoryResponse> {
 
     @Override
-    Category toDomain(CategoryResponse category);
+    Category toDomain(CategoryResponse response);
     
     @Override
-    CategoryResponse fromDomain(Category category);
+    CategoryResponse fromDomain(Category entity);
 }
 
 
