@@ -1,15 +1,15 @@
-package com.fiap.tc.core.usecase.order;
+package com.fiap.tc.core.application.usecase.order;
 
-import com.fiap.tc.common.qrcode.QRCodeGenerator;
+import com.fiap.tc.core.application.utils.QRCodeGenerator;
+import com.fiap.tc.core.application.port.in.order.LoadOrderInputPort;
 import com.fiap.tc.core.domain.response.OrderResponse;
-import com.fiap.tc.core.port.in.order.LoadOrderInputPort;
-import com.fiap.tc.core.port.out.order.LoadOrderOutputPort;
+import com.fiap.tc.core.application.port.out.order.LoadOrderOutputPort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
-import static com.fiap.tc.common.constants.OrderConstants.PAYMENT_LINK_STATUS;
+import static com.fiap.tc.core.domain.constants.OrderConstants.PAYMENT_LINK_STATUS;
 
 @Service
 @Slf4j

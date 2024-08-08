@@ -1,4 +1,4 @@
-package com.fiap.tc.core.port.in.product;
+package com.fiap.tc.core.application.port.in.product;
 
 import com.fiap.tc.core.domain.model.Product;
 import com.fiap.tc.core.domain.requests.RegisterProductImagesRequest;

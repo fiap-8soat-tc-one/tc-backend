@@ -14,7 +14,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
-import static com.fiap.tc.common.constants.OrderConstants.WAIT_TIME_STATUS;
+import static com.fiap.tc.core.domain.constants.OrderConstants.WAIT_TIME_STATUS;
 
 @Mapper
 public interface OrderListMapper extends MapperEntity<OrderEntity, OrderListResponse> {

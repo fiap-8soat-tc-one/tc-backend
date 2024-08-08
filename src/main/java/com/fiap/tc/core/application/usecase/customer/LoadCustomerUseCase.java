@@ -1,8 +1,8 @@
-package com.fiap.tc.core.usecase.customer;
+package com.fiap.tc.core.application.usecase.customer;
 
 import com.fiap.tc.core.domain.model.Customer;
-import com.fiap.tc.core.port.in.customer.LoadCustomerInputPort;
-import com.fiap.tc.core.port.out.customer.LoadCustomerOutputPort;
+import com.fiap.tc.core.application.port.in.customer.LoadCustomerInputPort;
+import com.fiap.tc.core.application.port.out.customer.LoadCustomerOutputPort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

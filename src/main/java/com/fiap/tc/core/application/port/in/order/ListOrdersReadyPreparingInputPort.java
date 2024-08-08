@@ -1,4 +1,4 @@
-package com.fiap.tc.core.port.in.order;
+package com.fiap.tc.core.application.port.in.order;
 
 import com.fiap.tc.core.domain.response.OrderListResponse;
 import org.springframework.data.domain.Page;

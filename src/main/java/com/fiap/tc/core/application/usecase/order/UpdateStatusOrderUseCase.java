@@ -1,8 +1,8 @@
-package com.fiap.tc.core.usecase.order;
+package com.fiap.tc.core.application.usecase.order;
 
+import com.fiap.tc.core.application.port.in.order.UpdateStatusOrderInputPort;
 import com.fiap.tc.core.domain.requests.OrderStatusRequest;
-import com.fiap.tc.core.port.in.order.UpdateStatusOrderInputPort;
-import com.fiap.tc.core.port.out.order.UpdateStatusOrderOutputPort;
+import com.fiap.tc.core.application.port.out.order.UpdateStatusOrderOutputPort;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,4 +1,4 @@
-package com.fiap.tc.common.qrcode;
+package com.fiap.tc.core.application.utils;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;

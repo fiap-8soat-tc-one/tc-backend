@@ -1,4 +1,4 @@
-package com.fiap.tc.core.port.out.customer;
+package com.fiap.tc.core.application.port.out.customer;
 
 public interface DeleteCustomerOutputPort {
     void delete(String document);

@@ -1,4 +1,4 @@
-package com.fiap.tc.core.port.out.product;
+package com.fiap.tc.core.application.port.out.product;
 
 import java.util.List;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package com.fiap.tc.core.port.out.product;
+package com.fiap.tc.core.application.port.out.product;
 
 import com.fiap.tc.core.domain.model.Product;
 import org.springframework.data.domain.Page;

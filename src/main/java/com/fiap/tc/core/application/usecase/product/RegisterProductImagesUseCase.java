@@ -1,9 +1,9 @@
-package com.fiap.tc.core.usecase.product;
+package com.fiap.tc.core.application.usecase.product;
 
+import com.fiap.tc.core.application.port.in.product.RegisterProductImagesInputPort;
 import com.fiap.tc.core.domain.model.Product;
 import com.fiap.tc.core.domain.requests.RegisterProductImagesRequest;
-import com.fiap.tc.core.port.in.product.RegisterProductImagesInputPort;
-import com.fiap.tc.core.port.out.product.RegisterProductImagesOutputPort;
+import com.fiap.tc.core.application.port.out.product.RegisterProductImagesOutputPort;
 import org.springframework.stereotype.Service;
 
 import static com.fiap.tc.adapters.repository.mapper.base.MapperConstants.PRODUCT_IMAGE_REQUEST_MAPPER;

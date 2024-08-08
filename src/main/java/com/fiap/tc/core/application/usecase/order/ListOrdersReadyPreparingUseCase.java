@@ -1,10 +1,9 @@
-package com.fiap.tc.core.usecase.order;
+package com.fiap.tc.core.application.usecase.order;
 
-import com.fiap.tc.core.domain.model.Order;
+import com.fiap.tc.core.application.port.in.order.ListOrdersReadyPreparingInputPort;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
 import com.fiap.tc.core.domain.response.OrderListResponse;
-import com.fiap.tc.core.port.in.order.ListOrdersReadyPreparingInputPort;
-import com.fiap.tc.core.port.out.order.ListOrdersReadyPreparingOutputPort;
+import com.fiap.tc.core.application.port.out.order.ListOrdersReadyPreparingOutputPort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

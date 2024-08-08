@@ -1,4 +1,4 @@
-package com.fiap.tc.core.port.out.category;
+package com.fiap.tc.core.application.port.out.category;
 
 import com.fiap.tc.core.domain.model.Category;
 import org.springframework.data.domain.Page;

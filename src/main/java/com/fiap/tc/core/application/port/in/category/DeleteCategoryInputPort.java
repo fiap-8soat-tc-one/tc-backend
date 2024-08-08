@@ -1,4 +1,4 @@
-package com.fiap.tc.core.port.in.category;
+package com.fiap.tc.core.application.port.in.category;
 
 import java.util.UUID;
 

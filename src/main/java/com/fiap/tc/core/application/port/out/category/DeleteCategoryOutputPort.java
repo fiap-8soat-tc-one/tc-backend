@@ -1,4 +1,4 @@
-package com.fiap.tc.core.port.out.category;
+package com.fiap.tc.core.application.port.out.category;
 
 import java.util.UUID;
 

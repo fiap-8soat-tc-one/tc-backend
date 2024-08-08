@@ -1,10 +1,11 @@
 package com.fiap.tc.core.usecase.payment;
 
 import br.com.six2six.fixturefactory.Fixture;
+import com.fiap.tc.core.application.usecase.payment.RegisterPaymentUseCase;
 import com.fiap.tc.core.domain.model.OrderPayment;
 import com.fiap.tc.core.domain.requests.OrderPaymentRequest;
-import com.fiap.tc.core.port.out.order.UpdateStatusOrderOutputPort;
-import com.fiap.tc.core.port.out.payment.RegisterPaymentOutputPort;
+import com.fiap.tc.core.application.port.out.order.UpdateStatusOrderOutputPort;
+import com.fiap.tc.core.application.port.out.payment.RegisterPaymentOutputPort;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

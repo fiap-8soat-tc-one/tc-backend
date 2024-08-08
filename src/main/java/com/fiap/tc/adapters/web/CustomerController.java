@@ -2,10 +2,10 @@ package com.fiap.tc.adapters.web;
 
 import com.fiap.tc.core.domain.model.Customer;
 import com.fiap.tc.core.domain.requests.CustomerRequest;
-import com.fiap.tc.core.port.in.customer.DeleteCustomerInputPort;
-import com.fiap.tc.core.port.in.customer.ListCustomersInputPort;
-import com.fiap.tc.core.port.in.customer.LoadCustomerInputPort;
-import com.fiap.tc.core.port.in.customer.RegisterCustomerInputPort;
+import com.fiap.tc.core.application.port.in.customer.DeleteCustomerInputPort;
+import com.fiap.tc.core.application.port.in.customer.ListCustomersInputPort;
+import com.fiap.tc.core.application.port.in.customer.LoadCustomerInputPort;
+import com.fiap.tc.core.application.port.in.customer.RegisterCustomerInputPort;
 import io.swagger.annotations.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -2,9 +2,9 @@ package com.fiap.tc.adapters.web;
 
 import com.fiap.tc.adapters.repository.entity.CategoryEntity;
 import com.fiap.tc.adapters.web.response.DefaultResponse;
+import com.fiap.tc.core.application.port.in.category.*;
 import com.fiap.tc.core.domain.model.Category;
 import com.fiap.tc.core.domain.requests.CategoryRequest;
-import com.fiap.tc.core.port.in.category.*;
 import io.swagger.annotations.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,4 +1,4 @@
-package com.fiap.tc.core.port.out.customer;
+package com.fiap.tc.core.application.port.out.customer;
 
 import com.fiap.tc.core.domain.model.Customer;
 

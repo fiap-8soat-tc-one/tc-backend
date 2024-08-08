@@ -1,8 +1,8 @@
-package com.fiap.tc.core.usecase.product;
+package com.fiap.tc.core.application.usecase.product;
 
+import com.fiap.tc.core.application.port.in.product.ListProductsByCategoryInputPort;
 import com.fiap.tc.core.domain.model.Product;
-import com.fiap.tc.core.port.in.product.ListProductsByCategoryInputPort;
-import com.fiap.tc.core.port.out.product.ListProductsByCategoryOutputPort;
+import com.fiap.tc.core.application.port.out.product.ListProductsByCategoryOutputPort;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

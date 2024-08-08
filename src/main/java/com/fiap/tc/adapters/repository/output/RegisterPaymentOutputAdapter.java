@@ -10,7 +10,7 @@ import com.fiap.tc.core.domain.exception.NotFoundException;
 import com.fiap.tc.core.domain.model.OrderPayment;
 import com.fiap.tc.core.domain.model.enums.PaymentResult;
 import com.fiap.tc.core.domain.requests.OrderPaymentRequest;
-import com.fiap.tc.core.port.out.payment.RegisterPaymentOutputPort;
+import com.fiap.tc.core.application.port.out.payment.RegisterPaymentOutputPort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
