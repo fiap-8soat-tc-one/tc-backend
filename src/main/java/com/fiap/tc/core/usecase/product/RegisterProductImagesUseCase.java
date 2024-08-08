@@ -6,7 +6,7 @@ import com.fiap.tc.core.port.in.product.RegisterProductImagesInputPort;
 import com.fiap.tc.core.port.out.product.RegisterProductImagesOutputPort;
 import org.springframework.stereotype.Service;
 
-import static com.fiap.tc.adapter.repository.mapper.base.MapperConstants.PRODUCT_IMAGE_REQUEST_MAPPER;
+import static com.fiap.tc.adapters.repository.mapper.base.MapperConstants.PRODUCT_IMAGE_REQUEST_MAPPER;
 
 @Service
 public class RegisterProductImagesUseCase implements RegisterProductImagesInputPort {

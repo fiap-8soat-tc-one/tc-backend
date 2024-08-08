@@ -1,8 +1,8 @@
 package com.fiap.tc.core.usecase.order;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.adapter.repository.entity.OrderEntity;
-import com.fiap.tc.adapter.repository.mapper.base.MapperConstants;
+import com.fiap.tc.adapters.repository.entity.OrderEntity;
+import com.fiap.tc.adapters.repository.mapper.base.MapperConstants;
 import com.fiap.tc.common.qrcode.QRCodeGenerator;
 import com.fiap.tc.core.domain.model.enums.OrderStatus;
 import com.fiap.tc.core.port.out.order.LoadOrderOutputPort;

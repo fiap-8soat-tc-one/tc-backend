@@ -3,8 +3,8 @@ package com.fiap.tc.fixture.templates;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.fiap.tc.adapter.repository.entity.CategoryEntity;
-import com.fiap.tc.adapter.repository.entity.embeddable.Audit;
+import com.fiap.tc.adapters.repository.entity.CategoryEntity;
+import com.fiap.tc.adapters.repository.entity.embeddable.Audit;
 import com.fiap.tc.core.domain.model.Category;
 import com.fiap.tc.core.domain.requests.CategoryRequest;
 

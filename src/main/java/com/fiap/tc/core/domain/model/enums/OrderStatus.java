@@ -1,7 +1,7 @@
 package com.fiap.tc.core.domain.model.enums;
 
-import com.fiap.tc.adapter.repository.output.validator.order.*;
-import com.fiap.tc.adapter.repository.output.validator.order.concrete.*;
+import com.fiap.tc.adapters.repository.output.validator.order.*;
+import com.fiap.tc.adapters.repository.output.validator.order.concrete.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
