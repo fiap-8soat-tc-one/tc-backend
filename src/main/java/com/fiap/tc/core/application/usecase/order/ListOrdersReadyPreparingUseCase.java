@@ -1,7 +1,7 @@
 package com.fiap.tc.core.application.usecase.order;
 
 import com.fiap.tc.core.application.ports.in.order.ListOrdersReadyPreparingInputPort;
-import com.fiap.tc.core.domain.fixed.OrderStatus;
+import com.fiap.tc.core.domain.enums.OrderStatus;
 import com.fiap.tc.adapters.driver.presentation.response.OrderListResponse;
 import com.fiap.tc.core.application.ports.out.order.ListOrdersReadyPreparingOutputPort;
 import lombok.extern.slf4j.Slf4j;

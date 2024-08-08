@@ -1,7 +1,7 @@
 package com.fiap.tc.core.usecase.order;
 
 import com.fiap.tc.core.application.usecase.order.ListOrdersReadyPreparingUseCase;
-import com.fiap.tc.core.domain.fixed.OrderStatus;
+import com.fiap.tc.core.domain.enums.OrderStatus;
 import com.fiap.tc.core.application.ports.out.order.ListOrdersReadyPreparingOutputPort;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Test;

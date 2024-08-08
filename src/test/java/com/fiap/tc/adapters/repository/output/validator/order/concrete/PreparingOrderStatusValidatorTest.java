@@ -2,7 +2,7 @@ package com.fiap.tc.adapters.repository.output.validator.order.concrete;
 
 import com.fiap.tc.adapters.driven.infrastructure.outputs.validators.order.concrete.PreparingOrderStatusValidator;
 import com.fiap.tc.core.domain.exceptions.BadRequestException;
-import com.fiap.tc.core.domain.fixed.OrderStatus;
+import com.fiap.tc.core.domain.enums.OrderStatus;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;

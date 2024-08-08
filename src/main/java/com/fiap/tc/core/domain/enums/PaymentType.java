@@ -1,4 +1,4 @@
-package com.fiap.tc.core.domain.fixed;
+package com.fiap.tc.core.domain.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

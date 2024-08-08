@@ -5,7 +5,7 @@ import com.fiap.tc.adapters.driven.infrastructure.outputs.OrderOutputAdapter;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEntity;
 import com.fiap.tc.core.domain.exceptions.NotFoundException;
-import com.fiap.tc.core.domain.fixed.OrderStatus;
+import com.fiap.tc.core.domain.enums.OrderStatus;
 import com.fiap.tc.adapters.driver.presentation.requests.OrderStatusRequest;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Assertions;
