@@ -97,10 +97,12 @@ public class ProductOutputAdapter implements LoadProductOutputPort, RegisterProd
             throw new NotFoundException(format("Product with id %s not found!", product.getId()));
         }
 
-        if (!product.getId().equals(productEntityExpectedOptional.get().getUuid())) {
+        if (productEntityExpectedOptional.isEmpty()) return productEntityOptional.get();
+        
+        if (product.getId() != productEntityExpectedOptional.get().getUuid()) {
             throw new BadRequestException(format("Product with expected name %s already exists!", product.getName()));
         }
-        
+
         return productEntityOptional.get();
     }
 

@@ -66,7 +66,7 @@ public class RegisterOrderOutputAdapter implements RegisterOrderOutputPort {
         Sqids sqids = Sqids.builder().minLength(ORDER_NUMBER_MIN_LENGTH).build();
         var orderNumber = sqids.encode(List.of(orderEntity.getId().longValue()));
         orderEntity.setOrderNumber(orderNumber);
-
+        
         return MapperConstants.ORDER_MAPPER.fromEntity(orderRepository.save(orderEntity));
     }
 

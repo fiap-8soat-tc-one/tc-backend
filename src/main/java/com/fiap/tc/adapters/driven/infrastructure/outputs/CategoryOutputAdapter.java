@@ -88,9 +88,12 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
 
         var categoryExpectedEntityOptional = repository.findByName(name);
         
-        if (!idCategory.equals(categoryExpectedEntityOptional.get().getUuid())) {
+        if(categoryExpectedEntityOptional.isEmpty()) return categoryEntityOptional.get(); 
+        
+        if (idCategory != categoryExpectedEntityOptional.get().getUuid()) {
             throw new BadRequestException(format("Category with expected name %s already exists!", name));
         }
+        
         return categoryEntityOptional.get();
     }
 
