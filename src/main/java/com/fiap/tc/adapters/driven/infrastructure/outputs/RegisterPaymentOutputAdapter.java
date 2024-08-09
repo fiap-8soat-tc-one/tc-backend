@@ -6,6 +6,7 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.builders.OrderPaym
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderPaymentEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
+import com.fiap.tc.core.domain.enums.PaymentType;
 import com.fiap.tc.core.domain.exceptions.NotFoundException;
 import com.fiap.tc.core.domain.entities.OrderPayment;
 import com.fiap.tc.core.domain.enums.PaymentResult;
@@ -13,6 +14,7 @@ import com.fiap.tc.adapters.driver.presentation.requests.OrderPaymentRequest;
 import com.fiap.tc.core.application.ports.out.payment.RegisterPaymentOutputPort;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
@@ -30,10 +32,11 @@ public class RegisterPaymentOutputAdapter implements RegisterPaymentOutputPort {
     }
 
     @Override
-    public OrderPayment saveOrUpdate(OrderPaymentRequest orderPaymentRequest) {
-        var orderEntityOptional = orderRepository.findByUuid(UUID.fromString(orderPaymentRequest.getTransactionNumber()));
+    public OrderPayment saveOrUpdate(String transactionNumber, String transactionMessage, String transactionDocument, PaymentResult result, PaymentType type, BigDecimal total) {
+        var orderEntityOptional = orderRepository.findByUuid(UUID.fromString(transactionNumber));
+       
         if (orderEntityOptional.isEmpty()) {
-            throw new NotFoundException(format("Order with uuid %s not found!", orderPaymentRequest.getTransactionNumber()));
+            throw new NotFoundException(format("Order with uuid %s not found!",transactionNumber));
         }
 
         var orderEntity = orderEntityOptional.get();
@@ -42,14 +45,14 @@ public class RegisterPaymentOutputAdapter implements RegisterPaymentOutputPort {
         if (orderPaymentEntityOptional.isPresent()) {
             var orderPaymentEntity = orderPaymentEntityOptional.get();
             orderPaymentEntity.getAudit().setUpdatedDate(LocalDateTime.now());
-            orderPaymentEntity.setResult(orderPaymentRequest.getResult());
-            orderPaymentEntity.setPaymentType(orderPaymentRequest.getPaymentType());
-            orderPaymentEntity.setTransactionDocument(orderPaymentRequest.getTransactionDocument());
-            orderPaymentEntity.setTransactionNumber(orderPaymentRequest.getTransactionNumber());
-            orderPaymentEntity.setTransactionMessage(orderPaymentRequest.getTransactionMessage());
-            orderPaymentEntity.getPayment_historic()
-                    .add(OrderPaymentHistoricBuilder.create(orderPaymentEntity, orderPaymentRequest.getResult()));
-            setDatesResult(orderPaymentRequest, orderPaymentEntity);
+            orderPaymentEntity.setResult(result);
+            orderPaymentEntity.setPaymentType(type);
+            orderPaymentEntity.setTransactionDocument(transactionDocument);
+            orderPaymentEntity.setTransactionNumber(transactionNumber);
+            orderPaymentEntity.setTransactionMessage(transactionMessage);
+            orderPaymentEntity.getPayment_historic().add(OrderPaymentHistoricBuilder.create(orderPaymentEntity, result));
+           
+            setDatesResult(result, orderPaymentEntity);
 
             orderPaymentRepository.save(orderPaymentEntity);
 
@@ -60,15 +63,23 @@ public class RegisterPaymentOutputAdapter implements RegisterPaymentOutputPort {
                     .build();
         }
 
-        var newOrderPaymentEntity = MapperConstants.ORDER_PAYMENT_MAPPER.toEntity(orderPaymentRequest);
+        
+        var newOrderPaymentEntity = new OrderPaymentEntity();
 
         newOrderPaymentEntity.setUuid(UUID.randomUUID());
         newOrderPaymentEntity.setOrder(orderEntity);
         newOrderPaymentEntity.setAudit(Audit.builder().active(true).registerDate(LocalDateTime.now()).build());
-        newOrderPaymentEntity.getPayment_historic()
-                .add(OrderPaymentHistoricBuilder.create(newOrderPaymentEntity, orderPaymentRequest.getResult()));
-        setDatesResult(orderPaymentRequest, newOrderPaymentEntity);
+        newOrderPaymentEntity.setResult(result);
+        newOrderPaymentEntity.setPaymentType(type);
+        newOrderPaymentEntity.setTransactionDocument(transactionDocument);
+        newOrderPaymentEntity.setTransactionNumber(transactionNumber);
+        newOrderPaymentEntity.setTransactionMessage(transactionMessage);
+        newOrderPaymentEntity.getPayment_historic().add(OrderPaymentHistoricBuilder.create(newOrderPaymentEntity, result));
+
+        setDatesResult(result, newOrderPaymentEntity);
+        
         orderPaymentRepository.save(newOrderPaymentEntity);
+       
         return OrderPayment.builder()
                 .id(newOrderPaymentEntity.getUuid())
                 .idOrder(orderEntity.getUuid())
@@ -76,11 +87,11 @@ public class RegisterPaymentOutputAdapter implements RegisterPaymentOutputPort {
                 .build();
     }
 
-    private void setDatesResult(OrderPaymentRequest orderPaymentRequest, OrderPaymentEntity orderPaymentEntity) {
-        Optional.of(orderPaymentRequest.getResult())
-                .filter(result -> result.equals(PaymentResult.SUCCESS))
+    private void setDatesResult(PaymentResult result, OrderPaymentEntity orderPaymentEntity) {
+        Optional.of(result)
+                .filter(x -> x.equals(PaymentResult.SUCCESS))
                 .ifPresentOrElse(
-                        result -> orderPaymentEntity.setResultSuccessDate(LocalDateTime.now()),
+                        x -> orderPaymentEntity.setResultSuccessDate(LocalDateTime.now()),
                         () -> orderPaymentEntity.setResultErrorDate(LocalDateTime.now()));
     }
 }

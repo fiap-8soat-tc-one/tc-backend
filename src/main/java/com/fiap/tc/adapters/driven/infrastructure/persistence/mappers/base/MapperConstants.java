@@ -18,8 +18,6 @@ public class MapperConstants {
 
     public static final OrderItemMapper ORDER_ITEM_MAPPER = Mappers.getMapper(OrderItemMapper.class);
 
-    public static final OrderPaymentMapper ORDER_PAYMENT_MAPPER = Mappers.getMapper(OrderPaymentMapper.class);
-
     public static final OrderHistoricMapper ORDER_HISTORIC_MAPPER = Mappers.getMapper(OrderHistoricMapper.class);
 
     public static final ProductMapper PRODUCT_MAPPER = Mappers.getMapper(ProductMapper.class);

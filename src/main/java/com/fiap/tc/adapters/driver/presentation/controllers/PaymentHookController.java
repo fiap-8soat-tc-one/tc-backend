@@ -35,7 +35,7 @@ public class PaymentHookController {
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<DefaultResponse> register(
             @ApiParam(value = "Order payment request details", required = true) @RequestBody @Valid OrderPaymentRequest request) {
-        registerPaymentInputPort.register(request);
+        registerPaymentInputPort.register(request.getTransactionNumber(), request.getTransactionMessage(), request.getTransactionDocument(), request.getResult(), request.getPaymentType(), request.getTotal());
         return ok(new DefaultResponse());
     }
 }
