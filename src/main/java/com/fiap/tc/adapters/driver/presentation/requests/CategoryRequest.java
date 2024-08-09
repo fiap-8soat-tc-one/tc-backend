@@ -14,7 +14,7 @@ public class CategoryRequest {
     @ApiModelProperty(
             value = "Category name",
             required = true,
-            example = "lanche",
+            example = "drink",
             dataType = "String"
     )
     private String name;
@@ -24,14 +24,8 @@ public class CategoryRequest {
     @ApiModelProperty(
             value = "Category description",
             required = true,
-            example = "categoria de lanche",
+            example = "drink category",
             dataType = "String"
     )
     private String description;
-    @ApiModelProperty(
-            value = "active status",
-            example = "true",
-            dataType = "Boolean"
-    )
-    private Boolean active = true;
 }

@@ -109,7 +109,7 @@ public class CategoryOutputAdapterTests extends FixtureTest {
         when(categoryRepository.save(Mockito.any())).thenReturn(categoryEntity);
 
         var category = categoryOutputAdapter.saveOrUpdate(request.getName(),
-                request.getDescription(), request.getActive());
+                request.getDescription());
 
         assertNotNull(category);
         verify(categoryRepository).findByName(request.getName());
@@ -122,8 +122,7 @@ public class CategoryOutputAdapterTests extends FixtureTest {
         when(categoryRepository.findByName(request.getName())).thenReturn(Optional.of(categoryEntity));
         when(categoryRepository.save(categoryEntity)).thenReturn(categoryEntity);
 
-        var category = categoryOutputAdapter.saveOrUpdate(request.getName(),
-                request.getDescription(), request.getActive());
+        var category = categoryOutputAdapter.saveOrUpdate(request.getName(), request.getDescription());
 
         assertNotNull(category);
         verify(categoryRepository).findByName(request.getName());
@@ -138,7 +137,7 @@ public class CategoryOutputAdapterTests extends FixtureTest {
         when(categoryRepository.findByName(request.getName())).thenReturn(Optional.empty());
         when(categoryRepository.save(categoryEntity)).thenReturn(categoryEntity);
 
-        var category = categoryOutputAdapter.update(ID_CATEGORY, request.getName(), request.getDescription(), request.getActive());
+        var category = categoryOutputAdapter.update(ID_CATEGORY, request.getName(), request.getDescription());
 
         assertNotNull(category);
         verify(categoryRepository).findByName(request.getName());
@@ -152,7 +151,7 @@ public class CategoryOutputAdapterTests extends FixtureTest {
         when(categoryRepository.findByName(request.getName())).thenReturn(Optional.empty());
         when(categoryRepository.save(Mockito.any())).thenReturn(categoryEntity);
 
-        var category = categoryOutputAdapter.update(ID_CATEGORY, request.getName(), request.getDescription(), request.getActive());
+        var category = categoryOutputAdapter.update(ID_CATEGORY, request.getName(), request.getDescription());
 
         assertNotNull(category);
         verify(categoryRepository).findByName(request.getName());
@@ -166,8 +165,8 @@ public class CategoryOutputAdapterTests extends FixtureTest {
         when(categoryRepository.findByName(request.getName())).thenReturn(Optional.of(categoryEntity));
 
 
-        var assertThrows = Assertions.assertThrows(BadRequestException.class, () -> categoryOutputAdapter.update(ID_CATEGORY, request.getName(),
-                request.getDescription(), request.getActive()));
+        var assertThrows = Assertions.assertThrows(BadRequestException.class,
+                () -> categoryOutputAdapter.update(ID_CATEGORY, request.getName(), request.getDescription()));
 
 
         assertTrue(assertThrows.getMessage().contains("already exists"));
@@ -177,9 +176,8 @@ public class CategoryOutputAdapterTests extends FixtureTest {
     public void launchNotFoundExceptionOnUpdateCategoryWithIdWhenCategoryNotExistsTest() {
         when(categoryRepository.findByUuid(ID_CATEGORY)).thenReturn(Optional.empty());
 
-        var assertThrows = Assertions.assertThrows(NotFoundException.class, () -> categoryOutputAdapter.update(ID_CATEGORY, request.getName(),
-                request.getDescription(), request.getActive()));
-
+        var assertThrows = Assertions.assertThrows(NotFoundException.class,
+                () -> categoryOutputAdapter.update(ID_CATEGORY, request.getName(), request.getDescription()));
 
         assertTrue(assertThrows.getMessage().contains("not found"));
     }

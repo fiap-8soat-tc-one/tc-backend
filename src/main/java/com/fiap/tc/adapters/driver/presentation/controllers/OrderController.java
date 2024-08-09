@@ -69,7 +69,8 @@ public class OrderController {
             @ApiResponse(code = 200, message = "Successfully registered order", response = OrderResponse.class),
     })
     @PostMapping(path = URLMapping.ROOT_PUBLIC_API_ORDERS, produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<OrderResponse> register(@ApiParam(value = "Order details for creating a new order", required = true) @RequestBody @Valid OrderRequest request) {
+    public ResponseEntity<OrderResponse> register(@ApiParam(value = "Order details for creating a new order",
+            required = true) @RequestBody @Valid OrderRequest request) {
 
         var listOfItems = request.getOrderItems().stream().map(ORDER_ITEM_MAPPER::toDomain).toList();
         var order = registerOrderInputPort.register(request.getIdCustomer(), listOfItems);

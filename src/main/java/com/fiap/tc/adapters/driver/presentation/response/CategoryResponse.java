@@ -16,7 +16,7 @@ public class CategoryResponse {
             dataType = "UUID"
     )
     private UUID id;
-    
+
     @NotEmpty
     @Size(max = 255, message = "Invalid category name")
     @ApiModelProperty(
@@ -36,10 +36,4 @@ public class CategoryResponse {
             dataType = "String"
     )
     private String description;
-    @ApiModelProperty(
-            value = "active status",
-            example = "true",
-            dataType = "Boolean"
-    )
-    private Boolean active = true;
 }

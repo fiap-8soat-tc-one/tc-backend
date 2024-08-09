@@ -5,5 +5,5 @@ import com.fiap.tc.core.domain.entities.Category;
 import java.util.UUID;
 
 public interface UpdateCategoryInputPort {
-    Category update(UUID idCategory, String name, String description, Boolean active);
+    Category update(UUID idCategory, String name, String description);
 }

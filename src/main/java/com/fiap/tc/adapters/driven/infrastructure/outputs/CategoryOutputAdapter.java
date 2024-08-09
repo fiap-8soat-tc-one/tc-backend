@@ -18,7 +18,7 @@ import static com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.bas
 import static java.lang.String.format;
 
 @Service
-public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCategoryOutputPort,
+public class CategoryOutputAdapter implements RegisterCategoryOutputPort, LoadCategoryOutputPort,
         ListCategoriesOutputPort, DeleteCategoryOutputPort, UpdateCategoryOutputPort {
     private final CategoryRepository repository;
 
@@ -48,34 +48,33 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
     }
 
     @Override
-    public Category saveOrUpdate(String name, String description, boolean active) {
+    public Category saveOrUpdate(String name, String description) {
         var categoryEntityOptional = repository.findByName(name);
 
         if (categoryEntityOptional.isPresent()) {
             var categoryEntity = categoryEntityOptional.get();
             categoryEntity.setDescription(description);
-            categoryEntity.getAudit().setActive(active);
             categoryEntity.getAudit().setUpdatedDate(LocalDateTime.now());
             return CATEGORY_MAPPER.fromEntity(repository.save(categoryEntity));
 
         }
-        return CATEGORY_MAPPER.fromEntity(repository.save(buildCategoryEntity(name, description, active)));
+        return CATEGORY_MAPPER.fromEntity(repository.save(buildCategoryEntity(name, description)));
 
     }
 
-    private CategoryEntity buildCategoryEntity(String name, String description, boolean active) {
+    private CategoryEntity buildCategoryEntity(String name, String description) {
         var newCategory = new CategoryEntity();
         newCategory.setName(name);
         newCategory.setDescription(description);
         newCategory.setUuid(UUID.randomUUID());
-        newCategory.setAudit(Audit.builder().active(active).registerDate(LocalDateTime.now()).build());
+        newCategory.setAudit(Audit.builder().active(true).registerDate(LocalDateTime.now()).build());
         return newCategory;
     }
 
     @Override
-    public Category update(UUID idCategory, String name, String description, boolean active) {
+    public Category update(UUID idCategory, String name, String description) {
         var categoryEntity = validate(idCategory, name);
-        return updateCategory(name, description, active, categoryEntity);
+        return updateCategory(name, description, categoryEntity);
     }
 
     private CategoryEntity validate(UUID idCategory, String name) {
@@ -99,11 +98,10 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
         return categoryEntityOptional.get();
     }
 
-    private Category updateCategory(String name, String description, boolean active, CategoryEntity categoryEntity) {
+    private Category updateCategory(String name, String description, CategoryEntity categoryEntity) {
         categoryEntity.setName(name);
         categoryEntity.setDescription(description);
         categoryEntity.getAudit().setUpdatedDate(LocalDateTime.now());
-        categoryEntity.getAudit().setActive(active);
 
         return CATEGORY_MAPPER.fromEntity(repository.save(categoryEntity));
     }
