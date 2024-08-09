@@ -2,13 +2,13 @@ package com.fiap.tc.adapters.repository.output;
 
 import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.adapters.driven.infrastructure.outputs.ProductOutputAdapter;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CategoryRepository;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CategoryEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CategoryRepository;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
+import com.fiap.tc.core.domain.entities.Product;
 import com.fiap.tc.core.domain.exceptions.BadRequestException;
 import com.fiap.tc.core.domain.exceptions.NotFoundException;
-import com.fiap.tc.core.domain.entities.Product;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,6 +48,8 @@ public class ProductOutputAdapterTest extends FixtureTest {
 
     private ProductEntity productEntity;
 
+    private ProductEntity productFlanEntity;
+
     private CategoryEntity categoryEntity;
 
     private Pageable pageable;
@@ -56,6 +58,8 @@ public class ProductOutputAdapterTest extends FixtureTest {
     public void setUp() {
         product = Fixture.from(Product.class).gimme("valid");
         productEntity = Fixture.from(ProductEntity.class).gimme("valid");
+        productFlanEntity = Fixture.from(ProductEntity.class).gimme("valid");
+        productFlanEntity.setName("Flan");
         categoryEntity = Fixture.from(CategoryEntity.class).gimme("valid");
         pageable = Mockito.mock(Pageable.class);
 
@@ -105,18 +109,33 @@ public class ProductOutputAdapterTest extends FixtureTest {
     }
 
     @Test
-    public void saveProductTest() {
+    public void saveProductOnRegisterProductTest() {
         when(productRepository.findByName(Mockito.anyString())).thenReturn(Optional.empty());
         when(categoryRepository.findByUuid(Mockito.any())).thenReturn(Optional.of(categoryEntity));
         when(productRepository.save(Mockito.any())).thenReturn(productEntity);
 
-        var productResult = productOutputAdapter.save(product);
+        var productResult = productOutputAdapter.saveOrUpdate(product);
 
         assertNotNull(productResult);
         verify(productRepository).findByName(Mockito.anyString());
         verify(categoryRepository).findByUuid(Mockito.any());
         verify(productRepository).save(Mockito.any());
     }
+
+    @Test
+    public void updateProductOnRegisterProductTestTest() {
+        when(productRepository.findByName(Mockito.anyString())).thenReturn(Optional.of(productEntity));
+        when(categoryRepository.findByUuid(Mockito.any())).thenReturn(Optional.of(categoryEntity));
+        when(productRepository.save(Mockito.any())).thenReturn(productEntity);
+
+        var productResult = productOutputAdapter.saveOrUpdate(product);
+
+        assertNotNull(productResult);
+        verify(productRepository).findByName(Mockito.anyString());
+        verify(categoryRepository).findByUuid(Mockito.any());
+        verify(productRepository).save(Mockito.any());
+    }
+
 
     @Test
     public void updateProductTest() {
@@ -138,7 +157,7 @@ public class ProductOutputAdapterTest extends FixtureTest {
         when(categoryRepository.findByUuid(Mockito.any())).thenReturn(Optional.empty());
 
         var assertThrows = Assertions.assertThrows(NotFoundException.class,
-                () -> productOutputAdapter.save(product));
+                () -> productOutputAdapter.saveOrUpdate(product));
 
         assertTrue(assertThrows.getMessage().contains("not found"));
 
@@ -181,7 +200,7 @@ public class ProductOutputAdapterTest extends FixtureTest {
     public void launchExceptionOnUpdateProductNameWhenExpectedNameAlreadyExistsTest() {
 
         when(productRepository.findByName(product.getName())).thenReturn(Optional.of(productEntity));
-        when(productRepository.findByUuid(product.getId())).thenReturn(Optional.of(productEntity));
+        when(productRepository.findByUuid(product.getId())).thenReturn(Optional.of(productFlanEntity));
 
 
         var assertThrows = Assertions.assertThrows(BadRequestException.class,

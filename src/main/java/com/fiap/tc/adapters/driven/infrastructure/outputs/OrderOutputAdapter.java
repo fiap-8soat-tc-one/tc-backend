@@ -21,7 +21,8 @@ import java.util.UUID;
 import static java.lang.String.format;
 
 @Service
-public class OrderOutputAdapter implements UpdateStatusOrderOutputPort, LoadOrderOutputPort, ListOrdersReadyPreparingOutputPort {
+public class OrderOutputAdapter implements UpdateStatusOrderOutputPort, LoadOrderOutputPort,
+        ListOrdersReadyPreparingOutputPort {
 
     private final OrderRepository orderRepository;
 

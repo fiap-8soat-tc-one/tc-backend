@@ -1,12 +1,12 @@
 package com.fiap.tc.adapters.driven.infrastructure.outputs;
 
-import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CategoryRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CategoryEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CategoryRepository;
 import com.fiap.tc.core.application.ports.out.category.*;
+import com.fiap.tc.core.domain.entities.Category;
 import com.fiap.tc.core.domain.exceptions.BadRequestException;
 import com.fiap.tc.core.domain.exceptions.NotFoundException;
-import com.fiap.tc.core.domain.entities.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -53,7 +53,6 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
 
         if (categoryEntityOptional.isPresent()) {
             var categoryEntity = categoryEntityOptional.get();
-            categoryEntity.setName(name);
             categoryEntity.setDescription(description);
             categoryEntity.getAudit().setActive(active);
             categoryEntity.getAudit().setUpdatedDate(LocalDateTime.now());
@@ -87,13 +86,16 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
         }
 
         var categoryExpectedEntityOptional = repository.findByName(name);
-        
-        if(categoryExpectedEntityOptional.isEmpty()) return categoryEntityOptional.get(); 
-        
-        if (idCategory != categoryExpectedEntityOptional.get().getUuid()) {
-            throw new BadRequestException(format("Category with expected name %s already exists!", name));
+
+        var categoryEntity = categoryEntityOptional.get();
+        var notSameCategoryName = !(categoryEntity.getName().equals(name));
+
+        var hasInvalidCategoryName = notSameCategoryName && categoryExpectedEntityOptional.isPresent();
+
+        if (hasInvalidCategoryName) {
+            throw new BadRequestException(format("Category with expected name '%s' already exists!", name));
         }
-        
+
         return categoryEntityOptional.get();
     }
 
