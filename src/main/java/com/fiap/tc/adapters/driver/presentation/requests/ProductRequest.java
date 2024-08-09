@@ -48,10 +48,4 @@ public class ProductRequest {
     )
     private BigDecimal price;
 
-    @ApiModelProperty(
-            value = "active status",
-            example = "true",
-            dataType = "Boolean"
-    )
-    private Boolean active = true;
 }

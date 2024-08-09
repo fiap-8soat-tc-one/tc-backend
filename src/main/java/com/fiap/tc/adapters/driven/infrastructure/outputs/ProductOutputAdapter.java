@@ -2,6 +2,7 @@ package com.fiap.tc.adapters.driven.infrastructure.outputs;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CategoryEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CategoryRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
 import com.fiap.tc.core.application.ports.out.product.*;
@@ -74,7 +75,7 @@ public class ProductOutputAdapter implements LoadProductOutputPort, RegisterProd
         var newProductEntity = PRODUCT_MAPPER.toEntity(product);
         newProductEntity.setUuid(UUID.randomUUID());
         newProductEntity.setCategory(categoryEntity);
-        newProductEntity.getAudit().setRegisterDate(LocalDateTime.now());
+        newProductEntity.setAudit(Audit.builder().active(true).registerDate(LocalDateTime.now()).build());
 
         return PRODUCT_MAPPER.fromEntity(repository.save(newProductEntity));
     }
