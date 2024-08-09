@@ -164,10 +164,28 @@ public class ProductOutputAdapterTest extends FixtureTest {
     }
 
     @Test
-    public void updateProductNameTest() {
-
+    public void updateProductWithSameNamesWhenProductByUuidExistsTest() {
+        product.setName("cake");
+        productEntity.setName("cake");
         when(productRepository.findByName(product.getName())).thenReturn(Optional.empty());
         when(productRepository.findByUuid(product.getId())).thenReturn(Optional.of(productEntity));
+        when(categoryRepository.findByUuid(Mockito.any())).thenReturn(Optional.of(categoryEntity));
+        when(productRepository.save(Mockito.any())).thenReturn(productEntity);
+
+        var productResult = productOutputAdapter.update(product);
+
+        assertNotNull(productResult);
+        verify(productRepository).findByName(Mockito.anyString());
+        verify(productRepository).findByUuid(Mockito.any());
+        verify(categoryRepository).findByUuid(Mockito.any());
+        verify(productRepository).save(Mockito.any());
+    }
+
+    @Test
+    public void updateProductWithDiffNamesTest() {
+
+        when(productRepository.findByName(product.getName())).thenReturn(Optional.empty());
+        when(productRepository.findByUuid(product.getId())).thenReturn(Optional.of(productFlanEntity));
         when(categoryRepository.findByUuid(Mockito.any())).thenReturn(Optional.of(categoryEntity));
         when(productRepository.save(Mockito.any())).thenReturn(productEntity);
 

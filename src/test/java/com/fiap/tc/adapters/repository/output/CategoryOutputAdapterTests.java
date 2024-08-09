@@ -131,7 +131,9 @@ public class CategoryOutputAdapterTests extends FixtureTest {
     }
 
     @Test
-    public void updateCategoryWithIdTest() {
+    public void updateCategoryWithSameNamesWhenCategoryByUuidExistsTest() {
+        categoryEntity.setName("drink");
+        request.setName("drink");
         when(categoryRepository.findByUuid(ID_CATEGORY)).thenReturn(Optional.of(categoryEntity));
         when(categoryRepository.findByName(request.getName())).thenReturn(Optional.empty());
         when(categoryRepository.save(categoryEntity)).thenReturn(categoryEntity);
@@ -145,7 +147,7 @@ public class CategoryOutputAdapterTests extends FixtureTest {
     }
 
     @Test
-    public void updateCategorySnackWithIdTest() {
+    public void updateCategoryWithDiffNamesTest() {
         when(categoryRepository.findByUuid(ID_CATEGORY)).thenReturn(Optional.of(categorySnackEntity));
         when(categoryRepository.findByName(request.getName())).thenReturn(Optional.empty());
         when(categoryRepository.save(Mockito.any())).thenReturn(categoryEntity);
