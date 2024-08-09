@@ -1,9 +1,9 @@
 package com.fiap.tc.core.application.usecase.order;
 
 import com.fiap.tc.core.application.ports.in.order.ListOrdersReadyPreparingInputPort;
-import com.fiap.tc.core.domain.enums.OrderStatus;
-import com.fiap.tc.adapters.driver.presentation.response.OrderListResponse;
 import com.fiap.tc.core.application.ports.out.order.ListOrdersReadyPreparingOutputPort;
+import com.fiap.tc.core.domain.entities.OrderList;
+import com.fiap.tc.core.domain.enums.OrderStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +22,7 @@ public class ListOrdersReadyPreparingUseCase implements ListOrdersReadyPreparing
     }
 
     @Override
-    public Page<OrderListResponse> list(Pageable pageable) {
+    public Page<OrderList> list(Pageable pageable) {
         return listOrdersReadyPreparingOutputPort.list(List.of(OrderStatus.PREPARING, OrderStatus.READY), pageable);
     }
 }

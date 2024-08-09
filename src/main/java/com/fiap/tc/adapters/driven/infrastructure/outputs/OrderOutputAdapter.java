@@ -1,15 +1,15 @@
 package com.fiap.tc.adapters.driven.infrastructure.outputs;
 
-import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.builders.OrderHistoricBuilder;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
-import com.fiap.tc.core.domain.exceptions.NotFoundException;
-import com.fiap.tc.core.domain.entities.Order;
-import com.fiap.tc.core.domain.enums.OrderStatus;
-import com.fiap.tc.adapters.driver.presentation.response.OrderListResponse;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
 import com.fiap.tc.core.application.ports.out.order.ListOrdersReadyPreparingOutputPort;
 import com.fiap.tc.core.application.ports.out.order.LoadOrderOutputPort;
 import com.fiap.tc.core.application.ports.out.order.UpdateStatusOrderOutputPort;
+import com.fiap.tc.core.domain.entities.Order;
+import com.fiap.tc.core.domain.entities.OrderList;
+import com.fiap.tc.core.domain.enums.OrderStatus;
+import com.fiap.tc.core.domain.exceptions.NotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -58,7 +58,7 @@ public class OrderOutputAdapter implements UpdateStatusOrderOutputPort, LoadOrde
     }
 
     @Override
-    public Page<OrderListResponse> list(List<OrderStatus> status, Pageable pageable) {
+    public Page<OrderList> list(List<OrderStatus> status, Pageable pageable) {
         var ordersEntity = orderRepository.findByStatusIn(status, pageable);
         return ordersEntity.map(MapperConstants.ORDER_LIST_MAPPER::fromEntity);
     }

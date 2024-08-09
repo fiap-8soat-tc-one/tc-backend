@@ -3,8 +3,8 @@ package com.fiap.tc.adapters.driven.infrastructure.persistence.mappers;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderHistoricEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperEntity;
+import com.fiap.tc.core.domain.entities.OrderList;
 import com.fiap.tc.core.domain.enums.OrderStatus;
-import com.fiap.tc.adapters.driver.presentation.response.OrderListResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -17,16 +17,16 @@ import java.util.Optional;
 import static com.fiap.tc.core.domain.constants.OrderConstants.WAIT_TIME_STATUS;
 
 @Mapper
-public interface OrderListMapper extends MapperEntity<OrderEntity, OrderListResponse> {
+public interface OrderListMapper extends MapperEntity<OrderEntity, OrderList> {
 
     @Override
     @Mapping(target = "waitTime", source = "orderEntity", qualifiedByName = "calculateWaitTime")
     @Mapping(target = "id", source = "uuid")
-    OrderListResponse fromEntity(OrderEntity orderEntity);
+    OrderList fromEntity(OrderEntity orderEntity);
 
     @Override
     @Mapping(target = "id", ignore = true)
-    OrderEntity toEntity(OrderListResponse orderListResponse);
+    OrderEntity toEntity(OrderList orderList);
 
     @Named("calculateWaitTime")
     default Long calculateWaitTime(OrderEntity orderEntity) {

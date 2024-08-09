@@ -1,9 +1,11 @@
 package com.fiap.tc.core.application.usecase.order;
 
 import com.fiap.tc.core.application.ports.in.order.UpdateStatusOrderInputPort;
-import com.fiap.tc.adapters.driver.presentation.requests.OrderStatusRequest;
 import com.fiap.tc.core.application.ports.out.order.UpdateStatusOrderOutputPort;
+import com.fiap.tc.core.domain.enums.OrderStatus;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class UpdateStatusOrderUseCase implements UpdateStatusOrderInputPort {
@@ -15,7 +17,7 @@ public class UpdateStatusOrderUseCase implements UpdateStatusOrderInputPort {
     }
 
     @Override
-    public void update(OrderStatusRequest orderStatusRequest) {
-        updateStatusOrderOutputPort.update(orderStatusRequest.getId(), orderStatusRequest.getStatus());
+    public void update(UUID id, OrderStatus status) {
+        updateStatusOrderOutputPort.update(id, status);
     }
 }

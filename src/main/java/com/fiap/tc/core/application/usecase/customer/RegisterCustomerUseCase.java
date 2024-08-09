@@ -1,9 +1,8 @@
 package com.fiap.tc.core.application.usecase.customer;
 
-import com.fiap.tc.core.domain.entities.Customer;
-import com.fiap.tc.adapters.driver.presentation.requests.CustomerRequest;
 import com.fiap.tc.core.application.ports.in.customer.RegisterCustomerInputPort;
 import com.fiap.tc.core.application.ports.out.customer.SaveCustomerOutputPort;
+import com.fiap.tc.core.domain.entities.Customer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,7 @@ public class RegisterCustomerUseCase implements RegisterCustomerInputPort {
     }
 
     @Override
-    public Customer register(CustomerRequest customerRequest) {
-        return saveCustomerOutputPort.saveOrUpdate(customerRequest.getDocument(), customerRequest.getName(), customerRequest.getEmail());
+    public Customer register(String document, String name, String email) {
+        return saveCustomerOutputPort.saveOrUpdate(document, name, email);
     }
 }

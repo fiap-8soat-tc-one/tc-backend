@@ -110,7 +110,7 @@ public class ProductOutputAdapterTest extends FixtureTest {
         when(categoryRepository.findByUuid(Mockito.any())).thenReturn(Optional.of(categoryEntity));
         when(productRepository.save(Mockito.any())).thenReturn(productEntity);
 
-        var productResult = productOutputAdapter.saveOrUpdate(product);
+        var productResult = productOutputAdapter.save(product);
 
         assertNotNull(productResult);
         verify(productRepository).findByName(Mockito.anyString());
@@ -124,7 +124,7 @@ public class ProductOutputAdapterTest extends FixtureTest {
         when(categoryRepository.findByUuid(Mockito.any())).thenReturn(Optional.of(categoryEntity));
         when(productRepository.save(Mockito.any())).thenReturn(productEntity);
 
-        var productResult = productOutputAdapter.saveOrUpdate(product);
+        var productResult = productOutputAdapter.save(product);
 
         assertNotNull(productResult);
         verify(productRepository).findByName(Mockito.anyString());
@@ -138,7 +138,7 @@ public class ProductOutputAdapterTest extends FixtureTest {
         when(categoryRepository.findByUuid(Mockito.any())).thenReturn(Optional.empty());
 
         var assertThrows = Assertions.assertThrows(NotFoundException.class,
-                () -> productOutputAdapter.saveOrUpdate(product));
+                () -> productOutputAdapter.save(product));
 
         assertTrue(assertThrows.getMessage().contains("not found"));
 

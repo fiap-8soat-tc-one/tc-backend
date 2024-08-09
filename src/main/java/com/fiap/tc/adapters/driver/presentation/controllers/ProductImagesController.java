@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import static com.fiap.tc.adapters.driver.presentation.mappers.base.MapperConstants.PRODUCT_IMAGE_REQUEST_MAPPER;
 import static com.fiap.tc.adapters.driver.presentation.mappers.base.MapperConstants.PRODUCT_MAPPER;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.ResponseEntity.ok;
@@ -43,7 +44,8 @@ public class ProductImagesController {
     @PreAuthorize("hasAuthority('REGISTER_PRODUCTS')")
     public ResponseEntity<ProductResponse> upload(
             @ApiParam(value = "Product Image details for upload", required = true) @RequestBody @Valid RegisterProductImagesRequest request) {
-        return ok(PRODUCT_MAPPER.fromDomain(registerProductImagesInputPort.register(request)));
+        var productImages = request.getImages().stream().map(PRODUCT_IMAGE_REQUEST_MAPPER::toEntity).toList();
+        return ok(PRODUCT_MAPPER.fromDomain(registerProductImagesInputPort.register(request.getIdProduct(), productImages)));
     }
 
     @ApiOperation(value = "delete product images by ids", notes = "(Private Endpoint) This endpoint is responsible for removing images of a product. It is used on the administrative screen for managing categories and products.")
@@ -57,7 +59,7 @@ public class ProductImagesController {
     public ResponseEntity<DefaultResponse> delete(
             @ApiParam(value = "Product Image Ids for delete", required = true)
             @RequestBody @Valid DeleteProductImagesRequest request) {
-        deleteProductImagesInputPort.delete(request);
+        deleteProductImagesInputPort.delete(request.getIdProduct(), request.getImages());
         return ok(new DefaultResponse());
     }
 }

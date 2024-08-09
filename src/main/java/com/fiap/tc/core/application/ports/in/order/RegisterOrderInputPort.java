@@ -1,8 +1,11 @@
 package com.fiap.tc.core.application.ports.in.order;
 
-import com.fiap.tc.adapters.driver.presentation.requests.OrderRequest;
-import com.fiap.tc.adapters.driver.presentation.response.OrderResponse;
+import com.fiap.tc.core.domain.entities.Order;
+import com.fiap.tc.core.domain.entities.OrderItem;
+
+import java.util.List;
+import java.util.UUID;
 
 public interface RegisterOrderInputPort {
-    OrderResponse register(OrderRequest orderRequest);
+    Order register(UUID idCustomer, List<OrderItem> listOfItems);
 }

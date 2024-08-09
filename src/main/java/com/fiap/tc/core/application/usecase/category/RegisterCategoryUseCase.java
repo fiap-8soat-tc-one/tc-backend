@@ -1,9 +1,8 @@
 package com.fiap.tc.core.application.usecase.category;
 
 import com.fiap.tc.core.application.ports.in.category.RegisterCategoryInputPort;
-import com.fiap.tc.core.domain.entities.Category;
-import com.fiap.tc.adapters.driver.presentation.requests.CategoryRequest;
 import com.fiap.tc.core.application.ports.out.category.SaveCategoryOutputPort;
+import com.fiap.tc.core.domain.entities.Category;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +17,8 @@ public class RegisterCategoryUseCase implements RegisterCategoryInputPort {
     }
 
     @Override
-    public Category register(CategoryRequest categoryRequest) {
-        return saveCategoryOutputPort.saveOrUpdate(categoryRequest.getName(), categoryRequest.getDescription(), categoryRequest.getActive());
+    public Category register(String name, String description, Boolean active) {
+        return saveCategoryOutputPort.saveOrUpdate(name, description, active);
     }
 }
 

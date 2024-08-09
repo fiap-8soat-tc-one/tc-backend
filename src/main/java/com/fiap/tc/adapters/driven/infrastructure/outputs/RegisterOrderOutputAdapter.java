@@ -1,18 +1,18 @@
 package com.fiap.tc.adapters.driven.infrastructure.outputs;
 
-import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CustomerRepository;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.builders.OrderHistoricBuilder;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderItemEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
-import com.fiap.tc.core.domain.exceptions.NotFoundException;
-import com.fiap.tc.core.domain.entities.Order;
-import com.fiap.tc.core.domain.enums.OrderStatus;
-import com.fiap.tc.adapters.driver.presentation.requests.OrderItemRequest;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CustomerRepository;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
 import com.fiap.tc.core.application.ports.out.order.RegisterOrderOutputPort;
+import com.fiap.tc.core.domain.entities.Order;
+import com.fiap.tc.core.domain.entities.OrderItem;
+import com.fiap.tc.core.domain.enums.OrderStatus;
+import com.fiap.tc.core.domain.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.sqids.Sqids;
 
@@ -41,7 +41,7 @@ public class RegisterOrderOutputAdapter implements RegisterOrderOutputPort {
     }
 
     @Override
-    public Order save(UUID customerId, List<OrderItemRequest> itemsRequest) {
+    public Order save(UUID customerId, List<OrderItem> orderItems) {
         var customerEntityOptional = customerRepository.findByUuid(customerId);
 
         OrderEntity orderEntity = new OrderEntity();
@@ -53,7 +53,7 @@ public class RegisterOrderOutputAdapter implements RegisterOrderOutputPort {
 
         orderEntity.setStatus(OrderStatus.RECEIVED);
 
-        add_items(itemsRequest, orderEntity);
+        add_items(orderItems, orderEntity);
         orderEntity.getOrderHistoric().add(OrderHistoricBuilder.create(orderEntity, orderEntity.getStatus()));
 
         return persist(orderEntity);
@@ -70,19 +70,19 @@ public class RegisterOrderOutputAdapter implements RegisterOrderOutputPort {
         return MapperConstants.ORDER_MAPPER.fromEntity(orderRepository.save(orderEntity));
     }
 
-    private void add_items(List<OrderItemRequest> itemsRequest, OrderEntity orderEntity) {
-        if (!isEmpty(itemsRequest)) {
-            var itemsEntity = itemsRequest.stream().map(req -> buildOrderItemsEntity(req, orderEntity)).toList();
+    private void add_items(List<OrderItem> orderItems, OrderEntity orderEntity) {
+        if (!isEmpty(orderItems)) {
+            var itemsEntity = orderItems.stream().map(req -> buildOrderItemsEntity(req, orderEntity)).toList();
             orderEntity.setItems(itemsEntity);
             orderEntity.setTotal(itemsEntity.stream().map(OrderItemEntity::getTotal).reduce(BigDecimal.ZERO, BigDecimal::add));
         }
     }
 
-    private OrderItemEntity buildOrderItemsEntity(OrderItemRequest itemRequest, OrderEntity orderEntity) {
+    private OrderItemEntity buildOrderItemsEntity(OrderItem orderItem, OrderEntity orderEntity) {
 
-        var productEntityOptional = productRepository.findByUuid(itemRequest.getIdProduct());
+        var productEntityOptional = productRepository.findByUuid(orderItem.getIdProduct());
         if (productEntityOptional.isEmpty()) {
-            throw new NotFoundException(format("Product with id %s not found!", itemRequest.getIdProduct()));
+            throw new NotFoundException(format("Product with id %s not found!", orderItem.getIdProduct()));
         }
 
         var productEntity = productEntityOptional.get();
@@ -91,8 +91,8 @@ public class RegisterOrderOutputAdapter implements RegisterOrderOutputPort {
         orderItemEntity.setOrder(orderEntity);
         orderItemEntity.setProduct(productEntity);
         orderItemEntity.setUnitValue(productEntity.getPrice());
-        orderItemEntity.setQuantity(itemRequest.getQuantity());
-        orderItemEntity.setTotal(calcItemTotal(itemRequest, orderItemEntity));
+        orderItemEntity.setQuantity(orderItem.getQuantity());
+        orderItemEntity.setTotal(calcItemTotal(orderItem, orderItemEntity));
         orderItemEntity.setAudit(Audit.builder().active(true).registerDate(LocalDateTime.now()).build());
 
         return orderItemEntity;
@@ -100,7 +100,7 @@ public class RegisterOrderOutputAdapter implements RegisterOrderOutputPort {
 
     }
 
-    private BigDecimal calcItemTotal(OrderItemRequest orderItemRequest, OrderItemEntity orderItemEntity) {
+    private BigDecimal calcItemTotal(OrderItem orderItemRequest, OrderItemEntity orderItemEntity) {
         return orderItemEntity.getUnitValue().multiply(valueOf(orderItemRequest.getQuantity()))
                 .setScale(2, RoundingMode.HALF_UP);
     }

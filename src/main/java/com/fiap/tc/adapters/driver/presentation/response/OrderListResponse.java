@@ -40,5 +40,4 @@ public class OrderListResponse {
     )
     private Long waitTime;
 
-
 }

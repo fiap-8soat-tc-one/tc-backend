@@ -50,6 +50,7 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
     @Override
     public Category saveOrUpdate(String name, String description, boolean active) {
         var categoryEntityOptional = repository.findByName(name);
+
         if (categoryEntityOptional.isPresent()) {
             var categoryEntity = categoryEntityOptional.get();
             categoryEntity.setName(name);
@@ -59,7 +60,6 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
             return CATEGORY_MAPPER.fromEntity(repository.save(categoryEntity));
 
         }
-
         return CATEGORY_MAPPER.fromEntity(repository.save(buildCategoryEntity(name, description, active)));
 
     }
@@ -87,8 +87,8 @@ public class CategoryOutputAdapter implements SaveCategoryOutputPort, LoadCatego
         }
 
         var categoryExpectedEntityOptional = repository.findByName(name);
-
-        if (categoryExpectedEntityOptional.isPresent()) {
+        
+        if (!idCategory.equals(categoryExpectedEntityOptional.get().getUuid())) {
             throw new BadRequestException(format("Category with expected name %s already exists!", name));
         }
         return categoryEntityOptional.get();

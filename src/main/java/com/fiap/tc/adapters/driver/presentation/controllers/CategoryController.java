@@ -65,7 +65,7 @@ public class CategoryController {
     @PreAuthorize("hasAuthority('REGISTER_CATEGORIES')")
     public ResponseEntity<CategoryResponse> saveOrUpdate(
             @ApiParam(value = "Category details for saving/updating", required = true) @RequestBody @Valid CategoryRequest category) {
-        return ok(CATEGORY_MAPPER.fromDomain(registerCategoryInputPort.register(category)));
+        return ok(CATEGORY_MAPPER.fromDomain(registerCategoryInputPort.register(category.getName(), category.getDescription(), category.getActive())));
     }
 
     @ApiOperation(value = "update category", notes = "(Private Endpoint) This endpoint is responsible for update a category. It is used on the administrative screen for managing categories and products.")
@@ -79,7 +79,7 @@ public class CategoryController {
     public ResponseEntity<CategoryResponse> update(
             @ApiParam(value = "ID of the category to be retrieved", required = true) @PathVariable UUID id,
             @ApiParam(value = "Category details for updating", required = true) @RequestBody @Valid CategoryRequest request) {
-        return ok(CATEGORY_MAPPER.fromDomain(updateCategoryInputPort.update(id, request)));
+        return ok(CATEGORY_MAPPER.fromDomain(updateCategoryInputPort.update(id, request.getName(), request.getDescription(), request.getActive())));
     }
 
     @ApiOperation(value = "get category by id", notes = "(Private Endpoint) This endpoint is responsible for fetching a category through its unique identifier. It is used on the administrative screen to assist in product creation.")
