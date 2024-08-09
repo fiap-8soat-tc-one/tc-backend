@@ -37,10 +37,9 @@ public class RegisterCategoryUseCaseTest extends FixtureTest {
 
     @Test
     public void registerCategoryTest() {
-        when(saveCategoryOutputPort.saveOrUpdate(categoryRequest.getName(), categoryRequest.getDescription(),
-                categoryRequest.getActive())).thenReturn(category);
+        when(saveCategoryOutputPort.saveOrUpdate(categoryRequest.getName(), categoryRequest.getDescription(), categoryRequest.getActive())).thenReturn(category);
 
-        var categoryResult = registerCategoryUseCase.register(categoryRequest);
+        var categoryResult = registerCategoryUseCase.register(categoryRequest.getName(), categoryRequest.getDescription(), categoryRequest.getActive());
 
         assertEquals(category, categoryResult);
         verify(saveCategoryOutputPort).saveOrUpdate(categoryRequest.getName(),

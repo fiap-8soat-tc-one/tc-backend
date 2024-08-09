@@ -43,7 +43,8 @@ public class UpdateCategoryUseCaseTest extends FixtureTest {
         when(updateCategoryOutputPort.update(ID_CATEGORY, request.getName(),
                 request.getDescription(), request.getActive())).thenReturn(category);
 
-        var categoryResult = updateCategoryUseCase.update(ID_CATEGORY, request);
+        var categoryResult = updateCategoryUseCase.update(ID_CATEGORY, request.getName(),
+                request.getDescription(), request.getActive());
 
         assertEquals(category, categoryResult);
     }

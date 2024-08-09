@@ -1,9 +1,9 @@
 package com.fiap.tc.core.application.ports.in.order;
 
-import com.fiap.tc.adapters.driver.presentation.response.OrderResponse;
+import com.fiap.tc.core.domain.entities.Order;
 
 import java.util.UUID;
 
 public interface LoadOrderInputPort {
-    OrderResponse load(UUID uuid);
+    Order load(UUID uuid);
 }

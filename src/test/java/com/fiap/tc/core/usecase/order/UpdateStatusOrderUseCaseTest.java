@@ -33,8 +33,7 @@ public class UpdateStatusOrderUseCaseTest extends FixtureTest {
     @Test
     public void updateTest() {
 
-        updateStatusOrderUseCase.update(request);
-
+        updateStatusOrderUseCase.update(request.getId(), request.getStatus());
         verify(updateStatusOrderOutputPort).update(request.getId(), request.getStatus());
     }
 

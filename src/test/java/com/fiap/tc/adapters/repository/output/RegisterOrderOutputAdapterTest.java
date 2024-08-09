@@ -24,6 +24,7 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.UUID;
 
+import static com.fiap.tc.adapters.driver.presentation.mappers.base.MapperConstants.ORDER_ITEM_MAPPER;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
@@ -47,18 +48,18 @@ public class RegisterOrderOutputAdapterTest extends FixtureTest {
 
     private OrderEntity orderEntity;
 
-    private OrderRequest orderRequest;
-
     private ProductEntity productEntity;
 
     private CustomerEntity customerEntity;
 
+    private OrderRequest orderRequest;
+
     @BeforeEach
     public void setUp() {
         orderEntity = Fixture.from(OrderEntity.class).gimme("valid");
-        orderRequest = Fixture.from(OrderRequest.class).gimme("valid");
         productEntity = Fixture.from(ProductEntity.class).gimme("valid");
         customerEntity = Fixture.from(CustomerEntity.class).gimme("valid");
+        orderRequest = Fixture.from(OrderRequest.class).gimme("valid");
     }
 
 
@@ -70,7 +71,8 @@ public class RegisterOrderOutputAdapterTest extends FixtureTest {
         when(customerRepository.findByUuid(orderRequest.getIdCustomer())).thenReturn(Optional.of(customerEntity));
         when(productRepository.findByUuid(idProduct)).thenReturn(Optional.of(productEntity));
 
-        var order = registerOrderOutputAdapter.save(orderRequest.getIdCustomer(), orderRequest.getOrderItems());
+        var orderList = orderRequest.getOrderItems().stream().map(ORDER_ITEM_MAPPER::toDomain).toList();
+        var order = registerOrderOutputAdapter.save(orderRequest.getIdCustomer(),orderList);
 
         assertNotNull(order);
         verify(customerRepository).findByUuid(orderRequest.getIdCustomer());
@@ -85,7 +87,8 @@ public class RegisterOrderOutputAdapterTest extends FixtureTest {
         when(orderRepository.save(Mockito.any())).thenReturn(orderEntity);
         when(customerRepository.findByUuid(orderRequest.getIdCustomer())).thenReturn(Optional.empty());
 
-        var order = registerOrderOutputAdapter.save(orderRequest.getIdCustomer(), orderRequest.getOrderItems());
+        var orderList = orderRequest.getOrderItems().stream().map(ORDER_ITEM_MAPPER::toDomain).toList();
+        var order = registerOrderOutputAdapter.save(orderRequest.getIdCustomer(), orderList);
 
         assertNotNull(order);
         verify(customerRepository).findByUuid(orderRequest.getIdCustomer());
@@ -101,11 +104,13 @@ public class RegisterOrderOutputAdapterTest extends FixtureTest {
         when(customerRepository.findByUuid(orderRequest.getIdCustomer())).thenReturn(Optional.empty());
         when(productRepository.findByUuid(idProduct)).thenReturn(Optional.empty());
 
+        var orderList = orderRequest.getOrderItems().stream().map(ORDER_ITEM_MAPPER::toDomain).toList();
         var assertThrows = Assertions.assertThrows(NotFoundException.class,
-                () -> registerOrderOutputAdapter.save(orderRequest.getIdCustomer(), orderRequest.getOrderItems()));
+                () -> registerOrderOutputAdapter.save(orderRequest.getIdCustomer(), orderList));
 
         assertTrue(assertThrows.getMessage().contains("not found"));
     }
+
 
 
 }

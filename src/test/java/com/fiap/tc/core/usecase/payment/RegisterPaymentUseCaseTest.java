@@ -41,10 +41,10 @@ public class RegisterPaymentUseCaseTest extends FixtureTest {
 
     @Test
     public void registerPaymentTest() {
-        when(registerPaymentOutputPort.saveOrUpdate(any())).thenReturn(orderPayment);
+        when(registerPaymentOutputPort.saveOrUpdate(orderPaymentRequest.getTransactionNumber(), orderPaymentRequest.getTransactionMessage(), orderPaymentRequest.getTransactionDocument(), orderPaymentRequest.getResult(), orderPaymentRequest.getPaymentType(), orderPaymentRequest.getTotal())).thenReturn(orderPayment);
 
-        registerPaymentUseCase.register(orderPaymentRequest);
-        verify(registerPaymentOutputPort).saveOrUpdate(any());
+        registerPaymentUseCase.register(orderPaymentRequest.getTransactionNumber(), orderPaymentRequest.getTransactionMessage(), orderPaymentRequest.getTransactionDocument(), orderPaymentRequest.getResult(), orderPaymentRequest.getPaymentType(), orderPaymentRequest.getTotal());
+        verify(registerPaymentOutputPort).saveOrUpdate(orderPaymentRequest.getTransactionNumber(), orderPaymentRequest.getTransactionMessage(), orderPaymentRequest.getTransactionDocument(), orderPaymentRequest.getResult(), orderPaymentRequest.getPaymentType(), orderPaymentRequest.getTotal());
         verify(updateStatusOrderOutputPort).update(any(), any());
     }
 

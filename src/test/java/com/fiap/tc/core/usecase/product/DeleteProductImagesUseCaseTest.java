@@ -31,9 +31,8 @@ public class DeleteProductImagesUseCaseTest extends FixtureTest {
 
     @Test
     public void deleteProductImagesTest() {
-        deleteProductImagesUseCase.delete(request);
+        deleteProductImagesUseCase.delete(request.getIdProduct(), request.getImages());
         Mockito.verify(deleteProductImagesOutputPort).delete(request.getIdProduct(), request.getImages());
     }
-
 
 }

@@ -1,12 +1,15 @@
 package com.fiap.tc.core.application.usecase.order;
 
-import com.fiap.tc.core.application.utils.QRCodeGenerator;
 import com.fiap.tc.core.application.ports.in.order.RegisterOrderInputPort;
-import com.fiap.tc.adapters.driver.presentation.requests.OrderRequest;
-import com.fiap.tc.adapters.driver.presentation.response.OrderResponse;
 import com.fiap.tc.core.application.ports.out.order.RegisterOrderOutputPort;
+import com.fiap.tc.core.application.utils.QRCodeGenerator;
+import com.fiap.tc.core.domain.entities.Order;
+import com.fiap.tc.core.domain.entities.OrderItem;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -20,11 +23,10 @@ public class RegisterOrderUseCase implements RegisterOrderInputPort {
     }
 
     @Override
-    public OrderResponse register(OrderRequest orderRequest) {
-        var order = registerOrderOutputPort.save(orderRequest.getIdCustomer(), orderRequest.getOrderItems());
-        return OrderResponse.builder()
-                .qrCodePaymentBase64(qrCodeGenerator.generate(order.orderWithTotalAsText()))
-                .order(order)
-                .build();
+    public Order register(UUID idCustomer, List<OrderItem> listOfItems) {
+
+        return registerOrderOutputPort.save(idCustomer, listOfItems);
+
+
     }
 }

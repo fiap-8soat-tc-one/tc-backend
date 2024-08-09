@@ -39,11 +39,11 @@ public class RegisterProductUseCaseTest extends FixtureTest {
 
     @Test
     public void registerProductTest() {
-        when(registerProductOutputPort.saveOrUpdate(Mockito.any())).thenReturn(product);
-        var productResult = registerProductUseCase.register(request);
+        when(registerProductOutputPort.save(Mockito.any())).thenReturn(product);
+        var productResult = registerProductUseCase.register(product);
 
         Assertions.assertEquals(product, productResult);
-        verify(registerProductOutputPort).saveOrUpdate(Mockito.any());
+        verify(registerProductOutputPort).save(Mockito.any());
     }
 
 }

@@ -195,7 +195,6 @@ sequenceDiagram
 
 ## Requisitos não funcionais a serem implementados no futuro
 
-- Testes de Unidade.
 - Testes de Integração.
 - Testes de Carga/Estresse.
-- Cadastro de usuário sistêmico.
+- Cadastro de usuário sistêmico, hoje temos apenas um usuário sistêmico, via carga do flyway.

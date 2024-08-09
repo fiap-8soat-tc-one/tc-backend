@@ -1,8 +1,11 @@
 package com.fiap.tc.core.application.ports.in.product;
 
 import com.fiap.tc.core.domain.entities.Product;
-import com.fiap.tc.adapters.driver.presentation.requests.RegisterProductImagesRequest;
+import com.fiap.tc.core.domain.entities.ProductImage;
+
+import java.util.List;
+import java.util.UUID;
 
 public interface RegisterProductImagesInputPort {
-    Product register(RegisterProductImagesRequest request);
+    Product register(UUID idProduct, List<ProductImage> images);
 }

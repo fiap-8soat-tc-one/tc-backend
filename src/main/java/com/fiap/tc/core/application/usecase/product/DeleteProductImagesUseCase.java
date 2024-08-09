@@ -5,6 +5,9 @@ import com.fiap.tc.adapters.driver.presentation.requests.DeleteProductImagesRequ
 import com.fiap.tc.core.application.ports.out.product.DeleteProductImagesOutputPort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 public class DeleteProductImagesUseCase implements DeleteProductImagesInputPort {
     private final DeleteProductImagesOutputPort deleteProductImagesOutputPort;
@@ -14,7 +17,7 @@ public class DeleteProductImagesUseCase implements DeleteProductImagesInputPort 
     }
 
     @Override
-    public void delete(DeleteProductImagesRequest request) {
-        deleteProductImagesOutputPort.delete(request.getIdProduct(), request.getImages());
+    public void delete(UUID idProduct, List<UUID> productImagesWithIds) {
+        deleteProductImagesOutputPort.delete(idProduct, productImagesWithIds);
     }
 }

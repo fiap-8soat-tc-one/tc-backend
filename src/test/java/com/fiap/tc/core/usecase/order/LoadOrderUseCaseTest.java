@@ -46,10 +46,11 @@ public class LoadOrderUseCaseTest extends FixtureTest {
         var order = MapperConstants.ORDER_MAPPER.fromEntity(orderEntity);
         order.setStatus(OrderStatus.FINISHED);
 
-        when(loadOrderOutputPort.load(UUID)).thenReturn(order);
+        when(loadOrderUseCase.load(UUID)).thenReturn(order);
+
         var orderResult = loadOrderUseCase.load(UUID);
 
-        assertEquals(order, orderResult.getOrder());
+        assertEquals(order, orderResult);
         verify(loadOrderOutputPort).load(UUID);
         verify(qrCodeGenerator, times(0)).generate(Mockito.anyString());
 
@@ -63,9 +64,7 @@ public class LoadOrderUseCaseTest extends FixtureTest {
         when(loadOrderOutputPort.load(UUID)).thenReturn(order);
         var orderResult = loadOrderUseCase.load(UUID);
 
-        assertEquals(order, orderResult.getOrder());
+        assertEquals(order, orderResult);
         verify(loadOrderOutputPort).load(UUID);
-        verify(qrCodeGenerator, times(1)).generate(Mockito.anyString());
-
     }
 }

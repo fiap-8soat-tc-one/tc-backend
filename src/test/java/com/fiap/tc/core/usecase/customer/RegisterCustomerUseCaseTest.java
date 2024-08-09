@@ -38,7 +38,7 @@ public class RegisterCustomerUseCaseTest extends FixtureTest {
     @Test
     public void registerCustomerTest() {
         when(saveCustomerOutputPort.saveOrUpdate(anyString(), anyString(), anyString())).thenReturn(customer);
-        var customerResult = registerCustomerUseCase.register(request);
+        var customerResult = registerCustomerUseCase.register(anyString(), anyString(), anyString());
         assertEquals(customer, customerResult);
         verify(saveCustomerOutputPort).saveOrUpdate(anyString(), anyString(), anyString());
     }

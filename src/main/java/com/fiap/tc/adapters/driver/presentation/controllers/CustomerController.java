@@ -61,8 +61,8 @@ public class CustomerController {
     })
     @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, path = URLMapping.ROOT_PUBLIC_API_CUSTOMERS)
     public ResponseEntity<CustomerResponse> save(
-            @ApiParam(value = "Customer details for saving/updating", required = true) @RequestBody @Valid CustomerRequest customer) {
-        return ok(CUSTOMER_MAPPER.fromDomain(registerCustomerInputPort.register(customer)));
+            @ApiParam(value = "Customer details for saving/updating", required = true) @RequestBody @Valid CustomerRequest customerRequest) {
+        return ok(CUSTOMER_MAPPER.fromDomain(registerCustomerInputPort.register(customerRequest.getDocument(), customerRequest.getName(), customerRequest.getEmail())));
     }
 
     @ApiOperation(value = "get customer by cpf", notes = "(Public Endpoint) Customers are presented with a selection interface where they can choose to register using their name, email, and CPF. This endpoint is responsible for completing the registration.")

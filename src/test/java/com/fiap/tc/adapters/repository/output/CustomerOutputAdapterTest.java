@@ -44,8 +44,8 @@ public class CustomerOutputAdapterTest extends FixtureTest {
     @BeforeEach
     public void setUp() {
         customerEntity = Fixture.from(CustomerEntity.class).gimme("valid");
-        request = Fixture.from(CustomerRequest.class).gimme("valid");
         pageable = Mockito.mock(Pageable.class);
+        request = Fixture.from(CustomerRequest.class).gimme("valid");
     }
 
     @Test

@@ -42,7 +42,7 @@ public class UpdateProductUseCaseTest extends FixtureTest {
     @Test
     public void updateProductTest() {
         when(updateProductOutputPort.update(Mockito.any())).thenReturn(product);
-        updateProductUseCase.update(ID_PRODUCT, request);
+        updateProductUseCase.update(product);
         verify(updateProductOutputPort).update(Mockito.any());
     }
 

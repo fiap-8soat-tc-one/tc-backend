@@ -1,6 +1,7 @@
 package com.fiap.tc.adapters.driver.presentation.controllers;
 
 import com.fiap.tc.adapters.driver.presentation.URLMapping;
+import com.fiap.tc.adapters.driver.presentation.mappers.base.MapperConstants;
 import com.fiap.tc.adapters.driver.presentation.requests.ProductRequest;
 import com.fiap.tc.adapters.driver.presentation.response.DefaultResponse;
 import com.fiap.tc.adapters.driver.presentation.response.ProductResponse;
@@ -16,6 +17,7 @@ import javax.validation.Valid;
 import java.util.UUID;
 
 import static com.fiap.tc.adapters.driver.presentation.mappers.base.MapperConstants.PRODUCT_MAPPER;
+import static com.fiap.tc.adapters.driver.presentation.mappers.base.MapperConstants.PRODUCT_REQUEST_MAPPER;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -64,8 +66,8 @@ public class ProductController {
     @PostMapping(path = URLMapping.ROOT_PRIVATE_API_PRODUCTS, produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('REGISTER_PRODUCTS')")
     public ResponseEntity<ProductResponse> saveOrUpdate(
-            @ApiParam(value = "Product details for saving/updating", required = true) @RequestBody @Valid ProductRequest request) {
-        return ok(PRODUCT_MAPPER.fromDomain(registerProductInputPort.register(request)));
+            @ApiParam(value = "Product details for saving/updating", required = true) @RequestBody @Valid ProductRequest productRequest) {
+        return ok(PRODUCT_MAPPER.fromDomain(registerProductInputPort.register(PRODUCT_REQUEST_MAPPER.toDomain(productRequest))));
     }
 
     @ApiOperation(value = "update product by id", notes = "(Private Endpoint) This endpoint is responsible for update a product. It is used on the administrative screen for managing categories and products.")
@@ -79,7 +81,10 @@ public class ProductController {
     public ResponseEntity<ProductResponse> update(
             @ApiParam(value = "ID of the product to be deleted", required = true) @PathVariable UUID id,
             @ApiParam(value = "Product details for saving/updating", required = true) @RequestBody @Valid ProductRequest request) {
-        return ok(PRODUCT_MAPPER.fromDomain(updateProductInputPort.update(id, request)));
+
+        var product = MapperConstants.PRODUCT_REQUEST_MAPPER.toDomain(request);
+        product.setId(id);
+        return ok(PRODUCT_MAPPER.fromDomain(updateProductInputPort.update(product)));
     }
 
     @ApiOperation(value = "get product by id", notes = "(Private Endpoint) This endpoint is responsible for fetching a product through its unique identifier. It is used on the administrative screen to assist in product creation.")

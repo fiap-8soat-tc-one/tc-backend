@@ -58,5 +58,4 @@ public class OrderPaymentEntity {
     @Column(name = "result_error_date")
     private LocalDateTime resultErrorDate;
 
-
 }

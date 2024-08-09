@@ -52,14 +52,14 @@ public class ProductOutputAdapter implements LoadProductOutputPort, RegisterProd
     }
 
     @Override
-    public Product saveOrUpdate(Product product) {
+    public Product save(Product product) {
 
         var productEntityOptional = repository.findByName(product.getName());
 
         var categoryEntity = getValidCategoryEntity(product.getIdCategory());
 
         if (productEntityOptional.isPresent()) {
-            return updateProduct(product, productEntityOptional.get(), categoryEntity);
+            throw new BadRequestException(format("Product with expected name %s already exists!", product.getName()));
         }
 
         return saveProduct(product, categoryEntity);
@@ -97,9 +97,12 @@ public class ProductOutputAdapter implements LoadProductOutputPort, RegisterProd
             throw new NotFoundException(format("Product with id %s not found!", product.getId()));
         }
 
-        if (productEntityExpectedOptional.isPresent()) {
+        if (productEntityExpectedOptional.isEmpty()) return productEntityOptional.get();
+        
+        if (product.getId() != productEntityExpectedOptional.get().getUuid()) {
             throw new BadRequestException(format("Product with expected name %s already exists!", product.getName()));
         }
+
         return productEntityOptional.get();
     }
 

@@ -15,8 +15,6 @@ public interface OrderItemMapper extends MapperEntity<OrderItemEntity, OrderItem
 
     @Override
     OrderItemEntity toEntity(OrderItem orderItem);
-
-
 }
 
 

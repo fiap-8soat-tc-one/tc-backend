@@ -49,8 +49,8 @@ public class CategoryOutputAdapterTests extends FixtureTest {
     @BeforeEach
     public void setUp() {
         categoryEntity = Fixture.from(CategoryEntity.class).gimme("valid");
-        request = Fixture.from(CategoryRequest.class).gimme("valid");
         pageable = Mockito.mock(Pageable.class);
+        request = Fixture.from(CategoryRequest.class).gimme("valid");
     }
 
     @Test
@@ -131,8 +131,7 @@ public class CategoryOutputAdapterTests extends FixtureTest {
         when(categoryRepository.findByName(request.getName())).thenReturn(Optional.empty());
         when(categoryRepository.save(categoryEntity)).thenReturn(categoryEntity);
 
-        var category = categoryOutputAdapter.update(ID_CATEGORY, request.getName(),
-                request.getDescription(), request.getActive());
+        var category = categoryOutputAdapter.update(ID_CATEGORY, request.getName(), request.getDescription(), request.getActive());
 
         assertNotNull(category);
         verify(categoryRepository).findByName(request.getName());

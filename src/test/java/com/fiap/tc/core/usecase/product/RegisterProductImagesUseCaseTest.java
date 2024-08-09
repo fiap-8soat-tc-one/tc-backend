@@ -41,7 +41,7 @@ public class RegisterProductImagesUseCaseTest extends FixtureTest {
     public void registerProductImagesTest() {
         when(registerProductImagesOutputPort.save(Mockito.any(), Mockito.anyList())).thenReturn(product);
 
-        var productResult = registerProductImagesUseCase.register(request);
+        var productResult = registerProductImagesUseCase.register(Mockito.any(), Mockito.anyList());
 
         Assertions.assertEquals(product, productResult);
         verify(registerProductImagesOutputPort).save(Mockito.any(), Mockito.anyList());

@@ -49,8 +49,8 @@ public class OrderOutputAdapterTest extends FixtureTest {
     @BeforeEach
     public void setUp() {
         orderEntity = Fixture.from(OrderEntity.class).gimme("valid");
-        statusRequest = Fixture.from(OrderStatusRequest.class).gimme("valid");
         pageable = Mockito.mock(Pageable.class);
+        statusRequest = Fixture.from(OrderStatusRequest.class).gimme("valid");
     }
 
     @Test
@@ -102,6 +102,7 @@ public class OrderOutputAdapterTest extends FixtureTest {
     public void updateOrderStatusTest() {
         orderEntity.setStatus(OrderStatus.RECEIVED);
         statusRequest.setStatus(OrderStatus.PREPARING);
+        
         when(orderRepository.findByUuid(statusRequest.getId())).thenReturn(Optional.of(orderEntity));
         when(orderRepository.save(Mockito.any())).thenReturn(orderEntity);
 
