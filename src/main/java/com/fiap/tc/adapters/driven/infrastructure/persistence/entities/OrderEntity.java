@@ -14,8 +14,8 @@ import java.util.UUID;
 @Data
 @Table(name = "order_request")
 public class OrderEntity {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private UUID uuid;

@@ -1,4 +1,4 @@
-package com.fiap.tc.core.application.utils;
+package com.fiap.tc.adapters.driven.infrastructure.utils;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;

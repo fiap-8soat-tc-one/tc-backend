@@ -7,11 +7,11 @@ import org.mapstruct.Mapper;
 
 @Mapper
 public interface CustomerResponseMapper extends MapperEntity<Customer, CustomerResponse> {
-   
+
     @Override
     Customer toDomain(CustomerResponse response);
 
     @Override
-    CustomerResponse fromDomain(Customer entity);
+    CustomerResponse fromDomain(Customer customer);
 
 }

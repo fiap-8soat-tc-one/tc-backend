@@ -9,11 +9,10 @@ import org.mapstruct.Mapper;
 public interface OrderResponseMapper extends MapperEntity<Order, OrderResponse> {
 
     @Override
-    Order toDomain(OrderResponse response);
+    Order toDomain(OrderResponse orderResponse);
 
     @Override
-    OrderResponse fromDomain(Order entity);
-
+    OrderResponse fromDomain(Order order);
 }
 
 

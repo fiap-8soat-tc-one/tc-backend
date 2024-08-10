@@ -183,19 +183,18 @@ create table order_payment_historic
     primary key (id)
 );
 
-create table order_request
-(
-    id            serial       not null,
-    active        boolean default true,
-    register_date timestamp,
-    updated_date  timestamp,
-    status        varchar(255) not null,
-    order_number  varchar(20),
-    total         numeric(19, 2),
-    uuid          uuid,
-    id_customer   int4,
-    primary key (id)
-);
+create table order_request (
+       id int4 not null,
+        active boolean default true,
+        register_date timestamp,
+        updated_date timestamp,
+        order_number varchar(255),
+        status varchar(255) not null,
+        total numeric(19, 2),
+        uuid uuid,
+        id_customer int4,
+        primary key (id)
+    );
 
 create table order_request_historic
 (
@@ -219,6 +218,8 @@ create table product
     id_category   int4   not null,
     primary key (id)
 );
+
+create sequence order_request_id_seq start 1 increment 1;
 
 alter table customer
     add constraint UK_phlle50dp6ivt0paa1d5gkvk2 unique (document);

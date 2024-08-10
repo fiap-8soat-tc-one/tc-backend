@@ -1,7 +1,7 @@
-package com.fiap.tc.adapters.driven.infrastructure.persistence.mappers;
+package com.fiap.tc.adapters.driven.infrastructure.mappers;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperEntity;
+import com.fiap.tc.adapters.driven.infrastructure.mappers.base.MapperEntity;
 import com.fiap.tc.core.domain.entities.Product;
 import com.fiap.tc.core.domain.entities.ProductImage;
 import org.mapstruct.Mapper;
@@ -11,7 +11,7 @@ import org.mapstruct.Named;
 import java.util.Collections;
 import java.util.List;
 
-import static com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants.PRODUCT_IMAGE_MAPPER;
+import static com.fiap.tc.adapters.driven.infrastructure.mappers.base.MapperConstants.PRODUCT_IMAGE_MAPPER;
 import static org.springframework.util.CollectionUtils.isEmpty;
 
 @Mapper
@@ -21,15 +21,12 @@ public interface ProductMapper extends MapperEntity<ProductEntity, Product> {
     @Mapping(target = "id", source = "uuid")
     @Mapping(target = "images", source = "productEntity", qualifiedByName = "buildImages")
     @Mapping(target = "idCategory", source = "category.uuid")
-    @Mapping(target = "active", source = "audit.active")
-    @Mapping(target = "categoryName", source = "category.name")
     Product fromEntity(ProductEntity productEntity);
 
     @Override
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "uuid", source = "id")
     @Mapping(target = "images", ignore = true)
-    @Mapping(target = "audit.active", source = "active")
     ProductEntity toEntity(Product product);
 
 

@@ -2,7 +2,6 @@ package com.fiap.tc.core.domain.entities;
 
 import com.fiap.tc.core.domain.enums.OrderStatus;
 import lombok.Data;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,8 +15,8 @@ public class Order {
     private OrderStatus status;
     private List<OrderItem> items;
     private List<OrderHistoric> orderHistoric;
+    private String paymentLink;
 
-    @JsonIgnore
     public String orderWithTotalAsText() {
         return id + "-" + total;
     }

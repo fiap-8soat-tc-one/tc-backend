@@ -17,7 +17,7 @@ public class UpdateCategoryUseCase implements UpdateCategoryInputPort {
     }
 
     @Override
-    public Category update(UUID idCategory, String name, String description, Boolean active) {
-        return updateCategoryOutputPort.update(idCategory, name, description, active);
+    public Category update(UUID idCategory, String name, String description) {
+        return updateCategoryOutputPort.update(idCategory, name, description);
     }
 }

@@ -10,10 +10,10 @@ import org.mapstruct.Mapper;
 public interface OrderItemRequestMapper extends MapperEntity<OrderItem, OrderItemRequest> {
 
     @Override
-    OrderItem toDomain(OrderItemRequest response);
+    OrderItem toDomain(OrderItemRequest request);
 
     @Override
-    OrderItemRequest fromDomain(OrderItem entity);
+    OrderItemRequest fromDomain(OrderItem orderItem);
 }
 
 

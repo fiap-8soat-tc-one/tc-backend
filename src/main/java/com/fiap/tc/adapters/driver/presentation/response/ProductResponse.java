@@ -19,13 +19,6 @@ public class ProductResponse {
     private UUID id;
 
     @ApiModelProperty(
-            value = "Category Name",
-            example = "Drink",
-            dataType = "String"
-    )
-    private String categoryName;
-
-    @ApiModelProperty(
             value = "Product Category Id",
             example = "7ba2a960-2354-466f-8868-6ad713742407",
             dataType = "UUID"
@@ -58,13 +51,6 @@ public class ProductResponse {
             dataType = "BigDecimal"
     )
     private BigDecimal price;
-
-    @ApiModelProperty(
-            value = "active status",
-            example = "true",
-            dataType = "Boolean"
-    )
-    private Boolean active = true;
 
 
 }

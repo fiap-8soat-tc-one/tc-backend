@@ -16,6 +16,6 @@ public class RegisterProductUseCase implements RegisterProductInputPort {
 
     @Override
     public Product register(Product product) {
-        return registerProductOutputPort.save(product);
+        return registerProductOutputPort.saveOrUpdate(product);
     }
 }

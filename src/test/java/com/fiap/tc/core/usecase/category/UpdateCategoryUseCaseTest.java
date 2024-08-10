@@ -1,10 +1,10 @@
 package com.fiap.tc.core.usecase.category;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.core.application.usecase.category.UpdateCategoryUseCase;
-import com.fiap.tc.core.domain.entities.Category;
 import com.fiap.tc.adapters.driver.presentation.requests.CategoryRequest;
 import com.fiap.tc.core.application.ports.out.category.UpdateCategoryOutputPort;
+import com.fiap.tc.core.application.usecase.category.UpdateCategoryUseCase;
+import com.fiap.tc.core.domain.entities.Category;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,10 +41,10 @@ public class UpdateCategoryUseCaseTest extends FixtureTest {
     @Test
     public void updateCategoryTest() {
         when(updateCategoryOutputPort.update(ID_CATEGORY, request.getName(),
-                request.getDescription(), request.getActive())).thenReturn(category);
+                request.getDescription())).thenReturn(category);
 
         var categoryResult = updateCategoryUseCase.update(ID_CATEGORY, request.getName(),
-                request.getDescription(), request.getActive());
+                request.getDescription());
 
         assertEquals(category, categoryResult);
     }

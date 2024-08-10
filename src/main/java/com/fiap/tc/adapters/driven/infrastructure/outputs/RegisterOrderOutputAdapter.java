@@ -4,7 +4,7 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.builders.OrderHist
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderItemEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
+import com.fiap.tc.adapters.driven.infrastructure.mappers.base.MapperConstants;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CustomerRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
@@ -34,7 +34,8 @@ public class RegisterOrderOutputAdapter implements RegisterOrderOutputPort {
     private final OrderRepository orderRepository;
     private final CustomerRepository customerRepository;
 
-    public RegisterOrderOutputAdapter(ProductRepository productRepository, OrderRepository orderRepository, CustomerRepository customerRepository) {
+    public RegisterOrderOutputAdapter(ProductRepository productRepository, OrderRepository orderRepository,
+                                      CustomerRepository customerRepository) {
         this.productRepository = productRepository;
         this.orderRepository = orderRepository;
         this.customerRepository = customerRepository;
@@ -60,13 +61,12 @@ public class RegisterOrderOutputAdapter implements RegisterOrderOutputPort {
     }
 
     private Order persist(OrderEntity orderEntity) {
-
-        orderEntity = orderRepository.save(orderEntity);
-
+        var idOrder = orderRepository.getNextSequenceValue();
         Sqids sqids = Sqids.builder().minLength(ORDER_NUMBER_MIN_LENGTH).build();
-        var orderNumber = sqids.encode(List.of(orderEntity.getId().longValue()));
+        var orderNumber = sqids.encode(List.of(idOrder.longValue()));
+        orderEntity.setId(idOrder);
         orderEntity.setOrderNumber(orderNumber);
-        
+
         return MapperConstants.ORDER_MAPPER.fromEntity(orderRepository.save(orderEntity));
     }
 
@@ -74,7 +74,8 @@ public class RegisterOrderOutputAdapter implements RegisterOrderOutputPort {
         if (!isEmpty(orderItems)) {
             var itemsEntity = orderItems.stream().map(req -> buildOrderItemsEntity(req, orderEntity)).toList();
             orderEntity.setItems(itemsEntity);
-            orderEntity.setTotal(itemsEntity.stream().map(OrderItemEntity::getTotal).reduce(BigDecimal.ZERO, BigDecimal::add));
+            orderEntity.setTotal(itemsEntity.stream().map(OrderItemEntity::getTotal).reduce(BigDecimal.ZERO,
+                    BigDecimal::add));
         }
     }
 

@@ -7,12 +7,12 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CategoryE
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductImageEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
-import com.fiap.tc.core.domain.entities.Product;
-import com.fiap.tc.core.domain.entities.ProductImage;
 import com.fiap.tc.adapters.driver.presentation.requests.DeleteProductImagesRequest;
 import com.fiap.tc.adapters.driver.presentation.requests.ProductImageRequest;
 import com.fiap.tc.adapters.driver.presentation.requests.ProductRequest;
 import com.fiap.tc.adapters.driver.presentation.requests.RegisterProductImagesRequest;
+import com.fiap.tc.core.domain.entities.Product;
+import com.fiap.tc.core.domain.entities.ProductImage;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -57,11 +57,9 @@ public class ProductTemplates implements TemplateLoader {
             {
                 add("id", UUID.randomUUID());
                 add("idCategory", UUID.randomUUID());
-                add("categoryName", random("drink", "dessert"));
                 add("name", random("hamburger", "hot dog", "milk flan"));
                 add("description", random("hamburger", "hot dog", "milk flan"));
                 add("price", random(BigDecimal.valueOf(20), BigDecimal.valueOf(30), BigDecimal.valueOf(40)));
-                add("active", random(true, false));
                 add("images", has(1).of(ProductImage.class, "valid"));
 
             }
@@ -73,8 +71,6 @@ public class ProductTemplates implements TemplateLoader {
                 add("name", random("hamburger", "hot dog", "milk flan"));
                 add("description", random("hamburger", "hot dog", "milk flan"));
                 add("price", random(BigDecimal.valueOf(20), BigDecimal.valueOf(30), BigDecimal.valueOf(40)));
-                add("active", random(true, false));
-
             }
         });
 

@@ -9,5 +9,4 @@ public class Category {
     private UUID id;
     private String name;
     private String description;
-    private Boolean active = true;
 }

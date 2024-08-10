@@ -77,7 +77,7 @@ public class RegisterOrderOutputAdapterTest extends FixtureTest {
         assertNotNull(order);
         verify(customerRepository).findByUuid(orderRequest.getIdCustomer());
         verify(productRepository, times(2)).findByUuid(idProduct);
-        verify(orderRepository, times(2)).save(Mockito.any());
+        verify(orderRepository).save(Mockito.any());
 
     }
 
@@ -92,7 +92,7 @@ public class RegisterOrderOutputAdapterTest extends FixtureTest {
 
         assertNotNull(order);
         verify(customerRepository).findByUuid(orderRequest.getIdCustomer());
-        verify(orderRepository, times(2)).save(Mockito.any());
+        verify(orderRepository, times(1)).save(Mockito.any());
 
     }
 

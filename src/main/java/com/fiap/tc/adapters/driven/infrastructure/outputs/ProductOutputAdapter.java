@@ -1,13 +1,14 @@
 package com.fiap.tc.adapters.driven.infrastructure.outputs;
 
-import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CategoryRepository;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CategoryEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CategoryRepository;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
 import com.fiap.tc.core.application.ports.out.product.*;
+import com.fiap.tc.core.domain.entities.Product;
 import com.fiap.tc.core.domain.exceptions.BadRequestException;
 import com.fiap.tc.core.domain.exceptions.NotFoundException;
-import com.fiap.tc.core.domain.entities.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants.PRODUCT_MAPPER;
+import static com.fiap.tc.adapters.driven.infrastructure.mappers.base.MapperConstants.PRODUCT_MAPPER;
 import static java.lang.String.format;
 
 @Service
@@ -52,14 +53,14 @@ public class ProductOutputAdapter implements LoadProductOutputPort, RegisterProd
     }
 
     @Override
-    public Product save(Product product) {
+    public Product saveOrUpdate(Product product) {
 
         var productEntityOptional = repository.findByName(product.getName());
 
         var categoryEntity = getValidCategoryEntity(product.getIdCategory());
 
         if (productEntityOptional.isPresent()) {
-            throw new BadRequestException(format("Product with expected name %s already exists!", product.getName()));
+            return updateProduct(product, productEntityOptional.get(), categoryEntity);
         }
 
         return saveProduct(product, categoryEntity);
@@ -74,7 +75,7 @@ public class ProductOutputAdapter implements LoadProductOutputPort, RegisterProd
         var newProductEntity = PRODUCT_MAPPER.toEntity(product);
         newProductEntity.setUuid(UUID.randomUUID());
         newProductEntity.setCategory(categoryEntity);
-        newProductEntity.getAudit().setRegisterDate(LocalDateTime.now());
+        newProductEntity.setAudit(Audit.builder().active(true).registerDate(LocalDateTime.now()).build());
 
         return PRODUCT_MAPPER.fromEntity(repository.save(newProductEntity));
     }
@@ -97,9 +98,12 @@ public class ProductOutputAdapter implements LoadProductOutputPort, RegisterProd
             throw new NotFoundException(format("Product with id %s not found!", product.getId()));
         }
 
-        if (productEntityExpectedOptional.isEmpty()) return productEntityOptional.get();
-        
-        if (product.getId() != productEntityExpectedOptional.get().getUuid()) {
+        var productEntity = productEntityOptional.get();
+        var notSameProductName = !(productEntity.getName().equals(product.getName()));
+
+        var hasInvalidProductName = notSameProductName && productEntityExpectedOptional.isPresent();
+
+        if (hasInvalidProductName) {
             throw new BadRequestException(format("Product with expected name %s already exists!", product.getName()));
         }
 
@@ -107,7 +111,6 @@ public class ProductOutputAdapter implements LoadProductOutputPort, RegisterProd
     }
 
     private Product updateProduct(Product product, ProductEntity productEntity, CategoryEntity categoryEntity) {
-        productEntity.setName(product.getName());
         productEntity.setDescription(product.getDescription());
         productEntity.setCategory(categoryEntity);
         productEntity.setPrice(product.getPrice());

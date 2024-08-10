@@ -16,7 +16,8 @@ public class ProductRequest {
     @ApiModelProperty(
             value = "Category Id",
             example = "7ba2a960-2354-466f-8868-6ad713742407",
-            dataType = "UUID"
+            dataType = "UUID",
+            required = true
     )
     private UUID idCategory;
 
@@ -44,14 +45,9 @@ public class ProductRequest {
     @ApiModelProperty(
             value = "Product price",
             example = "20.55",
-            dataType = "BigDecimal"
+            dataType = "BigDecimal",
+            required = true
     )
     private BigDecimal price;
 
-    @ApiModelProperty(
-            value = "active status",
-            example = "true",
-            dataType = "Boolean"
-    )
-    private Boolean active = true;
 }

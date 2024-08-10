@@ -24,7 +24,6 @@ public class CustomerResponse {
 
     @ApiModelProperty(
             value = "Customer name",
-            required = true,
             example = "Lucas Silva e Silva",
             dataType = "String"
     )
@@ -32,7 +31,6 @@ public class CustomerResponse {
 
     @ApiModelProperty(
             value = "Customer E-mail",
-            required = true,
             example = "lucas.silva@gmail.com",
             dataType = "String"
     )

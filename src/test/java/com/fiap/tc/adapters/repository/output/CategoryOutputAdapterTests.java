@@ -2,11 +2,11 @@ package com.fiap.tc.adapters.repository.output;
 
 import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.adapters.driven.infrastructure.outputs.CategoryOutputAdapter;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CategoryRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CategoryEntity;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CategoryRepository;
+import com.fiap.tc.adapters.driver.presentation.requests.CategoryRequest;
 import com.fiap.tc.core.domain.exceptions.BadRequestException;
 import com.fiap.tc.core.domain.exceptions.NotFoundException;
-import com.fiap.tc.adapters.driver.presentation.requests.CategoryRequest;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,6 +42,8 @@ public class CategoryOutputAdapterTests extends FixtureTest {
 
     private CategoryEntity categoryEntity;
 
+    private CategoryEntity categorySnackEntity;
+
     private CategoryRequest request;
 
     private Pageable pageable;
@@ -49,6 +51,9 @@ public class CategoryOutputAdapterTests extends FixtureTest {
     @BeforeEach
     public void setUp() {
         categoryEntity = Fixture.from(CategoryEntity.class).gimme("valid");
+        categorySnackEntity = Fixture.from(CategoryEntity.class).gimme("valid");
+        categorySnackEntity.setName("Snack");
+
         pageable = Mockito.mock(Pageable.class);
         request = Fixture.from(CategoryRequest.class).gimme("valid");
     }
@@ -104,7 +109,7 @@ public class CategoryOutputAdapterTests extends FixtureTest {
         when(categoryRepository.save(Mockito.any())).thenReturn(categoryEntity);
 
         var category = categoryOutputAdapter.saveOrUpdate(request.getName(),
-                request.getDescription(), request.getActive());
+                request.getDescription());
 
         assertNotNull(category);
         verify(categoryRepository).findByName(request.getName());
@@ -117,8 +122,7 @@ public class CategoryOutputAdapterTests extends FixtureTest {
         when(categoryRepository.findByName(request.getName())).thenReturn(Optional.of(categoryEntity));
         when(categoryRepository.save(categoryEntity)).thenReturn(categoryEntity);
 
-        var category = categoryOutputAdapter.saveOrUpdate(request.getName(),
-                request.getDescription(), request.getActive());
+        var category = categoryOutputAdapter.saveOrUpdate(request.getName(), request.getDescription());
 
         assertNotNull(category);
         verify(categoryRepository).findByName(request.getName());
@@ -126,12 +130,28 @@ public class CategoryOutputAdapterTests extends FixtureTest {
     }
 
     @Test
-    public void updateCategoryWithIdTest() {
+    public void updateCategoryWithSameNamesWhenCategoryByUuidExistsTest() {
+        categoryEntity.setName("drink");
+        request.setName("drink");
         when(categoryRepository.findByUuid(ID_CATEGORY)).thenReturn(Optional.of(categoryEntity));
         when(categoryRepository.findByName(request.getName())).thenReturn(Optional.empty());
         when(categoryRepository.save(categoryEntity)).thenReturn(categoryEntity);
 
-        var category = categoryOutputAdapter.update(ID_CATEGORY, request.getName(), request.getDescription(), request.getActive());
+        var category = categoryOutputAdapter.update(ID_CATEGORY, request.getName(), request.getDescription());
+
+        assertNotNull(category);
+        verify(categoryRepository).findByName(request.getName());
+        verify(categoryRepository).findByUuid(ID_CATEGORY);
+        verify(categoryRepository).save(Mockito.any());
+    }
+
+    @Test
+    public void updateCategoryWithDiffNamesTest() {
+        when(categoryRepository.findByUuid(ID_CATEGORY)).thenReturn(Optional.of(categorySnackEntity));
+        when(categoryRepository.findByName(request.getName())).thenReturn(Optional.empty());
+        when(categoryRepository.save(Mockito.any())).thenReturn(categoryEntity);
+
+        var category = categoryOutputAdapter.update(ID_CATEGORY, request.getName(), request.getDescription());
 
         assertNotNull(category);
         verify(categoryRepository).findByName(request.getName());
@@ -141,12 +161,12 @@ public class CategoryOutputAdapterTests extends FixtureTest {
 
     @Test
     public void launchBadRequestExceptionOnUpdateCategoryWithIdWhenCategoryAlreadyExistsTest() {
-        when(categoryRepository.findByUuid(ID_CATEGORY)).thenReturn(Optional.of(categoryEntity));
+        when(categoryRepository.findByUuid(ID_CATEGORY)).thenReturn(Optional.of(categorySnackEntity));
         when(categoryRepository.findByName(request.getName())).thenReturn(Optional.of(categoryEntity));
 
 
-        var assertThrows = Assertions.assertThrows(BadRequestException.class, () -> categoryOutputAdapter.update(ID_CATEGORY, request.getName(),
-                request.getDescription(), request.getActive()));
+        var assertThrows = Assertions.assertThrows(BadRequestException.class,
+                () -> categoryOutputAdapter.update(ID_CATEGORY, request.getName(), request.getDescription()));
 
 
         assertTrue(assertThrows.getMessage().contains("already exists"));
@@ -156,9 +176,8 @@ public class CategoryOutputAdapterTests extends FixtureTest {
     public void launchNotFoundExceptionOnUpdateCategoryWithIdWhenCategoryNotExistsTest() {
         when(categoryRepository.findByUuid(ID_CATEGORY)).thenReturn(Optional.empty());
 
-        var assertThrows = Assertions.assertThrows(NotFoundException.class, () -> categoryOutputAdapter.update(ID_CATEGORY, request.getName(),
-                request.getDescription(), request.getActive()));
-
+        var assertThrows = Assertions.assertThrows(NotFoundException.class,
+                () -> categoryOutputAdapter.update(ID_CATEGORY, request.getName(), request.getDescription()));
 
         assertTrue(assertThrows.getMessage().contains("not found"));
     }

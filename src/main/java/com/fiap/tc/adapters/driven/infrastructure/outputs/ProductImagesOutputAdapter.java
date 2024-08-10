@@ -6,7 +6,7 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.Produ
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductImageEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
+import com.fiap.tc.adapters.driven.infrastructure.mappers.base.MapperConstants;
 import com.fiap.tc.core.domain.exceptions.NotFoundException;
 import com.fiap.tc.core.domain.entities.Product;
 import com.fiap.tc.core.domain.entities.ProductImage;

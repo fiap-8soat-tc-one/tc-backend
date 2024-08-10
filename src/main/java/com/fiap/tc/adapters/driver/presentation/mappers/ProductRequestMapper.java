@@ -12,7 +12,7 @@ public interface ProductRequestMapper extends MapperEntity<Product, ProductReque
     ProductRequest fromDomain(Product product);
 
     @Override
-    Product toDomain(ProductRequest productRequest);
+    Product toDomain(ProductRequest request);
 }
 
 

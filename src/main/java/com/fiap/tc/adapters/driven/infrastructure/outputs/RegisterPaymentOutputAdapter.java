@@ -5,12 +5,10 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.Order
 import com.fiap.tc.adapters.driven.infrastructure.persistence.builders.OrderPaymentHistoricBuilder;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderPaymentEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
 import com.fiap.tc.core.domain.enums.PaymentType;
 import com.fiap.tc.core.domain.exceptions.NotFoundException;
 import com.fiap.tc.core.domain.entities.OrderPayment;
 import com.fiap.tc.core.domain.enums.PaymentResult;
-import com.fiap.tc.adapters.driver.presentation.requests.OrderPaymentRequest;
 import com.fiap.tc.core.application.ports.out.payment.RegisterPaymentOutputPort;
 import org.springframework.stereotype.Service;
 
@@ -26,17 +24,19 @@ public class RegisterPaymentOutputAdapter implements RegisterPaymentOutputPort {
     private final OrderRepository orderRepository;
     private final OrderPaymentRepository orderPaymentRepository;
 
-    public RegisterPaymentOutputAdapter(OrderRepository orderRepository, OrderPaymentRepository orderPaymentRepository) {
+    public RegisterPaymentOutputAdapter(OrderRepository orderRepository,
+                                        OrderPaymentRepository orderPaymentRepository) {
         this.orderRepository = orderRepository;
         this.orderPaymentRepository = orderPaymentRepository;
     }
 
     @Override
-    public OrderPayment saveOrUpdate(String transactionNumber, String transactionMessage, String transactionDocument, PaymentResult result, PaymentType type, BigDecimal total) {
+    public OrderPayment saveOrUpdate(String transactionNumber, String transactionMessage, String transactionDocument,
+                                     PaymentResult result, PaymentType type, BigDecimal total) {
         var orderEntityOptional = orderRepository.findByUuid(UUID.fromString(transactionNumber));
-       
+
         if (orderEntityOptional.isEmpty()) {
-            throw new NotFoundException(format("Order with uuid %s not found!",transactionNumber));
+            throw new NotFoundException(format("Order with uuid %s not found!", transactionNumber));
         }
 
         var orderEntity = orderEntityOptional.get();
@@ -50,8 +50,9 @@ public class RegisterPaymentOutputAdapter implements RegisterPaymentOutputPort {
             orderPaymentEntity.setTransactionDocument(transactionDocument);
             orderPaymentEntity.setTransactionNumber(transactionNumber);
             orderPaymentEntity.setTransactionMessage(transactionMessage);
-            orderPaymentEntity.getPayment_historic().add(OrderPaymentHistoricBuilder.create(orderPaymentEntity, result));
-           
+            orderPaymentEntity.getPayment_historic().add(OrderPaymentHistoricBuilder.create(orderPaymentEntity,
+                    result));
+
             setDatesResult(result, orderPaymentEntity);
 
             orderPaymentRepository.save(orderPaymentEntity);
@@ -63,7 +64,7 @@ public class RegisterPaymentOutputAdapter implements RegisterPaymentOutputPort {
                     .build();
         }
 
-        
+
         var newOrderPaymentEntity = new OrderPaymentEntity();
 
         newOrderPaymentEntity.setUuid(UUID.randomUUID());
@@ -74,12 +75,13 @@ public class RegisterPaymentOutputAdapter implements RegisterPaymentOutputPort {
         newOrderPaymentEntity.setTransactionDocument(transactionDocument);
         newOrderPaymentEntity.setTransactionNumber(transactionNumber);
         newOrderPaymentEntity.setTransactionMessage(transactionMessage);
-        newOrderPaymentEntity.getPayment_historic().add(OrderPaymentHistoricBuilder.create(newOrderPaymentEntity, result));
+        newOrderPaymentEntity.getPayment_historic().add(OrderPaymentHistoricBuilder.create(newOrderPaymentEntity,
+                result));
 
         setDatesResult(result, newOrderPaymentEntity);
-        
+
         orderPaymentRepository.save(newOrderPaymentEntity);
-       
+
         return OrderPayment.builder()
                 .id(newOrderPaymentEntity.getUuid())
                 .idOrder(orderEntity.getUuid())

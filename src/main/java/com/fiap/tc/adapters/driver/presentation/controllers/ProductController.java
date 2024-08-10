@@ -79,7 +79,7 @@ public class ProductController {
     @PutMapping(path = URLMapping.ROOT_PRIVATE_API_PRODUCTS + "/{id}", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('EDIT_PRODUCTS')")
     public ResponseEntity<ProductResponse> update(
-            @ApiParam(value = "ID of the product to be deleted", required = true) @PathVariable UUID id,
+            @ApiParam(value = "ID of the product to be updated", required = true) @PathVariable UUID id,
             @ApiParam(value = "Product details for saving/updating", required = true) @RequestBody @Valid ProductRequest request) {
 
         var product = MapperConstants.PRODUCT_REQUEST_MAPPER.toDomain(request);
