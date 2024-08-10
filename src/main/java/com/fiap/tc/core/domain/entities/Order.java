@@ -15,8 +15,4 @@ public class Order {
     private OrderStatus status;
     private List<OrderItem> items;
     private List<OrderHistoric> orderHistoric;
-
-    public String orderWithTotalAsText() {
-        return id + "-" + total;
-    }
 }
