@@ -2,8 +2,7 @@ package com.fiap.tc.core.usecase.order;
 
 import br.com.six2six.fixturefactory.Fixture;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEntity;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.OrderItemMapper;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
+import com.fiap.tc.adapters.driven.infrastructure.mappers.base.MapperConstants;
 import com.fiap.tc.core.application.utils.QRCodeGenerator;
 import com.fiap.tc.core.application.usecase.order.RegisterOrderUseCase;
 import com.fiap.tc.adapters.driver.presentation.requests.OrderRequest;
@@ -18,7 +17,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static com.fiap.tc.adapters.driver.presentation.mappers.base.MapperConstants.ORDER_ITEM_MAPPER;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

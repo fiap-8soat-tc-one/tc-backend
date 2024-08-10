@@ -4,7 +4,7 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.builders.OrderHist
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderItemEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
+import com.fiap.tc.adapters.driven.infrastructure.mappers.base.MapperConstants;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CustomerRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;

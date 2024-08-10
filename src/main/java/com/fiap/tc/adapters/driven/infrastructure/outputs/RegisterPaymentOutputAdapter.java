@@ -5,12 +5,10 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.Order
 import com.fiap.tc.adapters.driven.infrastructure.persistence.builders.OrderPaymentHistoricBuilder;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderPaymentEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.mappers.base.MapperConstants;
 import com.fiap.tc.core.domain.enums.PaymentType;
 import com.fiap.tc.core.domain.exceptions.NotFoundException;
 import com.fiap.tc.core.domain.entities.OrderPayment;
 import com.fiap.tc.core.domain.enums.PaymentResult;
-import com.fiap.tc.adapters.driver.presentation.requests.OrderPaymentRequest;
 import com.fiap.tc.core.application.ports.out.payment.RegisterPaymentOutputPort;
 import org.springframework.stereotype.Service;
 
