@@ -1,7 +1,6 @@
 package com.fiap.tc.adapters.driver.presentation.controllers;
 
 import com.fiap.tc.adapters.driver.presentation.URLMapping;
-import com.fiap.tc.adapters.driver.presentation.builders.OrderResponseBuilder;
 import com.fiap.tc.adapters.driver.presentation.requests.OrderRequest;
 import com.fiap.tc.adapters.driver.presentation.requests.OrderStatusRequest;
 import com.fiap.tc.adapters.driver.presentation.response.DefaultResponse;
@@ -34,17 +33,15 @@ public class OrderController {
     private final LoadOrderInputPort loadOrderInputPort;
     private final UpdateStatusOrderInputPort updateStatusOrderInputPort;
     private final ListOrdersReadyPreparingInputPort listOrdersReadyPreparingInputPort;
-    private final OrderResponseBuilder orderResponseBuilder;
 
-    public OrderController(RegisterOrderInputPort registerOrderInputPort, LoadOrderInputPort loadOrderInputPort,
+    public OrderController(RegisterOrderInputPort registerOrderInputPort,
+                           LoadOrderInputPort loadOrderInputPort,
                            UpdateStatusOrderInputPort updateStatusOrderInputPort,
-                           ListOrdersReadyPreparingInputPort listOrdersReadyPreparingInputPort,
-                           OrderResponseBuilder orderResponseBuilder) {
+                           ListOrdersReadyPreparingInputPort listOrdersReadyPreparingInputPort) {
         this.registerOrderInputPort = registerOrderInputPort;
         this.loadOrderInputPort = loadOrderInputPort;
         this.updateStatusOrderInputPort = updateStatusOrderInputPort;
         this.listOrdersReadyPreparingInputPort = listOrdersReadyPreparingInputPort;
-        this.orderResponseBuilder = orderResponseBuilder;
     }
 
     @ApiOperation(value = "Find Order")
@@ -54,8 +51,7 @@ public class OrderController {
     @GetMapping(path = URLMapping.ROOT_PRIVATE_API_ORDERS + "/{id}")
     @PreAuthorize("hasAuthority('SEARCH_ORDERS')")
     public ResponseEntity<OrderResponse> get(@PathVariable UUID id) {
-        var order = ORDER_MAPPER.fromDomain(loadOrderInputPort.load(id));
-        return ok(orderResponseBuilder.build(order));
+        return ok(ORDER_RESPONSE_MAPPER.fromDomain(loadOrderInputPort.load(id)));
     }
 
     @ApiOperation(value = "create order", notes = "(Public Endpoint) This endpoint is responsible for creating the order, receiving the product identifiers and their quantities.")
@@ -67,8 +63,8 @@ public class OrderController {
             required = true) @RequestBody @Valid OrderRequest request) {
 
         var listOfItems = request.getOrderItems().stream().map(ORDER_ITEM_MAPPER::toDomain).toList();
-        var order = ORDER_MAPPER.fromDomain(registerOrderInputPort.register(request.getIdCustomer(), listOfItems));
-        return ok(orderResponseBuilder.build(order));
+
+        return ok(ORDER_RESPONSE_MAPPER.fromDomain(registerOrderInputPort.register(request.getIdCustomer(), listOfItems)));
     }
 
     @ApiOperation(value = "update order status", notes = "(Private Endpoint) This endpoint is responsible for updating the order status for tracking by both the kitchen and the customer (reflected on the system monitor).")
