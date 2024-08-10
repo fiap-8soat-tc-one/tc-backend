@@ -17,15 +17,14 @@ public class OrderListResponse {
     private UUID id;
 
     @ApiModelProperty(
-            value = "Order Number",
-            example = "EfhxLZ",
+            value = "Order number to customer follow up",
+            example = "ed6l",
             dataType = "String"
     )
     private String orderNumber;
 
     @ApiModelProperty(
             value = "Order status",
-            required = true,
             example = "READY",
             dataType = "enum"
 
@@ -34,7 +33,6 @@ public class OrderListResponse {
 
     @ApiModelProperty(
             value = "Order wait time in minutes",
-            required = true,
             example = "10",
             dataType = "Optional<Integer>"
     )

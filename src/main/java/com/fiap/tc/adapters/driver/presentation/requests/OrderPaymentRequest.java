@@ -17,6 +17,7 @@ public class OrderPaymentRequest {
     @NotNull
     @ApiModelProperty(
             value = "Transaction Number",
+            required = true,
             example = "7ba2a960-2354-466f-8868-6ad713742407",
             dataType = "String"
     )
@@ -25,6 +26,7 @@ public class OrderPaymentRequest {
     @NotNull
     @ApiModelProperty(
             value = "Transaction Message Result - Order Id",
+            required = true,
             example = "transaction successfully",
             dataType = "String"
     )
