@@ -12,7 +12,7 @@ public interface OrderListResponseMapper extends MapperEntity<OrderList, OrderLi
     OrderList toDomain(OrderListResponse response);
 
     @Override
-    OrderListResponse fromDomain(OrderList entity);
+    OrderListResponse fromDomain(OrderList orderList);
 }
 
 

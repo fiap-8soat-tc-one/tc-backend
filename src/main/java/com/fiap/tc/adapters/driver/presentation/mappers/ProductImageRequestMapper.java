@@ -12,7 +12,7 @@ public interface ProductImageRequestMapper extends MapperEntity<ProductImage, Pr
     ProductImageRequest fromEntity(ProductImage productImage);
 
     @Override
-    ProductImage toEntity(ProductImageRequest productImageRequest);
+    ProductImage toEntity(ProductImageRequest request);
 
 }
 

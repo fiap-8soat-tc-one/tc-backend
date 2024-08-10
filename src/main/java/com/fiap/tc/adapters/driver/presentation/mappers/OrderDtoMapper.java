@@ -1,19 +1,18 @@
 package com.fiap.tc.adapters.driver.presentation.mappers;
 
+import com.fiap.tc.adapters.driver.presentation.dtos.OrderDto;
 import com.fiap.tc.adapters.driver.presentation.mappers.base.MapperEntity;
-import com.fiap.tc.adapters.driver.presentation.response.OrderResponse;
 import com.fiap.tc.core.domain.entities.Order;
 import org.mapstruct.Mapper;
 
 @Mapper
-public interface OrderResponseMapper extends MapperEntity<Order, OrderResponse> {
+public interface OrderDtoMapper extends MapperEntity<Order, OrderDto> {
 
     @Override
-    Order toDomain(OrderResponse response);
+    Order toDomain(OrderDto orderDto);
 
     @Override
-    OrderResponse fromDomain(Order entity);
-
+    OrderDto fromDomain(Order order);
 }
 
 

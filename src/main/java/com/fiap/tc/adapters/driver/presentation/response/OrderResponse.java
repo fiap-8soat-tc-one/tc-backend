@@ -1,6 +1,6 @@
 package com.fiap.tc.adapters.driver.presentation.response;
 
-import com.fiap.tc.core.domain.entities.Order;
+import com.fiap.tc.adapters.driver.presentation.dtos.OrderDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OrderResponse {
 
-    private Order order;
+    private OrderDto order;
     private String qrCodePaymentBase64;
     private Integer waitTime;
 }

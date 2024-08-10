@@ -12,7 +12,7 @@ public interface ProductImageResponseMapper extends MapperEntity<ProductImage, P
     ProductImage toDomain(ProductImageResponse response);
 
     @Override
-    ProductImageResponse fromDomain(ProductImage entity);
+    ProductImageResponse fromDomain(ProductImage productImage);
 }
 
 
