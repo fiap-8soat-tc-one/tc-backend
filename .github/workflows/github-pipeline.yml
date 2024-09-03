@@ -30,14 +30,6 @@ jobs:
           echo "${REVISION_TAG}" > REVISION_TAG
           echo "TAG=${DATE_TAG}.${REVISION_TAG}" >> $GITHUB_ENV
 
-      - name: Commit revision tag
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add REVISION_TAG
-          git commit -m "Increment revision tag to ${{ env.TAG }}"
-          git push
-
       - name: Set up Docker Build
         uses: docker/setup-buildx-action@v3
       
@@ -62,3 +54,9 @@ jobs:
         run: |
           docker push  ${{ secrets.DOCKER_USERNAME }}/fiap-8soat-tc:backend-${{ env.TAG }}
           docker push  ${{ secrets.DOCKER_USERNAME }}/fiap-8soat-tc:latest
+
+      - name: Commit revision tag
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git push origin tag release: ${{ env.TAG }}
