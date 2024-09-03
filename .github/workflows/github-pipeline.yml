@@ -54,11 +54,11 @@ jobs:
           context: .
           load: true
           tags: |
-             ${{ secrets.DOCKER_USERNAME }}/fiap-8soat-tc/tc-backend:${{ env.TAG }}
-             ${{ secrets.DOCKER_USERNAME }}/fiap-8soat-tc/tc-backend:latest
+             ${{ secrets.DOCKER_USERNAME }}/fiap-8soat-tc:backend-${{ env.TAG }}
+             ${{ secrets.DOCKER_USERNAME }}/fiap-8soat-tc:latest
           platforms: linux/amd64
 
       - name: Push Docker image (amd64)
         run: |
-          docker push  ${{ secrets.DOCKER_USERNAME }}/fiap-8soat-tc/tc-backend:${{ env.TAG }}
-          docker push  ${{ secrets.DOCKER_USERNAME }}/fiap-8soat-tc/tc-backend:latest
+          docker push  ${{ secrets.DOCKER_USERNAME }}/fiap-8soat-tc:backend-${{ env.TAG }}
+          docker push  ${{ secrets.DOCKER_USERNAME }}/fiap-8soat-tc:latest
