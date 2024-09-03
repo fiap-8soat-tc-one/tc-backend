@@ -59,4 +59,4 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git push origin tag release: ${{ env.TAG }}
+          git push origin tag release-${{ env.TAG }}
