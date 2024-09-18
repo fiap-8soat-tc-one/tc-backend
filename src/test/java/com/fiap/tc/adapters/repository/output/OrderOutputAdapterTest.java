@@ -40,7 +40,7 @@ public class OrderOutputAdapterTest extends FixtureTest {
 
     private OrderStatusRequest statusRequest;
 
-    private List<OrderStatus> status;
+    private List<String> status;
 
     private OrderEntity orderEntity;
 
@@ -57,12 +57,12 @@ public class OrderOutputAdapterTest extends FixtureTest {
     public void listOrdersByStatusTest() {
 
         final var orderEntities = new PageImpl<OrderEntity>(List.of(orderEntity));
-        when(orderRepository.findByStatusIn(status, pageable)).thenReturn(orderEntities);
+        when(orderRepository.findByStatus(status, pageable)).thenReturn(orderEntities);
 
         var ordersPageable = orderOutputAdapter.list(status, pageable);
 
         assertEquals(1, ordersPageable.getSize());
-        verify(orderRepository).findByStatusIn(status, pageable);
+        verify(orderRepository).findByStatus(status, pageable);
 
     }
 

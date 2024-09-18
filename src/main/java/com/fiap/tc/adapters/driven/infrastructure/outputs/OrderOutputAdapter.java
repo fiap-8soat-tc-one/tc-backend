@@ -1,9 +1,9 @@
 package com.fiap.tc.adapters.driven.infrastructure.outputs;
 
-import com.fiap.tc.adapters.driven.infrastructure.persistence.builders.OrderHistoricBuilder;
 import com.fiap.tc.adapters.driven.infrastructure.mappers.base.MapperConstants;
+import com.fiap.tc.adapters.driven.infrastructure.persistence.builders.OrderHistoricBuilder;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
-import com.fiap.tc.core.application.ports.out.order.ListOrdersReadyPreparingOutputPort;
+import com.fiap.tc.core.application.ports.out.order.ListOrdersOutputPort;
 import com.fiap.tc.core.application.ports.out.order.LoadOrderOutputPort;
 import com.fiap.tc.core.application.ports.out.order.UpdateStatusOrderOutputPort;
 import com.fiap.tc.core.domain.entities.Order;
@@ -22,7 +22,7 @@ import static java.lang.String.format;
 
 @Service
 public class OrderOutputAdapter implements UpdateStatusOrderOutputPort, LoadOrderOutputPort,
-        ListOrdersReadyPreparingOutputPort {
+        ListOrdersOutputPort {
 
     private final OrderRepository orderRepository;
 
@@ -59,8 +59,8 @@ public class OrderOutputAdapter implements UpdateStatusOrderOutputPort, LoadOrde
     }
 
     @Override
-    public Page<OrderList> list(List<OrderStatus> status, Pageable pageable) {
-        var ordersEntity = orderRepository.findByStatusIn(status, pageable);
+    public Page<OrderList> list(List<String> status, Pageable pageable) {
+        var ordersEntity = orderRepository.findByStatus(status, pageable);
         return ordersEntity.map(MapperConstants.ORDER_LIST_MAPPER::fromEntity);
     }
 }

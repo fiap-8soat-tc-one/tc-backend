@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public interface ListOrdersReadyPreparingOutputPort {
-    Page<OrderList> list(List<OrderStatus> status, Pageable pageable);
+public interface ListOrdersOutputPort {
+    Page<OrderList> list(List<String> status, Pageable pageable);
 }
 
