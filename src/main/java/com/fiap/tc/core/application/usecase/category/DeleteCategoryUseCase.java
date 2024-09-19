@@ -1,7 +1,7 @@
 package com.fiap.tc.core.application.usecase.category;
 
-import com.fiap.tc.core.application.ports.in.category.DeleteCategoryInputPort;
-import com.fiap.tc.core.application.ports.out.category.DeleteCategoryOutputPort;
+import com.fiap.tc.core.application.usecase.ports.in.category.DeleteCategoryInputPort;
+import com.fiap.tc.core.application.usecase.ports.out.category.DeleteCategoryOutputPort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

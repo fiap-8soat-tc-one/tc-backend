@@ -10,8 +10,8 @@ import com.fiap.tc.adapters.driven.infrastructure.mappers.base.MapperConstants;
 import com.fiap.tc.core.domain.exceptions.NotFoundException;
 import com.fiap.tc.core.domain.entities.Product;
 import com.fiap.tc.core.domain.entities.ProductImage;
-import com.fiap.tc.core.application.ports.out.product.DeleteProductImagesOutputPort;
-import com.fiap.tc.core.application.ports.out.product.RegisterProductImagesOutputPort;
+import com.fiap.tc.core.application.usecase.ports.out.product.DeleteProductImagesOutputPort;
+import com.fiap.tc.core.application.usecase.ports.out.product.RegisterProductImagesOutputPort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

@@ -5,7 +5,7 @@ import com.fiap.tc.adapters.driver.presentation.mappers.base.MapperConstants;
 import com.fiap.tc.adapters.driver.presentation.requests.ProductRequest;
 import com.fiap.tc.adapters.driver.presentation.response.DefaultResponse;
 import com.fiap.tc.adapters.driver.presentation.response.ProductResponse;
-import com.fiap.tc.core.application.ports.in.product.*;
+import com.fiap.tc.core.application.usecase.ports.in.product.*;
 import io.swagger.annotations.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

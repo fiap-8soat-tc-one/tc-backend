@@ -1,7 +1,7 @@
 package com.fiap.tc.adapters.driven.infrastructure.outputs;
 
 import com.fiap.tc.adapters.driven.infrastructure.utils.QRCodeGenerator;
-import com.fiap.tc.core.application.ports.out.payment.PaymentLinkOutputPort;
+import com.fiap.tc.core.application.usecase.ports.out.payment.PaymentLinkOutputPort;
 import com.fiap.tc.core.domain.entities.Order;
 import org.springframework.stereotype.Service;
 

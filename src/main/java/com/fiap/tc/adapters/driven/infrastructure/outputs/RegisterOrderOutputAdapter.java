@@ -8,7 +8,7 @@ import com.fiap.tc.adapters.driven.infrastructure.mappers.base.MapperConstants;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CustomerRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
-import com.fiap.tc.core.application.ports.out.order.RegisterOrderOutputPort;
+import com.fiap.tc.core.application.usecase.ports.out.order.RegisterOrderOutputPort;
 import com.fiap.tc.core.domain.entities.Order;
 import com.fiap.tc.core.domain.entities.OrderItem;
 import com.fiap.tc.core.domain.enums.OrderStatus;

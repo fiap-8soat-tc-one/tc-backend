@@ -3,7 +3,7 @@ package com.fiap.tc.adapters.driven.infrastructure.outputs;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CategoryEntity;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CategoryRepository;
-import com.fiap.tc.core.application.ports.out.category.*;
+import com.fiap.tc.core.application.usecase.ports.out.category.*;
 import com.fiap.tc.core.domain.entities.Category;
 import com.fiap.tc.core.domain.exceptions.BadRequestException;
 import com.fiap.tc.core.domain.exceptions.NotFoundException;

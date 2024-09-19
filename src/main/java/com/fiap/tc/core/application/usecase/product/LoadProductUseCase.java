@@ -1,8 +1,8 @@
 package com.fiap.tc.core.application.usecase.product;
 
-import com.fiap.tc.core.application.ports.in.product.LoadProductInputPort;
+import com.fiap.tc.core.application.usecase.ports.in.product.LoadProductInputPort;
 import com.fiap.tc.core.domain.entities.Product;
-import com.fiap.tc.core.application.ports.out.product.LoadProductOutputPort;
+import com.fiap.tc.core.application.usecase.ports.out.product.LoadProductOutputPort;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

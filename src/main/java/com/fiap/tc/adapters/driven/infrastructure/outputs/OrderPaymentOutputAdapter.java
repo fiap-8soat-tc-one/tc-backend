@@ -7,8 +7,8 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderPaym
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderPaymentRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.OrderRepository;
-import com.fiap.tc.core.application.ports.out.payment.LoadPaymentOutputPort;
-import com.fiap.tc.core.application.ports.out.payment.RegisterPaymentOutputPort;
+import com.fiap.tc.core.application.usecase.ports.out.payment.LoadPaymentOutputPort;
+import com.fiap.tc.core.application.usecase.ports.out.payment.RegisterPaymentOutputPort;
 import com.fiap.tc.core.domain.entities.OrderPayment;
 import com.fiap.tc.core.domain.enums.PaymentStatus;
 import com.fiap.tc.core.domain.enums.PaymentType;

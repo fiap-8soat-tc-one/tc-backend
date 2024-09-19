@@ -1,8 +1,8 @@
 package com.fiap.tc.core.application.usecase.order;
 
-import com.fiap.tc.core.application.ports.in.order.RegisterOrderInputPort;
-import com.fiap.tc.core.application.ports.out.order.RegisterOrderOutputPort;
-import com.fiap.tc.core.application.ports.out.payment.PaymentLinkOutputPort;
+import com.fiap.tc.core.application.usecase.ports.in.order.RegisterOrderInputPort;
+import com.fiap.tc.core.application.usecase.ports.out.order.RegisterOrderOutputPort;
+import com.fiap.tc.core.application.usecase.ports.out.payment.PaymentLinkOutputPort;
 import com.fiap.tc.core.domain.entities.Order;
 import com.fiap.tc.core.domain.entities.OrderItem;
 import lombok.extern.slf4j.Slf4j;

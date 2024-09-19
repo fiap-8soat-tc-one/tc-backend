@@ -1,7 +1,7 @@
 package com.fiap.tc.core.application.usecase.product;
 
-import com.fiap.tc.core.application.ports.in.product.UpdateProductInputPort;
-import com.fiap.tc.core.application.ports.out.product.UpdateProductOutputPort;
+import com.fiap.tc.core.application.usecase.ports.in.product.UpdateProductInputPort;
+import com.fiap.tc.core.application.usecase.ports.out.product.UpdateProductOutputPort;
 import com.fiap.tc.core.domain.entities.Product;
 import org.springframework.stereotype.Service;
 

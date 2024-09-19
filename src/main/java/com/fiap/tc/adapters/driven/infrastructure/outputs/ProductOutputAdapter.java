@@ -5,7 +5,7 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.ProductEn
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.CategoryRepository;
 import com.fiap.tc.adapters.driven.infrastructure.persistence.repositories.ProductRepository;
-import com.fiap.tc.core.application.ports.out.product.*;
+import com.fiap.tc.core.application.usecase.ports.out.product.*;
 import com.fiap.tc.core.domain.entities.Product;
 import com.fiap.tc.core.domain.exceptions.BadRequestException;
 import com.fiap.tc.core.domain.exceptions.NotFoundException;

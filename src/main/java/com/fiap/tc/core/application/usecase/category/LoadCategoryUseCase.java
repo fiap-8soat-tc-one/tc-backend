@@ -1,8 +1,8 @@
 package com.fiap.tc.core.application.usecase.category;
 
-import com.fiap.tc.core.application.ports.in.category.LoadCategoryInputPort;
+import com.fiap.tc.core.application.usecase.ports.in.category.LoadCategoryInputPort;
 import com.fiap.tc.core.domain.entities.Category;
-import com.fiap.tc.core.application.ports.out.category.LoadCategoryOutputPort;
+import com.fiap.tc.core.application.usecase.ports.out.category.LoadCategoryOutputPort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

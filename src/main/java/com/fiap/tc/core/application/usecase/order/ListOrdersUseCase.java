@@ -1,7 +1,7 @@
 package com.fiap.tc.core.application.usecase.order;
 
-import com.fiap.tc.core.application.ports.in.order.ListOrdersInputPort;
-import com.fiap.tc.core.application.ports.out.order.ListOrdersOutputPort;
+import com.fiap.tc.core.application.usecase.ports.in.order.ListOrdersInputPort;
+import com.fiap.tc.core.application.usecase.ports.out.order.ListOrdersOutputPort;
 import com.fiap.tc.core.domain.entities.OrderList;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;

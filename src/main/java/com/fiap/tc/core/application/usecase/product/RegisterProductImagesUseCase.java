@@ -1,7 +1,7 @@
 package com.fiap.tc.core.application.usecase.product;
 
-import com.fiap.tc.core.application.ports.in.product.RegisterProductImagesInputPort;
-import com.fiap.tc.core.application.ports.out.product.RegisterProductImagesOutputPort;
+import com.fiap.tc.core.application.usecase.ports.in.product.RegisterProductImagesInputPort;
+import com.fiap.tc.core.application.usecase.ports.out.product.RegisterProductImagesOutputPort;
 import com.fiap.tc.core.domain.entities.Product;
 import com.fiap.tc.core.domain.entities.ProductImage;
 import org.springframework.stereotype.Service;

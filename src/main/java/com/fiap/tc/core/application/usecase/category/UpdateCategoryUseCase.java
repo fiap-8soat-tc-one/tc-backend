@@ -1,7 +1,7 @@
 package com.fiap.tc.core.application.usecase.category;
 
-import com.fiap.tc.core.application.ports.in.category.UpdateCategoryInputPort;
-import com.fiap.tc.core.application.ports.out.category.UpdateCategoryOutputPort;
+import com.fiap.tc.core.application.usecase.ports.in.category.UpdateCategoryInputPort;
+import com.fiap.tc.core.application.usecase.ports.out.category.UpdateCategoryOutputPort;
 import com.fiap.tc.core.domain.entities.Category;
 import org.springframework.stereotype.Service;
 

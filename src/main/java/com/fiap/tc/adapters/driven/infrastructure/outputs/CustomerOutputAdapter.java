@@ -5,10 +5,10 @@ import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.CustomerE
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
 import com.fiap.tc.core.domain.exceptions.NotFoundException;
 import com.fiap.tc.core.domain.entities.Customer;
-import com.fiap.tc.core.application.ports.out.customer.DeleteCustomerOutputPort;
-import com.fiap.tc.core.application.ports.out.customer.ListCustomersOutputPort;
-import com.fiap.tc.core.application.ports.out.customer.LoadCustomerOutputPort;
-import com.fiap.tc.core.application.ports.out.customer.SaveCustomerOutputPort;
+import com.fiap.tc.core.application.usecase.ports.out.customer.DeleteCustomerOutputPort;
+import com.fiap.tc.core.application.usecase.ports.out.customer.ListCustomersOutputPort;
+import com.fiap.tc.core.application.usecase.ports.out.customer.LoadCustomerOutputPort;
+import com.fiap.tc.core.application.usecase.ports.out.customer.SaveCustomerOutputPort;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

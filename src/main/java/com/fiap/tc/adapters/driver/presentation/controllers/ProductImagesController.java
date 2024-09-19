@@ -6,8 +6,8 @@ import com.fiap.tc.adapters.driver.presentation.requests.RegisterProductImagesRe
 import com.fiap.tc.adapters.driver.presentation.response.DefaultResponse;
 import com.fiap.tc.adapters.driver.presentation.response.ProductImageResponse;
 import com.fiap.tc.adapters.driver.presentation.response.ProductResponse;
-import com.fiap.tc.core.application.ports.in.product.DeleteProductImagesInputPort;
-import com.fiap.tc.core.application.ports.in.product.RegisterProductImagesInputPort;
+import com.fiap.tc.core.application.usecase.ports.in.product.DeleteProductImagesInputPort;
+import com.fiap.tc.core.application.usecase.ports.in.product.RegisterProductImagesInputPort;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
