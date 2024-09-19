@@ -1,6 +1,6 @@
 package com.fiap.tc.adapters.driven.infrastructure.persistence.entities;
 
-import com.fiap.tc.core.domain.enums.PaymentResult;
+import com.fiap.tc.core.domain.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,7 +28,10 @@ public class OrderPaymentHistoricEntity {
     private LocalDateTime registerDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "result", nullable = false, length = 20)
-    private PaymentResult result;
+    @Column(name = "status", nullable = false, length = 20)
+    private PaymentStatus status;
+
+    @Column(name = "transaction_message")
+    private String transactionMessage;
 
 }

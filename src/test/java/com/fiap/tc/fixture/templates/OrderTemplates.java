@@ -12,7 +12,7 @@ import com.fiap.tc.adapters.driver.presentation.requests.OrderStatusRequest;
 import com.fiap.tc.core.domain.entities.Order;
 import com.fiap.tc.core.domain.entities.OrderPayment;
 import com.fiap.tc.core.domain.enums.OrderStatus;
-import com.fiap.tc.core.domain.enums.PaymentResult;
+import com.fiap.tc.core.domain.enums.PaymentStatus;
 import com.fiap.tc.core.domain.enums.PaymentType;
 
 import java.math.BigDecimal;
@@ -84,7 +84,7 @@ public class OrderTemplates implements TemplateLoader {
                 add("transactionMessage", random("transaction successfully", "transaction error",
                         "transaction refused"));
                 add("transactionDocument", random("52735617017", "03014336076", "90819176095"));
-                add("result", PaymentResult.SUCCESS);
+                add("status", PaymentStatus.APPROVED);
                 add("paymentType", random(PaymentType.PIX, PaymentType.CREDIT, PaymentType.DEBIT));
                 add("total", random(BigDecimal.valueOf(100.50), BigDecimal.valueOf(200.75)));
 
@@ -97,7 +97,7 @@ public class OrderTemplates implements TemplateLoader {
                 add("transactionMessage", random("transaction successfully", "transaction error",
                         "transaction refused"));
                 add("transactionDocument", random("52735617017", "03014336076", "90819176095"));
-                add("result", PaymentResult.ERROR);
+                add("status", PaymentStatus.ERROR);
                 add("paymentType", random(PaymentType.PIX, PaymentType.CREDIT, PaymentType.DEBIT));
                 add("total", random(BigDecimal.valueOf(100.50), BigDecimal.valueOf(200.75)));
 
@@ -107,12 +107,11 @@ public class OrderTemplates implements TemplateLoader {
         Fixture.of(OrderPaymentEntity.class).addTemplate("valid", new Rule() {
             {
                 add("id", random(Integer.class, range(1, 100)));
-                add("uuid", UUID.randomUUID());
                 add("transactionNumber", "7ba2a960-2354-466f-8868-6ad713742407");
                 add("transactionMessage", random("transaction successfully", "transaction error",
                         "transaction refused"));
                 add("transactionDocument", random("52735617017", "03014336076", "90819176095"));
-                add("result", random(PaymentResult.SUCCESS, PaymentResult.ERROR));
+                add("status", random(PaymentStatus.APPROVED, PaymentStatus.ERROR));
                 add("paymentType", random(PaymentType.PIX, PaymentType.CREDIT, PaymentType.DEBIT));
                 add("total", random(BigDecimal.valueOf(100.50), BigDecimal.valueOf(200.75)));
                 add("audit", one(Audit.class, "valid"));
@@ -124,8 +123,7 @@ public class OrderTemplates implements TemplateLoader {
         Fixture.of(OrderPayment.class).addTemplate("valid", new Rule() {
             {
                 add("id", UUID.randomUUID());
-                add("idOrder", UUID.randomUUID());
-                add("result", random(PaymentResult.SUCCESS, PaymentResult.ERROR));
+                add("status", random(PaymentStatus.APPROVED, PaymentStatus.ERROR));
             }
         });
 

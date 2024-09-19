@@ -16,5 +16,10 @@ public class MapperConstants {
     public static final OrderListResponseMapper ORDER_LIST_MAPPER = Mappers.getMapper(OrderListResponseMapper.class);
     public static final OrderItemRequestMapper ORDER_ITEM_MAPPER = Mappers.getMapper(OrderItemRequestMapper.class);
     public static final OrderResponseMapper ORDER_RESPONSE_MAPPER = Mappers.getMapper(OrderResponseMapper.class);
+    public static final PaymentResponseMapper PAYMENT_RESPONSE_MAPPER = Mappers.getMapper(PaymentResponseMapper.class);
+    public static final PaymentHistoricResponseMapper PAYMENT_HISTORIC_RESPONSE_MAPPER =
+            Mappers.getMapper(PaymentHistoricResponseMapper.class);
+
 
 }
+
