@@ -1,7 +1,7 @@
 package com.fiap.tc.adapters.driver.presentation.requests;
 
 import br.com.caelum.stella.bean.validation.CPF;
-import com.fiap.tc.core.domain.enums.PaymentResult;
+import com.fiap.tc.core.domain.enums.PaymentStatus;
 import com.fiap.tc.core.domain.enums.PaymentType;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -52,7 +52,7 @@ public class OrderPaymentRequest {
             required = true,
             allowableValues = "SUCCESS, ERROR"
     )
-    private PaymentResult result;
+    private PaymentStatus status;
 
     @NotNull
     @ApiModelProperty(

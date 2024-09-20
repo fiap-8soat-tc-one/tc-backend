@@ -22,6 +22,7 @@ public interface OrderListMapper extends MapperEntity<OrderEntity, OrderList> {
     @Override
     @Mapping(target = "waitTime", source = "orderEntity", qualifiedByName = "calculateWaitTime")
     @Mapping(target = "id", source = "uuid")
+    @Mapping(target = "updatedDate", source = "audit.updatedDate")
     OrderList fromEntity(OrderEntity orderEntity);
 
     @Override

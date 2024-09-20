@@ -6,7 +6,7 @@ import com.fiap.tc.adapters.driver.presentation.requests.OrderStatusRequest;
 import com.fiap.tc.adapters.driver.presentation.response.DefaultResponse;
 import com.fiap.tc.adapters.driver.presentation.response.OrderListResponse;
 import com.fiap.tc.adapters.driver.presentation.response.OrderResponse;
-import com.fiap.tc.core.application.ports.in.order.ListOrdersReadyPreparingInputPort;
+import com.fiap.tc.core.application.ports.in.order.ListOrdersInputPort;
 import com.fiap.tc.core.application.ports.in.order.LoadOrderInputPort;
 import com.fiap.tc.core.application.ports.in.order.RegisterOrderInputPort;
 import com.fiap.tc.core.application.ports.in.order.UpdateStatusOrderInputPort;
@@ -32,16 +32,16 @@ public class OrderController {
     private final RegisterOrderInputPort registerOrderInputPort;
     private final LoadOrderInputPort loadOrderInputPort;
     private final UpdateStatusOrderInputPort updateStatusOrderInputPort;
-    private final ListOrdersReadyPreparingInputPort listOrdersReadyPreparingInputPort;
+    private final ListOrdersInputPort listOrdersInputPort;
 
     public OrderController(RegisterOrderInputPort registerOrderInputPort,
                            LoadOrderInputPort loadOrderInputPort,
                            UpdateStatusOrderInputPort updateStatusOrderInputPort,
-                           ListOrdersReadyPreparingInputPort listOrdersReadyPreparingInputPort) {
+                           ListOrdersInputPort listOrdersInputPort) {
         this.registerOrderInputPort = registerOrderInputPort;
         this.loadOrderInputPort = loadOrderInputPort;
         this.updateStatusOrderInputPort = updateStatusOrderInputPort;
-        this.listOrdersReadyPreparingInputPort = listOrdersReadyPreparingInputPort;
+        this.listOrdersInputPort = listOrdersInputPort;
     }
 
     @ApiOperation(value = "Find Order")
@@ -89,6 +89,6 @@ public class OrderController {
     @GetMapping(path = URLMapping.ROOT_PRIVATE_API_ORDERS)
     @PreAuthorize("hasAuthority('LIST_ORDERS')")
     public ResponseEntity<Page<OrderListResponse>> list(@ApiParam(required = true, value = "Orders Pagination") Pageable pageable) {
-        return ok(listOrdersReadyPreparingInputPort.list(pageable).map(ORDER_LIST_MAPPER::fromDomain));
+        return ok(listOrdersInputPort.list(pageable).map(ORDER_LIST_MAPPER::fromDomain));
     }
 }

@@ -162,14 +162,13 @@ create table order_payment
     register_date        timestamp,
     updated_date         timestamp,
     payment_type         varchar(20) not null,
-    result               varchar(20) not null,
+    status               varchar(20) not null,
     result_error_date    timestamp,
     result_success_date  timestamp,
     total                numeric(19, 2),
     transaction_document varchar(30) not null,
     transaction_message  varchar(255),
     transaction_number   varchar(255),
-    uuid                 uuid,
     id_order             int4        not null,
     primary key (id)
 );
@@ -178,7 +177,8 @@ create table order_payment_historic
 (
     id               serial      not null,
     register_date    timestamp   not null,
-    result           varchar(20) not null,
+    status           varchar(20) not null,
+    transaction_message  varchar(255),
     id_order_payment int4        not null,
     primary key (id)
 );

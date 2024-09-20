@@ -78,7 +78,7 @@ public class ProductOutputAdapterTest extends FixtureTest {
 
     @Test
     public void listProductsByCategoryTest() {
-        final var productEntities = new PageImpl<ProductEntity>(List.of(productEntity));
+        final var productEntities = new PageImpl<>(List.of(productEntity));
 
         when(productRepository.findByCategoryUuid(CATEGORY_ID, pageable)).thenReturn(productEntities);
 

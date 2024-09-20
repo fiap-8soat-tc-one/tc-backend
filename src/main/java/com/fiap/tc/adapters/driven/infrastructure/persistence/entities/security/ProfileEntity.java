@@ -4,6 +4,7 @@ import com.fiap.tc.core.domain.enums.ProfileSystem;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -14,6 +15,7 @@ import static java.lang.String.format;
 @Table(name = "profile", schema = "security")
 public class ProfileEntity implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id

@@ -1,7 +1,6 @@
 package com.fiap.tc.core.application.usecase.product;
 
 import com.fiap.tc.core.application.ports.in.product.DeleteProductImagesInputPort;
-import com.fiap.tc.adapters.driver.presentation.requests.DeleteProductImagesRequest;
 import com.fiap.tc.core.application.ports.out.product.DeleteProductImagesOutputPort;
 import org.springframework.stereotype.Service;
 

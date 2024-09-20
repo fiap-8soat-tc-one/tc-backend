@@ -51,7 +51,7 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
         DefaultResponse response = new DefaultResponse();
         response.setStatus(PRECONDITION_FAILED.name());
 
-        var sqlExceptionMessage = getSQLExceptionMessage((DataIntegrityViolationException) e);
+        var sqlExceptionMessage = getSQLExceptionMessage(e);
 
         Pattern pattern = Pattern.compile(FIRST_WORD_QUOTE);
         Matcher matcher = pattern.matcher(sqlExceptionMessage);

@@ -4,6 +4,7 @@ import com.fiap.tc.core.domain.enums.OrderStatus;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -30,6 +31,14 @@ public class OrderListResponse {
 
     )
     private OrderStatus status;
+
+    @ApiModelProperty(
+            value = "Order last status updated",
+            example = "2024-09-18T15:27:22.493994",
+            dataType = "LocalDatetime"
+
+    )
+    private LocalDateTime updatedDate;
 
     @ApiModelProperty(
             value = "Order wait time in minutes",

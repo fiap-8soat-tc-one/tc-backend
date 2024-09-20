@@ -82,7 +82,7 @@ public class CategoryOutputAdapterTests extends FixtureTest {
 
     @Test
     public void listTest() {
-        final var categoryEntities = new PageImpl<CategoryEntity>(List.of(categoryEntity));
+        final var categoryEntities = new PageImpl<>(List.of(categoryEntity));
         when(categoryRepository.findAll(Mockito.any(Pageable.class))).thenReturn(categoryEntities);
 
         var categories = categoryOutputAdapter.list(pageable);

@@ -1,7 +1,7 @@
 package com.fiap.tc.adapters.driven.infrastructure.persistence.entities;
 
 import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
-import com.fiap.tc.core.domain.enums.PaymentResult;
+import com.fiap.tc.core.domain.enums.PaymentStatus;
 import com.fiap.tc.core.domain.enums.PaymentType;
 import lombok.Data;
 
@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -19,8 +18,6 @@ public class OrderPaymentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    private UUID uuid;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_order", nullable = false)
@@ -37,11 +34,11 @@ public class OrderPaymentEntity {
 
     @OneToMany(mappedBy = "payment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OrderBy(value = "register_date DESC")
-    private List<OrderPaymentHistoricEntity> payment_historic = new ArrayList<>();
+    private List<OrderPaymentHistoricEntity> paymentHistoric = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "result", nullable = false, length = 20)
-    private PaymentResult result;
+    @Column(name = "status", nullable = false, length = 20)
+    private PaymentStatus status;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_type", nullable = false, length = 20)

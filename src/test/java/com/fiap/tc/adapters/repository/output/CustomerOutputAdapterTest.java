@@ -62,7 +62,7 @@ public class CustomerOutputAdapterTest extends FixtureTest {
     @Test
     public void listCustomersTest() {
 
-        final var customerEntities = new PageImpl<CustomerEntity>(List.of(customerEntity));
+        final var customerEntities = new PageImpl<>(List.of(customerEntity));
         when(customerRepository.findAll(pageable)).thenReturn(customerEntities);
 
         var customers = customerOutputAdapter.list(pageable);

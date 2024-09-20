@@ -41,7 +41,7 @@ public class GenerateSchemaTest {
         File outputFile = new File("./target/db-schema.sql");
 
         if (outputFile.exists()) {
-            outputFile.delete();
+            Assertions.assertTrue(outputFile.delete());
         }
 
         log.info("Gerating script in file: {}", outputFile.getAbsolutePath());

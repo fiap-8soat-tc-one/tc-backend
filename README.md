@@ -120,7 +120,7 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    Fake Pagamento->>+Sistema: 1 - [POST] http://localhost:8080/api/public/v1/hook/orders/payment
+    Fake Pagamento->>+Sistema: 1 - [POST] http://localhost:8080/api/public/v1/hook/orders/payments
     Sistema-->>-Fake Pagamento: Return Status Code 200 and result SUCCESS/ERROR
 ```
 
@@ -165,24 +165,24 @@ sequenceDiagram
 
 ## Dicionário de Linguagem Onipresente/Ubíqua
 
-| Palavra                         | Descrição                                                                                                                                                                                                    |
-|---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Lanchonete                      | Estabelecimento onde a solução/sistema será aplicado.                                                                                                                                                        |
-| Cliente                         | Pessoa que realiza pedidos na lanchonete.                                                                                                                                                                    |
-| Cozinha                         | Setor da lanchonete responsável por preparar todos os produtos do combo.                                                                                                                                     |
-| Administrador/Usuário Sistêmico | Pessoa que cadastra produtos no sistema.                                                                                                                                                                     |
-| Sistema de Controle de Pedidos  | Sistema que soluciona o problema da lanchonete, automatizando a coleta de pedidos, pagamento e comunicação com a cozinha.                                                                                    |
-| Monitor/Terminal                | No Contexto da Cozinha: Display onde são exibidos os pedidos na cozinha pendentes de preparo. No Contexto do Cliente: Display onde o cliente consegue acompanhar o status dos seus pedidos.                  |
-| Promoção                        | Oferta de produtos com desconto customizada por cliente.                                                                                                                                                     |
-| Pagamento                       | Ação realizada pelo cliente ao fazer a leitura do QR code do Mercado Pago para realizar o pagamento do pedido.                                                                                               |
-| Pedido                          | Pedido de combo realizado pelo cliente.                                                                                                                                                                      |
-| RECEIVED/Pedido Recebido        | Pedido aguardando pagamento pelo cliente)                                                                                                                                                                    |
-| PENDING/Pedido Pendente          | Status do pedido após uma falha no fluxo de pagamento.                                                                                                                                                       |
-| PREPARING/Pedido Em Preparação  | Status do pedido após a após a conclusão do pagamento e encaminhamento para a cozinha iniciar o preparo.                                                                                                                                                           |
-| READY/Pedido Pronto             | Status do pedido após a cozinha terminar o preparo e disponibilizar para retirada pelo cliente.                                                                                                              |
-| FINISHED/Pedido Finalizado      | Status do pedido após ser retirado pelo cliente.                                                                                                                                                             |
-| CANCELED/Pedido Cancelado       | Status do pedido após ser cancelado pelo cliente ou pela cozinha.                                                                                                                                            |
-| Acompanhamento                  | No Contexto de Itens do Pedido: Item que acompanha o hambúrguer, como, por exemplo, batata frita. No Contexto do Pedido: Funcionalidade que permite ao cliente acompanhar o status do seu pedido no monitor. |
+| Palavra                         | Descrição                                                                                                                                                                                                     |
+|---------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Lanchonete                      | Estabelecimento onde a solução/sistema será aplicado.                                                                                                                                                         |
+| Cliente                         | Pessoa que realiza pedidos na lanchonete.                                                                                                                                                                     |
+| Cozinha                         | Setor da lanchonete responsável por preparar todos os produtos do combo.                                                                                                                                      |
+| Administrador/Usuário Sistêmico | Pessoa que cadastra produtos no sistema.                                                                                                                                                                      |
+| Sistema de Controle de Pedidos  | Sistema que soluciona o problema da lanchonete, automatizando a coleta de pedidos, pagamento e comunicação com a cozinha.                                                                                     |
+| Monitor/Terminal                | No Contexto da Cozinha: Display onde são exibidos os pedidos na cozinha pendentes de preparo. No Contexto do Cliente: Display onde o cliente consegue acompanhar o status dos seus pedidos.                   |
+| Promoção                        | Oferta de produtos com desconto customizada por cliente.                                                                                                                                                      |
+| Pagamento                       | Ação realizada pelo cliente ao fazer a leitura do QR code do Mercado Pago para realizar o pagamento do pedido.                                                                                                |
+| Pedido                          | Pedido de combo realizado pelo cliente.                                                                                                                                                                       |
+| RECEIVED/Pedido Recebido        | Pedido aguardando pagamento pelo cliente)                                                                                                                                                                     |
+| PENDING/Pedido Pendente         | Status do pedido após uma falha no fluxo de pagamento.                                                                                                                                                        |
+| PREPARING/Pedido Em Preparação  | Status do pedido após a após a conclusão do pagamento e encaminhamento para a cozinha iniciar o preparo.                                                                                                      |
+| READY/Pedido Pronto             | Status do pedido após a cozinha terminar o preparo e disponibilizar para retirada pelo cliente.                                                                                                               |
+| FINISHED/Pedido Finalizado      | Status do pedido após ser retirado pelo cliente.                                                                                                                                                              |
+| CANCELED/Pedido Cancelado       | Status do pedido após ser cancelado pelo cliente ou pela cozinha.                                                                                                                                             |
+| Acompanhamento                  | No Contexto de Itens do Pedido: Item que acompanha o hambúrguer, como, por exemplo, batata frita. No Contexto do Pedido: Funcionalidade que permite ao cliente acompanhar o status do seu pedido no monitor.  |
 
 ## Event Storming :heavy_check_mark:
 

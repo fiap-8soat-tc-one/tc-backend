@@ -79,9 +79,9 @@ public class ProductImagesOutputAdapter implements RegisterProductImagesOutputPo
 
     private Product uploadImagesAndSave(ProductEntity productEntity, List<ProductImage> images) {
 
-        images.forEach(productImage -> {
+        for (ProductImage productImage : images) {
             productEntity.getImages().add(uploadImage(productImage, productEntity));
-        });
+        }
 
         return MapperConstants.PRODUCT_MAPPER.fromEntity(productRepository.save(productEntity));
     }
