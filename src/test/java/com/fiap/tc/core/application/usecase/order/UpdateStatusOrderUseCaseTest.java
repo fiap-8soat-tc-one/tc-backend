@@ -1,9 +1,10 @@
 package com.fiap.tc.core.application.usecase.order;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.adapters.driver.presentation.requests.OrderStatusRequest;
-import com.fiap.tc.core.application.ports.out.order.UpdateStatusOrderOutputPort;
+import com.fiap.tc.application.gateways.OrderGatewaySpec;
+import com.fiap.tc.application.usecases.order.UpdateStatusOrderUseCase;
 import com.fiap.tc.fixture.FixtureTest;
+import com.fiap.tc.infrastructure.presentation.requests.OrderStatusRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,7 +18,7 @@ import static org.mockito.Mockito.verify;
 public class UpdateStatusOrderUseCaseTest extends FixtureTest {
 
     @Mock
-    private UpdateStatusOrderOutputPort updateStatusOrderOutputPort;
+    private OrderGatewaySpec orderGateway;
 
     @InjectMocks
     private UpdateStatusOrderUseCase updateStatusOrderUseCase;
@@ -33,7 +34,7 @@ public class UpdateStatusOrderUseCaseTest extends FixtureTest {
     public void updateTest() {
 
         updateStatusOrderUseCase.update(request.getId(), request.getStatus());
-        verify(updateStatusOrderOutputPort).update(request.getId(), request.getStatus());
+        verify(orderGateway).updateStatus(request.getId(), request.getStatus());
     }
 
 }

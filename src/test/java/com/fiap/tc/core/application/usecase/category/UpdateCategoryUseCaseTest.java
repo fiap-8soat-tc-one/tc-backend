@@ -1,10 +1,11 @@
 package com.fiap.tc.core.application.usecase.category;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.adapters.driver.presentation.requests.CategoryRequest;
-import com.fiap.tc.core.application.ports.out.category.UpdateCategoryOutputPort;
-import com.fiap.tc.core.domain.entities.Category;
+import com.fiap.tc.application.gateways.CategoryGatewaySpec;
+import com.fiap.tc.application.usecases.category.UpdateCategoryUseCase;
+import com.fiap.tc.domain.entities.Category;
 import com.fiap.tc.fixture.FixtureTest;
+import com.fiap.tc.infrastructure.presentation.requests.CategoryRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,7 +23,7 @@ public class UpdateCategoryUseCaseTest extends FixtureTest {
 
     public static final UUID ID_CATEGORY = UUID.randomUUID();
     @Mock
-    private UpdateCategoryOutputPort updateCategoryOutputPort;
+    private CategoryGatewaySpec categoryGateway;
 
     @InjectMocks
     private UpdateCategoryUseCase updateCategoryUseCase;
@@ -39,7 +40,7 @@ public class UpdateCategoryUseCaseTest extends FixtureTest {
 
     @Test
     public void updateCategoryTest() {
-        when(updateCategoryOutputPort.update(ID_CATEGORY, request.getName(),
+        when(categoryGateway.update(ID_CATEGORY, request.getName(),
                 request.getDescription())).thenReturn(category);
 
         var categoryResult = updateCategoryUseCase.update(ID_CATEGORY, request.getName(),

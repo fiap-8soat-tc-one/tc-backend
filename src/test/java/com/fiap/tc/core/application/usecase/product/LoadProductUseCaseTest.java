@@ -1,8 +1,9 @@
 package com.fiap.tc.core.application.usecase.product;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.core.domain.entities.Product;
-import com.fiap.tc.core.application.ports.out.product.LoadProductOutputPort;
+import com.fiap.tc.application.gateways.ProductGatewaySpec;
+import com.fiap.tc.application.usecases.product.LoadProductUseCase;
+import com.fiap.tc.domain.entities.Product;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +24,7 @@ public class LoadProductUseCaseTest extends FixtureTest {
     public static final UUID ID_PRODUCT = UUID.randomUUID();
 
     @Mock
-    private LoadProductOutputPort loadProductOutputPort;
+    private ProductGatewaySpec productGateway;
 
     @InjectMocks
     private LoadProductUseCase loadProductUseCase;
@@ -37,11 +38,11 @@ public class LoadProductUseCaseTest extends FixtureTest {
 
     @Test
     public void loadProductTest() {
-        when(loadProductOutputPort.load(ID_PRODUCT)).thenReturn(product);
+        when(productGateway.load(ID_PRODUCT)).thenReturn(product);
 
         var productResult = loadProductUseCase.load(ID_PRODUCT);
         Assertions.assertEquals(product, productResult);
-        verify(loadProductOutputPort).load(ID_PRODUCT);
+        verify(productGateway).load(ID_PRODUCT);
     }
 
 }

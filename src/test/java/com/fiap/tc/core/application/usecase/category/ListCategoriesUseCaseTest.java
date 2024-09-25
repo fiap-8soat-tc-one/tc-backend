@@ -1,6 +1,7 @@
 package com.fiap.tc.core.application.usecase.category;
 
-import com.fiap.tc.core.application.ports.out.category.ListCategoriesOutputPort;
+import com.fiap.tc.application.gateways.CategoryGatewaySpec;
+import com.fiap.tc.application.usecases.category.ListCategoriesUseCase;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,7 +16,7 @@ import static org.mockito.Mockito.verify;
 public class ListCategoriesUseCaseTest extends FixtureTest {
 
     @Mock
-    private ListCategoriesOutputPort listCategoriesOutputPort;
+    private CategoryGatewaySpec categoryGateway;
 
     @InjectMocks
     private ListCategoriesUseCase listCategoriesUseCase;
@@ -23,6 +24,6 @@ public class ListCategoriesUseCaseTest extends FixtureTest {
     @Test
     public void listCategoriesTest() {
         listCategoriesUseCase.list(Mockito.any());
-        verify(listCategoriesOutputPort).list(Mockito.any());
+        verify(categoryGateway).list(Mockito.any());
     }
 }

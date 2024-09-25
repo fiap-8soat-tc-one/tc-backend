@@ -1,10 +1,11 @@
 package com.fiap.tc.core.application.usecase.product;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.core.domain.entities.Product;
-import com.fiap.tc.adapters.driver.presentation.requests.RegisterProductImagesRequest;
-import com.fiap.tc.core.application.ports.out.product.RegisterProductImagesOutputPort;
+import com.fiap.tc.application.gateways.ProductImagesGatewaySpec;
+import com.fiap.tc.application.usecases.product.RegisterProductImagesUseCase;
+import com.fiap.tc.domain.entities.Product;
 import com.fiap.tc.fixture.FixtureTest;
+import com.fiap.tc.infrastructure.presentation.requests.RegisterProductImagesRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ import static org.mockito.Mockito.when;
 public class RegisterProductImagesUseCaseTest extends FixtureTest {
 
     @Mock
-    private RegisterProductImagesOutputPort registerProductImagesOutputPort;
+    private ProductImagesGatewaySpec productImagesGateway;
 
     @InjectMocks
     private RegisterProductImagesUseCase registerProductImagesUseCase;
@@ -38,12 +39,12 @@ public class RegisterProductImagesUseCaseTest extends FixtureTest {
 
     @Test
     public void registerProductImagesTest() {
-        when(registerProductImagesOutputPort.save(Mockito.any(), Mockito.anyList())).thenReturn(product);
+        when(productImagesGateway.register(Mockito.any(), Mockito.anyList())).thenReturn(product);
 
         var productResult = registerProductImagesUseCase.register(Mockito.any(), Mockito.anyList());
 
         Assertions.assertEquals(product, productResult);
-        verify(registerProductImagesOutputPort).save(Mockito.any(), Mockito.anyList());
+        verify(productImagesGateway).register(Mockito.any(), Mockito.anyList());
     }
 
 

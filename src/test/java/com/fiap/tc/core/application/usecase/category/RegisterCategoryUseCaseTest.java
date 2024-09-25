@@ -1,10 +1,11 @@
 package com.fiap.tc.core.application.usecase.category;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.adapters.driver.presentation.requests.CategoryRequest;
-import com.fiap.tc.core.application.ports.out.category.RegisterCategoryOutputPort;
-import com.fiap.tc.core.domain.entities.Category;
+import com.fiap.tc.application.gateways.CategoryGatewaySpec;
+import com.fiap.tc.application.usecases.category.RegisterCategoryUseCase;
+import com.fiap.tc.domain.entities.Category;
 import com.fiap.tc.fixture.FixtureTest;
+import com.fiap.tc.infrastructure.presentation.requests.CategoryRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +21,7 @@ import static org.mockito.Mockito.when;
 public class RegisterCategoryUseCaseTest extends FixtureTest {
 
     @Mock
-    private RegisterCategoryOutputPort saveCategoryOutputPort;
+    private CategoryGatewaySpec categoryGateway;
 
     @InjectMocks
     private RegisterCategoryUseCase registerCategoryUseCase;
@@ -36,12 +37,12 @@ public class RegisterCategoryUseCaseTest extends FixtureTest {
 
     @Test
     public void registerCategoryTest() {
-        when(saveCategoryOutputPort.saveOrUpdate(categoryRequest.getName(), categoryRequest.getDescription())).thenReturn(category);
+        when(categoryGateway.register(categoryRequest.getName(), categoryRequest.getDescription())).thenReturn(category);
 
         var categoryResult = registerCategoryUseCase.register(categoryRequest.getName(), categoryRequest.getDescription());
 
         assertEquals(category, categoryResult);
-        verify(saveCategoryOutputPort).saveOrUpdate(categoryRequest.getName(),
+        verify(categoryGateway).register(categoryRequest.getName(),
                 categoryRequest.getDescription());
 
     }

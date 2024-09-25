@@ -1,9 +1,10 @@
 package com.fiap.tc.core.application.usecase.payment;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.core.application.ports.out.payment.LoadPaymentOutputPort;
-import com.fiap.tc.core.domain.entities.OrderPayment;
+import com.fiap.tc.application.usecases.payment.LoadPaymentUseCase;
+import com.fiap.tc.domain.entities.OrderPayment;
 import com.fiap.tc.fixture.FixtureTest;
+import com.fiap.tc.infrastructure.gateways.PaymentGateway;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +22,7 @@ import static org.mockito.Mockito.when;
 public class LoadPaymentUseCaseTest extends FixtureTest {
 
     @Mock
-    private LoadPaymentOutputPort loadPaymentOutputPort;
+    private PaymentGateway paymentGateway;
 
     @InjectMocks
     private LoadPaymentUseCase loadPaymentUseCase;
@@ -35,7 +36,7 @@ public class LoadPaymentUseCaseTest extends FixtureTest {
 
     @Test
     public void loadPaymentTest() {
-        when(loadPaymentOutputPort.load(Mockito.any())).thenReturn(orderPayment);
+        when(paymentGateway.load(Mockito.any())).thenReturn(orderPayment);
         var paymentResult = loadPaymentUseCase.load(UUID.randomUUID());
         assertEquals(orderPayment, paymentResult);
     }

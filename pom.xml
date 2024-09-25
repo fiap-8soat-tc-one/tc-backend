@@ -226,11 +226,12 @@
                 <version>${jacoco.version}</version>
                 <configuration>
                     <includes>
-                        <include>com/fiap/tc/core/application/usecase/**/*</include>
-                        <include>com/fiap/tc/adapters/driven/infrastructure/outputs/**</include>
+                        <include>com/fiap/tc/application/usecases/**/*</include>
+                        <include>com/fiap/tc/infrastructure/gateways/**</include>
                     </includes>
                     <excludes>
-                        <exclude>com/fiap/tc/adapters/driven/infrastructure/outputs/validators/upload/ProductImageValidatorWrapper*</exclude>
+                        <exclude>com/fiap/tc/infrastructure/gateways/validators/upload/ProductImageValidatorWrapper*</exclude>
+                        <exclude>com/fiap/tc/infrastructure/gateways/mappers/**/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

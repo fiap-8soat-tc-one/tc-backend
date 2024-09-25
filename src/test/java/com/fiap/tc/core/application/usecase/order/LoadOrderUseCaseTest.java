@@ -1,12 +1,13 @@
 package com.fiap.tc.core.application.usecase.order;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.adapters.driven.infrastructure.mappers.base.MapperConstants;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.OrderEntity;
-import com.fiap.tc.core.application.ports.out.order.LoadOrderOutputPort;
-import com.fiap.tc.core.application.ports.out.payment.PaymentLinkOutputPort;
-import com.fiap.tc.core.domain.enums.OrderStatus;
+import com.fiap.tc.application.gateways.OrderGatewaySpec;
+import com.fiap.tc.application.gateways.PaymentLinkGatewaySpec;
+import com.fiap.tc.application.usecases.order.LoadOrderUseCase;
+import com.fiap.tc.domain.enums.OrderStatus;
 import com.fiap.tc.fixture.FixtureTest;
+import com.fiap.tc.infrastructure.gateways.mappers.base.MapperConstants;
+import com.fiap.tc.infrastructure.persistence.entities.OrderEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,10 +28,10 @@ public class LoadOrderUseCaseTest extends FixtureTest {
 
     public static final UUID UUID = java.util.UUID.randomUUID();
     @Mock
-    private LoadOrderOutputPort loadOrderOutputPort;
+    private OrderGatewaySpec orderGateway;
 
     @Mock
-    private PaymentLinkOutputPort paymentLinkOutputPort;
+    private PaymentLinkGatewaySpec paymentLinkGateway;
 
     @InjectMocks
     private LoadOrderUseCase loadOrderUseCase;
@@ -46,14 +47,14 @@ public class LoadOrderUseCaseTest extends FixtureTest {
     public void loadOrderTest() {
         var order = MapperConstants.ORDER_MAPPER.fromEntity(orderEntity);
         order.setStatus(OrderStatus.FINISHED);
-        when(loadOrderOutputPort.load(UUID)).thenReturn(order);
-        when(paymentLinkOutputPort.generate(Mockito.any())).thenReturn(Optional.empty());
+        when(orderGateway.load(UUID)).thenReturn(order);
+        when(paymentLinkGateway.generate(Mockito.any())).thenReturn(Optional.empty());
 
         var orderResult = loadOrderUseCase.load(UUID);
 
         assertEquals(order, orderResult);
-        verify(loadOrderOutputPort).load(UUID);
-        verify(paymentLinkOutputPort).generate(Mockito.any());
+        verify(orderGateway).load(UUID);
+        verify(paymentLinkGateway).generate(Mockito.any());
 
     }
 
@@ -61,12 +62,12 @@ public class LoadOrderUseCaseTest extends FixtureTest {
     public void loadOrderWithPaymentLinkTest() {
         var order = MapperConstants.ORDER_MAPPER.fromEntity(orderEntity);
         order.setStatus(OrderStatus.RECEIVED);
-        when(paymentLinkOutputPort.generate(order)).thenReturn(Optional.of("payment link"));
-        when(loadOrderOutputPort.load(UUID)).thenReturn(order);
+        when(paymentLinkGateway.generate(order)).thenReturn(Optional.of("payment link"));
+        when(orderGateway.load(UUID)).thenReturn(order);
         var orderResult = loadOrderUseCase.load(UUID);
 
         assertEquals(order, orderResult);
-        verify(loadOrderOutputPort).load(UUID);
-        verify(paymentLinkOutputPort).generate(Mockito.any());
+        verify(orderGateway).load(UUID);
+        verify(paymentLinkGateway).generate(Mockito.any());
     }
 }

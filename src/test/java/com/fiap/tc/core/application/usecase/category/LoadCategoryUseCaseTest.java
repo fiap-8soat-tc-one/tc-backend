@@ -1,8 +1,9 @@
 package com.fiap.tc.core.application.usecase.category;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.core.domain.entities.Category;
-import com.fiap.tc.core.application.ports.out.category.LoadCategoryOutputPort;
+import com.fiap.tc.application.gateways.CategoryGatewaySpec;
+import com.fiap.tc.application.usecases.category.LoadCategoryUseCase;
+import com.fiap.tc.domain.entities.Category;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +22,7 @@ import static org.mockito.Mockito.when;
 public class LoadCategoryUseCaseTest extends FixtureTest {
 
     @Mock
-    private LoadCategoryOutputPort loadCategoryOutputPort;
+    private CategoryGatewaySpec categoryGateway;
 
     @InjectMocks
     private LoadCategoryUseCase loadCategoryUseCase;
@@ -36,7 +37,7 @@ public class LoadCategoryUseCaseTest extends FixtureTest {
 
     @Test
     public void loadCategoryTest() {
-        when(loadCategoryOutputPort.load(Mockito.any())).thenReturn(category);
+        when(categoryGateway.load(Mockito.any())).thenReturn(category);
 
         var categoryResult = loadCategoryUseCase.load(UUID.randomUUID());
         Assertions.assertEquals(category, categoryResult);

@@ -1,11 +1,12 @@
 package com.fiap.tc.core.application.usecase.payment;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.core.domain.entities.OrderPayment;
-import com.fiap.tc.adapters.driver.presentation.requests.OrderPaymentRequest;
-import com.fiap.tc.core.application.ports.out.order.UpdateStatusOrderOutputPort;
-import com.fiap.tc.core.application.ports.out.payment.RegisterPaymentOutputPort;
+import com.fiap.tc.application.usecases.payment.RegisterPaymentUseCase;
+import com.fiap.tc.domain.entities.OrderPayment;
 import com.fiap.tc.fixture.FixtureTest;
+import com.fiap.tc.infrastructure.gateways.OrderGateway;
+import com.fiap.tc.infrastructure.gateways.PaymentGateway;
+import com.fiap.tc.infrastructure.presentation.requests.OrderPaymentRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,10 +22,10 @@ import static org.mockito.Mockito.when;
 public class RegisterPaymentUseCaseTest extends FixtureTest {
 
     @Mock
-    private RegisterPaymentOutputPort registerPaymentOutputPort;
+    private PaymentGateway paymentGateway;
 
     @Mock
-    private UpdateStatusOrderOutputPort updateStatusOrderOutputPort;
+    private OrderGateway orderGateway;
 
     @InjectMocks
     private RegisterPaymentUseCase registerPaymentUseCase;
@@ -40,11 +41,19 @@ public class RegisterPaymentUseCaseTest extends FixtureTest {
 
     @Test
     public void registerPaymentTest() {
-        when(registerPaymentOutputPort.saveOrUpdate(orderPaymentRequest.getTransactionNumber(), orderPaymentRequest.getTransactionMessage(), orderPaymentRequest.getTransactionDocument(), orderPaymentRequest.getStatus(), orderPaymentRequest.getPaymentType(), orderPaymentRequest.getTotal())).thenReturn(orderPayment);
+        when(paymentGateway.register(orderPaymentRequest.getTransactionNumber(),
+                orderPaymentRequest.getTransactionMessage(), orderPaymentRequest.getTransactionDocument(),
+                orderPaymentRequest.getStatus(), orderPaymentRequest.getPaymentType(),
+                orderPaymentRequest.getTotal())).thenReturn(orderPayment);
 
-        registerPaymentUseCase.register(orderPaymentRequest.getTransactionNumber(), orderPaymentRequest.getTransactionMessage(), orderPaymentRequest.getTransactionDocument(), orderPaymentRequest.getStatus(), orderPaymentRequest.getPaymentType(), orderPaymentRequest.getTotal());
-        verify(registerPaymentOutputPort).saveOrUpdate(orderPaymentRequest.getTransactionNumber(), orderPaymentRequest.getTransactionMessage(), orderPaymentRequest.getTransactionDocument(), orderPaymentRequest.getStatus(), orderPaymentRequest.getPaymentType(), orderPaymentRequest.getTotal());
-        verify(updateStatusOrderOutputPort).update(any(), any());
+        registerPaymentUseCase.register(orderPaymentRequest.getTransactionNumber(),
+                orderPaymentRequest.getTransactionMessage(), orderPaymentRequest.getTransactionDocument(),
+                orderPaymentRequest.getStatus(), orderPaymentRequest.getPaymentType(), orderPaymentRequest.getTotal());
+
+        verify(paymentGateway).register(orderPaymentRequest.getTransactionNumber(),
+                orderPaymentRequest.getTransactionMessage(), orderPaymentRequest.getTransactionDocument(),
+                orderPaymentRequest.getStatus(), orderPaymentRequest.getPaymentType(), orderPaymentRequest.getTotal());
+        verify(orderGateway).updateStatus(any(), any());
     }
 
 

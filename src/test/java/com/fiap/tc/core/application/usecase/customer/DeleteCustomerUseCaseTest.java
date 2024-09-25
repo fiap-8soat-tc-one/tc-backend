@@ -1,6 +1,7 @@
 package com.fiap.tc.core.application.usecase.customer;
 
-import com.fiap.tc.core.application.ports.out.customer.DeleteCustomerOutputPort;
+import com.fiap.tc.application.gateways.CustomerGatewaySpec;
+import com.fiap.tc.application.usecases.customer.DeleteCustomerUseCase;
 import com.fiap.tc.fixture.FixtureTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +17,7 @@ public class DeleteCustomerUseCaseTest extends FixtureTest {
 
     public static final String DOCUMENT = "11111111111";
     @Mock
-    private DeleteCustomerOutputPort deleteCustomerOutputPort;
+    private CustomerGatewaySpec customerGateway;
 
     @InjectMocks
     private DeleteCustomerUseCase deleteCustomerUseCase;
@@ -24,6 +25,6 @@ public class DeleteCustomerUseCaseTest extends FixtureTest {
     @Test
     public void deleteCustomerTest() {
         deleteCustomerUseCase.delete(DOCUMENT);
-        Mockito.verify(deleteCustomerOutputPort).delete(anyString());
+        Mockito.verify(customerGateway).delete(anyString());
     }
 }

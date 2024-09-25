@@ -1,10 +1,11 @@
 package com.fiap.tc.core.application.usecase.product;
 
 import br.com.six2six.fixturefactory.Fixture;
-import com.fiap.tc.core.domain.entities.Product;
-import com.fiap.tc.adapters.driver.presentation.requests.ProductRequest;
-import com.fiap.tc.core.application.ports.out.product.RegisterProductOutputPort;
+import com.fiap.tc.application.gateways.ProductGatewaySpec;
+import com.fiap.tc.application.usecases.product.RegisterProductUseCase;
+import com.fiap.tc.domain.entities.Product;
 import com.fiap.tc.fixture.FixtureTest;
+import com.fiap.tc.infrastructure.presentation.requests.ProductRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ import static org.mockito.Mockito.when;
 public class RegisterProductUseCaseTest extends FixtureTest {
 
     @Mock
-    private RegisterProductOutputPort registerProductOutputPort;
+    private ProductGatewaySpec productGateway;
 
     @InjectMocks
     private RegisterProductUseCase registerProductUseCase;
@@ -38,11 +39,11 @@ public class RegisterProductUseCaseTest extends FixtureTest {
 
     @Test
     public void registerProductTest() {
-        when(registerProductOutputPort.saveOrUpdate(Mockito.any())).thenReturn(product);
+        when(productGateway.register(Mockito.any())).thenReturn(product);
         var productResult = registerProductUseCase.register(product);
 
         Assertions.assertEquals(product, productResult);
-        verify(registerProductOutputPort).saveOrUpdate(Mockito.any());
+        verify(productGateway).register(Mockito.any());
     }
 
 }

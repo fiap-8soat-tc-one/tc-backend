@@ -1,6 +1,6 @@
 package com.fiap.tc;
 
-import com.fiap.tc.adapters.driven.security.property.OriginApiProperty;
+import com.fiap.tc.infrastructure.core.security.property.OriginApiProperty;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
