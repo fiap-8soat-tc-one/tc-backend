@@ -4,6 +4,11 @@ import "../../libs/shim/expect.js"
 import "../../libs/shim/jsonSchema.js"
 import "../../libs/shim/urijs.js";
 
+import { oAuthResponseSchema } from "../../schemas/oauth-schema.js";
+import { listOfCustomerResponseSchema } from "../../schemas/customer-schema.js";
+
+const Request = Symbol.for("request");
+
 export function ShouldBeGetCustomersReturnOneOrMoreCustomer() {
     postman[Request]({
         name: "login",
@@ -49,76 +54,7 @@ export function ShouldBeGetCustomersReturnOneOrMoreCustomer() {
         post() {
           pm.test('should be return status code 200 when making the get customers', () => pm.response.to.have.status(200))
           pm.test('should be return in less than 1s when call the get customers', () => pm.expect(pm.response.responseTime).to.be.below(1000))
-          pm.test('should be return object schema valid when call the get customers', () =>  pm.response.to.have.jsonSchema(customerResponseSchema))
+          pm.test('should be return object schema valid when call the get customers', () =>  pm.response.to.have.jsonSchema(listOfCustomerResponseSchema))
         }
       });
 }
-
-const Request = Symbol.for("request");
-
-const oAuthResponseSchema = {
-  "properties": {
-    "access_token": {
-      "type": "string"
-    },
-    "token_type": {
-      "type": "string"
-    },
-    "expires_in": {
-      "type": "number"
-    },
-    "scope": {
-      "type": "string"
-    },
-    "profile": {
-      "type": "string"
-    },
-    "name": {
-      "type": "string"
-    },
-    "uuid": {
-      "type": "string"
-    },
-    "jti": {
-      "type": "string"
-    },
-  }
-};
-
-const customerResponseSchema = {
-  "properties": {
-    "content": {
-      "type": "array"
-    },
-    "pageable": {
-      "type": "object"
-    },
-    "total_pages": {
-      "type": "number"
-    },
-    "total_elements": {
-      "type": "number"
-    },
-    "last": {
-      "type": "boolean"
-    },
-    "size": {
-      "type": "number"
-    },
-    "number": {
-      "type": "number"
-    },
-    "sort": {
-      "type": "object"
-    },
-    "number_of_elements": {
-      "type": "number"
-    },
-    "first": {
-      "type": "boolean"
-    },
-    "empty": {
-      "type": "boolean"
-    }                                              
-  }
-};

@@ -5,11 +5,9 @@ import "../../libs/shim/jsonSchema.js"
 import "../../libs/shim/urijs.js";
 
 import { oAuthResponseSchema } from "../../schemas/oauth-schema.js";
-import { createCustomerResponseSchema } from "../../schemas/customer-schema.js";
-
 const Request = Symbol.for("request");
 
-export function ShouldBeCreateCustomerReturnCreatedCustomer() {
+export function ShouldBeUpdateCategoryReturnUpdatedCategory() {
     postman[Request]({
         name: "login",
         method: "POST",
@@ -41,23 +39,24 @@ export function ShouldBeCreateCustomerReturnCreatedCustomer() {
       });
   
       postman[Request]({
-        name: "create/update customer",
+        name: "create category",
         method: "PUT",
-        address: "{{BASE_URL}}/api/public/v1/customers",
+        address: "{{BASE_URL}}/api/private/v1/categories/f6eba314-0ea2-48cc-9a19-c5790c887c85",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json"
         },
-        data: '{"document": 44262409805, "email": "jean.silva@gmail.com", "name": "Jean Silva"}',
+        data: '{"name": "Sandwich 2.0", "description": "Sandwich 2.0  Categories", "active": true}',
         auth(config) {
           config.headers.Authorization = `Bearer ${pm.globals.get("bearer")}`;
         },
         post() {
-          pm.test('should be return status code 200 when making create customer', () => pm.response.to.have.status(200))
-          pm.test('should be return in less than 1s when call the create customer', () => pm.expect(pm.response.responseTime).to.be.below(1000))
-          pm.test('should be return object schema valid when call the create customer', () =>  pm.response.to.have.jsonSchema(createCustomerResponseSchema))
+          pm.test('should be return status code 200 when making create category', () => pm.response.to.have.status(200))
+          pm.test('should be return in less than 1s when call the create category', () => pm.expect(pm.response.responseTime).to.be.below(1000))
         }
       });
 }
+
+
 
 

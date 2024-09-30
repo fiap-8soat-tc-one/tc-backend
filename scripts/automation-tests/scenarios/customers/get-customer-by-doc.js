@@ -4,6 +4,11 @@ import "../../libs/shim/expect.js"
 import "../../libs/shim/jsonSchema.js"
 import "../../libs/shim/urijs.js";
 
+import { oAuthResponseSchema } from "../../schemas/oauth-schema.js";
+import { getCustomerResponseSchema } from "../../schemas/customer-schema.js";
+
+const Request = Symbol.for("request");
+
 export function ShouldBeGetCustomerByDocumentReturnsCustomer() {
     postman[Request]({
         name: "login",
@@ -49,55 +54,9 @@ export function ShouldBeGetCustomerByDocumentReturnsCustomer() {
         post() {
           pm.test('should be return status code 200 when making the get customer by valid doc', () => pm.response.to.have.status(200))
           pm.test('should be return in less than 1s when call the get customer by valid doc', () => pm.expect(pm.response.responseTime).to.be.below(1000))
-          pm.test('should be return object schema valid when call the get customer by valid doc', () =>  pm.response.to.have.jsonSchema(customerResponseSchema))
+          pm.test('should be return object schema valid when call the get customer by valid doc', () =>  pm.response.to.have.jsonSchema(getCustomerResponseSchema))
         }
       });
 }
 
-const Request = Symbol.for("request");
 
-const oAuthResponseSchema = {
-  "properties": {
-    "access_token": {
-      "type": "string"
-    },
-    "token_type": {
-      "type": "string"
-    },
-    "expires_in": {
-      "type": "number"
-    },
-    "scope": {
-      "type": "string"
-    },
-    "profile": {
-      "type": "string"
-    },
-    "name": {
-      "type": "string"
-    },
-    "uuid": {
-      "type": "string"
-    },
-    "jti": {
-      "type": "string"
-    },
-  }
-};
-
-const customerResponseSchema = {
-  "properties": {
-    "id": {
-      "type": "string"
-    },
-    "document": {
-      "type": "string"
-    },
-    "name": {
-      "type": "string"
-    },
-    "email": {
-      "type": "string"
-    }                                         
-  }
-};

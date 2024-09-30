@@ -5,11 +5,9 @@ import "../../libs/shim/jsonSchema.js"
 import "../../libs/shim/urijs.js";
 
 import { oAuthResponseSchema } from "../../schemas/oauth-schema.js";
-import { createCustomerResponseSchema } from "../../schemas/customer-schema.js";
-
 const Request = Symbol.for("request");
 
-export function ShouldBeCreateCustomerReturnCreatedCustomer() {
+export function ShouldBeGetCategoriesReturnOneOrMoreCategory() {
     postman[Request]({
         name: "login",
         method: "POST",
@@ -29,7 +27,7 @@ export function ShouldBeCreateCustomerReturnCreatedCustomer() {
           pm.test('should be return  status code 200 when making the get oauth/token', () => pm.response.to.have.status(200))
           pm.test('should be return in less than a 1s when call the get oauth/token', () => pm.expect(pm.response.responseTime).to.be.below(1000))
           pm.test('should be return object schema valid when call the get oauth/token', () =>  pm.response.to.have.jsonSchema(oAuthResponseSchema))
-          pm.test("should be return a valid token when call the get oauth/token",  () => {
+          pm.test("should be return a valid token when call the get oauth/token", function () {
             const tokenParts = token.split('.');
             pm.expect(tokenParts.length).to.eql(3);
             pm.expect(tokenParts[0]).to.match(/^[A-Za-z0-9-_]+$/);
@@ -41,23 +39,20 @@ export function ShouldBeCreateCustomerReturnCreatedCustomer() {
       });
   
       postman[Request]({
-        name: "create/update customer",
-        method: "PUT",
-        address: "{{BASE_URL}}/api/public/v1/customers",
+        name: "list of categories",
+        method: "GET",
+        address: "{{BASE_URL}}/api/private/v1/categories",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json"
         },
-        data: '{"document": 44262409805, "email": "jean.silva@gmail.com", "name": "Jean Silva"}',
         auth(config) {
           config.headers.Authorization = `Bearer ${pm.globals.get("bearer")}`;
         },
         post() {
-          pm.test('should be return status code 200 when making create customer', () => pm.response.to.have.status(200))
-          pm.test('should be return in less than 1s when call the create customer', () => pm.expect(pm.response.responseTime).to.be.below(1000))
-          pm.test('should be return object schema valid when call the create customer', () =>  pm.response.to.have.jsonSchema(createCustomerResponseSchema))
+          pm.test('should be return status code 200 when making the get customers', () => pm.response.to.have.status(200))
+          pm.test('should be return in less than 1s when call the get customers', () => pm.expect(pm.response.responseTime).to.be.below(1000))
         }
       });
 }
-
 
