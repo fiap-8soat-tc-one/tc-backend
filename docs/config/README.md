@@ -6,6 +6,7 @@
 - [DBeaver](https://dbeaver.io/)
 - [Docker](https://www.docker.com/)
 - [GIT](https://git-scm.com/)
+- [K6](https://grafana.com/docs/k6/latest/)
 
 ## PostgreSQL :floppy_disk:
 
@@ -63,7 +64,7 @@ docker run --name tech-challenge -p 5432:5432 -e POSTGRES_PASSWORD=123456 -d pos
 Após a execução dos comandos acima, validar a conectividade através do CLI ou interface visual da sua preferência, aqui
 iremos utilizar o [DBeaver](https://dbeaver.io/).
 
-![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/assets/setup-postgres.png)
+![image](https://github.com/fiap-8soat-tc-one/tc-backend-s2/blob/main/assets/setup-postgres.png)
 
 ## Intellij e JAVA 17 :factory:
 
@@ -125,29 +126,49 @@ sem necessidade de configurações avançadas, além disso em seu kit de ferrame
     - Abra o projeto através da IDE e acesse o caminho `File -> Project Structure`.
     - NA sessão `Plataform Settings -> SDKs` instale o open-jdk 17, segue abaixo a imagem:
 
-   ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/assets/setup-intellij-jdk.png)
+   ![image](https://github.com/fiap-8soat-tc-one/tc-backend-s2/blob/main/assets/setup-intellij-jdk.png)
 
 3. **Configuração do Maven**
     - Com projeto aberto através da IDE acessar o caminho `Run -> Edit Configuration`
     - Adicionar o seguinte comando maven `mvn clean package`, segue abaixo a imagem:
 
-   ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/assets/setup-intellij-maven.png)
+   ![image](https://github.com/fiap-8soat-tc-one/tc-backend-s2/blob/main/assets/setup-intellij-maven.png)
 
     - Executar o comando deve apresentar o seguinte resultado
 
-   ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/assets/setup-intellij-maven-result.png)
+   ![image](https://github.com/fiap-8soat-tc-one/tc-backend-s2/blob/main/assets/setup-intellij-maven-result.png)
 
 4. **Execução da aplicação localmente**
     - Com projeto aberto através da IDE acessar o caminho `Run -> Edit Configuration`
     - Adicionaras seguintes configurações:
 
-   ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/assets/setup-intellij-app.png)
+   ![image](https://github.com/fiap-8soat-tc-one/tc-backend-s2/blob/main/assets/setup-intellij-app.png)
 
     - Executar a aplicação e o resultado experado deve ser:
 
-   ![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/assets/setup-intellij-maven-result.png)
+   ![image](https://github.com/fiap-8soat-tc-one/tc-backend-s2/blob/main/assets/setup-intellij-maven-result.png)
 
     - **A aplicação está configurada para o flyway gerar as tabelas no PostgreSQL, abra o DBeaver ou a ferramenta da sua
       escolha e confira se as tabelas do sistema foram criadas.**
 
     - Ao executar a aplicação, acessar a url do swagger/open-api `http://localhost:8080/swagger-ui/index.html`
+
+### Grafana K6
+
+O **Grafana k6** é uma ferramenta open-source para testes de carga e desempenho, projetada para simular como uma aplicação se comporta sob alto tráfego. Originalmente chamada apenas de **k6**, após ser adquirida pela Grafana Labs, passou a integrar o ecossistema da Grafana, facilitando a criação, execução e análise de testes de performance. Ele é especialmente utilizado para testar APIs, microsserviços e aplicações web, permitindo que equipes validem a capacidade de suas infraestruturas sob carga.
+
+### Principais vantagens do Grafana k6 em comparação com outras ferramentas:
+
+1. **Integração com o Ecossistema Grafana**: A integração com Grafana permite uma visualização robusta e em tempo real dos resultados de desempenho, possibilitando uma análise mais profunda e rica.
+
+2. **Script em JavaScript**: Os scripts de teste são escritos em JavaScript, uma linguagem amplamente conhecida, o que facilita o aprendizado e a criação de testes personalizados em comparação com outras ferramentas que usam linguagens ou sintaxes mais complexas.
+
+3. **Escalabilidade**: k6 é altamente escalável e pode simular milhares de usuários virtuais sem comprometer o desempenho da máquina de teste, tornando-o uma escolha adequada para testes em larga escala.
+
+4. **Fácil Automação e Integração**: Ele pode ser facilmente integrado em pipelines de CI/CD e automatizado, oferecendo compatibilidade com várias ferramentas de automação.
+
+5. **Baixo Overhead**: Diferente de outras ferramentas que podem consumir muitos recursos da máquina de teste, o k6 tem um overhead baixo, garantindo que a máquina utilizada para o teste não afete os resultados de desempenho.
+
+6. **Modo de Execução Local e Distribuído**: Ele suporta tanto testes locais quanto a execução distribuída na nuvem, o que aumenta a flexibilidade para testar grandes cargas.
+
+Essas características tornam o k6 uma solução poderosa, especialmente para equipes que já utilizam o Grafana para monitoramento e querem uma integração nativa de performance testing na sua stack de observabilidade.

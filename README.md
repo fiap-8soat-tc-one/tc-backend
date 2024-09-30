@@ -72,13 +72,19 @@ As informações dispostas no sistema de pedidos precisarão ser gerenciadas pel
 
 ## Configuração de Ambiente de Desenvolvimento Local  :heavy_check_mark:
 
-[Clique aqui para ser redirecionado para a wiki de configuração do ambiente de desenvolvimento local](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/docs/config/README.md)
+[Clique aqui para ser redirecionado para a wiki de configuração do ambiente de desenvolvimento local](https://github.com/fiap-8soat-tc-one/tc-backend-s2/blob/main/docs/config/README.md)
 
 ## Configuração do Ambiente Docker/Docker Compose :heavy_check_mark:
 
 - **A aplicação está configurada para o Flyway gerar as tabelas no PostgreSQL. Abra o DBeaver ou a ferramenta de sua escolha e verifique se as tabelas do sistema foram criadas.**
 
-[Clique aqui para ser redirecionado para a wiki de configuração do ambiente Docker](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/docs/docker/README.md)
+[Clique aqui para ser redirecionado para a wiki de configuração do ambiente Docker](https://github.com/fiap-8soat-tc-one/tc-backend-s2/blob/main/docs/docker/README.md)
+
+## Detalhamento sobre Stress Testing e Smoke Testing :heavy_check_mark:
+
+- **Dentro da pasta scripts/tests contém todos os scripts k6 para efetuar a execução os cenários de smoke-test e stress-test que foram realizados para configurar de maneira efetiva o os requests/limits da aplicação juntamente com o HPA**
+
+[Clique aqui para ser redirecionado para a wiki de testes](https://github.com/fiap-8soat-tc-one/tc-backend-s2/blob/main/tests/README.md)
 
 ## Manual/Documentação de Funcionalidades (Swagger/Open API) :heavy_check_mark:
 
@@ -190,7 +196,7 @@ sequenceDiagram
 
 ## Domain Mapping :heavy_check_mark:
 
-![image](https://github.com/fiap-8soat-tc-one/tc-backend/blob/main/assets/domain-mapping.drawio.png)
+![image](https://github.com/fiap-8soat-tc-one/tc-backend-s2/blob/main/assets/domain-mapping.drawio.png)
 
 ## Desenho de Arquitetura/Infraestrutura  proposto  :heavy_check_mark:
 
