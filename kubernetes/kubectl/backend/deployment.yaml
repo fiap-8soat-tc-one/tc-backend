@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-tc-backend-s2-dep
+  namespace: fiap
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-tc-backend-s2
+  template:
+    metadata:
+      labels:
+        app: app-tc-backend-s2
+    spec:
+      containers:
+        - name: app-tc-backend-s2
+          image: 'jcmds/fiap-8soat-tc:latest'
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "512Mi"
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+          env:
+            - name: DATABASE_HOST
+              value: db-tc-backends2-fiap.cqjmd1nvleyg.us-east-1.rds.amazonaws.com
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: credentials-rds
+                  key: username
+            - name: DATABASE_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: credentials-rds
+                  key: password
+            - name: DATABASE_PORT
+              value: "5432"
+            - name: DATABASE_NAME
+              value: postgres   
+        
+        
+
+
+ 
