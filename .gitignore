@@ -11,3 +11,4 @@
 target/
 code_quality_service/
 .DS_Store
+qodana.yaml

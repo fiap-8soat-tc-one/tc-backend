@@ -3,19 +3,21 @@ package com.fiap.tc.fixture.templates;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.*;
-import com.fiap.tc.adapters.driven.infrastructure.persistence.entities.embeddable.Audit;
-import com.fiap.tc.adapters.driver.presentation.requests.OrderItemRequest;
-import com.fiap.tc.adapters.driver.presentation.requests.OrderPaymentRequest;
-import com.fiap.tc.adapters.driver.presentation.requests.OrderRequest;
-import com.fiap.tc.adapters.driver.presentation.requests.OrderStatusRequest;
-import com.fiap.tc.core.domain.entities.Order;
-import com.fiap.tc.core.domain.entities.OrderPayment;
-import com.fiap.tc.core.domain.enums.OrderStatus;
-import com.fiap.tc.core.domain.enums.PaymentResult;
-import com.fiap.tc.core.domain.enums.PaymentType;
+import com.fiap.tc.domain.entities.Order;
+import com.fiap.tc.domain.entities.OrderPayment;
+import com.fiap.tc.domain.entities.PaymentHistoric;
+import com.fiap.tc.domain.enums.OrderStatus;
+import com.fiap.tc.domain.enums.PaymentStatus;
+import com.fiap.tc.domain.enums.PaymentType;
+import com.fiap.tc.infrastructure.persistence.entities.*;
+import com.fiap.tc.infrastructure.persistence.entities.embeddable.Audit;
+import com.fiap.tc.infrastructure.presentation.requests.OrderItemRequest;
+import com.fiap.tc.infrastructure.presentation.requests.OrderPaymentRequest;
+import com.fiap.tc.infrastructure.presentation.requests.OrderRequest;
+import com.fiap.tc.infrastructure.presentation.requests.OrderStatusRequest;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class OrderTemplates implements TemplateLoader {
@@ -84,7 +86,7 @@ public class OrderTemplates implements TemplateLoader {
                 add("transactionMessage", random("transaction successfully", "transaction error",
                         "transaction refused"));
                 add("transactionDocument", random("52735617017", "03014336076", "90819176095"));
-                add("result", PaymentResult.SUCCESS);
+                add("status", PaymentStatus.APPROVED);
                 add("paymentType", random(PaymentType.PIX, PaymentType.CREDIT, PaymentType.DEBIT));
                 add("total", random(BigDecimal.valueOf(100.50), BigDecimal.valueOf(200.75)));
 
@@ -97,35 +99,55 @@ public class OrderTemplates implements TemplateLoader {
                 add("transactionMessage", random("transaction successfully", "transaction error",
                         "transaction refused"));
                 add("transactionDocument", random("52735617017", "03014336076", "90819176095"));
-                add("result", PaymentResult.ERROR);
+                add("status", PaymentStatus.ERROR);
                 add("paymentType", random(PaymentType.PIX, PaymentType.CREDIT, PaymentType.DEBIT));
                 add("total", random(BigDecimal.valueOf(100.50), BigDecimal.valueOf(200.75)));
 
             }
         });
 
+        Fixture.of(OrderPaymentHistoricEntity.class).addTemplate("valid", new Rule() {
+            {
+                add("id", random(Integer.class, range(1, 100)));
+                add("status", random(PaymentStatus.APPROVED, PaymentStatus.ERROR));
+                add("registerDate", LocalDateTime.now());
+                add("transactionMessage", random("transaction confirmed", "transaction error timeout"));
+
+            }
+        });
         Fixture.of(OrderPaymentEntity.class).addTemplate("valid", new Rule() {
             {
                 add("id", random(Integer.class, range(1, 100)));
-                add("uuid", UUID.randomUUID());
                 add("transactionNumber", "7ba2a960-2354-466f-8868-6ad713742407");
                 add("transactionMessage", random("transaction successfully", "transaction error",
                         "transaction refused"));
                 add("transactionDocument", random("52735617017", "03014336076", "90819176095"));
-                add("result", random(PaymentResult.SUCCESS, PaymentResult.ERROR));
+                add("status", random(PaymentStatus.APPROVED, PaymentStatus.ERROR));
                 add("paymentType", random(PaymentType.PIX, PaymentType.CREDIT, PaymentType.DEBIT));
                 add("total", random(BigDecimal.valueOf(100.50), BigDecimal.valueOf(200.75)));
                 add("audit", one(Audit.class, "valid"));
+                add("paymentHistoric", has(2).of(OrderPaymentHistoricEntity.class, "valid"));
 
             }
         });
 
 
+        Fixture.of(PaymentHistoric.class).addTemplate("valid", new Rule() {
+            {
+                add("status", random(PaymentStatus.APPROVED, PaymentStatus.ERROR));
+                add("registerDate", LocalDateTime.now());
+                add("transactionMessage", random("transaction confirmed", "transaction error timeout"));
+
+            }
+        });
+
         Fixture.of(OrderPayment.class).addTemplate("valid", new Rule() {
             {
                 add("id", UUID.randomUUID());
-                add("idOrder", UUID.randomUUID());
-                add("result", random(PaymentResult.SUCCESS, PaymentResult.ERROR));
+                add("status", random(PaymentStatus.APPROVED, PaymentStatus.ERROR));
+                add("paymentType", random(PaymentType.PIX, PaymentType.CREDIT, PaymentType.DEBIT));
+                add("transactionMessage", random("transaction confirmed", "transaction error timeout"));
+                add("paymentHistoric", has(2).of(PaymentHistoric.class, "valid"));
             }
         });
 

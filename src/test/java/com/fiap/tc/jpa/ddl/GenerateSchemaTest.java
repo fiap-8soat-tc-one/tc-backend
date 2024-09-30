@@ -30,7 +30,7 @@ public class GenerateSchemaTest {
                         .build()
         );
 
-        Reflections reflections = new Reflections("com.fiap.tc.adapters.driven.infrastructure.persistence.entities",
+        Reflections reflections = new Reflections("com.fiap.tc.infrastructure.persistence.entities",
                 new SubTypesScanner(false));
 
         Set<String> entityNames = reflections.getAllTypes();
@@ -41,7 +41,7 @@ public class GenerateSchemaTest {
         File outputFile = new File("./target/db-schema.sql");
 
         if (outputFile.exists()) {
-            outputFile.delete();
+            Assertions.assertTrue(outputFile.delete());
         }
 
         log.info("Gerating script in file: {}", outputFile.getAbsolutePath());
