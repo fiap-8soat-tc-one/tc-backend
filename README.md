@@ -92,6 +92,10 @@ As informações dispostas no sistema de pedidos precisarão ser gerenciadas pel
 
 - **É possível acessar o Swagger/Open API da aplicação pela seguinte URL: `http://localhost:8080/swagger-ui/index.html`**
 
+### Clean Architecture
+
+[Clique aqui para ser redirecionado a documentação sobre clean-architecture aplicada nesse projeto](https://github.com/fiap-8soat-tc-one/tc-backend-s2/blob/main/docs/clean-arch/README.md)
+
 ### Workflow de Execução das APIs
 
 **Segue abaixo o descritivo simplificado da jornada das APIs dentro do sistema, esses diagramas servem apenas para materializar a jornada do ClienteXTerminalxSistemaXCozinha, mas em nenhum momento substitui o detalhamento/especificação realizados no Domain Storytelling e Event Storming criados, favor utiliza-los como fonte da verdade**
@@ -204,6 +208,4 @@ sequenceDiagram
 
 ## Requisitos não funcionais a serem implementados no futuro
 
-- Testes de Integração.
-- Testes de Carga/Estresse.
 - Cadastro de usuário sistêmico, hoje temos apenas um usuário sistêmico, via carga do flyway.
