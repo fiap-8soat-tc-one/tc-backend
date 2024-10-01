@@ -50,8 +50,8 @@ export function ShouldBeGetCategoriesReturnOneOrMoreCategory() {
           config.headers.Authorization = `Bearer ${pm.globals.get("bearer")}`;
         },
         post() {
-          pm.test('should be return status code 200 when making the get customers', () => pm.response.to.have.status(200))
-          pm.test('should be return in less than 1s when call the get customers', () => pm.expect(pm.response.responseTime).to.be.below(1000))
+          pm.test('should be return status code 200 when making the get category', () => pm.response.to.have.status(200))
+          pm.test('should be return in less than 1s when call the get category', () => pm.expect(pm.response.responseTime).to.be.below(1000))
         }
       });
 }

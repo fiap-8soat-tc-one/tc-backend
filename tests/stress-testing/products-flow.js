@@ -8,32 +8,48 @@ import { ShouldBeGetProductByCategoryReturnsProduct } from "../scenarios/product
 export const options = {
   scenarios: {
     getApiV1Products: {
-        executor: 'shared-iterations',
-        vus: 1,
-        iterations: 2,
-        maxDuration: '5s',
+      executor: 'ramping-vus',
+      startVUs: 1,
+      stages: [
+        { duration: '1m', target: 50 },
+        { duration: '2m', target: 50 },
+        { duration: '1m', target: 1 },
+      ],
+      gracefulRampDown: '1s',
         exec: "GetProducts"
     },
     getApiV1ProductById: {
-      executor: 'shared-iterations',
-      vus: 1,
-      iterations: 2,
-      maxDuration: '5s',
-      exec: "GetProductByCategory"
+      executor: 'ramping-vus',
+      startVUs: 1,
+      stages: [
+        { duration: '1m', target: 50 },
+        { duration: '2m', target: 50 },
+        { duration: '1m', target: 1 },
+      ],
+      gracefulRampDown: '1s',
+        exec: "GetProductByCategory"
     },
     postApiV1Product: {
-      executor: 'shared-iterations',
-      vus: 1,
-      iterations: 2,
-      maxDuration: '5s',
-      exec: "CreateProduct"
+      executor: 'ramping-vus',
+      startVUs: 1,
+      stages: [
+        { duration: '1m', target: 50 },
+        { duration: '2m', target: 50 },
+        { duration: '1m', target: 1 },
+      ],
+      gracefulRampDown: '1s',
+        exec: "CreateProduct"
     },
     putApiV1Product: {
-      executor: 'shared-iterations',
-      vus: 1,
-      iterations: 2,
-      maxDuration: '5s',
-      exec: "UpdateProduct"
+      executor: 'ramping-vus',
+      startVUs: 1,
+      stages: [
+        { duration: '1m', target: 50 },
+        { duration: '2m', target: 50 },
+        { duration: '1m', target: 1 },
+      ],
+      gracefulRampDown: '1s',
+        exec: "UpdateProduct"
     },
   }
 }

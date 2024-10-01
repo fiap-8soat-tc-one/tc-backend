@@ -39,7 +39,7 @@ export function ShouldBeUpdateCategoryReturnUpdatedCategory() {
       });
   
       postman[Request]({
-        name: "create category",
+        name: "update category",
         method: "PUT",
         address: "{{BASE_URL}}/api/private/v1/categories/f6eba314-0ea2-48cc-9a19-c5790c887c85",
         headers: {
@@ -51,8 +51,8 @@ export function ShouldBeUpdateCategoryReturnUpdatedCategory() {
           config.headers.Authorization = `Bearer ${pm.globals.get("bearer")}`;
         },
         post() {
-          pm.test('should be return status code 200 when making create category', () => pm.response.to.have.status(200))
-          pm.test('should be return in less than 1s when call the create category', () => pm.expect(pm.response.responseTime).to.be.below(1000))
+          pm.test('should be return status code 200 when making update category', () => pm.response.to.have.status(200))
+          pm.test('should be return in less than 1s when call the update category', () => pm.expect(pm.response.responseTime).to.be.below(1000))
         }
       });
 }

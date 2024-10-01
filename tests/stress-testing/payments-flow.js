@@ -4,10 +4,14 @@ import { ShouldBeSuccessReceiveWebHookOrderPayment } from "../scenarios/payments
 export const options = {
   scenarios: {
     webHook: {
-        executor: 'shared-iterations',
-        vus: 1,
-        iterations: 2,
-        maxDuration: '5s',
+      executor: 'ramping-vus',
+      startVUs: 1,
+      stages: [
+        { duration: '1m', target: 50 },
+        { duration: '2m', target: 50 },
+        { duration: '1m', target: 1 },
+      ],
+      gracefulRampDown: '1s',
         exec: "ReceiveWebHookOrderPayment"
     },
   }

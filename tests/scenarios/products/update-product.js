@@ -7,7 +7,7 @@ import "../../libs/shim/urijs.js";
 import { oAuthResponseSchema } from "../../schemas/oauth-schema.js";
 const Request = Symbol.for("request");
 
-export function ShouldBeGetCategoryByIdReturnsCategory() {
+export function ShouldBeUpdateProductReturnUpdatedProduct() {
     postman[Request]({
         name: "login",
         method: "POST",
@@ -27,7 +27,7 @@ export function ShouldBeGetCategoryByIdReturnsCategory() {
           pm.test('should be return  status code 200 when making the get oauth/token', () => pm.response.to.have.status(200))
           pm.test('should be return in less than a 1s when call the get oauth/token', () => pm.expect(pm.response.responseTime).to.be.below(1000))
           pm.test('should be return object schema valid when call the get oauth/token', () =>  pm.response.to.have.jsonSchema(oAuthResponseSchema))
-          pm.test("should be return a valid token when call the get oauth/token", function () {
+          pm.test("should be return a valid token when call the get oauth/token",  () => {
             const tokenParts = token.split('.');
             pm.expect(tokenParts.length).to.eql(3);
             pm.expect(tokenParts[0]).to.match(/^[A-Za-z0-9-_]+$/);
@@ -39,19 +39,24 @@ export function ShouldBeGetCategoryByIdReturnsCategory() {
       });
   
       postman[Request]({
-        name: "get category by id",
-        method: "GET",
-        address: "{{BASE_URL}}/api/private/v1/categories/f6eba314-0ea2-48cc-9a19-c5790c887c85",
+        name: "update product",
+        method: "PUT",
+        address: "{{BASE_URL}}/api/private/v1/products/7b3c010c-9f03-4a56-8c85-b519a5f6b86e",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json"
         },
+        data: '{"id_category": "a930551c-55b3-4687-9ebd-5525f0baf6da", "name": "milkshake de chocolate com uva 1", "description": "milkshake de chocolate com uva 5010ml", "price": 16.50}',
         auth(config) {
           config.headers.Authorization = `Bearer ${pm.globals.get("bearer")}`;
         },
         post() {
-          pm.test('should be return status code 200 when making the get category by id', () => pm.response.to.have.status(200))
-          pm.test('should be return in less than 1s when call the get category by id', () => pm.expect(pm.response.responseTime).to.be.below(1000))
+          pm.test('should be return status code 200 when making update product', () => pm.response.to.have.status(200))
+          pm.test('should be return in less than 1s when call the update product', () => pm.expect(pm.response.responseTime).to.be.below(1000))
         }
       });
 }
+
+
+
+

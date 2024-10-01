@@ -7,7 +7,7 @@ import "../../libs/shim/urijs.js";
 import { oAuthResponseSchema } from "../../schemas/oauth-schema.js";
 const Request = Symbol.for("request");
 
-export function ShouldBeGetCategoryByIdReturnsCategory() {
+export function ShouldBeGetOrdersReturnOneOrMoreOrder() {
     postman[Request]({
         name: "login",
         method: "POST",
@@ -39,9 +39,9 @@ export function ShouldBeGetCategoryByIdReturnsCategory() {
       });
   
       postman[Request]({
-        name: "get category by id",
+        name: "list of orders",
         method: "GET",
-        address: "{{BASE_URL}}/api/private/v1/categories/f6eba314-0ea2-48cc-9a19-c5790c887c85",
+        address: "{{BASE_URL}}/api/private/v1/orders",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json"
@@ -50,8 +50,9 @@ export function ShouldBeGetCategoryByIdReturnsCategory() {
           config.headers.Authorization = `Bearer ${pm.globals.get("bearer")}`;
         },
         post() {
-          pm.test('should be return status code 200 when making the get category by id', () => pm.response.to.have.status(200))
-          pm.test('should be return in less than 1s when call the get category by id', () => pm.expect(pm.response.responseTime).to.be.below(1000))
+          pm.test('should be return status code 200 when making the get orders', () => pm.response.to.have.status(200))
+          pm.test('should be return in less than 1s when call the get orders', () => pm.expect(pm.response.responseTime).to.be.below(1000))
         }
       });
 }
+

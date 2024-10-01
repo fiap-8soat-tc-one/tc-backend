@@ -8,32 +8,48 @@ import { ShouldBeGetOrderByIdReturnsOrder } from "../scenarios/orders/get-order-
 export const options = {
   scenarios: {
     getApiV1Orders: {
-        executor: 'shared-iterations',
-        vus: 1,
-        iterations: 2,
-        maxDuration: '5s',
+      executor: 'ramping-vus',
+      startVUs: 1,
+      stages: [
+        { duration: '1m', target: 50 },
+        { duration: '2m', target: 50 },
+        { duration: '1m', target: 1 },
+      ],
+      gracefulRampDown: '1s',
         exec: "GetOrders"
     },
     getApiV1OrderById: {
-      executor: 'shared-iterations',
-      vus: 1,
-      iterations: 2,
-      maxDuration: '5s',
-      exec: "GetOrderById"
+      executor: 'ramping-vus',
+      startVUs: 1,
+      stages: [
+        { duration: '1m', target: 50 },
+        { duration: '2m', target: 50 },
+        { duration: '1m', target: 1 },
+      ],
+      gracefulRampDown: '1s',
+        exec: "GetOrderById"
     },
     postApiV1Order: {
-      executor: 'shared-iterations',
-      vus: 1,
-      iterations: 2,
-      maxDuration: '5s',
-      exec: "CreateOrder"
+      executor: 'ramping-vus',
+      startVUs: 1,
+      stages: [
+        { duration: '1m', target: 50 },
+        { duration: '2m', target: 50 },
+        { duration: '1m', target: 1 },
+      ],
+      gracefulRampDown: '1s',
+        exec: "CreateOrder"
     },
-    putApiV1Order: {
-      executor: 'shared-iterations',
-      vus: 1,
-      iterations: 2,
-      maxDuration: '5s',
-      exec: "UpdateOrderStatus"
+    putApiV1OrderStatus: {
+      executor: 'ramping-vus',
+      startVUs: 1,
+      stages: [
+        { duration: '1m', target: 50 },
+        { duration: '2m', target: 50 },
+        { duration: '1m', target: 1 },
+      ],
+      gracefulRampDown: '1s',
+        exec: "UpdateOrderStatus"
     },
   }
 }

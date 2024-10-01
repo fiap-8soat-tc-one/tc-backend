@@ -5,6 +5,7 @@ import "../../libs/shim/jsonSchema.js"
 import "../../libs/shim/urijs.js";
 
 import { oAuthResponseSchema } from "../../schemas/oauth-schema.js";
+
 const Request = Symbol.for("request");
 
 export function ShouldBeCreateCategoryReturnCreatedCategory() {
