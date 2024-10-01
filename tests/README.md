@@ -195,3 +195,13 @@ export function UpdateCategory() {
 - **Resultado esperado**:
   - **Smoke Test**: A aplicação deve funcionar corretamente.
   - **Stress Test**: A aplicação eventualmente falha, e o objetivo é entender quando e como isso acontece.
+
+## Como executar
+
+**Requisito obrigatório e ter o k6 instalado e configurado no ambiente que irá executar os testes**
+
+- Para executar o k6 basta executar o seguinte comando informando `k6 run caminho_arquivo.js` exemplo:
+
+```sh
+k6 run .\tests\smoke-testing\categories-flow.js
+```
