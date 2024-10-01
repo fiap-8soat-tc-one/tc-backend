@@ -88,3 +88,7 @@ No entanto, em sistemas que demandam manutenção contínua e que podem crescer 
 ## Conclusão
 
 A Clean Architecture oferece um modelo poderoso e flexível para projetar sistemas de software. Ao seguir os princípios dessa arquitetura, você cria aplicações que são independentes de frameworks, altamente testáveis, fáceis de manter e escaláveis. Para projetos complexos e de longo prazo, a aplicação de Clean Architecture garante uma base sólida que resiste a mudanças e facilita a evolução contínua do software.
+
+## Referências
+
+[The Clean Architecture - Ungle Bobo](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
