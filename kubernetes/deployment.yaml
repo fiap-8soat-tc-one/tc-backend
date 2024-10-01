@@ -4,7 +4,7 @@ metadata:
   name: app-tc-backend-s2-dep
   namespace: fiap
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: app-tc-backend-s2
